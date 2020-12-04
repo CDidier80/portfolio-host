@@ -1,0 +1,35 @@
+{
+  "name": "portfolio-host",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "LisaCollinLuis <collin.didier80@gmail.com>",
+  "license": "MIT",
+  "nodemonConfig": {
+    "ignore": [
+      "client/"
+    ]
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db:seed": "node ./db/seed.js",
+    "build": "cd client && rm -rf build && npm run build"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "faker": "^5.1.0",
+    "nodemon": "^2.0.6"
+  }
+}
