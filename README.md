@@ -37,16 +37,29 @@ The project itself will be deployed using Heroku.
 ## User Stories
 1. Users can create an account with their email and name.
 2. A User can login into his/her account.
-3. From users profile, the user can share his/her professional title, organization, skills, locale, biography, host his/her projects, share LinkedIn account, GitHub link, person site link an about me with contact information.
+3. From users profile, the user can share his/her:
+- professional title
+- organization 
+- skills
+- locale
+- biography
+- share his/her projects
+- share LinkedIn account link
+- GitHub link
+- person site link
+- about me section 
+- contact information.
 4. User projects shared will show an image and link of his/her app/site.
 5. User can choose if he/she wants to share contact details.
 6. Users will be able to view other developer profiles on the home page.
 
 ## ERD
-![wireframe](./img/)
+![wireframe](./img/PortfolioHost.png)
 
 ## Wireframe
-![wireframe](./img/)
+![wireframe](./img/homepage.png)
+![wireframe](./img/browseAccount.png)
+![wireframe](./img/profilePage.png)
 
 ## Screenshots
 Screenshots of site to follow upon launch
