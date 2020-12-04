@@ -37,9 +37,10 @@ The project itself will be deployed using Heroku.
 ## User Stories
 1. Users can create an account with their email and name.
 2. A User can login into his/her account.
-3. From users profile, the user can host his/her projects,  share LinkedIn account and contact information.
-4. User can choose if he/she wants to share contact details.
-5. Users will be able to view other developer profiles.
+3. From users profile, the user can host his/her projects,  share LinkedIn account, GitHub link, an about me with contact information.
+4. User projects shared will show an image and link of his/her app/site.
+5. User can choose if he/she wants to share contact details.
+6. Users will be able to view other developer profiles on the home page.
 
 ## ERD
 ![wireframe](./img/)
@@ -64,3 +65,8 @@ https://trello.com/b/xMfBTgOV/portfolio-host
 
 
 ## Credits
+
+## Future updates
+- Mutliple templates for users to display their profile.
+
+
