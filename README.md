@@ -27,6 +27,12 @@ Site for developers to host their portfolio and projects
 ## Technologies used
 ![logos](./img/pern.png)
 
+## How to get started
+Start by signing up a new user and then begin add your projects to your profile.
+
+A Trello board was used to keep track of the groups progress and can be viewed.
+
+The project itself will be deployed using Heroku.
 
 ## User Stories
 1. Users can create an account with their email and name.
