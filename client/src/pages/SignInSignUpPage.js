@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../styles/LandingPage.css'
-import LogInForm from "./subcomponents/LogInForm"
+import SiSuPanel from "./subcomponents/SiSuPanel"
 // import { CreateUserService, LoginUserService } from '../services/UserService'
 
 
@@ -86,7 +86,7 @@ class SignupPage extends Component {
     const isSigningIn = loginPageDefault === "signInLink" ? true : false
     return (
       <div className="signupPage">
-        <LogInForm className="LogInPanel" formSubmit={isSigningIn ? this.submitLogIn : this.submitSignUp} panelState={ isSigningIn ? false : "signupLink"} updateField={this.updateField}/> 
+        <SiSuPanel className="LogInPanel" formSubmit={isSigningIn ? this.submitLogIn : this.submitSignUp} panelState={ isSigningIn ? false : "signupLink"} updateField={this.updateField}/> 
       </div>
     )
   }
