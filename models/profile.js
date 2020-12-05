@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     profilePicture: DataTypes.STRING,
-    professionalTittle: DataTypes.STRING,
+    professionalTitle: DataTypes.STRING,
     organization: DataTypes.STRING,
     skills: DataTypes.STRING,
     locale: DataTypes.STRING,

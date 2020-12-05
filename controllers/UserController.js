@@ -66,6 +66,7 @@ const LogInUser = async (req, res) => {
         if (user != null & password === user.password_digest) {
             res.send(user)
         }
+        res.status(401).send({msg: 'Unauthorized'})
     } catch (error) {
         throw error
     }
