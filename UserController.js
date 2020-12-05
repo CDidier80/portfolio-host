@@ -1,8 +1,6 @@
-const { User } = require('../models')
+const { User } = require('./models')
 const { Op, literal, fn, col  } = require('sequelize')
-const fileName = "UserController.js"
-const report = {fileName}
-const log = (report) => console.log(`Request arrived in ${$fileName} => controller function: `)
+
 
 // ${report.m} => carrying payload: `, report.p)
 
@@ -77,7 +75,6 @@ const LogInUser = async (req, res) => {
         if (user != null & password === user.password_digest) {
             res.send(user)
         }
-        res.status(401).send({msg: 'Unauthorized'})
     } catch (error) {
         throw error
     }
