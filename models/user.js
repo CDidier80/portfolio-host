@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
           as: 'user',
           onDelete: 'CASCADE',
           onUpdate: 'CASCADE'
+        })  
+        User.hasMany(models.Projects, {
+          foreignKey: 'user_id',
+          as: 'user',
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE'
         })
     }
   };
