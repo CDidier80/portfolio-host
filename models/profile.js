@@ -10,47 +10,31 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Profile.belongsTo(model.User, {
-        foreingKey: 'user_id',
+      Profile.belongsTo(models.User, {
+        foreignKey: 'user_id',
         as: 'user',
         onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',  
+        onUpdate: 'CASCADE'
       })
     }
   };
   Profile.init({
-    userId: {
-      type:DataTypes.INTEGER,
+    userId: { 
+      type: DataTypes.INTEGER,
+      allowNull: false, 
       field: 'user_id',
-      allNull: false,
       references: {
-        model: 'users',
+        model: 'account',
         key: 'id'
       }
     },
-    profilePicture: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      field: 'profile_picture',
-    },
-    professionalTitle: {
-      type: DataTypes.STRING,
-      allNull: true,
-      field: 'professional_title'
-    },
+    profilePicture: DataTypes.STRING,
+    professionalTittle: DataTypes.STRING,
     organization: DataTypes.STRING,
     skills: DataTypes.STRING,
-    local: DataTypes.STRING,
-    bio: DataTypes.STRING,
-    userId: {
-      type: Sequelize.INTEGER,
-      allowNull:false,
-      field: 'user_id',
-      references: {
-        model: 'users',
-        key: 'id'
-      }
-  }, 
+    locale: DataTypes.STRING,
+    bio: DataTypes.STRING
+  }, {
     sequelize,
     modelName: 'Profile',
     tableName: 'profiles'

@@ -8,11 +8,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'user_id',
+        unique: true,
+        references: {
+          model: 'users',
+          key: 'id',
+        }
+      },
       profilePicture: {
         field: 'profile_picture',
         type: Sequelize.STRING
       },
-      professionalTitle: {
+      professionalTittle: {
         field: 'professional_title',
         type: Sequelize.STRING
       },
@@ -22,20 +32,11 @@ module.exports = {
       skills: {
         type: Sequelize.STRING
       },
-      local: {
+      locale: {
         type: Sequelize.STRING
       },
       bio: {
         type: Sequelize.STRING
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull:false,
-        field: 'user_id',
-        references: {
-          model: 'users',
-          key: 'id'
-        }
       },
       createdAt: {
         field: 'created_at',
