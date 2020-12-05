@@ -6,7 +6,7 @@ const logger = require('morgan')
 
 // import express & create a server instance
 const app = require('express')()
-const PORT = process.env.PORT || 5001
+const PORT = process.env.PORT || 3001
 
 //Initialize Middleware
 app.use(cors())
