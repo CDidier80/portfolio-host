@@ -1,7 +1,7 @@
 const Router = require('express').Router()
-const UserRouter = require('./UsersRouter')
-const ProfileRouter = require('./ProfileRouter')
-const ProjectRouter = require('./ProjectRouter')
+const UserRouter = require('./SubRouters/UserRouter')
+const ProfileRouter = require('./SubRouters/ProfileRouter')
+const ProjectRouter = require('./SubRouters/ProjectRouter')
 
 Router.use('/UserRouter', UserRouter)
 Router.use('/ProfileRouter', ProfileRouter)

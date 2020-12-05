@@ -1,4 +1,4 @@
-const AppRouter = require('./backend/routes/AppRouter')
+const AppRouter = require('./routes/AppRouter')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const helmet = require('helmet')
