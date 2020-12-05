@@ -1,5 +1,9 @@
 import ApiClient from './ApiClient'
 
+
+const pathLog = () = >
+
+
 export default httpRequest = async (crudMethod, model, payload) => {
     switch (model) {
         case "User":
@@ -9,84 +13,59 @@ export default httpRequest = async (crudMethod, model, payload) => {
                     await ApiClient.post(`/UserRouter/create/`)
                     break
                 case "login":
-                    console.log("Request arrived in Service.js => table: 'User' => 'login' method: 'create' carrying payload: ", payload)
-                    await ApiClient.post(`/UserRouter/create/`)
+                    console.log("Request arrived in Service.js => table: 'User' => method: 'login' carrying payload: ", payload)
+                    await ApiClient.post(`/UserRouter/login/`)
                     break
                 case "read":
-                    const users = await Users.findAll()
-                    console.log(users)
+                    console.log("Request arrived in Service.js => table: 'User' => method: 'read' carrying payload: ", payload)
+                    await ApiClient.read(`/UserRouter/login/`)
                     break
                 case "update":
-                    const newValues = payload.newValues
-                    const identifier = payload.identifier
-                    await Users.update(newValues, {
-                        where: identifier
-                    });
+                    console.log("Request arrived in Service.js => table: 'User' => method: 'update' carrying payload: ", payload)
+                    await ApiClient.put(`/UserRouter/login/`)
                     break
                 case "delete":
-                    await Users.destroy({
-                        where: payload
-                    })
+                    console.log("Request arrived in Service.js => table: 'User' => method: 'delete' carrying payload: ", payload)
+                    await ApiClient.delete(`/UserRouter/login/`)
                     break
             }
             break
         case "Project":
             switch (crudMethod) {
                 case "create":
-                    await Projects.create({
-                        title: payload.title, 
-                        description: payload.description, 
-                        deployLink: payload.deployLink, 
-                        repoLink: payload.repoLink, 
-                        technologies: payload.technologies, 
-                        iframeEnabled: payload.iframeEnabled
-                    })
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'create' carrying payload: ", payload)
+                    await ApiClient.post(`/UserRouter/create/`)
                     break
                 case "read":
-                    const projects = await Projects.findAll()
-                    console.log(projects)
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'read' carrying payload: ", payload)
+                    await ApiClient.read(`/UserRouter/login/`)
                     break
                 case "update":
-                    const newValues = payload.newValues
-                    const identifier = payload.identifier
-                    await Projects.update(newValues, {
-                        where: identifier
-                    });
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'update' carrying payload: ", payload)
+                    await ApiClient.put(`/UserRouter/login/`)
                     break
                 case "delete":
-                    await Projects.destroy({
-                        where: payload
-                    })
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'delete' carrying payload: ", payload)
+                    await ApiClient.delete(`/UserRouter/login/`)
                     break
-            }
-            break
         case "Profile":
             switch (crudMethod) {
                 case "create":
-                    await Contributors.create({
-                        projectId: payload.projectId,
-                        userId: payload.userId,
-                        role: payload.role
-                    })
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'create' carrying payload: ", payload)
+                    await ApiClient.post(`/UserRouter/create/`)
                     break
                 case "read":
-                    const problemos = await Contributors.findAll()
-                    console.log(problemos)
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'read' carrying payload: ", payload)
+                    await ApiClient.read(`/UserRouter/login/`)
                     break
                 case "update":
-                    const newValues = payload.newValues
-                    const identifier = payload.identifier
-                    await Contributors.update(newValues, {
-                        where: identifier
-                    });
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'update' carrying payload: ", payload)
+                    await ApiClient.put(`/UserRouter/login/`)
                     break
                 case "delete":
-                    await Contributors.destroy({
-                        where: Payload
-                    })
+                    console.log("Request arrived in Service.js => table: 'Project' => method: 'delete' carrying payload: ", payload)
+                    await ApiClient.delete(`/UserRouter/login/`)
                     break
-            }
-            break
         default: 
             console.log("No cases matched. httpRequest() input or switch case name likely mispelled or mismatched.")
     }
