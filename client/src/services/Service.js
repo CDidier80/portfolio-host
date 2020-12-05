@@ -9,35 +9,39 @@ const {post, get, put} = ApiClient, del = (path) => ApiClient.delete(path)
  */
 const httpRequest = (routeKey, payload, dataRequest) => {
     const valueIfExists = (variableToCheck, valueIfExists, valueIfNot) => variableToCheck !== "undefined" ? valueIfExists : (valueIfNot !== "undefined" ? valueIfNot : null)
-    const {body} = payload, params = valueIfExists(payload.params, payload.params, "")
+    const {body} = valueIfExists(payload.body, payload.body, {}), params = valueIfExists(payload.params, payload.params, "")
     const userRequestedData = valueIfExists(dataRequest, true, false)
+    // each key of the route object shares its name with the controller at the end of the route
     const route = {
-        login: post(`UserRouter/login${params}`, payload),
-        createUser: post(`UserRouter/create${params}`, payload), 
-        readUser: get(`UserRouter/read${params}`, payload),
-        updateUser: put(`UserRouter/update${params}`, payload), 
-        deleteUser: del(`UserRouter/delete${params}`, payload),
+        login: post(`UserRouter/login${params}`, body),
+        createUser: post(`UserRouter/create${params}`, body), 
+        readUser: get(`UserRouter/read${params}`, body),
+        updateUser: put(`UserRouter/update${params}`, body), 
+        deleteUser: del(`UserRouter/delete${params}`, body),
     
-        createProfile: post(`ProfileRouter/create${params}`, payload),
-        readProfile: get(`ProfileRouter/read${params}`, payload), 
-        updateProfile: put(`ProfileRouter/update${params}`, payload), 
-        deleteProfile: del(`ProfileRouter/delete${params}`, payload), 
+        createProfile: post(`ProfileRouter/create${params}`, body),
+        readProfile: get(`ProfileRouter/read${params}`, body), 
+        updateProfile: put(`ProfileRouter/update${params}`, body), 
+        deleteProfile: del(`ProfileRouter/delete${params}`, body), 
     
-        createProject: post(`UserRouter/create${params}`, payload),
-        readProject: get(`UserRouter/read${params}`, payload),  
-        updateProject: put(`UserRouter/update${params}`, payload), 
-        deleteProject: del(`UserRouter/delete${params}`, payload)
+        createProject: post(`UserRouter/create${params}`, body),
+        readProject: get(`UserRouter/read${params}`, body),  
+        updateProject: put(`UserRouter/update${params}`, body), 
+        deleteProject: del(`UserRouter/delete${params}`, body)
     }
     try {
         const response = () => async () => await route[routeKey]()
-        // const dataToReturn = userRequestedData ? Object.entries(dataToReturn).filter([k,v]=> ) dataRequest.forEach
-        // return
-    } catch (error) {
         
+        const keys = Object.keys(response)
+        // ==> ["key", "key" , "key", "key"]  desired by user
+        // keys.map((key) => )
+        
+        // 
+        const dataToReturn = userRequestedData ? Object.entries(response).filter([k,v] =>  ) dataRequest.forEach
+        return
+    } catch (error) {
+        console.log(error)
     }
-    
-    
-
 }
 
 httpRequest("login",{})
