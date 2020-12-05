@@ -1,8 +1,8 @@
-// const Router = require('express').Router()
-// const controller = require('../controllers/ProfileController')
+const Router = require('express').Router()
+const controller = require('../../controllers/ProfileController')
 
-// // Create
-// Router.post('/create', controller.CreateProfile)
+// Create
+Router.post('/create/:user_id', controller.CreateProfile)
 
 // // Read
 // Router.get('/read/:profile_id', controller.ReadProfile)
@@ -11,4 +11,4 @@
 // Router.put('/update/:profile_id', controller.UpdateProfile)
 
 
-// module.exports = Router
+module.exports = Router
