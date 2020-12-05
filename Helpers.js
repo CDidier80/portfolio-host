@@ -1,4 +1,4 @@
-export default Helpers = {
+const Helpers = {
     valueIfExists = (variableToCheck, valueIfNot) => variableToCheck !== "undefined" ? variableToCheck : (valueIfNot !== "undefined" ? valueIfNot : null),
     ControllerLoggers: {
         UserControllerLog = (controllerFunction, req) => {
@@ -25,3 +25,5 @@ export default Helpers = {
 //     ProjectControllerLog, 
 //     UserControllerLog
 // }
+
+export default Helpers
