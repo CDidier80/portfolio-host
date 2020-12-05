@@ -5,19 +5,12 @@ export default httpRequest = async (crudMethod, model, payload) => {
         case "User":
             switch (crudMethod) {
                 case "create":
-                    await ApiClient.get(`/StyleRouterJs/StyleControllerJs/getonestyle/${styleSearchQuery}`
-                    
-                    
-                    Users.create({
-                        name: payload.name,
-                        email: payload.email,
-                        password: payload.password,
-                        profilepic: payload.profilepic,
-                        professionalTitle: payload.professionalTitle,
-                        organization: payload.organization,
-                        biography: payload.biography,
-                        locale: payload.locale
-                    })
+                    console.log("Request arrived in Service.js => table: 'User' => method: 'create' carrying payload: ", payload)
+                    await ApiClient.post(`/UserRouter/create/`)
+                    break
+                case "login":
+                    console.log("Request arrived in Service.js => table: 'User' => 'login' method: 'create' carrying payload: ", payload)
+                    await ApiClient.post(`/UserRouter/create/`)
                     break
                 case "read":
                     const users = await Users.findAll()
