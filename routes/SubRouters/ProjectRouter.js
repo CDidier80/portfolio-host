@@ -11,7 +11,7 @@
 // Router.put('/update/:project_id', controller.UpdateProject)
 
 // // Delete
-// // We may want to consider putting this into a master delete method
+// need a delete one method
 // Router.delete('/delete/:project_id', controller.DeleteProject)
 
 
