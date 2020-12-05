@@ -22,6 +22,21 @@ const CreateProfile = async (req, res) => {
         throw error
     }
 }
+const UpdateProfile = async (req, res) => {
+    try {
+        let profileId = parseInt(req.params.profile_id)
+        let updatedProfile = await Profile.update(req.body, {
+            where: {
+                id: profileId
+            },
+            returning: true
+        })
+        res.send(updatedProfile)
+    } catch(error) {
+        throw error 
+    }
+}
 module.exports = {
     CreateProfile,
+    UpdateProfile
 }

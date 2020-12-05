@@ -7,8 +7,8 @@ Router.post('/create/:user_id', controller.CreateProfile)
 // // Read
 // Router.get('/read/:profile_id', controller.ReadProfile)
 
-// // Update
-// Router.put('/update/:profile_id', controller.UpdateProfile)
+// Update
+Router.put('/update/:profile_id', controller.UpdateProfile)
 
 
 module.exports = Router
