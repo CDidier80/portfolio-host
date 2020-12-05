@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       profilePicture: {
+        field: 'profile_picture',
         type: Sequelize.STRING
       },
       professionalTitle: {
+        field: 'professional_title',
         type: Sequelize.STRING
       },
       organization: {
