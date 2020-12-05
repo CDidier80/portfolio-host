@@ -12,7 +12,7 @@ Router.get('/read/:user_id', controller.ReadUser)
 // Router.put('/update/:user_id', controller.UpdateUser)
 
 // Delete
-// We may want to put this into a master delete method
+// cascade will delete all associated projects and the user's profile
 Router.delete('/delete/:user_id', controller.DeleteUser)
 
 

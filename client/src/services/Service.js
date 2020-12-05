@@ -9,7 +9,8 @@ const {post, get, put} = ApiClient, del = (path) => ApiClient.delete(path)
  */
 const httpRequest = (routeKey, payload, dataRequest) => {
     const valueIfExists = (variableToCheck, valueIfExists, valueIfNot) => variableToCheck !== "undefined" ? valueIfExists : (valueIfNot !== "undefined" ? valueIfNot : null)
-    const {body} = valueIfExists(payload.body, payload.body, {}), params = valueIfExists(payload.params, payload.params, "")
+    const {body} = valueIfExists(payload.body, payload.body, {})
+    const params = valueIfExists(payload.params, payload.params, "")
     const userRequestedData = valueIfExists(dataRequest, true, false)
     // each key of the route object shares its name with the controller at the end of the route
     const route = {
@@ -37,20 +38,28 @@ const httpRequest = (routeKey, payload, dataRequest) => {
         // keys.map((key) => )
         
         // 
-        const dataToReturn = userRequestedData ? Object.entries(response).filter([k,v] =>  ) dataRequest.forEach
-        return
+        // const dataToReturn = userRequestedData ? Object.entries(response).filter([k,v] =>  ) dataRequest.forEach
+        // return
     } catch (error) {
         console.log(error)
     }
 }
 
+const [loginInformation, setLoginInfo] = useState({})
+const [isUserLoggedIn, setLoginStatus] = useState({})
+
+<button onClick={()=>setLoginStatus(httpRequest("login", loginInformation, ["isUserLoggedIn"]))}></button>
+
 httpRequest("login",{})
 
-extractResponse({username: usernameField, password: passField}).data.loggedIn
-setLoggedIn(extractResponse({username: usernameField, password: passField}).data.loggedIn)
+// extractResponse({username: usernameField, password: passField}).data.loggedIn
+// setLoggedIn(extractResponse({username: usernameField, password: passField}).data.loggedIn)
 
 // <button onClick={()=> setLoggedIn(((()=>httpRequest("User", props.post, "login", {username: "collin", password: "pass"})).userLoggedIn))}></button>
-    // const c = crudMethod, m = model, p = payload, report = {c:c, m:m, p:p}, log = (report) => console.log(`Request arrived in Server.js => table: ${report.m} => method: '${report.c}' carrying payload: `, report.p)
+
+
+
+    const c = crudMethod, m = model, p = payload, report = {c:c, m:m, p:p}, log = (report) => console.log(`Request arrived in Server.js => table: ${report.m} => method: '${report.c}' carrying payload: `, report.p)
     // const {post, get, put, delete} = ApiClient 
 
 // example: httpRequest("User", props.post, "login", {username: "collin", password: "pass"})
