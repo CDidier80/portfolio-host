@@ -1,77 +1,210 @@
-import ApiClient from './ApiClient'
+import axios from 'axios'
+const ApiClient = axios.create({ baseURL: 'http://localhost:3003/api/' })
+const {post, get, put} = ApiClient, del = (path) => ApiClient.delete(path)
 
-
-const pathLog = () = >
-
-
-export default httpRequest = async (crudMethod, model, payload) => {
-    switch (model) {
-        case "User":
-            switch (crudMethod) {
-                case "create":
-                    console.log("Request arrived in Service.js => table: 'User' => method: 'create' carrying payload: ", payload)
-                    await ApiClient.post(`/UserRouter/create/`)
-                    break
-                case "login":
-                    console.log("Request arrived in Service.js => table: 'User' => method: 'login' carrying payload: ", payload)
-                    await ApiClient.post(`/UserRouter/login/`)
-                    break
-                case "read":
-                    console.log("Request arrived in Service.js => table: 'User' => method: 'read' carrying payload: ", payload)
-                    await ApiClient.read(`/UserRouter/login/`)
-                    break
-                case "update":
-                    console.log("Request arrived in Service.js => table: 'User' => method: 'update' carrying payload: ", payload)
-                    await ApiClient.put(`/UserRouter/login/`)
-                    break
-                case "delete":
-                    console.log("Request arrived in Service.js => table: 'User' => method: 'delete' carrying payload: ", payload)
-                    await ApiClient.delete(`/UserRouter/login/`)
-                    break
-            }
-            break
-        case "Project":
-            switch (crudMethod) {
-                case "create":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'create' carrying payload: ", payload)
-                    await ApiClient.post(`/UserRouter/create/`)
-                    break
-                case "read":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'read' carrying payload: ", payload)
-                    await ApiClient.read(`/UserRouter/login/`)
-                    break
-                case "update":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'update' carrying payload: ", payload)
-                    await ApiClient.put(`/UserRouter/login/`)
-                    break
-                case "delete":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'delete' carrying payload: ", payload)
-                    await ApiClient.delete(`/UserRouter/login/`)
-                    break
-        case "Profile":
-            switch (crudMethod) {
-                case "create":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'create' carrying payload: ", payload)
-                    await ApiClient.post(`/UserRouter/create/`)
-                    break
-                case "read":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'read' carrying payload: ", payload)
-                    await ApiClient.read(`/UserRouter/login/`)
-                    break
-                case "update":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'update' carrying payload: ", payload)
-                    await ApiClient.put(`/UserRouter/login/`)
-                    break
-                case "delete":
-                    console.log("Request arrived in Service.js => table: 'Project' => method: 'delete' carrying payload: ", payload)
-                    await ApiClient.delete(`/UserRouter/login/`)
-                    break
-        default: 
-            console.log("No cases matched. httpRequest() input or switch case name likely mispelled or mismatched.")
+/**
+ * @param {string} routeKey
+ * @param {object} payload   // payload => {body:{title: "project title"}, params:{"/:user_id/:project_id"}}
+ * @param {array} dataRequest
+ */
+const httpRequest = (routeKey, payload, dataRequest) => {
+    const valueIfExists = (variableToCheck, valueIfExists, valueIfNot) => variableToCheck !== "undefined" ? valueIfExists : (valueIfNot !== "undefined" ? valueIfNot : null)
+    const {body} = payload, params = valueIfExists(payload.params, payload.params, "")
+    const userRequestedData = valueIfExists(dataRequest, true, false)
+    const route = {
+        login: post(`UserRouter/login${params}`, payload),
+        createUser: post(`UserRouter/create${params}`, payload), 
+        readUser: get(`UserRouter/read${params}`, payload),
+        updateUser: put(`UserRouter/update${params}`, payload), 
+        deleteUser: del(`UserRouter/delete${params}`, payload),
+    
+        createProfile: post(`ProfileRouter/create${params}`, payload),
+        readProfile: get(`ProfileRouter/read${params}`, payload), 
+        updateProfile: put(`ProfileRouter/update${params}`, payload), 
+        deleteProfile: del(`ProfileRouter/delete${params}`, payload), 
+    
+        createProject: post(`UserRouter/create${params}`, payload),
+        readProject: get(`UserRouter/read${params}`, payload),  
+        updateProject: put(`UserRouter/update${params}`, payload), 
+        deleteProject: del(`UserRouter/delete${params}`, payload)
     }
+    try {
+        const response = () => async () => await route[routeKey]()
+        // const dataToReturn = userRequestedData ? Object.entries(dataToReturn).filter([k,v]=> ) dataRequest.forEach
+        // return
+    } catch (error) {
+        
+    }
+    
+    
+
 }
 
+httpRequest("login",{})
 
+extractResponse({username: usernameField, password: passField}).data.loggedIn
+setLoggedIn(extractResponse({username: usernameField, password: passField}).data.loggedIn)
+
+// <button onClick={()=> setLoggedIn(((()=>httpRequest("User", props.post, "login", {username: "collin", password: "pass"})).userLoggedIn))}></button>
+    // const c = crudMethod, m = model, p = payload, report = {c:c, m:m, p:p}, log = (report) => console.log(`Request arrived in Server.js => table: ${report.m} => method: '${report.c}' carrying payload: `, report.p)
+    // const {post, get, put, delete} = ApiClient 
+
+// example: httpRequest("User", props.post, "login", {username: "collin", password: "pass"})
+    
+
+
+/**
+ * @param {object} payload
+ */
+
+const httpRequest = async (Model, AxiosMethod, crudMethod, payload) => await AxiosMethod(`${Model}Router/${crudMethod}/`)
+const extractResponse = (payload) => httpRequest(rteLogin, payload)
+extractResponse({username: usernameField, password: passField}).data.loggedIn
+setLoggedIn(extractResponse({username: usernameField, password: passField}).data.loggedIn)
+
+
+
+
+
+
+    // export default httpRequest = async (AxiosMethod, crudMethod, model,  payload) => {
+
+   //    'ProjectRouter/
+
+// const crudSwitch = (model, crudMethod) => {
+//     switch (crudMethod) {
+//         case "create":
+//             log(report)
+//             await ApiClient.post(`/UserRouter/create/`)
+//             break
+//         case "login":
+//             log(report)
+//             await ApiClient.post(`/UserRouter/login/`)
+//             break
+//         case "read":
+//             log(report)
+//             await ApiClient.read(`/UserRouter/login/`)
+//             break
+//         case "update":
+//             log(report)
+//             await ApiClient.put(`/UserRouter/login/`)
+//             break
+//         case "delete":
+//             log(report)
+//             await ApiClient.delete(`/UserRouter/login/`)
+//             break
+//     }
+//     break
+// }
+
+// case "User":
+//     crudSwitch("User")
+// case "Profile":
+//     crudSwitch("Profile")
+// case "Project":
+//     crudSwitch("Project")
+// }
+
+
+
+
+
+
+
+
+//     switch (model) {
+//         case "User":
+//             switch (crudMethod) {
+//                 case "create":
+//                     log(report)
+//                     await ApiClient.post(`/UserRouter/create/`)
+//                     break
+//                 case "login":
+//                     log(report)
+//                     await ApiClient.post(`/UserRouter/login/`)
+//                     break
+//                 case "read":
+//                     log(report)
+//                     await ApiClient.read(`/UserRouter/login/`)
+//                     break
+//                 case "update":
+//                     log(report)
+//                     await ApiClient.put(`/UserRouter/login/`)
+//                     break
+//                 case "delete":
+//                     log(report)
+//                     await ApiClient.delete(`/UserRouter/login/`)
+//                     break
+//             }
+//             break
+//         case "Project":
+//             switch (crudMethod) {
+//                 case "create":
+//                     log(report)
+//                     await ApiClient.post(`/UserRouter/create/`)
+//                     break
+//                 case "read":
+//                     log(report)
+//                     await ApiClient.read(`/UserRouter/login/`)
+//                     break
+//                 case "update":
+//                     log(report)
+//                     await ApiClient.put(`/UserRouter/login/`)
+//                     break
+//                 case "delete":
+//                     log(report)
+//                     await ApiClient.delete(`/UserRouter/login/`)
+//                     break
+//         case "Profile":
+//             switch (crudMethod) {
+//                 case "create":
+//                     log(report)
+//                     await ApiClient.post(`/UserRouter/create/`)
+//                     break
+//                 case "read":
+//                     log(report)
+//                     await ApiClient.read(`/UserRouter/login/`)
+//                     break
+//                 case "update":
+//                     log(report)
+//                     await ApiClient.put(`/UserRouter/login/`)
+//                     break
+//                 case "delete":
+//                     log(report)
+//                     await ApiClient.delete(`/UserRouter/login/`)
+//                     break
+//         default: 
+//             console.log("No cases matched. httpRequest() input or switch case name likely mispelled or mismatched.")
+//     }
+// }
+
+// switch (crudMethod) {
+//             case "create":
+//                 log(report)
+//                 await ApiClient.post(`${Model}Router/${crudMethod}/`)
+//                 break
+//             case "login":
+//                 log(report)
+//                 await ApiClient.post(`/UserRouter/login/`)
+//                 break
+//             case "read":
+//                 log(report)
+//                 await ApiClient.read(`/UserRouter/login/`)
+//                 break
+//             case "update":
+//                 log(report)
+//                 await ApiClient.put(`/UserRouter/login/`)
+//                 break
+//             case "delete":
+//                 log(report)
+//                 await ApiClient.delete(`/UserRouter/login/`)
+//                 break
+//         }
+//         break
+//     default: 
+//         console.log("No cases matched. httpRequest() input or switch case name likely mispelled or mismatched.")
+// }
+// }
 
     // CRUD REQUESTS AS FOLLOWS: 
 
