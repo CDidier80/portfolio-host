@@ -3,14 +3,14 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Profile extends Model {
+  class Projects extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Profile.belongsTo(models.User, {
+      Projects.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'user',
         onDelete: 'CASCADE',
@@ -18,26 +18,31 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   };
-  Profile.init({
-    userId: { 
+  Projects.init({
+    userId: {
       type: DataTypes.INTEGER,
-      allowNull: false, 
+      allowNull: false,
       field: 'user_id',
       references: {
         model: 'users',
         key: 'id'
       }
     },
-    profilePicture: DataTypes.STRING,
-    professionalTittle: DataTypes.STRING,
-    organization: DataTypes.STRING,
-    skills: DataTypes.STRING,
-    locale: DataTypes.STRING,
-    bio: DataTypes.STRING
+    title: DataTypes.STRING,
+    description: DataTypes.STRING,
+    technologies: DataTypes.STRING,
+    projectPicture: {
+      type: DataTypes.STRING,
+      field: 'project_picture',
+    },
+    deployLink: {
+      type: DataTypes.STRING,
+      field: 'deploy_link'
+    }
   }, {
     sequelize,
-    modelName: 'Profile',
-    tableName: 'profiles'
+    modelName: 'Projects',
+    tableName: 'projects'
   });
-  return Profile;
+  return Projects;
 };

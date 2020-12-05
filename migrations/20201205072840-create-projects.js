@@ -1,41 +1,38 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('profiles', {
+    await queryInterface.createTable('projects', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      profilePicture: {
-        field: 'profile_picture',
-        type: Sequelize.STRING
-      },
-      professionalTitle: {
-        field: 'professional_title',
-        type: Sequelize.STRING
-      },
-      organization: {
-        type: Sequelize.STRING
-      },
-      skills: {
-        type: Sequelize.STRING
-      },
-      local: {
-        type: Sequelize.STRING
-      },
-      bio: {
-        type: Sequelize.STRING
-      },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
+        allowNull: false,
         field: 'user_id',
         references: {
           model: 'users',
-          key: 'id'
+          key: 'id',
         }
+      },
+      title: {
+        type: Sequelize.STRING
+      },
+      description: {
+        type: Sequelize.STRING
+      },
+      technologies: {
+        type: Sequelize.STRING
+      },
+      projectPicture: {
+        type: Sequelize.STRING,
+        field: 'project_picture'
+      },
+      deployLink: {
+        type: Sequelize.STRING,
+        field: 'deploy_link'
       },
       createdAt: {
         field: 'created_at',
@@ -52,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('profiles');
+    await queryInterface.dropTable('projects');
   }
 };
