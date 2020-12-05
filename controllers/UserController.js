@@ -1,7 +1,14 @@
 const { User } = require('../models')
 const { Op, literal, fn, col  } = require('sequelize')
+const fileName = "UserController.js"
+const report = {fileName}
+const log = (report) => console.log(`Request arrived in ${$fileName} => controller function: `)
+
+// ${report.m} => carrying payload: `, report.p)
+
 
 const CreateUser = async (req, res) => {
+    log(file, this, req)
     try { 
         let userBody = {
             ...req.body
