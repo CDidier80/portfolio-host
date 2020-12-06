@@ -2,6 +2,17 @@ import axios from 'axios'
 const ApiClient = axios.create({ baseURL: 'http://localhost:3003/api/' })
 const {post, get, put} = ApiClient, del = (path) => ApiClient.delete(path)
 
+ApiClient.interceptors.request.use(
+    async (config) => {
+    const token = localStorage.getItem('token')
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+    },
+    (err) => Promise.reject(err)
+)
+
 /**
  * @param {string} routeKey
  * @param {object} payload   // payload => {body:{title: "project title"}, params:{"/:user_id/:project_id"}}
@@ -45,12 +56,12 @@ const httpRequest = (routeKey, payload, dataRequest) => {
     }
 }
 
-const [loginInformation, setLoginInfo] = useState({})
-const [isUserLoggedIn, setLoginStatus] = useState({})
+// const [loginInformation, setLoginInfo] = useState({})
+// const [isUserLoggedIn, setLoginStatus] = useState({})
 
-<button onClick={()=>setLoginStatus(httpRequest("login", loginInformation, ["isUserLoggedIn"]))}></button>
+// <button onClick={()=>setLoginStatus(httpRequest("login", loginInformation, ["isUserLoggedIn"]))}></button>
 
-httpRequest("login",{})
+// httpRequest("login",{})
 
 // extractResponse({username: usernameField, password: passField}).data.loggedIn
 // setLoggedIn(extractResponse({username: usernameField, password: passField}).data.loggedIn)
