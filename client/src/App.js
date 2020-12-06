@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import HomePage from "./pages/HomePage"
 import PortfolioPage from "./pages/PortfolioPage"
 import SignInSignUp from "./pages/SignInUpFunction"
+import LandingPage from "./pages/LandingPage"
 // import SignInSignUp from "./pages/SignInSignUp"
 // import ProtectedRoute from './components/ProtectedRoute'
 // import Layout from '../src/pages/components/Layout'
@@ -40,6 +41,7 @@ const App = (props) => {
               <Route exact path="/" component={(props) =><HomePage {...props} />}/>
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
               <Route path="/signInUp" component={(props) => <SignInSignUp {...props}/>}/>
+              <Route path="/landingPage" component={(props) => <LandingPage {...props} />} />
             </Switch>
         )}
       </main>
