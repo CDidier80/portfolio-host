@@ -1,4 +1,3 @@
-
 exports.valueIfExists = (variableToCheck, valueIfNot) => variableToCheck ? variableToCheck : valueIfNot
 exports.ControllerLoggers = {
     UserControllerLog : (controllerFunction, req, valueIfExists, boolean) => {
@@ -8,21 +7,14 @@ exports.ControllerLoggers = {
         return
     },
     ProfileControllerLog : (controllerFunction, req, valueIfExists, boolean) => {
-
         const paramMessage = ` and params: ${valueIfExists(req.params, "")}`
         boolean ? console.log(`Request arrived in ProfileController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body, paramMessage): null
         return
     },
 
-    ProjectControllerLog : (controllerFunction, req, valueIfExists, boolean) => {
-
+    ProjectsControllerLog : (controllerFunction, req, valueIfExists, boolean) => {
         const paramMessage = ` and params: ${valueIfExists(req.params, "")}`
         boolean ? console.log(`Request arrived in ProjectController.js => controller function: ${controllerFunction} => carrying req.body: `, req.body, paramMessage): null
         return
     }
 }
-
-
-    // module.exports ={
-    //     ControllerLogs
-    // }
