@@ -2,6 +2,8 @@ import React, {useEffect, useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import HomePage from "./pages/HomePage"
 import PortfolioPage from "./pages/PortfolioPage"
+import SignInSignUp from "./pages/SignInUpFunction"
+// import SignInSignUp from "./pages/SignInSignUp"
 // import ProtectedRoute from './components/ProtectedRoute'
 // import Layout from '../src/pages/components/Layout'
 // hello
@@ -37,7 +39,7 @@ const App = (props) => {
            <Switch>
               <Route exact path="/" component={(props) =><HomePage {...props} />}/>
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
-              <Route path="/signInUp" component={(props) => <SignInUcdpPage {...props}/>}/>
+              <Route path="/signInUp" component={(props) => <SignInSignUp {...props}/>}/>
             </Switch>
         )}
       </main>
