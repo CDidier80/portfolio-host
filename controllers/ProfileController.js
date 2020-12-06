@@ -14,7 +14,6 @@ const CreateProfile = async (req, res) => {
             userId,
             ...req.body
         }
-        console.log('pro body', profileBody)
         let profile = await Profile.create(profileBody)
         res.send(profile)
     } catch (error) {
