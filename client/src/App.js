@@ -4,6 +4,7 @@ import HomePage from "./pages/LandingPage"
 import PortfolioPage from "./pages/PortfolioPage"
 import SignInUpPage from "./pages/SignInUpPage"
 import LandingPage from "./pages/LandingPage"
+import ServiceTestPage from "./pages/ServiceTestPage"
 
 // import SignInSignUp from "./pages/SignInSignUp"
 // import ProtectedRoute from './components/ProtectedRoute'
@@ -11,17 +12,15 @@ import LandingPage from "./pages/LandingPage"
 // hello
 
 const App = (props) => {
-  const [pageIsLoaded, setLoaded] = useState(false)
+    const [pageIsLoaded, setLoaded] = useState(false)
 
 
 
-const useEffect = () => {
-  if (!pageIsLoaded) {
-    setLoaded(true)
-  }
-}
-
-
+    const useEffect = () => {
+        if (!pageIsLoaded) {
+          setLoaded(true)
+        }
+      }
 
 //   goToSignupPage = async (e) => {
 //     e.stopPropagation()
@@ -43,6 +42,8 @@ const useEffect = () => {
               <Route path="/home" component={(props) => <HomePage {...props}/>}/>
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
               <Route path="/signInUp" component={(props) => <SignInUpPage {...props}/>}/>
+              {/* this is a development-only page for testing Services/front-back end routes*/}
+              <Route path="/service" component={(props) => <ServiceTestPage {...props}/>}/>
             </Switch>
         )}
       </main>
