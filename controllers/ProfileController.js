@@ -1,12 +1,12 @@
 const { User, Profile } = require('../models')
 const { Op, literal, fn, col } = require('sequelize')
-// const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
-// const log = ControllerLoggers.ProfileControllerLog
-// const showLogs = true
+const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
+const log = ControllerLoggers.ProfileControllerLog
+const showLogs = true
 
 
 const CreateProfile = async (req, res) => {
-    // log(CreateProfile, req, checkPayload, showLogs)
+    log(CreateProfile, req, checkPayload, showLogs)
     try {
         let userId = parseInt(req.params.user_id)
         let profileBody = {
@@ -22,7 +22,7 @@ const CreateProfile = async (req, res) => {
 }
 
 const UpdateProfile = async (req, res) => {
-    // log(UpdateProfile, req, checkPayload, showLogs)
+    log(UpdateProfile, req, checkPayload, showLogs)
     try {
         let profileId = parseInt(req.params.profile_id)
         let updatedProfile = await Profile.update(req.body, {
@@ -37,7 +37,7 @@ const UpdateProfile = async (req, res) => {
     }
 }
 const ReadProfile = async (req, res) => {
-    // log(ReadProfile, req, checkPayload, showLogs)
+    log(ReadProfile, req, checkPayload, showLogs)
     try {
         let profileId = parseInt(req.params.profile_id)
         let profile = await Profile.findByPk(profileId)
@@ -47,7 +47,7 @@ const ReadProfile = async (req, res) => {
     }
 }
 const ReadAllProfiles = async (req, res) => {
-    // log(ReadAllProfiles, req, checkPayload, showLogs)
+    log(ReadAllProfiles, req, checkPayload, showLogs)
     try {
         const allProfiles = await Profile.findAll()
         console.log(allProfiles)

@@ -1,12 +1,12 @@
 const { User, Projects } = require('../models')
 const { CreateUser } = require('./UserController')
-// const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
-// const log = ControllerLoggers.ProjectsControllerLog
-// const showLogs = true
+const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
+const log = ControllerLoggers.ProjectsControllerLog
+const showLogs = true
 
 
 const CreateProject = async (req, res) => {
-    // log(CreateProject, req, checkPayload, showLogs)
+    log(CreateProject, req, checkPayload, showLogs)
     try {
         let userId = parseInt(req.params.user_id)
         let projectBody = {
@@ -21,7 +21,7 @@ const CreateProject = async (req, res) => {
 }
 
 const UpdateProject = async (req, res) => {
-    // log(UpdateProject, req, checkPayload, showLogs)
+    log(UpdateProject, req, checkPayload, showLogs)
     try {
         let projectId = parseInt(req.params.project_id)
         let updatedProject = await Projects.update(req.body, {
@@ -37,7 +37,7 @@ const UpdateProject = async (req, res) => {
 }
 
 const GetAllProjects = async (req, res) => {
-    // log(GetAllProjects, req, checkPayload, showLogs)
+    log(GetAllProjects, req, checkPayload, showLogs)
     try {
         let userId = parseInt(req.params.user_id)
         console.log(userId)
@@ -52,7 +52,7 @@ const GetAllProjects = async (req, res) => {
     }
 }
 const ReadProject = async (req, res) => {
-    // log(CreateProject, req, checkPayload, showLogs)
+    log(CreateProject, req, checkPayload, showLogs)
     try {
         let projectId = parseInt(req.params.project_id)
         let project = await Projects.findByPk(projectId)
