@@ -1,18 +1,25 @@
-import React, {useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import HomePage from "./pages/LandingPage"
 import PortfolioPage from "./pages/PortfolioPage"
-import SignInSignUpPage from "./pages/SignInUpPage"
+import SignInSignUpPage from "./pages/SignInUpFunctPage"
 import LandingPage from "./pages/HomePage"
 // import SignInSignUp from "./pages/SignInSignUp"
 // import ProtectedRoute from './components/ProtectedRoute'
 // import Layout from '../src/pages/components/Layout'
 // hello
 
-const App = (props) => {
+ const App = (props) => {
   const [pageIsLoaded, changeLoadedBoolean] = useState(false)
 
-  
+   useEffect(() => {
+     console.log("useEffect reached")
+     const getProfiles = async () => {
+       if (!pageIsLoaded) {
+         changeLoadedBoolean(true)
+       }
+     }
+   })
 
 
 //   goToSignupPage = async (e) => {
@@ -34,7 +41,7 @@ const App = (props) => {
               <Route exact path="/" component={(props) =><LandingPage {...props} />}/>
               <Route path="/home" component={(props) => <HomePage {...props} />} />
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
-              <Route path="/account" component={(props) => <SignInSignUpPage {...props}/>}/>
+              <Route path="/signInUp" component={(props) => <SignInSignUpPage {...props}/>}/>
             </Switch>
         )}
       </main>
