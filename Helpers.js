@@ -1,5 +1,5 @@
-exports.valueIfExists = (variableToCheck, valueIfNot) => variableToCheck ? variableToCheck : valueIfNot
-exports.ControllerLoggers = {
+export function valueIfExists(variableToCheck, valueIfNot) { return variableToCheck ? variableToCheck : valueIfNot}
+export const ControllerLoggers = {
     UserControllerLog : (controllerFunction, req, valueIfExists, boolean) => {
         // const body
         const paramMessage = ` and params: ${valueIfExists(req.params, "")}`
