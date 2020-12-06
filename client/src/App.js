@@ -1,8 +1,8 @@
-import React, {useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import HomePage from "./pages/LandingPage"
 import PortfolioPage from "./pages/PortfolioPage"
-import SignInSignUpPage from "./pages/SignInSignUp"
+import SignInUpPage from "./pages/SignInUpPage"
 import LandingPage from "./pages/LandingPage"
 
 // import SignInSignUp from "./pages/SignInSignUp"
@@ -42,7 +42,7 @@ const useEffect = () => {
               <Route exact path="/" component={(props) =><LandingPage {...props}/>}/>
               <Route path="/home" component={(props) => <HomePage {...props}/>}/>
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
-              <Route path="/account" component={(props) => <SignInSignUpPage {...props}/>}/>
+              <Route path="/signInUp" component={(props) => <SignInUpPage {...props}/>}/>
             </Switch>
         )}
       </main>
