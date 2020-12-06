@@ -6,6 +6,19 @@ const path = "./subcomponents/ServiceTestComps"
 
 const ServiceTest = () => {
     const models = ["User, Profile, Projects"]
+    const map = {
+        User: {
+            modelName: "User",
+
+        },
+        Profile: {
+            modelName: "Profile"
+        },
+        Projects: {
+            modelName: "Projects"
+        },
+
+    }
     const styles = {
         componentWrapper: {
             minHeight: "100vw",
