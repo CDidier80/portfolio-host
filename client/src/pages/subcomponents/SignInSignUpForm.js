@@ -41,7 +41,7 @@ function Copyright() {
 
 export default function SignInSignUpForm(props) {
 
-  const root = props.styleChoice != "formStyles" ? 
+  const root = props.styleChoice !== "formStyles" ? 
     {
       "background-color": "rgba(255,255,255,.4)",
       height: '100vh',
