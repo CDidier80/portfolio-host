@@ -96,7 +96,7 @@ const LandingPage = (props) => {
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/account">
+            <Link to="/signInUp">
               <Button color="#fce4ec">Login</Button>
             </Link>
           </Toolbar>
