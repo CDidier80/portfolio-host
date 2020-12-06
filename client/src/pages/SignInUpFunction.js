@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
+// import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
 
 
 const SignInUpFunction = (props) => {
