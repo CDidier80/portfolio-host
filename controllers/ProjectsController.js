@@ -52,7 +52,7 @@ const GetAllProjects = async (req, res) => {
     }
 }
 const ReadProject = async (req, res) => {
-    log(CreateProject, req, checkPayload, showLogs)
+    // log(CreateProject, req, checkPayload, showLogs)
     try {
         let projectId = parseInt(req.params.project_id)
         let project = await Projects.findByPk(projectId)
