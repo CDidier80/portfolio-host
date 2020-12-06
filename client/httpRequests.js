@@ -1,24 +1,25 @@
 import axios from 'axios'
 const ApiClient = axios.create({ baseURL: 'http://localhost:3003/api/' })
-const {post, get, put} = ApiClient, del = (path) => ApiClient.delete(path)
+const {post, get, put} = exports.ApiClient, del = (path) => ApiClient.delete(path)
 
-ApiClient.interceptors.request.use(
-    async (config) => {
-    const token = localStorage.getItem('token')
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
-    },
-    (err) => Promise.reject(err)
-)
+// uncomment when AUTH is ready
+// ApiClient.interceptors.request.use(
+//     async (config) => {
+//     const token = localStorage.getItem('token')
+//     if (token) {
+//         config.headers.Authorization = `Bearer ${token}`
+//     }
+//     return config
+//     },
+//     (err) => Promise.reject(err)
+// )
 
 /**
  * @param {string} routeKey
  * @param {object} payload   // payload => {body:{title: "project title"}, params:{"/:user_id/:project_id"}}
  * @param {array} dataRequest
  */
-const httpRequest = (routeKey, payload, dataRequest) => {
+exports.httpRequest = (routeKey, payload, dataRequest) => {
     const valueIfExists = (variableToCheck, valueIfExists, valueIfNot) => variableToCheck !== "undefined" ? valueIfExists : (valueIfNot !== "undefined" ? valueIfNot : null)
     const {body} = valueIfExists(payload.body, payload.body, {})
     const params = valueIfExists(payload.params, payload.params, "")
@@ -31,10 +32,11 @@ const httpRequest = (routeKey, payload, dataRequest) => {
         updateUser: put(`UserRouter/update${params}`, body), 
         deleteUser: del(`UserRouter/delete${params}`, body),
     
-        createProfile: post(`ProfileRouter/create${params}`, body),
-        readProfile: get(`ProfileRouter/read${params}`, body), 
-        updateProfile: put(`ProfileRouter/update${params}`, body), 
-        deleteProfile: del(`ProfileRouter/delete${params}`, body), 
+        createProfile: post(`profiles/create${params}`, body),
+        readProfile: get(`profiles/read${params}`, body), 
+        ReadAllProfiles: get(`profiles/read${params}`, body), 
+        updateProfile: put(`profiles/update${params}`, body), 
+        deleteProfile: del(`profiles/delete${params}`, body), 
     
         createProject: post(`UserRouter/create${params}`, body),
         readProject: get(`UserRouter/read${params}`, body),  
@@ -43,14 +45,14 @@ const httpRequest = (routeKey, payload, dataRequest) => {
     }
     try {
         const response = () => async () => await route[routeKey]()
-        
-        const keys = Object.keys(response)
+        console.log(response)
+        // const keys = Object.keys(response)
         // ==> ["key", "key" , "key", "key"]  desired by user
         // keys.map((key) => )
         
         // 
         // const dataToReturn = userRequestedData ? Object.entries(response).filter([k,v] =>  ) dataRequest.forEach
-        // return
+        return response
     } catch (error) {
         console.log(error)
     }
@@ -70,21 +72,21 @@ const httpRequest = (routeKey, payload, dataRequest) => {
 
 
 
-    const c = crudMethod, m = model, p = payload, report = {c:c, m:m, p:p}, log = (report) => console.log(`Request arrived in Server.js => table: ${report.m} => method: '${report.c}' carrying payload: `, report.p)
+    // const c = crudMethod, m = model, p = payload, report = {c:c, m:m, p:p}, log = (report) => console.log(`Request arrived in Server.js => table: ${report.m} => method: '${report.c}' carrying payload: `, report.p)
     // const {post, get, put, delete} = ApiClient 
 
 // example: httpRequest("User", props.post, "login", {username: "collin", password: "pass"})
     
 
 
-/**
- * @param {object} payload
- */
+// /**
+//  * @param {object} payload
+//  */
 
-const httpRequest = async (Model, AxiosMethod, crudMethod, payload) => await AxiosMethod(`${Model}Router/${crudMethod}/`)
-const extractResponse = (payload) => httpRequest(rteLogin, payload)
-extractResponse({username: usernameField, password: passField}).data.loggedIn
-setLoggedIn(extractResponse({username: usernameField, password: passField}).data.loggedIn)
+// const httpRequest = async (Model, AxiosMethod, crudMethod, payload) => await AxiosMethod(`${Model}Router/${crudMethod}/`)
+// const extractResponse = (payload) => httpRequest(rteLogin, payload)
+// extractResponse({username: usernameField, password: passField}).data.loggedIn
+// setLoggedIn(extractResponse({username: usernameField, password: passField}).data.loggedIn)
 
 
 

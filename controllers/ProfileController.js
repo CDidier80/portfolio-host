@@ -50,6 +50,7 @@ const ReadAllProfiles = async (req, res) => {
     log(ReadAllProfiles, req, checkPayload, showLogs)
     try {
         const allProfiles = await Profile.findAll()
+        console.log(allProfiles)
         res.send(allProfiles)
     } catch (error) {
         throw error
