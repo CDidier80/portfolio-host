@@ -1,13 +1,13 @@
 const { User } = require('../models')
 const { Op, literal, fn, col  } = require('sequelize')
-const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
-const log = ControllerLoggers.UserControllerLog
-const showLogs = true
+// const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
+// const log = ControllerLoggers.UserControllerLog
+// const showLogs = true
 
 
 
 const CreateUser = async (req, res) => {
-    log(CreateUser, req, checkPayload, showLogs)
+    // log(CreateUser, req, checkPayload, showLogs)
     try {
         let userBody = {
             ...req.body
@@ -19,7 +19,7 @@ const CreateUser = async (req, res) => {
     }
 }
 const DeleteUser = async (req, res) => {
-    log(DeleteUser, req, checkPayload, showLogs)
+    // log(DeleteUser, req, checkPayload, showLogs)
     try {
         let userId = parseInt(req.params.user_id)
         console.log(userId)
@@ -36,7 +36,7 @@ const DeleteUser = async (req, res) => {
     }
 }
 const ReadUser = async (req, res) => {
-    log(ReadUser, req, checkPayload, showLogs)
+    // log(ReadUser, req, checkPayload, showLogs)
     try {
         let userId = parseInt(req.params.user_id)
         let user = await User.findByPk(userId)
@@ -46,7 +46,7 @@ const ReadUser = async (req, res) => {
     }
 }
 const UpdateUser = async (req, res) => {
-    log(UpdateUser, req, checkPayload, showLogs)
+    // log(UpdateUser, req, checkPayload, showLogs)
     try {
         let userId = parseInt(req.params.user_id)
         let updatedUser = await User.update(req.body, {
@@ -61,7 +61,7 @@ const UpdateUser = async (req, res) => {
     }
 }
 const LogInUser = async (req, res) => {
-    log(LogInUser, req, checkPayload, showLogs)
+    // log(LogInUser, req, checkPayload, showLogs)
     try {
         let email = req.body.email
         let password = req.body.password
