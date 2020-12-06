@@ -56,7 +56,6 @@ export default function ButtonAppBar() {
                 </Menu>
 
             <Typography variant="h6" className={classes.title}>
-              {/* Dev Ports */}
           </Typography>
           <Link to="/signInUp">
               <Button color="#fce4ec">Login</Button>
