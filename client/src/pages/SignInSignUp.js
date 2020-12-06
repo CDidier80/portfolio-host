@@ -1,92 +1,84 @@
-import React, { Component } from 'react'
-import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
-// import { CreateUserService, LoginUserService } from '../services/UserService'
-// import Service from "../services/Service"
-
-class SignInSignUp extends Component {
-  // console.log(children)
-  constructor(props){
-    super(props)
-    this.state = {
-        // props from App.js 
-        toggleAuthenticated: props.toggleAuthenticated,
-        verifyTokenValid: props.verifyTokenValid,
-        authenticated: props.authenticated,
-        currentUser: props.currentUser,
-        //
-        loginPageDefault: this.props.history.location.state.loginPageDefault,
-        eventTarget: "",
-        username: "",
-        email: "",
-        password: ""
-    }
-  }
-
-  componentDidMount = () => {
-    console.log("componentDidMount() fired in SignupPage.js")
-    if(this.state.loginPageDefault === "") {
-      this.setState({loginPageDefault: "signUpLink"})
-    }
-  }
-
-  activateForm = (e) => {
-    e.preventDefault() 
-    console.log('clicked')
-      this.setState({eventTarget: e.target.className})
-    }
-
-  goToMainPage = () => {
-    this.props.history.push('/main')
-  }
-
-  submitSignUp = (e) => {
-    const {username, email, password} = this.state
-    const formData = {username: username, email: email, password: password}
-    Service(formData)
-  }
-
-  submitLogIn = async (e) => {
-    // console.log('submitLogin() fired')
-    const {toggleAuthenticated, email, password} = this.state
-    e.preventDefault()
-    const formData = {email: email, password: password}
-    // console.log("formData sent to back-end: ", formData)
-    const responseData =  await LoginUserService(formData)
-    // console.log("Response received: ",responseData)
-    // console.log("Username received as part of responseData: ", responseData.user.username)
-    toggleAuthenticated(true, responseData.user.username, ()=>this.props.history.push('/main'))
-  }
-
-  updateField = (event) => {
-    const {value} = event.target
-    switch (event.target.id) {
-      case "username":
-        this.setState({username: value})
-        break
-      case "email":
-        this.setState({email: value})
-        break
-      case "password":
-        this.setState({password: value})
-        break
-      default: 
-        console.log('updateField() switch statement originating in LandingPage.js had no matching cases.')
-    }
-  }
+// import React from 'react';
+// import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
+import React from 'react';
+import { Link } from 'react-router-dom'
+import {Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, 
+  Grid,  makeStyles, TextField, Typography} from '@material-ui/core/'
+import LockOutlinedIcon from '@material-ui/icons/ThreeDRotation';
+  // LockOutlinedIcon,
 
 
 
-  render() {
-    const {loginPageDefault, currentUser, authenticated} = this.state
-    // this.classCompLogTests()
-    console.log("this.props.location.state passed by a Link/NavLink component at render: ", this.props.location)
-    const isSigningIn = loginPageDefault === "signInLink" ? true : false
-    return (
-      <div className="signupPage">
-        <SignInSignUpForm className="LogInPanel" formSubmit={isSigningIn ? this.submitLogIn : this.submitSignUp} panelState={ isSigningIn ? false : "signupLink"} updateField={this.updateField}/> 
-      </div>
-    )
-  }
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         www.DevPortal.com
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+
+const SignInSignUpPage = (props) => {
+  const classes = useStyles();
+
+  return (
+    <div>
+      <Link to="/">
+        <Button color="#fce4ec">Back</Button>
+      </Link>
+
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5"> Sign in </Typography>
+          <form className={classes.form} noValidate>
+            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password"/>
+            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={()=>props.history.push("/")}>Sign In</Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2"> Forgot password? </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">"Don't have an account? Sign Up</Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+        <Box mt={8}></Box>
+      </Container>
+
+    </div>
+  );
 }
 
-export default SignInSignUp
+export default SignInSignUpPage
