@@ -1,8 +1,8 @@
 const { User, Profile } = require('../models')
 const { Op, literal, fn, col } = require('sequelize')
 const Helpers = require('../Helpers')
+const showLogs = true
 const log = Helpers.ControllerLoggers.ProfileControllerLog
-
 const CreateProfile = async (req, res) => {
     log(this, req)
     try {
