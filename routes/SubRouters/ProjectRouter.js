@@ -2,7 +2,7 @@ const Router = require('express').Router()
 const controller = require('../../controllers/ProjectsController')
 
 // Create
-Router.post('/create', controller.CreateProject)
+Router.post('/create/:user_id', controller.CreateProject)
 
 // // Read
 Router.get('/read/:project_id', controller.ReadProject)
