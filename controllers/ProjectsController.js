@@ -43,8 +43,18 @@ const GetAllProjects = async (req, res) => {
         throw error 
     }
 }
+const ReadProject = async (req, res) => {
+    try {
+        let projectId = parseInt(req.params.project_id)
+        let project = await Projects.findByPk(projectId)
+        res.send(project)
+    } catch(error) {
+        throw error 
+    }
+}
 module.exports = {
     CreateProject,
     UpdateProject,
-    GetAllProjects
+    GetAllProjects,
+    ReadProject
 }

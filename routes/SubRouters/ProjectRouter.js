@@ -5,7 +5,7 @@ const controller = require('../../controllers/ProjectsController')
 Router.post('/create', controller.CreateProject)
 
 // // Read
-// Router.get('/read/:project_id', controller.ReadProject)
+Router.get('/read/:project_id', controller.ReadProject)
 
 // Update
 Router.put('/update/:project_id', controller.UpdateProject)
