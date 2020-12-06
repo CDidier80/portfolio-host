@@ -22,6 +22,40 @@ const CreateProfile = async (req, res) => {
         throw error
     }
 }
+const UpdateProfile = async (req, res) => {
+    try {
+        let profileId = parseInt(req.params.profile_id)
+        let updatedProfile = await Profile.update(req.body, {
+            where: {
+                id: profileId
+            },
+            returning: true
+        })
+        res.send(updatedProfile)
+    } catch (error) {
+        throw error
+    }
+}
+const ReadProfile = async (req, res) => {
+    try {
+        let profileId = parseInt(req.params.profile_id)
+        let profile = await Profile.findByPk(profileId)
+        res.send(profile)
+    } catch (error) {
+        throw error
+    }
+}
+const ReadAllProfiles = async (req, res) => {
+    try {
+        const allProfiles = await Profile.findAll()
+        res.send(allProfiles)
+    } catch (error) {
+        throw error
+    }
+}
 module.exports = {
     CreateProfile,
+    UpdateProfile,
+    ReadProfile,
+    ReadAllProfiles
 }
