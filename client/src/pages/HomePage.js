@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
 
-export default function HomePage(props) {
+const HomePage = ()  => {
+  return(
 <div>
 <h3>
   Welcome to Dev Ports
@@ -22,5 +23,5 @@ export default function HomePage(props) {
 </Button>
   </Link>
 </div>
+  )
 }
-
