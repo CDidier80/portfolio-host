@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'user',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
+        onDelete : "cascade",
+        hooks: true
       })
     }
   };
@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false, 
       field: 'user_id',
+      onDelete: 'cascade',
+      hooks: true,
       references: {
         model: 'users',
         key: 'id'

@@ -13,14 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         User.hasOne(models.Profile, {
           foreignKey: 'user_id',
           as: 'user_profile',
-          onDelete: 'CASCADE',
-          onUpdate: 'CASCADE'
         })  
         User.hasMany(models.Projects, {
           foreignKey: 'user_id',
           as: 'user_project',
-          onDelete: 'CASCADE',
-          onUpdate: 'CASCADE'
         })
     }
   };
