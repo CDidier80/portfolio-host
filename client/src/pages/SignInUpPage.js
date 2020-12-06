@@ -53,7 +53,7 @@ const goLandingPage = (e) => {
   e.target.push('/landingPage');
 }
 
-export default function SignIn() {
+export default function SignInSignUpPage() {
   const classes = useStyles();
 
   return (

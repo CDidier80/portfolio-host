@@ -1,6 +1,6 @@
 import axios from 'axios'
 const ApiClient = axios.create({ baseURL: 'http://localhost:3003/api/' })
-const {post, get, put} = ApiClient, del = (path) => ApiClient.delete(path)
+const {post, get, put} = exports.ApiClient, del = (path) => ApiClient.delete(path)
 
 // uncomment when AUTH is ready
 // ApiClient.interceptors.request.use(
@@ -32,10 +32,11 @@ exports.httpRequest = (routeKey, payload, dataRequest) => {
         updateUser: put(`UserRouter/update${params}`, body), 
         deleteUser: del(`UserRouter/delete${params}`, body),
     
-        createProfile: post(`ProfileRouter/create${params}`, body),
-        readProfile: get(`ProfileRouter/read${params}`, body), 
-        updateProfile: put(`ProfileRouter/update${params}`, body), 
-        deleteProfile: del(`ProfileRouter/delete${params}`, body), 
+        createProfile: post(`profiles/create${params}`, body),
+        readProfile: get(`profiles/read${params}`, body), 
+        ReadAllProfiles: get(`profiles/read${params}`, body), 
+        updateProfile: put(`profiles/update${params}`, body), 
+        deleteProfile: del(`profiles/delete${params}`, body), 
     
         createProject: post(`UserRouter/create${params}`, body),
         readProject: get(`UserRouter/read${params}`, body),  
@@ -44,14 +45,14 @@ exports.httpRequest = (routeKey, payload, dataRequest) => {
     }
     try {
         const response = () => async () => await route[routeKey]()
-        
-        const keys = Object.keys(response)
+        console.log(response)
+        // const keys = Object.keys(response)
         // ==> ["key", "key" , "key", "key"]  desired by user
         // keys.map((key) => )
         
         // 
         // const dataToReturn = userRequestedData ? Object.entries(response).filter([k,v] =>  ) dataRequest.forEach
-        // return
+        return response
     } catch (error) {
         console.log(error)
     }

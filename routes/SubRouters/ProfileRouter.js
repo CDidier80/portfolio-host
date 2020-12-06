@@ -5,12 +5,14 @@ const controller = require('../../controllers/ProfileController')
 Router.post('/create/:user_id', controller.CreateProfile)
 
 // Read
+//    one profile
 Router.get('/read/:profile_id', controller.ReadProfile)
+//    all profiles
+Router.get('/', controller.ReadAllProfiles)
 
 // Update
 Router.put('/update/:profile_id', controller.UpdateProfile)
 
-// Read All Profiles
-Router.get('/', controller.ReadAllProfiles)
+// * No Delete Method Due to Cascade * //
 
 module.exports = Router
