@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import SignInSignUpForm from "../components/landing-components/LogInForm.js"
+import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
 // import { CreateUserService, LoginUserService } from '../services/UserService'
-
+// import Service from "../services/Service"
 
 class SignInSignUp extends Component {
   // console.log(children)
@@ -42,7 +42,7 @@ class SignInSignUp extends Component {
   submitSignUp = (e) => {
     const {username, email, password} = this.state
     const formData = {username: username, email: email, password: password}
-    CreateUserService(formData)
+    Service(formData)
   }
 
   submitLogIn = async (e) => {
