@@ -2,17 +2,25 @@ import React, {useEffect, useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import HomePage from "./pages/LandingPage"
 import PortfolioPage from "./pages/PortfolioPage"
-import SignInSignUpPage from "./pages/SignInUpPage"
-import LandingPage from "./pages/HomePage"
+import SignInSignUpPage from "./pages/SignInSignUp"
+import LandingPage from "./pages/LandingPage"
+
 // import SignInSignUp from "./pages/SignInSignUp"
 // import ProtectedRoute from './components/ProtectedRoute'
 // import Layout from '../src/pages/components/Layout'
 // hello
 
 const App = (props) => {
-  const [pageIsLoaded, changeLoadedBoolean] = useState(false)
+  const [pageIsLoaded, setLoaded] = useState(false)
 
-  
+
+
+const useEffect = () => {
+  if (!pageIsLoaded) {
+    setLoaded(true)
+  }
+}
+
 
 
 //   goToSignupPage = async (e) => {
@@ -31,8 +39,8 @@ const App = (props) => {
           </div>
         ) : (
           <Switch>
-              <Route exact path="/" component={(props) =><LandingPage {...props} />}/>
-              <Route path="/home" component={(props) => <HomePage {...props} />} />
+              <Route exact path="/" component={(props) =><LandingPage {...props}/>}/>
+              <Route path="/home" component={(props) => <HomePage {...props}/>}/>
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
               <Route path="/account" component={(props) => <SignInSignUpPage {...props}/>}/>
             </Switch>
@@ -42,3 +50,4 @@ const App = (props) => {
   }
 
 export default withRouter(App)
+
