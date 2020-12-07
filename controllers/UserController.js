@@ -29,7 +29,7 @@ const DeleteUser = async (req, res) => {
             }
         })
         res.send({
-            message: `Deleted user with ide of ${userId}`
+            message: `Deleted user with id of ${userId}`
         })
     } catch (error) {
         throw error

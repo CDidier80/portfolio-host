@@ -61,9 +61,23 @@ const ReadProject = async (req, res) => {
         throw error 
     }
 }
+
+const DeleteProject = async (req, res) => {
+    try {
+        let projectId = parseInt(req.params.project_id)
+        await Projects.destroy({    
+            where: {id:projectId}
+        })
+        res.send({message: 'project destroyed'})
+    } catch (err) {
+        throw err
+    }
+}
+
 module.exports = {
     CreateProject,
     UpdateProject,
     GetAllProjects,
-    ReadProject
+    ReadProject,
+    DeleteProject
 }
