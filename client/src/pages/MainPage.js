@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,6 +8,11 @@ import Button from '@material-ui/core/Button';
 // import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import ProfileCard from '../pages/subcomponents/ProfileCard'
+import { Link } from 'react-router-dom'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,25 +33,25 @@ const useStyles = makeStyles((theme) => ({
     },
     subHeader: {
       fontSize: "20px"
-    }
+    },
   },
   httpTest: {
     margin: "0 auto",
     marginTop: "70px",
     width: "300px",
     height: "50px",
-    display: "flex", 
+    display: "flex",
     justifyContent: "spaceBetween",
     textfield: {
-      width: "60%", 
-      height: "80px", 
+      width: "60%",
+      height: "80px",
       backgroundColor: "white",
       border: "1px solid black"
     },
     loginButton: {
       display: "block",
-      margin: "0 auto", 
-      width: "80px", 
+      margin: "0 auto",
+      width: "80px",
       height: "40px",
       fontSize: "18px"
     },
@@ -59,21 +63,27 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
-const LandingPage = (props) => {
-  const {httpRequest, get, put, post} = props
+
+const MainPage = (props) => {
+
+  const { httpRequest, get, put, post } = props
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
-  const useEffect = () => {
-    // console.log("useEffect reached")
-    // setProfiles(httpRequest("ReadAllProfiles"))
-
-    // const getProfiles = async () => {
-    //   if (!pageIsLoaded) {
-    //     changeLoadedBoolean(true)
-    //   }
-    }
+  
+  function FormRow() {
+    return (
+      <React.Fragment>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -81,23 +91,25 @@ const LandingPage = (props) => {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
 
+
+  };
   return (
     <div>
+      {/* nav bar */}
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
               <Link to="/signInUp">
-              <MenuItem onClick={handleClose}> Login </MenuItem>
+                <MenuItem onClick={handleClose}> Login </MenuItem>
               </Link>
               <Link to="/portfolio">
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
               </Link>
               <Link to="/mainPage">
-              <MenuItem onClick={handleClose}>Home</MenuItem>
+                <MenuItem onClick={handleClose}>Home</MenuItem>
               </Link>
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
@@ -108,46 +120,19 @@ const LandingPage = (props) => {
           </Toolbar>
         </AppBar>
       </div>
-      <div className={classes.textGreeting}>
-        <h3 className={classes.textGreeting.welcome}>Welcome to Dev Ports</h3>
-        <h4 className={classes.textGreeting.subHeader}>Your site to easy share your portfolio and make new connection with other developers.</h4>
-      </div>
-      <Link className={classes.loginButton} to="/signInUp">
-        <Button variant="outlined" color="primary">Login</Button>
-      </Link>
-      <div className={classes.httpTest}>
-        <input className={classes.httpTest.textfield} onChange={(e)=>setSearchField(e.target.value)}></input>
-        <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button>
-      </div>
 
-
+      {/* start of profile box */}
+      <div className={classes.root}>
+        <Grid container spacing={1}>
+          <Grid>
+            <ProfileCard />
+            <FormRow />
+          </Grid>
+        </Grid>
+      </div>
     </div>
-  );
+  )
 }
 
-export default LandingPage
+export default MainPage
 
-// const HomePage = ()  => {
-//   return(
-// <div>
-// <h3>
-//   Welcome to Dev Ports
-// </h3>
-// <h4>
-//   Your site to easy share your portfolio and make new connection with other developers.
-// </h4>
-// <Link to="/login">
-//   <Button variant="outlined" color="primary">
-//     Login
-// </Button>
-// </Link>
-//   <Link to="/signup">
-//     <Button variant="outlined" color="primary">
-//       Sign up
-// </Button>
-//   </Link>
-// </div>
-//   )
-// }
-
-// export default HomePage
