@@ -21,8 +21,7 @@ const CreateUser = async (req, res) => {
 const DeleteUser = async (req, res) => {
     log(DeleteUser, req, checkPayload, showLogs)
     try {
-        let userId = parseInt(req.params.user_id)
-        console.log(userId)
+        let userId = req.params.user_id
         await User.destroy({
             where: {
                 id: userId
