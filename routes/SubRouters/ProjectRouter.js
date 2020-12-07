@@ -14,5 +14,6 @@ Router.put('/update/:project_id', controller.UpdateProject)
 // need a delete one method
 // Router.delete('/delete/:project_id', controller.DeleteProject)
 Router.get('/:user_id', controller.GetAllProjects)
+Router.delete('/:project_id', controller.DeleteProject)
 
 module.exports = Router
