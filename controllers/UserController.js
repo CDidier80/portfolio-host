@@ -22,14 +22,13 @@ const DeleteUser = async (req, res) => {
     log(DeleteUser, req, checkPayload, showLogs)
     try {
         let userId = parseInt(req.params.user_id)
-        console.log(userId)
         await User.destroy({
             where: {
                 id: userId
             }
         })
         res.send({
-            message: `Deleted user with ide of ${userId}`
+            message: `Deleted user with id of ${userId}`
         })
     } catch (error) {
         throw error
