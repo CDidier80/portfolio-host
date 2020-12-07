@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from "./App"
 const {httpRequest, post, get, put, del} = require("./httpRequest.js")
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

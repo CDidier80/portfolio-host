@@ -72,19 +72,6 @@ const MainPage = (props) => {
   const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
   
-  function FormRow() {
-    return (
-      <React.Fragment>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}></Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}></Paper>
-        </Grid>
-      </React.Fragment>
-    );
-  }
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -123,12 +110,10 @@ const MainPage = (props) => {
 
       {/* start of profile box */}
       <div className={classes.root}>
-        <Grid container spacing={1}>
-          <Grid>
+        <div className="profile-card-wrapper">
             <ProfileCard />
-            <FormRow />
-          </Grid>
-        </Grid>
+            <ProfileCard />
+        </div>
       </div>
     </div>
   )
