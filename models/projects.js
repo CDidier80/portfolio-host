@@ -13,8 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       Projects.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'user',
-        onDelete: "cascade",
-        hooks: true,
         constraints: true,
       })
     }
