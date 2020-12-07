@@ -30,8 +30,12 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    profilePicture: DataTypes.STRING,
-    professionalTitle: DataTypes.STRING,
+    profilePicture: {
+      type: DataTypes.STRING,
+      field: profile_picture},
+      professionalTitle: {
+      type: DataTypes.STRING,
+      field: professional_title},
     organization: DataTypes.STRING,
     skills: DataTypes.STRING,
     locale: DataTypes.STRING,
