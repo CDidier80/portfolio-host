@@ -18,6 +18,33 @@ const CreateUser = async (req, res) => {
         throw error
     }
 }
+
+const ReadUser = async (req, res) => {
+    log(ReadUser, req, checkPayload, showLogs)
+    try {
+        let userId = parseInt(req.params.user_id)
+        let user = await User.findByPk(userId)
+        res.send(user)
+    } catch (error) {
+        throw error
+    }
+}
+
+const UpdateUser = async (req, res) => {
+    log(UpdateUser, req, checkPayload, showLogs)
+    try {
+        let userId = parseInt(req.params.user_id)
+        let updatedUser = await User.update(req.body, {
+            where: {
+                id: userId
+            },
+            returning: true
+        })
+        res.send(updatedUser)
+    } catch (error) {
+        throw error
+    }
+}
 const DeleteUser = async (req, res) => {
     log(DeleteUser, req, checkPayload, showLogs)
     try {
@@ -35,31 +62,7 @@ const DeleteUser = async (req, res) => {
         throw error
     }
 }
-const ReadUser = async (req, res) => {
-    log(ReadUser, req, checkPayload, showLogs)
-    try {
-        let userId = parseInt(req.params.user_id)
-        let user = await User.findByPk(userId)
-        res.send(user)
-    } catch (error) {
-        throw error
-    }
-}
-const UpdateUser = async (req, res) => {
-    log(UpdateUser, req, checkPayload, showLogs)
-    try {
-        let userId = parseInt(req.params.user_id)
-        let updatedUser = await User.update(req.body, {
-            where: {
-                id: userId
-            },
-            returning: true
-        })
-        res.send(updatedUser)
-    } catch (error) {
-        throw error
-    }
-}
+
 const LogInUser = async (req, res) => {
     log(LogInUser, req, checkPayload, showLogs)
     try {

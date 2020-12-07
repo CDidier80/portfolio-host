@@ -20,19 +20,14 @@ const CreateProject = async (req, res) => {
     }
 }
 
-const UpdateProject = async (req, res) => {
-    log(UpdateProject, req, checkPayload, showLogs)
+const ReadProject = async (req, res) => {
+    log(CreateProject, req, checkPayload, showLogs)
     try {
         let projectId = parseInt(req.params.project_id)
-        let updatedProject = await Projects.update(req.body, {
-            where: {
-                id: projectId
-            },
-            returning:true
-        })
-        res.send(updatedProject)
+        let project = await Projects.findByPk(projectId)
+        res.send(project)
     } catch(error) {
-        throw error
+        throw error 
     }
 }
 
@@ -51,16 +46,25 @@ const GetAllProjects = async (req, res) => {
         throw error 
     }
 }
-const ReadProject = async (req, res) => {
-    log(CreateProject, req, checkPayload, showLogs)
+
+const UpdateProject = async (req, res) => {
+    log(UpdateProject, req, checkPayload, showLogs)
     try {
         let projectId = parseInt(req.params.project_id)
-        let project = await Projects.findByPk(projectId)
-        res.send(project)
+        let updatedProject = await Projects.update(req.body, {
+            where: {
+                id: projectId
+            },
+            returning:true
+        })
+        res.send(updatedProject)
     } catch(error) {
-        throw error 
+        throw error
     }
 }
+
+
+
 module.exports = {
     CreateProject,
     UpdateProject,
