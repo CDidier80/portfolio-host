@@ -37,7 +37,7 @@ const DeleteUser = async (req, res) => {
 const ReadUser = async (req, res) => {
     log(ReadUser, req, checkPayload, showLogs)
     try {
-        let userId = parseInt(req.params.user_id)
+        let userId = req.params.user_id
         let user = await User.findByPk(userId)
         res.send(user)
     } catch (error) {
@@ -47,7 +47,7 @@ const ReadUser = async (req, res) => {
 const UpdateUser = async (req, res) => {
     log(UpdateUser, req, checkPayload, showLogs)
     try {
-        let userId = parseInt(req.params.user_id)
+        let userId = req.params.user_id
         let updatedUser = await User.update(req.body, {
             where: {
                 id: userId
