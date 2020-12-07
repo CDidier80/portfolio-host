@@ -22,7 +22,7 @@ module.exports = {
         field: 'profile_picture',
         type: Sequelize.STRING
       },
-      professionalTittle: {
+      professionalTitle: {
         field: 'professional_title',
         type: Sequelize.STRING
       },
