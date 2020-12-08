@@ -15,19 +15,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -48,13 +35,50 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const goMainPage = (e) => {
-  e.target.push('/main');
-}
+// const goLandingPage = (e) => {
+//   e.target.push('/');
+// }
 
-const SignInUpPage = (props) => {
+const SignInSignUpPage = (props) => {
   const classes = useStyles();
-
+  // const goToMainPage = () => {
+  //   props.history.push('/main')
+  // }
+  
+  // const submitSignUp = (e) => {
+  //   const {username, email, password} = this.state
+  //   const formData = {username: username, email: email, password: password}
+  //   Service(formData)
+  // }
+  
+  // const submitLogIn = async (e) => {
+  //   // console.log('submitLogin() fired')
+  //   const {toggleAuthenticated, email, password} = this.state
+  //   e.preventDefault()
+  //   const formData = {email: email, password: password}
+  //   // console.log("formData sent to back-end: ", formData)
+  //   const responseData =  await LoginUserService(formData)
+  //   // console.log("Response received: ",responseData)
+  //   // console.log("Username received as part of responseData: ", responseData.user.username)
+  //   toggleAuthenticated(true, responseData.user.username, ()=>this.props.history.push('/main'))
+  // }
+  
+  // updateField = (event) => {
+  //   const {value} = event.target
+  //   switch (event.target.id) {
+  //     case "username":
+  //       this.setState({username: value})
+  //       break
+  //     case "email":
+  //       this.setState({email: value})
+  //       break
+  //     case "password":
+  //       this.setState({password: value})
+  //       break
+  //     default: 
+  //       console.log('updateField() switch statement originating in LandingPage.js had no matching cases.')
+  //   }
+  // }
   return (
     <div>
       <Link to="/">
@@ -70,7 +94,7 @@ const SignInUpPage = (props) => {
           <form className={classes.form} noValidate> <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
             <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={goMainPage} > Sign In </Button>
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={null} > Sign In </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2"> Forgot password? </Link>
@@ -88,4 +112,17 @@ const SignInUpPage = (props) => {
   );
 }
 
-export default SignInUpPage
+export default SignInSignUpPage
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }

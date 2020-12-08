@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 // import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import ProfileCard from '../pages/subcomponents/ProfileCard'
+// import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper';
+// import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -97,14 +97,12 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const PortfolioPage = (props) => {
-  const { httpRequest, get, put, post } = props
+  // const { httpRequest, get, put, post } = props
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [displayedProfiles, setProfiles] = useState([])
-  const [searchValue, setSearchField] = useState("")
+  // const [displayedProfiles, setProfiles] = useState([])
+  // const [searchValue, setSearchField] = useState("")
 
-
-  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -120,20 +118,25 @@ const PortfolioPage = (props) => {
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/signup">
-                <MenuItem onClick={handleClose}> Login </MenuItem>
+
+              {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
+              <Link to="/signin">
+                <MenuItem onClick={handleClose}>Login</MenuItem>
               </Link>
               <Link to="/portfolio">
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Portfolio</MenuItem>
               </Link>
               <Link to="/main">
                 <MenuItem onClick={handleClose}>Home</MenuItem>
               </Link>
+              <Link to="/settings">
+                <MenuItem onClick={handleClose}>Account</MenuItem>
+              </Link>
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signup">
-              <Button color="#fce4ec">Login</Button>
+            <Link to="/signin">
+              <Button color="#fce4ec">Search</Button>
             </Link>
           </Toolbar>
         </AppBar>
@@ -143,7 +146,7 @@ const PortfolioPage = (props) => {
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}> 
           <img className={classes.profImage}
-          src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" />
+          src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
         </div>
         <div className={classes.portfolioDetails}>
         <h2> Collin Didier </h2>

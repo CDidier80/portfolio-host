@@ -45,7 +45,6 @@ rafce =>
 (ES6)
 */
 
-
 import React from 'react'
 
 export const ReactSnippetShortcuts = () => {
