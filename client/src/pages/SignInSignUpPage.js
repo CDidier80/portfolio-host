@@ -1,5 +1,5 @@
 // import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  buttonWrapper: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+  }
 }));
 
 // const goLandingPage = (e) => {
@@ -41,6 +45,37 @@ const useStyles = makeStyles((theme) => ({
 
 const SignInSignUpPage = (props) => {
   const classes = useStyles();
+
+
+  const [appIsDisplayed, toggleAppDisplay] = useState(true)
+  const [pageIsLoaded, setLoaded] = useState(true)
+  const [showTwoButtons, toggleTwoButtonMode] = useState(false)
+  const [message, toggleMessage] = useState("Sign In")
+  const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
+  
+
+// setButtonMessage("")
+
+  // const useEffect = () => {
+  //     if (!pageIsLoaded) {
+  //       setLoaded(true)
+  //     },
+  //      [message]
+  //   }
+
+
+  let messageOne = "Sign In", messageTwo = "Sign Up", promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
+
+    const togglemessage = (e) => {
+      e.preventDefault()
+      let newMessageValue = message === messageOne ? messageTwo : messageOne
+      let newPrompt = prompt === promptOne ? promptTwo: promptOne
+      toggleMessage(newMessageValue)
+      togglePrompt(newPrompt)
+      return
+    }
+
+
   // const goToMainPage = () => {
   //   props.history.push('/main')
   // }
@@ -79,8 +114,9 @@ const SignInSignUpPage = (props) => {
   //       console.log('updateField() switch statement originating in LandingPage.js had no matching cases.')
   //   }
   // }
-  return (
-    <div>
+  return ( appIsDisplayed ? 
+    
+     <div>
       <Link to="/">
         <Button color="#fce4ec">Back</Button>
       </Link>
@@ -90,17 +126,32 @@ const SignInSignUpPage = (props) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5"> Sign in </Typography> 
-          <form className={classes.form} noValidate> <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
+          <Typography component="h1" variant="h5">{message}</Typography> 
+          <form className={classes.form} noValidate> 
+            { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
+            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
             <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={null} > Sign In </Button>
+
+            { !showTwoButtons ?
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={null}>{message}</Button>
+            : null
+            } 
+
+            { showTwoButtons ? 
+            <div className={classes.buttonWrapper}>
+              <Button type="button" onSubmit={null} variant="contained" color="primary" className={classes.submit}> Sign Up </Button>
+              <Button type="button" onSubmit={null} variant="contained" color="primary" className={classes.submit}> Sign In </Button>
+            </div>
+            : null
+            }
+
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2"> Forgot password? </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2"> {"Don't have an account? Sign Up"} </Link>
+                <Link to="#" variant="body2" onClick={(e)=>togglemessage(e)}>{prompt}</Link>
               </Grid>
             </Grid>
           </form>
@@ -109,8 +160,19 @@ const SignInSignUpPage = (props) => {
         </Box>
       </Container>
     </div>
-  );
+    : null
+    
+    )
+
+
 }
+  
+
+
+      
+ 
+
+
 
 export default SignInSignUpPage
 
