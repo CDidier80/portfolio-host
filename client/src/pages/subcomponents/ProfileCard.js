@@ -32,7 +32,7 @@ const ProfileCard = (props) => {
   return (
     <div>
       <div className={classes.root}>
-        <Paper style={{ Width:"50%"}} className={classes.paper}>
+        <Paper style={{ Width: "50%" }} className={classes.paper}>
           <Grid container spacing={2}>
             <Grid item>
               <ButtonBase className={classes.image}>
@@ -70,6 +70,6 @@ const ProfileCard = (props) => {
       </div>
     </div>
   )
-}
+  }
 
 export default ProfileCard

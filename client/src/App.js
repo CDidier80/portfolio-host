@@ -6,7 +6,7 @@ import SignInUpPage from "./pages/SignInUpPage"
 
 import LandingPage from "./pages/LandingPage"
 import ServiceTestPage from "./pages/ServiceTestPage"
-import './App.css'
+
 
 // import SignInSignUp from "./pages/SignInSignUp"
 // import ProtectedRoute from './components/ProtectedRoute'

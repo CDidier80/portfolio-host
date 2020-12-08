@@ -13,7 +13,6 @@ import Paper from '@material-ui/core/Paper';
 import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -61,8 +60,17 @@ const useStyles = makeStyles((theme) => ({
       color: "black",
       backgroundColor: "white"
     }
+  },
+  profileCardWrapper: {
+    display: "grid",
+    gridTemplateColumns: "50% 50%",
+    paddingTop: "13px",
+    backgroundColor: "white",
+    borderRadius: "10px",
+    boxShadow: "0 0 4px white"
   }
 }));
+
 
 const MainPage = (props) => {
 
@@ -71,7 +79,20 @@ const MainPage = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
-  
+
+  function FormRow() {
+    return (
+      <React.Fragment>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -109,15 +130,70 @@ const MainPage = (props) => {
       </div>
 
       {/* start of profile box */}
-      <div className={classes.root}>
-        <div className="profile-card-wrapper">
-            <ProfileCard />
-            <ProfileCard />
-        </div>
-      </div>
+      < div className={classes.profileCardWrapper} >
+        <ProfileCard />
+        <ProfileCard />
+      </div >
     </div>
   )
 }
 
 export default MainPage
 
+
+
+
+
+// const styles = {
+//   customCardWrapper: {
+//     maxHeight: "280px",
+//     postition: "relative",
+//     overflow: "auto",
+//     display: "flex",
+//     flexDirection: "column",
+//     backgroundColor: "white",
+//     borderRadius: "10px",
+//     boxShadow: "0 0 4px white"
+//   },
+//   topHalf: {
+//     width: "100%",
+//     height: "140px",
+//     padding: "4px",
+//     postion: "relative",
+//     fontFamily: "Roboto"
+//   },
+//   imageWrapper: {
+//     width: "50%",
+//   },
+//   image: {
+//     borderRadius: "5px",
+//     boxShadow: "0 0 2px black"
+//   },
+//   textBox: {
+//     width: "50%",
+//     padding: "5px",
+//     fontFamily: "Roboto"
+//   },
+//   bottomHalf: {
+//     height: "140px",
+//     padding: "5px",
+//     fontFamily: "Roboto"
+//   },
+// }
+
+  // < div style = { styles.profileCardWrapper } >
+  //         <div style={styles.topHalf}>
+  //           <div style={styles.imageWrapper}>
+  //             <img style={styles.image} src={"https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"} />
+  //           </div>
+  //           <div style={styles.textBox}>
+  //             <h3>Collin Didier</h3>
+  //             <h4>Software Engineer</h4>
+  //           </div>
+  //         </div>
+  //         <div style={styles.bottomHalf}>
+  //           <h3>slogan</h3>
+  //           <h4>technologies</h4>
+  //           <p>link</p>
+  //         </div>
+  //       </div >
