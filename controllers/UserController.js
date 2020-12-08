@@ -18,6 +18,7 @@ const CreateUser = async (req, res) => {
         throw error
     }
 }
+
 const DeleteUser = async (req, res) => {
     log(DeleteUser, req, checkPayload, showLogs)
     try {
@@ -34,6 +35,7 @@ const DeleteUser = async (req, res) => {
         throw error
     }
 }
+
 const ReadUser = async (req, res) => {
     log(ReadUser, req, checkPayload, showLogs)
     try {
@@ -44,6 +46,7 @@ const ReadUser = async (req, res) => {
         throw error
     }
 }
+
 const UpdateUser = async (req, res) => {
     log(UpdateUser, req, checkPayload, showLogs)
     try {
@@ -59,6 +62,24 @@ const UpdateUser = async (req, res) => {
         throw error
     }
 }
+const DeleteUser = async (req, res) => {
+    log(DeleteUser, req, checkPayload, showLogs)
+    try {
+        let userId = parseInt(req.params.user_id)
+        console.log(userId)
+        await User.destroy({
+            where: {
+                id: userId
+            }
+        })
+        res.send({
+            message: `Deleted user with ide of ${userId}`
+        })
+    } catch (error) {
+        throw error
+    }
+}
+
 const LogInUser = async (req, res) => {
     log(LogInUser, req, checkPayload, showLogs)
     try {

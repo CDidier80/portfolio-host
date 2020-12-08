@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
+import SignInSignUpForm from "../client/src/pages/subcomponents/SignInSignUpForm"
 // import { CreateUserService, LoginUserService } from '../services/UserService'
 // import Service from "../services/Service"
 

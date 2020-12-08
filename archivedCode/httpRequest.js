@@ -1,6 +1,9 @@
 import axios from 'axios'
 const ApiClient = axios.create({ baseURL: 'http://localhost:3003/api/' })
-const {post, get, put} = exports.ApiClient, del = (path) => ApiClient.delete(path)
+export const {post, get, put} = ApiClient 
+export const del = (path) => ApiClient.delete(path)
+
+
 
 // uncomment when AUTH is ready
 // ApiClient.interceptors.request.use(
@@ -19,7 +22,7 @@ const {post, get, put} = exports.ApiClient, del = (path) => ApiClient.delete(pat
  * @param {object} payload   // payload => {body:{title: "project title"}, params:{"/:user_id/:project_id"}}
  * @param {array} dataRequest
  */
-exports.httpRequest = (routeKey, payload, dataRequest) => {
+export const httpRequest = (routeKey, payload, dataRequest) => {
     const valueIfExists = (variableToCheck, valueIfExists, valueIfNot) => variableToCheck !== "undefined" ? valueIfExists : (valueIfNot !== "undefined" ? valueIfNot : null)
     const {body} = valueIfExists(payload.body, payload.body, {})
     const params = valueIfExists(payload.params, payload.params, "")

@@ -21,6 +21,17 @@ const CreateProfile = async (req, res) => {
     }
 }
 
+const ReadProfile = async (req, res) => {
+    log(ReadProfile, req, checkPayload, showLogs)
+    try {
+        let profileId = parseInt(req.params.profile_id)
+        let profile = await Profile.findByPk(profileId)
+        res.send(profile)
+    } catch (error) {
+        throw error
+    }
+}
+
 const UpdateProfile = async (req, res) => {
     log(UpdateProfile, req, checkPayload, showLogs)
     try {
@@ -36,6 +47,7 @@ const UpdateProfile = async (req, res) => {
         throw error
     }
 }
+
 const ReadProfile = async (req, res) => {
     log(ReadProfile, req, checkPayload, showLogs)
     try {
@@ -46,6 +58,7 @@ const ReadProfile = async (req, res) => {
         throw error
     }
 }
+
 const ReadAllProfiles = async (req, res) => {
     log(ReadAllProfiles, req, checkPayload, showLogs)
     try {
