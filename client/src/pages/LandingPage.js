@@ -1,5 +1,5 @@
+import React, {useState } from 'react';
 import { Link } from 'react-router-dom'
-import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -119,7 +119,7 @@ const LandingPage = (props) => {
       </Link>
       <div className={classes.httpTest}>
         <input className={classes.httpTest.textfield} onChange={(e)=>setSearchField(e.target.value)}></input>
-        <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button>
+        {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
       </div>
 
 
