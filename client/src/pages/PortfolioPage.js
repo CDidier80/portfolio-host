@@ -103,8 +103,6 @@ const PortfolioPage = (props) => {
   const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
 
-
-  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -120,20 +118,25 @@ const PortfolioPage = (props) => {
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/signInUp">
-                <MenuItem onClick={handleClose}> Login </MenuItem>
+
+              {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
+              <Link to="/signin">
+                <MenuItem onClick={handleClose}>Login</MenuItem>
               </Link>
               <Link to="/portfolio">
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Portfolio</MenuItem>
               </Link>
-              <Link to="/mainPage">
+              <Link to="/main">
                 <MenuItem onClick={handleClose}>Home</MenuItem>
+              </Link>
+              <Link to="/settings">
+                <MenuItem onClick={handleClose}>Account</MenuItem>
               </Link>
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signInUp">
-              <Button color="#fce4ec">Login</Button>
+            <Link to="/signin">
+              <Button color="#fce4ec">Search</Button>
             </Link>
           </Toolbar>
         </AppBar>
