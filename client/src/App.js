@@ -5,7 +5,7 @@ import PortfolioPage from "./pages/PortfolioPage"
 import SignInUpPage from "./pages/SignInUpPage"
 
 import LandingPage from "./pages/LandingPage"
-import ServiceTestPage from "./pages/ServiceTestPage"
+import Mothership from "./pages/Mothership"
 
 
 // import SignInSignUp from "./pages/SignInSignUp"
@@ -45,7 +45,7 @@ const App = (props) => {
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
               <Route path="/signInUp" component={(props) => <SignInUpPage {...props}/>}/>
               {/* this is a development-only page for testing Services/front-back end routes*/}
-              <Route path="/service" component={(props) => <ServiceTestPage {...props}/>}/>
+              <Route path="/service" component={(props) => <Mothership {...props}/>}/>
             </Switch>
         )}
       </main>
