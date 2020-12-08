@@ -4,7 +4,9 @@ import MainPage from "./pages/MainPage"
 import PortfolioPage from "./pages/PortfolioPage"
 import SignUpPage from "./pages/SignUpPage"
 import SignInPage from "./pages/SignInPage"
+import SignInSignUpPage from "./pages/SignInSignUpPage"
 import LandingPage from "./pages/LandingPage"
+import SettingsPage from "./pages/SettingsPage"
 import Mothership from "./pages/Mothership"
 import Image from "./pages/subcomponents/imageloadtestLuis"
 
@@ -15,14 +17,15 @@ import Image from "./pages/subcomponents/imageloadtestLuis"
 // hello
 
 const App = (props) => {
-    const [pageIsLoaded, setLoaded] = useState(false)
+    const [pageIsLoaded, setLoaded] = useState(true)
+    
 
 
-    // const useEffect = () => {
-    //     if (!pageIsLoaded) {
-    //       setLoaded(true)
-    //     }
-    //   }
+    const useEffect = () => {
+        if (!pageIsLoaded) {
+          setLoaded(true)
+        }
+      }
 
 //   goToSignupPage = async (e) => {
 //     e.stopPropagation()
@@ -34,7 +37,7 @@ const App = (props) => {
 
     return (
       <main className="App">
-        {pageIsLoaded ? (
+        {!pageIsLoaded ? (
           <div>
             <h3>Loading...</h3>
           </div>
@@ -43,6 +46,7 @@ const App = (props) => {
               <Route exact path="/" component={(props)    =>  <LandingPage {...props}/>}  />
               <Route path="/main" component={(props)      =>  <MainPage {...props}/>}     />
               <Route path="/portfolio" component={(props) =>  <PortfolioPage {...props}/>}/>
+              <Route path="/joined" component={(props)    =>  <SignInSignUpPage {...props}/>}/>
               <Route path="/signup" component={(props)    =>  <SignUpPage {...props}/>}/>
               <Route path="/signin" component={(props)    =>  <SignInPage {...props} />} />              
               <Route path="/settings" component={(props)  =>  <SettingsPage {...props}/>} />
