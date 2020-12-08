@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import MainPage from "./pages/MainPage"
 import PortfolioPage from "./pages/PortfolioPage"
@@ -18,11 +18,11 @@ const App = (props) => {
     const [pageIsLoaded, setLoaded] = useState(false)
 
 
-    const useEffect = () => {
-        if (!pageIsLoaded) {
-          setLoaded(true)
-        }
-      }
+    // const useEffect = () => {
+    //     if (!pageIsLoaded) {
+    //       setLoaded(true)
+    //     }
+    //   }
 
 //   goToSignupPage = async (e) => {
 //     e.stopPropagation()

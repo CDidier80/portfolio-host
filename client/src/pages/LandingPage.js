@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -61,16 +61,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
-
 const LandingPage = (props) => {
-  const {httpRequest, get, put, post} = props
+  // const {httpRequest, get, put, post} = props
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [displayedProfiles, setProfiles] = useState([])
+  // const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
-  const useEffect = () => {
+  // const useEffect = () => {
     // console.log("useEffect reached")
     // setProfiles(httpRequest("ReadAllProfiles"))
 
@@ -78,7 +75,7 @@ const LandingPage = (props) => {
     //   if (!pageIsLoaded) {
     //     changeLoadedBoolean(true)
     //   }
-    }
+    // }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
