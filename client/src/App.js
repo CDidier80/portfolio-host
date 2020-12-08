@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import MainPage from "./pages/MainPage"
 import PortfolioPage from "./pages/PortfolioPage"
-import SignInUpPage from "./pages/SignInUpPage"
+import SignInUpPage from "./pages/SignInSignUpPage"
 
 import LandingPage from "./pages/LandingPage"
 import Mothership from "./pages/Mothership"
+import SettingsPage from "./pages/SettingsPage"
 
 
 // import SignInSignUp from "./pages/SignInSignUp"
@@ -15,7 +16,6 @@ import Mothership from "./pages/Mothership"
 
 const App = (props) => {
     const [pageIsLoaded, setLoaded] = useState(false)
-
 
 
     const useEffect = () => {
@@ -40,12 +40,13 @@ const App = (props) => {
           </div>
         ) : (
           <Switch>
-              <Route exact path="/" component={(props) =><LandingPage {...props}/>}/>
-              <Route path="/mainPage" component={(props) => <MainPage {...props}/>}/>
-              <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
-              <Route path="/signInUp" component={(props) => <SignInUpPage {...props}/>}/>
+              <Route exact path="/" component={(props)    =>  <LandingPage {...props}/>}  />
+              <Route path="/main" component={(props)      =>  <MainPage {...props}/>}     />
+              <Route path="/portfolio" component={(props) =>  <PortfolioPage {...props}/>}/>
+              <Route path="/signin" component={(props)    =>  <SignInUpPage {...props}/>} />
+              <Route path="/settings" component={(props)  =>  <SettingsPage {...props}/>} />
               {/* this is a development-only page for testing Services/front-back end routes*/}
-              <Route path="/service" component={(props) => <Mothership {...props}/>}/>
+              <Route path="/service" component={(props)   =>  <Mothership {...props}/>}   />
             </Switch>
         )}
       </main>
