@@ -16,7 +16,8 @@ rafce  =>    CREATE FULL ES6 REACT FUNCTIONAL COMPONENET WITH DEFAULT EXPORT
 imrse  =>    import React, { useState, useEffect } from 'react'                
 cp     =>    const { } = this.props                                            
 cs     =>    const { } = this.state                                            
-dob    => 	 const {propName} = objectToDescruct                               
+dob    => 	 const {propName} = objectToDescruct
+dar    =>    const [propName] = arrayToDescruct                               
 cmmb   =>	 create a comment block                                             
 */
 
