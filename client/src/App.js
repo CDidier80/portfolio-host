@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import HomePage from "./pages/LandingPage"
+import MainPage from "./pages/MainPage"
 import PortfolioPage from "./pages/PortfolioPage"
 import SignInUpPage from "./pages/SignInUpPage"
 
 import LandingPage from "./pages/LandingPage"
 import ServiceTestPage from "./pages/ServiceTestPage"
+
 
 // import SignInSignUp from "./pages/SignInSignUp"
 // import ProtectedRoute from './components/ProtectedRoute'
@@ -40,7 +41,7 @@ const App = (props) => {
         ) : (
           <Switch>
               <Route exact path="/" component={(props) =><LandingPage {...props}/>}/>
-              <Route path="/home" component={(props) => <HomePage {...props}/>}/>
+              <Route path="/mainPage" component={(props) => <MainPage {...props}/>}/>
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
               <Route path="/signInUp" component={(props) => <SignInUpPage {...props}/>}/>
               {/* this is a development-only page for testing Services/front-back end routes*/}

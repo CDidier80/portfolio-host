@@ -5,6 +5,7 @@ import App from "./App"
 import "./index.css"
 const {httpRequest, post, get, put, del} = require("./httpRequest.js")
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

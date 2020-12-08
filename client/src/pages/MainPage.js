@@ -20,31 +20,6 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  // card proile not material
-  cardProfile: {
-    display: "grid",
-    gridTemplateColumns: "1fr 2fr",
-    color: "red"
-  },
-  profImage: {
-    border: "1px solid black",
-    borderRadius: "325px",
-    width: "230px",
-    height: "230px",
-    marginTop: "22px",
-    marginLeft: "35px"
-  },
-  projectWrapper:{
-    display: "grid",
-    gridTemplateColumns: ("1fr 1fr 1fr"),
-    gap: "10px",
-    gridAutoRows: "100px",
-    color: "red",
-    marginTop: "55px",
-    marginLeft: "25px",
-    marginRight: "25px",
-    border: "5px solid red"
-  },
   title: {
     flexGrow: 1,
   },
@@ -84,37 +59,52 @@ const useStyles = makeStyles((theme) => ({
       width: "80px",
       color: "black",
       backgroundColor: "white"
-    },
+    }
+  },
+  profileCardWrapper: {
+    display: "grid",
+    gridTemplateColumns: "50% 50%",
+    paddingTop: "13px",
+    backgroundColor: "white",
+    borderRadius: "10px",
+    boxShadow: "0 0 4px white"
   }
 }));
 
-// const stylesheet = {
-// cardProfile: {
-//   display: "grid",
-//     gridTemplateColumns: "1fr 1fr",
-//       color: "red"
-// }
-// }
 
-const PortfolioPage = (props) => {
+const MainPage = (props) => {
+
   const { httpRequest, get, put, post } = props
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
 
+  function FormRow() {
+    return (
+      <React.Fragment>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
 
-  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
-  }
 
+
+  };
   return (
-    <div className="portfolio-page-wrapper">
+    <div>
+      {/* nav bar */}
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
@@ -138,56 +128,72 @@ const PortfolioPage = (props) => {
           </Toolbar>
         </AppBar>
       </div>
-      {/* profile page below */}
 
-      <div className={classes.cardProfile}>
-        <div className={classes.imageColumn}> 
-          <img className={classes.profImage}
-          src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" />
-        </div>
-        <div className={classes.portfolioDetails}>
-        <h2> Collin Didier </h2>
-        <h3> Chicago, Il.</h3>
-        <h3> FullStack Developer</h3>
-        <h3> Organization: Collin and Co. Ltd. </h3>
-        <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
-        <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
-        </div>
-      </div>
-
-      {/* projects */}
-      <div className={classes.projectWrapper}>
-        <div> test 1</div>
-            <div> test 2</div>
-        <div> test 3</div>
-      </div>
+      {/* start of profile box */}
+      < div className={classes.profileCardWrapper} >
+        <ProfileCard />
+        <ProfileCard />
+      </div >
     </div>
   )
 }
 
-export default PortfolioPage
+export default MainPage
 
-//   < img className = { classes.profilePict }
-// src = " https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
-// alt = "profile-image" />
-//           <h1>Collien Didier</h1>
-//           <p className="title"> CEO and Founder of Collin and Co. </p>
-//           <p>General Assembly</p>
-//           <a href="#"> GitHub </a>
-//           <p><button>Contact</button></p>
 
-//page will show:
-// PROFILES
-// profilePicture: 
-// professionalTitle: 
-// organization: 
-// skills
-// locale
-// bio
 
-// PROJECT:
-// title: 
-// description: 
-// technologies: 
-// projectPicture: 
-// deployLink: 
+
+
+// const styles = {
+//   customCardWrapper: {
+//     maxHeight: "280px",
+//     postition: "relative",
+//     overflow: "auto",
+//     display: "flex",
+//     flexDirection: "column",
+//     backgroundColor: "white",
+//     borderRadius: "10px",
+//     boxShadow: "0 0 4px white"
+//   },
+//   topHalf: {
+//     width: "100%",
+//     height: "140px",
+//     padding: "4px",
+//     postion: "relative",
+//     fontFamily: "Roboto"
+//   },
+//   imageWrapper: {
+//     width: "50%",
+//   },
+//   image: {
+//     borderRadius: "5px",
+//     boxShadow: "0 0 2px black"
+//   },
+//   textBox: {
+//     width: "50%",
+//     padding: "5px",
+//     fontFamily: "Roboto"
+//   },
+//   bottomHalf: {
+//     height: "140px",
+//     padding: "5px",
+//     fontFamily: "Roboto"
+//   },
+// }
+
+  // < div style = { styles.profileCardWrapper } >
+  //         <div style={styles.topHalf}>
+  //           <div style={styles.imageWrapper}>
+  //             <img style={styles.image} src={"https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"} />
+  //           </div>
+  //           <div style={styles.textBox}>
+  //             <h3>Collin Didier</h3>
+  //             <h4>Software Engineer</h4>
+  //           </div>
+  //         </div>
+  //         <div style={styles.bottomHalf}>
+  //           <h3>slogan</h3>
+  //           <h4>technologies</h4>
+  //           <p>link</p>
+  //         </div>
+  //       </div >
