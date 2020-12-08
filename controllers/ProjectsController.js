@@ -21,6 +21,7 @@ const CreateProject = async (req, res) => {
 }
 
 const ReadProject = async (req, res) => {
+    try{
     log(CreateProject, req, checkPayload, showLogs)
 
         let projectId = req.params.project_id
