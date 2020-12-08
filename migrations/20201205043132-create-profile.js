@@ -56,3 +56,5 @@ module.exports = {
     await queryInterface.dropTable('profiles');
   }
 };
+
+
