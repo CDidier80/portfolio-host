@@ -1,5 +1,5 @@
 import React, {Component, useState} from 'react'
-import { httpRequest } from '../httpRequest'
+import { httpRequest } from '../client/src/httpRequest'
 const path = "./subcomponents/ServiceTestComps"
 // import DbTableCom from `${path}/DbTableCom`
 
