@@ -76,10 +76,6 @@ const SignInSignUpPage = (props) => {
     }
 
 
-
-
-
-
   // const goToMainPage = () => {
   //   props.history.push('/main')
   // }
