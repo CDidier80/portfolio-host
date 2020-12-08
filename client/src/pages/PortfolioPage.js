@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   projectWrapper:{
     display: "grid",
-    gridTemplateColumns: ("1fr 1fr 1fr"),
+    gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
     gap: "10px",
     gridAutoRows: "100px",
     color: "red",
@@ -120,19 +120,19 @@ const PortfolioPage = (props) => {
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/signInUp">
+              <Link to="/signup">
                 <MenuItem onClick={handleClose}> Login </MenuItem>
               </Link>
               <Link to="/portfolio">
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Link>
-              <Link to="/mainPage">
+              <Link to="/main">
                 <MenuItem onClick={handleClose}>Home</MenuItem>
               </Link>
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signInUp">
+            <Link to="/signup">
               <Button color="#fce4ec">Login</Button>
             </Link>
           </Toolbar>
@@ -166,6 +166,9 @@ const PortfolioPage = (props) => {
 }
 
 export default PortfolioPage
+
+//make each section a min. of 100vh page sections
+//make link to 
 
 //   < img className = { classes.profilePict }
 // src = " https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
