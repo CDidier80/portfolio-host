@@ -8,7 +8,7 @@ const showLogs = true
 const CreateProfile = async (req, res) => {
     log(CreateProfile, req, checkPayload, showLogs)
     try {
-        let userId = parseInt(req.params.user_id)
+        let userId = req.params.user_id
         let profileBody = {
             userId,
             ...req.body
@@ -35,7 +35,7 @@ const ReadProfile = async (req, res) => {
 const UpdateProfile = async (req, res) => {
     log(UpdateProfile, req, checkPayload, showLogs)
     try {
-        let profileId = parseInt(req.params.profile_id)
+        let profileId = req.params.profile_id
         let updatedProfile = await Profile.update(req.body, {
             where: {
                 id: profileId
@@ -43,6 +43,17 @@ const UpdateProfile = async (req, res) => {
             returning: true
         })
         res.send(updatedProfile)
+    } catch (error) {
+        throw error
+    }
+}
+
+const ReadProfile = async (req, res) => {
+    log(ReadProfile, req, checkPayload, showLogs)
+    try {
+        let profileId = req.params.profile_id
+        let profile = await Profile.findByPk(profileId)
+        res.send(profile)
     } catch (error) {
         throw error
     }

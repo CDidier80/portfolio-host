@@ -3,13 +3,13 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('profiles', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.literal('uuid_generate_v4()')
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         field: 'user_id',
         unique: true,
@@ -22,7 +22,7 @@ module.exports = {
         field: 'profile_picture',
         type: Sequelize.STRING
       },
-      professionalTittle: {
+      professionalTitle: {
         field: 'professional_title',
         type: Sequelize.STRING
       },

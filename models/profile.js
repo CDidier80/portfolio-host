@@ -13,25 +13,30 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'user',
-        onDelete : "cascade",
-        hooks: true
+        onDelete: "cascade",
       })
     }
   };
   Profile.init({
-    userId: { 
-      type: DataTypes.INTEGER,
-      allowNull: false, 
+
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
       field: 'user_id',
       onDelete: 'cascade',
-      hooks: true,
       references: {
         model: 'users',
         key: 'id'
       }
     },
-    profilePicture: DataTypes.STRING,
-    professionalTitle: DataTypes.STRING,
+    profilePicture: {
+      type: DataTypes.STRING,
+      field: 'profile_picture',
+    },
+    professionalTitle: {
+      type: DataTypes.STRING,
+      field: 'professional_title'
+    },
     organization: DataTypes.STRING,
     skills: DataTypes.STRING,
     locale: DataTypes.STRING,
