@@ -110,7 +110,7 @@ const MainPage = (props) => {
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/signup">
+              <Link to="/joined">
                 <MenuItem onClick={handleClose}> Login </MenuItem>
               </Link>
               <Link to="/portfolio">
@@ -122,7 +122,7 @@ const MainPage = (props) => {
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signup">
+            <Link to="/joined">
               <Button color="#fce4ec">Login</Button>
             </Link>
           </Toolbar>
