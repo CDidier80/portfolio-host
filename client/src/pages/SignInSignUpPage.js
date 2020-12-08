@@ -1,4 +1,3 @@
-// import React from 'react';
 // import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';

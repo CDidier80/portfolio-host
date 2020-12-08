@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 // import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import ProfileCard from '../pages/subcomponents/ProfileCard'
+// import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper';
+// import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   projectWrapper:{
     display: "grid",
-    gridTemplateColumns: ("1fr 1fr 1fr"),
+    gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
     gap: "10px",
     gridAutoRows: "100px",
     color: "red",
@@ -97,11 +97,11 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const PortfolioPage = (props) => {
-  const { httpRequest, get, put, post } = props
+  // const { httpRequest, get, put, post } = props
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [displayedProfiles, setProfiles] = useState([])
-  const [searchValue, setSearchField] = useState("")
+  // const [displayedProfiles, setProfiles] = useState([])
+  // const [searchValue, setSearchField] = useState("")
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -146,7 +146,7 @@ const PortfolioPage = (props) => {
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}> 
           <img className={classes.profImage}
-          src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" />
+          src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
         </div>
         <div className={classes.portfolioDetails}>
         <h2> Collin Didier </h2>
@@ -169,6 +169,9 @@ const PortfolioPage = (props) => {
 }
 
 export default PortfolioPage
+
+//make each section a min. of 100vh page sections
+//make link to 
 
 //   < img className = { classes.profilePict }
 // src = " https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
