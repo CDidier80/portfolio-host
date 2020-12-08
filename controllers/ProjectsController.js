@@ -1,12 +1,12 @@
-const { User, Projects } = require('../models')
-const { CreateUser } = require('./UserController')
-const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
-const log = ControllerLoggers.ProjectsControllerLog
-const showLogs = true
+const { Projects } = require('../models')
+// const { CreateUser } = require('./UserController')
+const  { ControllerLoggers }  = require('../Helpers')
+const log = ControllerLoggers.ProjectsControllerLog, errorLog = ControllerLoggers.ProjectsControllerErrorLog
+const show = true
 
 
 const CreateProject = async (req, res) => {
-    log(CreateProject, req, checkPayload, showLogs)
+    log(CreateProject, req, show)
     try {
         let userId = req.params.user_id
         let projectBody = {
@@ -16,14 +16,13 @@ const CreateProject = async (req, res) => {
         let project = await Projects.create(projectBody)
         res.send(project)
     } catch(error) {
-        throw error 
+        errorLog(error)
     }
 }
 
 const ReadProject = async (req, res) => {
+    log(CreateProject, req, show)
     try{
-    log(CreateProject, req, checkPayload, showLogs)
-
         let projectId = req.params.project_id
         let updatedProject = await Projects.update(req.body, {
             where: {
@@ -33,12 +32,12 @@ const ReadProject = async (req, res) => {
         })
         res.send(updatedProject)
     } catch(error) {
-        throw error 
+        errorLog(error)
     }
 }
 
 const GetAllProjects = async (req, res) => {
-    log(GetAllProjects, req, checkPayload, showLogs)
+    log(GetAllProjects, req, show)
     try {
         let userId = req.params.user_id
         console.log(userId)
@@ -49,12 +48,12 @@ const GetAllProjects = async (req, res) => {
         })
         res.send(projects)
     } catch(error) {
-        throw error 
+        errorLog(error)
     }
 }
 
 const UpdateProject = async (req, res) => {
-    log(UpdateProject, req, checkPayload, showLogs)
+    log(UpdateProject, req, show)
     try {
 
         let projectId = req.params.project_id
@@ -66,6 +65,7 @@ const UpdateProject = async (req, res) => {
 }
 
 const DeleteProject = async (req, res) => {
+    log(DeleteProject, req, show)
     try {
         let projectId = req.params.project_id
         await Projects.destroy({    
