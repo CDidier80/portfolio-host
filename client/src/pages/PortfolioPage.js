@@ -13,13 +13,35 @@ import Paper from '@material-ui/core/Paper';
 import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  // card proile not material
+  cardProfile: {
+    display: "grid",
+    gridTemplateColumns: "1fr 2fr",
+    color: "red"
+  },
+  profImage: {
+    border: "1px solid black",
+    borderRadius: "325px",
+    width: "230px",
+    height: "230px",
+    marginTop: "22px",
+    marginLeft: "35px"
+  },
+  projectWrapper:{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    color: "red",
+    marginTop: "55px",
+    marginLeft: "25px",
+    marginRight: "25px",
+    border: "5px solid red"
   },
   title: {
     flexGrow: 1,
@@ -60,9 +82,17 @@ const useStyles = makeStyles((theme) => ({
       width: "80px",
       color: "black",
       backgroundColor: "white"
-    }
+    },
   }
 }));
+
+// const stylesheet = {
+// cardProfile: {
+//   display: "grid",
+//     gridTemplateColumns: "1fr 1fr",
+//       color: "red"
+// }
+// }
 
 const PortfolioPage = (props) => {
   const { httpRequest, get, put, post } = props
@@ -71,6 +101,8 @@ const PortfolioPage = (props) => {
   const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
 
+
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -106,11 +138,41 @@ const PortfolioPage = (props) => {
       </div>
       {/* profile page below */}
 
+      <div className={classes.cardProfile}>
+        <div className={classes.imageColumn}> 
+          <img className={classes.profImage}
+          src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" />
+        </div>
+        <div className={classes.portfolioDetails}>
+        <h2> Collin Didier </h2>
+        <h3> Chicaho, Il.</h3>
+        <h3> FullStack Developer</h3>
+        <h3> Organization: Collin and Co. Ltd. </h3>
+        <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
+        <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
+        </div>
+      </div>
+
+      {/* projects */}
+      <div className={classes.projectWrapper}>
+        <div> test 1</div>
+            <div> test 2</div>
+        <div> test 3</div>
+      </div>
     </div>
   )
 }
 
 export default PortfolioPage
+
+//   < img className = { classes.profilePict }
+// src = " https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
+// alt = "profile-image" />
+//           <h1>Collien Didier</h1>
+//           <p className="title"> CEO and Founder of Collin and Co. </p>
+//           <p>General Assembly</p>
+//           <a href="#"> GitHub </a>
+//           <p><button>Contact</button></p>
 
 //page will show:
 // PROFILES
