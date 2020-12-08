@@ -1,12 +1,11 @@
 const { User, Profile } = require('../models')
-const { Op, literal, fn, col } = require('sequelize')
-const  { valueIfExists: checkPayload, ControllerLoggers }  = require('../Helpers')
-const log = ControllerLoggers.ProfileControllerLog
-const showLogs = true
-
+// const { Op, literal, fn, col } = require('sequelize')
+const  { ControllerLoggers }  = require('../Helpers')
+const log = ControllerLoggers.ProfileControllerLog, errorLog = ControllerLoggers.ProfileControllerErrorLog
+const show = true
 
 const CreateProfile = async (req, res) => {
-    log(CreateProfile, req, checkPayload, showLogs)
+    log(CreateProfile, req, show)
     try {
         let userId = req.params.user_id
         let profileBody = {
@@ -17,23 +16,34 @@ const CreateProfile = async (req, res) => {
         res.send(profile)
     } catch (error) {
         res.status(401).send({ msg: "only one profile" })
-        throw error
+        errorLog(CreateProfile, error, show)
     }
 }
 
 const ReadProfile = async (req, res) => {
-    log(ReadProfile, req, checkPayload, showLogs)
+    log(ReadProfile, req, show)
     try {
         let profileId = parseInt(req.params.profile_id)
         let profile = await Profile.findByPk(profileId)
         res.send(profile)
     } catch (error) {
-        throw error
+        errorLog(ReadProfile, error, show)
     }
 }
 
+// const ReadProfile = async (req, res) => {
+//     log(ReadProfile, req, show)
+//     try {
+//         let profileId = req.params.profile_id
+//         let profile = await Profile.findByPk(profileId)
+//         res.send(profile)
+//     } catch (error) {
+//         errorLog(CreateProfile, error, show)
+//     }
+// }
+
 const UpdateProfile = async (req, res) => {
-    log(UpdateProfile, req, checkPayload, showLogs)
+    log(UpdateProfile, req, show)
     try {
         let profileId = req.params.profile_id
         let updatedProfile = await Profile.update(req.body, {
@@ -44,23 +54,31 @@ const UpdateProfile = async (req, res) => {
         })
         res.send(updatedProfile)
     } catch (error) {
-        throw error
+        errorLog(UpdateProfile, error, show)
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ff3610046618da4a7db35d2e23c8513ca64dd872
 const ReadAllProfiles = async (req, res) => {
-    log(ReadAllProfiles, req, checkPayload, showLogs)
+    log(ReadAllProfiles, req, show)
     try {
         const allProfiles = await Profile.findAll()
         console.log(allProfiles)
         res.send(allProfiles)
     } catch (error) {
-        throw error
+        // console.log("error:", error)
+        // errorLog(ReadAllProfiles, error, show)
+        null
     }
 }
+
 module.exports = {
     CreateProfile,
     UpdateProfile,
     ReadProfile,
     ReadAllProfiles
 }
+

@@ -23,9 +23,6 @@ import { makeStyles} from '@material-ui/core/styles';
 // biography: payload.biography,
 // locale: payload.locale
 
-
-
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">

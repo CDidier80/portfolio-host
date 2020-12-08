@@ -1,5 +1,5 @@
+import React, {useState } from 'react';
 import { Link } from 'react-router-dom'
-import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -59,13 +59,15 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
+
+
 const LandingPage = (props) => {
-  const {httpRequest, get, put, post} = props
+  // const {httpRequest, get, put, post} = props
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [displayedProfiles, setProfiles] = useState([])
+  // const [displayedProfiles, setProfiles] = useState([])
   const [searchValue, setSearchField] = useState("")
-  const useEffect = () => {
+  // const useEffect = () => {
     // console.log("useEffect reached")
     // setProfiles(httpRequest("ReadAllProfiles"))
 
@@ -73,7 +75,7 @@ const LandingPage = (props) => {
     //   if (!pageIsLoaded) {
     //     changeLoadedBoolean(true)
     //   }
-    }
+    // }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -90,19 +92,19 @@ const LandingPage = (props) => {
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/signInUp">
+              <Link to="/account">
               <MenuItem onClick={handleClose}> Login </MenuItem>
               </Link>
               <Link to="/portfolio">
               <MenuItem onClick={handleClose}>My account</MenuItem>
               </Link>
-              <Link to="/mainPage">
+              <Link to="/main">
               <MenuItem onClick={handleClose}>Home</MenuItem>
               </Link>
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signInUp">
+            <Link to="/account">
               <Button color="#fce4ec">Login</Button>
             </Link>
           </Toolbar>
@@ -112,12 +114,12 @@ const LandingPage = (props) => {
         <h3 className={classes.textGreeting.welcome}>Welcome to Dev Ports</h3>
         <h4 className={classes.textGreeting.subHeader}>Your site to easy share your portfolio and make new connection with other developers.</h4>
       </div>
-      <Link className={classes.loginButton} to="/signInUp">
+      <Link className={classes.loginButton} to="/account">
         <Button variant="outlined" color="primary">Login</Button>
       </Link>
       <div className={classes.httpTest}>
         <input className={classes.httpTest.textfield} onChange={(e)=>setSearchField(e.target.value)}></input>
-        <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button>
+        {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
       </div>
 
 

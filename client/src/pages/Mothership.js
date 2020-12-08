@@ -1,24 +1,20 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState} from 'react'
-import {  get, post, del, put } from '../httpRequest'
-const path = "./subcomponents/ServiceTestComps"
+import axios from 'axios'
+const ApiClient = axios.create({ baseURL: 'http://localhost:3001/api/' })
+const {get, put, post} = ApiClient, del = ApiClient.delete
 
 
-
-
-
-
-
-const httpRequest = (routeAndPayload) => {
+const httpRequest = async (routeAndPayload) => {
     // const {body} = inspectPayload(payload.body, {}), params = inspectPayload(payload.params, "")
     // const userRequestedData = inspectPayload(dataRequest, false)
     console.log("httpRequest() called with routeAndPayload: ", routeAndPayload )
     try {
-        const response = () => async () => await routeAndPayload()
+        const response = await routeAndPayload()
         console.log("response object returned from back-end: ", response)
         return response
     } catch (error) {
-        console.log(error)
+        console.log("Error received in Mothership.js, httpRequest() response try-catch: ", error)
     }
 }
 
@@ -160,64 +156,63 @@ const ServiceTest = (props) => {
     const [profileController, selectProfileController] = useState({controllerName: "", currentPayload: null})
     const [profilePayload, setProfilePayload] = useState({body:{}, params: ""})
 
-
     const database = {
         User: {
             nameOfSelectedController: userController.controllerName,
             requests :  {
                 LogInUser : {
                     payloadDefaultsForInputFields    :  {body : ["name", "email"], params: ""},
-                    finalPayload                     :  () => post(`UserRouter/login${userPayload.params}`,  userPayload.body)
+                    finalPayload                     :  () => post(`users/login${userPayload.params}`,  userPayload.body)
                 },  
                 CreateUser : { 
                     payloadDefaultsForInputFields    :  {body :  userFields, params: ""},
-                    finalPayload                     :  () => post(`UserRouter/create${userPayload.params}`, userPayload.body)
+                    finalPayload                     :  () => post(`users/create${userPayload.params}`, userPayload.body)
                 }, 
                 ReadUser : { 
                     payloadDefaultsForInputFields    :   {body : [], params:"userId"},
-                    finalPayload                     :   () => put(`UserRouter/update${userPayload.params}`, userPayload.body)
+                    finalPayload                     :   () => put(`users/update${userPayload.params}`, userPayload.body)
                 },  
                 UpdateUser : { 
                     payloadDefaultsForInputFields    :   {body : ["name", "email", "password"], params: ""},
-                    finalPayload                     :   () => post(`UserRouter/login${userPayload.params}`, userPayload.body)
+                    finalPayload                     :   () => post(`users/login${userPayload.params}`, userPayload.body)
                 },  
                 DeleteUser : { 
                     payloadDefaultsForInputFields    :   {body : [], params: "userId"},
-                    finalPayload                     :   () => del(`UserRouter/delete${userPayload.params}`, userPayload.body)
+                    finalPayload                     :   () => del(`users/delete${userPayload.params}`, userPayload.body)
                 }, 
             },
             state : {
                 controllerHandler  :  selectUserController, 
-                controller        :  userController,
-                setPayload              :  setUserPayload, 
-                payload                 :  userPayload,
+                controller         :  userController,
+                setPayload         :  setUserPayload, 
+                payload            :  userPayload,
             }  
         }, 
         Profile: { 
             nameOfSelectedController: profileController.controllerName,
             requests :  { 
                 CreateProfile : {
-                    payloadDefaultsForInputFields   :   {body: profileFields, params: ""},
-                    finalPayload                    :   () => post(`profiles/create${profilePayload.params}`, profilePayload.body)
+                    payloadDefaultsForInputFields   :   {body: profileFields, params: "user"},
+                    finalPayload                    :   () => post(`profile/create${profilePayload.params}`, profilePayload.body)
                 },   
                 ReadProfile : {  
                     payloadDefaultsForInputFields   :   {body:[], params: "profileId"},
-                    finalPayload                    :   () => get(`profiles/read${profilePayload.params}`,    profilePayload.body)
+                    finalPayload                    :   () => get(`profile/read${profilePayload.params}`,    profilePayload.body)
                 },  
                 ReadAllProfiles : {  
                     payloadDefaultsForInputFields   :   {body:[], params: ""},
-                    finalPayload                    :   () => get(`profiles/read${profilePayload.params}`,    profilePayload.body)
+                    finalPayload                    :   () => get(`profile/${profilePayload.params}`,    profilePayload.body)
                 },   
                 UpdateProfile : {  
                     payloadDefaultsForInputFields   :   {body:["name", "email"], params: "profileId"},
-                    finalPayload                    :   () => put(`profiles/update${profilePayload.params}`,  profilePayload.body)
+                    finalPayload                    :   () => put(`profile/update/${profilePayload.params}`,  profilePayload.body)
                 }
             }, 
             state : { 
                 controllerHandler  :  selectProfileController, 
-                controller        :  profileController,
-                setPayload              :  setProfilePayload, 
-                payload                 :  profilePayload,
+                controller         :  profileController,
+                setPayload         :  setProfilePayload, 
+                payload            :  profilePayload,
             }  
         }, 
         Projects: { 
@@ -225,26 +220,26 @@ const ServiceTest = (props) => {
             requests :  { 
                 CreateProject : {
                     payloadDefaultsForInputFields   :   {body: projectsFields, params: "userId"},
-                    finalPayload                    :   () => post(`profiles/create${profilePayload.params}`, profilePayload.body)
+                    finalPayload                    :   () => post(`projects/create${profilePayload.params}`, profilePayload.body)
                 },  
                 ReadProject : { 
                     payloadDefaultsForInputFields   :   {body: [], params: "projectId"},
-                    finalPayload                    :   () => get(`profiles/read${profilePayload.params}`,    profilePayload.body)
+                    finalPayload                    :   () => get(`projects/read${profilePayload.params}`,    profilePayload.body)
                 }, 
                 GetAllProjects : { 
                     payloadDefaultsForInputFields   :   {body: [], params: "userId"},
-                    finalPayload                    :   () => get(`profiles/read${profilePayload.params}`,    profilePayload.body)
+                    finalPayload                    :   () => get(`projects/read${profilePayload.params}`,    profilePayload.body)
                 },  
                 UpdateProject : { 
                     payloadDefaultsForInputFields   :   {body: projectsFields, params: "userId"},
-                    finalPayload                    :   () => put(`profiles/update${profilePayload.params}`,  profilePayload.body)
+                    finalPayload                    :   () => put(`projects/update${profilePayload.params}`,  profilePayload.body)
                 }
             }, 
             state : { 
                 controllerHandler  :  selectProjectController, 
-                controller        :  projectController,
-                setPayload              :  setProjectPayload, 
-                payload                 :  projectPayload,
+                controller         :  projectController,
+                setPayload         :  setProjectPayload, 
+                payload            :  projectPayload,
             } 
         },
     }
@@ -263,13 +258,10 @@ const ServiceTest = (props) => {
 
                 {/* DECLARE VARIABLES */}
 
-                    const table = database[model]                                                     // table object captured
-                    const {nameOfSelectedController, requests, state} = table                         // ---> destructure table into it's 3 objects
-                    const {controllerHandler, controller , setPayload, payload} = state    // ---> destructure state
-                    const requestsKeys = Object.keys(requests)                                        // ---> array of all Controller names as strings, used for iterating with map
-                    
-                    
-
+                    const table = database[model]                                                 // table object captured
+                    const {nameOfSelectedController, requests, state} = table                     // ---> destructure table into it's 3 objects
+                    const {controllerHandler, controller , setPayload, payload} = state           // ---> destructure state
+                    const requestsKeys = Object.keys(requests)                                    // ---> array of all Controller names as strings, used for iterating with map
                     const controllerSelected = nameOfSelectedController ? true : false 
                     let target, body, params, emptyPayloadOfSelectedController, paramsIsUsed, finalAPIcall
                     if (controllerSelected) { 
@@ -277,7 +269,7 @@ const ServiceTest = (props) => {
                     body = target.payloadDefaultsForInputFields.body                              // ---> declare body to access default fields
                     params = target.payloadDefaultsForInputFields.params                          // ---> declare body to access default fields
                     paramsIsUsed = params ? true : false                                          // ---> boolean that conditionally renders an input field for params
-                    finalAPIcall = target.finalPayload                        // ---> crud Function of selected controller without an added payload.
+                    finalAPIcall = target.finalPayload                                            // ---> crud Function of selected controller without an added payload.
                     }               
                     let logGroup = [target, body, params, emptyPayloadOfSelectedController, paramsIsUsed, controllerSelected]
                     // logGroup.forEach((elem, index) => {
