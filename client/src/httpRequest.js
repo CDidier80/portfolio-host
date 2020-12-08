@@ -35,10 +35,10 @@ export const httpRequest = (controllerFunction, payload, dataRequest) => {
         UpdateProfile:     put(`profiles/update${params}`     , body),
 
         /*                      Projects Routes                     */
-        CreateProject:     post(`UserRouter/create${params}`  , body),
-        ReadProject:       get(`UserRouter/read${params}`     , body),  
-        GetAllProjects:    get(`UserRouter/read${params}`     , body), 
-        UpdateProject:     put(`UserRouter/update${params}`   , body), 
+        CreateProject:     post(`ProjectsRouter/create${params}`  , body),
+        ReadProject:       get(`ProjectsRouter/read${params}`     , body),  
+        GetAllProjects:    get(`ProjectsRouter/read${params}`     , body), 
+        UpdateProject:     put(`ProjectsRouter/update${params}`   , body), 
 
         // deleteProject:     del(`UserRouter/delete${params}`, body)
     }
@@ -50,6 +50,9 @@ export const httpRequest = (controllerFunction, payload, dataRequest) => {
         console.log(error)
     }
 }
+
+
+// <button onClick={()=>setState(httpRequest("LogInUser", payload, ["isLoggedIn"]))}></button>
 
 const ApiClient = axios.create({ baseURL: 'http://localhost:3003/api/' })
 export const {post, get, put} = ApiClient 
