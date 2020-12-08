@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
   },
   projectWrapper:{
     display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
+    gridTemplateColumns: ("1fr 1fr 1fr"),
+    gap: "10px",
+    gridAutoRows: "100px",
     color: "red",
     marginTop: "55px",
     marginLeft: "25px",
@@ -145,7 +147,7 @@ const PortfolioPage = (props) => {
         </div>
         <div className={classes.portfolioDetails}>
         <h2> Collin Didier </h2>
-        <h3> Chicaho, Il.</h3>
+        <h3> Chicago, Il.</h3>
         <h3> FullStack Developer</h3>
         <h3> Organization: Collin and Co. Ltd. </h3>
         <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>

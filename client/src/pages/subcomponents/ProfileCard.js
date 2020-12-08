@@ -59,7 +59,7 @@ const ProfileCard = (props) => {
                 <Grid item>
                   <Link to="portfolio">
                     <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                      Click here to see my portfolio
+                      See portfolio
                 </Typography>
                   </Link>
                 </Grid>
