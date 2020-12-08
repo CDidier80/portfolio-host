@@ -1,4 +1,3 @@
-// import React from 'react';
 // import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
@@ -49,11 +48,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const goLandingPage = (e) => {
-  e.target.push('/landingPage');
+const goMainPage = (e) => {
+  e.target.push('/main');
 }
 
-export default function SignInUpPage() {
+const SignInUpPage = (props) => {
   const classes = useStyles();
 
   return (
@@ -71,7 +70,7 @@ export default function SignInUpPage() {
           <form className={classes.form} noValidate> <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
             <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={goLandingPage} > Sign In </Button>
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={goMainPage} > Sign In </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2"> Forgot password? </Link>
@@ -88,3 +87,5 @@ export default function SignInUpPage() {
     </div>
   );
 }
+
+export default SignInUpPage

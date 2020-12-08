@@ -102,7 +102,7 @@ const LandingPage = (props) => {
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signInUp">
+            <Link to="/signup">
               <Button color="#fce4ec">Login</Button>
             </Link>
           </Toolbar>
@@ -112,7 +112,7 @@ const LandingPage = (props) => {
         <h3 className={classes.textGreeting.welcome}>Welcome to Dev Ports</h3>
         <h4 className={classes.textGreeting.subHeader}>Your site to easy share your portfolio and make new connection with other developers.</h4>
       </div>
-      <Link className={classes.loginButton} to="/signInUp">
+      <Link className={classes.loginButton} to="/signup">
         <Button variant="outlined" color="primary">Login</Button>
       </Link>
       <div className={classes.httpTest}>
