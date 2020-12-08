@@ -41,9 +41,9 @@ const App = (props) => {
         ) : (
           <Switch>
               <Route exact path="/" component={(props) =><LandingPage {...props}/>}/>
-              <Route path="/mainPage" component={(props) => <MainPage {...props}/>}/>
+              <Route path="/main" component={(props) => <MainPage {...props}/>}/>
               <Route path="/portfolio" component={(props) => <PortfolioPage {...props} />}/>
-              <Route path="/signInUp" component={(props) => <SignInUpPage {...props}/>}/>
+              <Route path="/sigup" component={(props) => <SignInUpPage {...props}/>}/>
               {/* this is a development-only page for testing Services/front-back end routes*/}
               <Route path="/service" component={(props) => <Mothership {...props}/>}/>
             </Switch>

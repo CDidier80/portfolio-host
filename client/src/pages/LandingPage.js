@@ -90,13 +90,13 @@ const LandingPage = (props) => {
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/signInUp">
+              <Link to="/signup">
               <MenuItem onClick={handleClose}> Login </MenuItem>
               </Link>
               <Link to="/portfolio">
               <MenuItem onClick={handleClose}>My account</MenuItem>
               </Link>
-              <Link to="/mainPage">
+              <Link to="/main">
               <MenuItem onClick={handleClose}>Home</MenuItem>
               </Link>
             </Menu>
