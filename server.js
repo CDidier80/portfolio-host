@@ -4,8 +4,6 @@ const cors = require('cors')
 const helmet = require('helmet')
 const logger = require('morgan')
 
-const { cloudinary } = require('')
-
 
 // import express & create a server instance
 const app = require('express')()

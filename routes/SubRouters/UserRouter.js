@@ -17,8 +17,12 @@ Router.put('/update/:user_id', controller.UpdateUser)
 Router.delete('/delete/:user_id', controller.DeleteUser)
 
 // login
-Router.post('/login', controller.LogInUser, createToken)
+// for Auth
+// Router.post('/login', controller.LogInUser, createToken)
+Router.post('/login', controller.LoginUser)
 
 // check session
 // Router.get('/session', getToken, verifyToken, UserController.RefreshSession)
-// module.exports = Router
+module.exports = Router
+
+
