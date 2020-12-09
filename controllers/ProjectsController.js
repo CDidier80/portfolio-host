@@ -35,16 +35,15 @@ const ReadProject = async (req, res) => {
         errorLog(error)
     }
 }
-
+// method will be used to display all the projects
 const GetAllProjects = async (req, res) => {
-    log(GetAllProjects, req, show)
     try {
-        let userId = req.params.user_id
-        console.log(userId)
+        // limit received from front
+        const { limit } = req.body
+        // if needed to parse into int
+        // limit = parseInt(limit)
         let projects = await Projects.findAll({
-            where: {
-                user_id:userId
-            }
+            limit: limit
         })
         res.send(projects)
     } catch(error) {

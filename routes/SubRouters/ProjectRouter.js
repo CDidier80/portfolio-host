@@ -6,7 +6,8 @@ Router.post('/create/:user_id', controller.CreateProject)
 
 // // Read
 Router.get('/read/:project_id', controller.ReadProject)
-Router.get('/:user_id', controller.GetAllProjects)
+Router.get('/', controller.GetAllProjects)
+
 
 // Update
 Router.put('/update/:project_id', controller.UpdateProject)

@@ -10,7 +10,7 @@ const show = true
 const CreateUser = async (req, res) => {
     log(CreateUser, req, show)
     try {
-        // console.log("The request object: ", req)
+        // check if an email already exists
         const userExists = await User.findOne({
             where: { email: req.body.email },
             raw: true
@@ -20,7 +20,7 @@ const CreateUser = async (req, res) => {
                 message: 'account already exists'
             })
         }
-
+        // creates new user
         let { body } = req
         const { password, name, email } = body
         console.log("password, name and email:", password, name, email)
