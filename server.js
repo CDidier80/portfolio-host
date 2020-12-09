@@ -26,6 +26,7 @@ app.disable('X-Powered-By')
 app.get('/', (req, res) => res.json({ message: 'Server Works' }))
 // ApiClient.js meets Server.Js at '/api' & sends requests to AppRouter
 app.use('/api', AppRouter)
+<<<<<<< HEAD
 
 
 app.get('/api/images', async (req, res) => {
@@ -59,3 +60,6 @@ app.post('/api/upload', async (req, res) => {
 
 
 app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`))
+=======
+app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`))
+>>>>>>> f48d43021353c76f8f66f36b6a862f3e85cdeb1b

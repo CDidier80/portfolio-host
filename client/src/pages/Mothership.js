@@ -17,7 +17,11 @@
 //     }
 // }
 
+<<<<<<< HEAD
 // exports.Mothership = (props) => {
+=======
+const Mothership = (props) => {
+>>>>>>> f48d43021353c76f8f66f36b6a862f3e85cdeb1b
 
 //     /* Database Table Columns */
 //     const userFields =     ["name", "email", "password"]
@@ -32,9 +36,9 @@
 //     const [projectController, selectProjectController]  =  useState({controllerName: "", currentPayload: null})
 //     const [projectPayload, setProjectPayload]           =  useState({body:{}, params: ""})
 
-//     /* Hooks/State for Profile */
-//     const [profileController, selectProfileController]  =  useState({controllerName: "", currentPayload: null})
-//     const [profilePayload, setProfilePayload] =            useState({body:{}, params: ""})
+    // /* Hooks/State for Profile */
+    // const [profileController, selectProfileController]  =  useState({controllerName: "", currentPayload: null})
+    // const [profilePayload, setProfilePayload]           =  useState({body:{}, params: ""})
 
 //     const database = {
 //         User: {

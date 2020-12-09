@@ -62,69 +62,67 @@ const useStyles = makeStyles((theme) => ({
 
 
 const LandingPage = (props) => {
-  // const {httpRequest, get, put, post} = props
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
-  // const [displayedProfiles, setProfiles] = useState([])
-  const [searchValue, setSearchField] = useState("")
-  // const useEffect = () => {
-  // console.log("useEffect reached")
-  // setProfiles(httpRequest("ReadAllProfiles"))
+    // const {httpRequest, get, put, post} = props
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
+    // const [displayedProfiles, setProfiles] = useState([])
+    const [searchValue, setSearchField] = useState("")
+    // const useEffect = () => {
+    // console.log("useEffect reached")
+    // setProfiles(httpRequest("ReadAllProfiles"))
 
-  // const getProfiles = async () => {
-  //   if (!pageIsLoaded) {
-  //     changeLoadedBoolean(true)
-  //   }
-  // }
+    // const getProfiles = async () => {
+    //   if (!pageIsLoaded) {
+    //     changeLoadedBoolean(true)
+    //   }
+    // }
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
 
-  return (
-    <div>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/joined">
-                <MenuItem onClick={handleClose}> Login </MenuItem>
-              </Link>
-              <Link to="/portfolio">
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Link>
-              <Link to="/main">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </Link>
-            </Menu>
-            <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-            {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/joined">
-              <Button color="#fce4ec">Login</Button>
-            </Link>
-          </Toolbar>
-        </AppBar>
-      </div>
-      <div className={classes.textGreeting}>
-        <h3 className={classes.textGreeting.welcome}>Welcome to Dev Ports</h3>
-        <h4 className={classes.textGreeting.subHeader}>Your site to easy share your portfolio and make new connection with other developers.</h4>
-      </div>
-      <Link className={classes.loginButton} to="/joined">
-        <Button variant="outlined" color="primary">Login</Button>
-      </Link>
-      <div className={classes.httpTest}>
-        <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input>
-        {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
-      </div>
-
-
-    </div>
-  );
+    return (
+        <div>
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
+                        <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+                            <Link to="/joined">
+                                <MenuItem onClick={handleClose}> Login </MenuItem>
+                            </Link>
+                            <Link to="/portfolio">
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                            </Link>
+                            <Link to="/main">
+                              <MenuItem onClick={handleClose}>Home</MenuItem>
+                            </Link>
+                        </Menu>
+                        <Typography variant="h6" className={classes.title}>DevPortal</Typography>
+                            {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
+                            <Link to="/joined">
+                                <Button color="#fce4ec">Login</Button>
+                            </Link>
+                    </Toolbar>
+                </AppBar>
+            </div>
+            <div className={classes.textGreeting}>
+                <h3 className={classes.textGreeting.welcome}>Welcome to Dev Portal</h3>
+                <h4 className={classes.textGreeting.subHeader}>A window into great works</h4>
+            </div>
+                <Link className={classes.loginButton} to="/joined">
+                    <Button variant="outlined" color="primary">Login</Button>
+                </Link>
+            <div className={classes.httpTest}>
+                {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
+                {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
+            </div>
+        </div>
+    );
 }
 
 export default LandingPage

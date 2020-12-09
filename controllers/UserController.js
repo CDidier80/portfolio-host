@@ -1,5 +1,6 @@
 const { User } = require('../models')
 // const { Op, literal, fn, col  } = require('sequelize')
+const {checkPassword, generatePassword} = require('../middleware/PasswordHandler')
 const  { ControllerLoggers }  = require('../Helpers')
 const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
 const show = true
@@ -9,9 +10,9 @@ const show = true
 const CreateUser = async (req, res) => {
     log(CreateUser, req, showLogs)
     try {
-        let userBody = {
-            ...req.body
-        }
+        let userBody = req.body
+        const password_digest = await generatePassword(body.password)
+        userBody.password = password_digest
         let user = await User.create(userBody)
         res.send(user)
     } catch (error) {
@@ -83,11 +84,10 @@ const DeleteUser = async (req, res) => {
     }
 }
 
-const LogInUser = async (req, res) => {
+const LogInUser = async (req, res, next) => {
     log(LogInUser, req, showLogs)
     try {
-        let email = req.body.email
-        let password = req.body.password
+        let {email, password} = request.body
 
         let user = await User.findOne({
             where: {
@@ -95,20 +95,30 @@ const LogInUser = async (req, res) => {
             },
             returning: true
         })
-        if (user != null & password === user.password_digest) {
-            res.send(user)
+        if (user && await checkPassword(password, user.password_digest)) {
+            console.log("User found, password matched password digest.")
+            res.locals.payload = {_id: user._id, username: user.username}
+            console.log('res.locals payload is: ', res.locals.payload)
+            console.log('LogInUser now uses next() => createToken() in jtwhandler.js')
+            return next()    // next() refers to the createToken() method in /middleware/jwthandler.js, which is the 2nd function to run in the UserRouter.js login post request
+                             // you need return because otherwise the function will continue running. It WILL start the next function at the same time as finishing this one
         }
-        res.status(401).send({msg: 'Unauthorized'})
+        res.status(401).send({ msg: 'Invalid email address or password' })
     } catch (error) {
         errorLog(LogInUser, error, show)
     }
-
 }
+
+const RefreshSession = (req, res) => {
+    const token = res.locals.token
+    res.send(token)
+    }
 
 module.exports = {
     CreateUser,
     ReadUser,
     DeleteUser,
     UpdateUser,
-    LogInUser
+    LogInUser, 
+    RefreshSession
 }

@@ -13,7 +13,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import  { LogInUser } from '../Services/UserService'
+import { CreateUser } from '../Services/UserService'
+import ProfileForm from "./subcomponents/ProfileForm"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,15 +47,136 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const SignInSignUpPage = (props) => {
+
+  {/* Variables */}
+  let messageOne = "Sign In", messageTwo = "Sign Up" 
+  let promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
+
+  {/* Hooks */}
   const classes = useStyles();
-
-
-  const [appIsDisplayed, toggleAppDisplay] = useState(true)
   const [pageIsLoaded, setLoaded] = useState(true)
-  const [showTwoButtons, toggleTwoButtonMode] = useState(false)
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
+  const [showProfileForm, toggleProfileForm] = useState(true)
+  const [firstTimeUser, setFirstTimeUser] = useState(false)
+  // User Account (table) values
+  const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("")
+  // Authentication
+  const [authenticated, setAuth] = useState(props.authenticated)
   
+  const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
+
+
+  {/* EVENT HANDLERS */}
+
+    // const buttonClick = (e, stateFuntion) => {
+  //   e.preventDefault()
+  // } 
+
+  const togglemessage = (e) => {
+      e.preventDefault()
+      let newMessageValue = message === messageOne ? messageTwo : messageOne
+      let newPrompt = prompt === promptOne ? promptTwo: promptOne
+      toggleMessage(newMessageValue)
+      togglePrompt(newPrompt)
+      return
+  }
+
+  const formChange = (e, stateFunction) => {   // [..., setState] 
+      e.preventDefault()
+      const { value } = e.target
+      console.log("Field Value: ", value)
+      stateFunction(value)
+  }
+
+
+const handleLogin = async (e) => {
+    e.preventDefault()
+    console.log("User clicked login button.")
+    try {
+      console.log("User entered email and password: ", email, password)
+      const response = await LogInUser({ email, password, password})
+      
+        props.toggleAuthenticated(true, response.user, () => props.history.push('/portfolio')
+      )
+    } catch (error) {
+      console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
+    }
+  }
+
+const handleSignUp = async (e) => {
+    e.preventDefault()
+    console.log("User clicked sign up button.")
+    try {
+      console.log("User entered email, password and name: ", email, password, name)
+      const response = await CreateUser({email, password, name})
+      setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
+      props.toggleAuthenticated(true, response.user)
+      console.log("User Created.")
+    } catch (error) {
+      console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
+    }
+}
+
+
+  return ( 
+      <div>
+          {!showProfileForm ? 
+          <div>
+              <Link to="/">
+                  <Button color="#fce4ec" onClick={()=>props.history.push("/")}>Back</Button>
+              </Link>
+              <Container component="main" maxWidth="xs">
+                  <CssBaseline />
+                  <div className={classes.paper}>
+                  <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
+                  <Typography component="h1" variant="h5">{message}</Typography> 
+                      <form className={classes.form} noValidate> 
+
+                          { message === "Sign Up" ? <TextField onChange={(e)=>handleSignUp(e, setName)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
+                          <TextField onChange={(e)=>handleSignUp(e, setEmail)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email}  autoComplete="email" autoFocus />
+                          <TextField onChange={(e)=>handleSignUp(e, setPassword)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password} autoComplete="current-password" />
+                          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                          <Button type="submit"  fullWidth variant="contained" color="primary" className={classes.submit} onClick={(e) => buttonEventHandler(e)}>{message}</Button>
+                          <Grid container>
+                              <Grid item xs>
+                                  <Link href="#" variant="body2"> Forgot password? </Link>
+                              </Grid>
+                              <Grid item>
+                                  <Link to="#" variant="body2" onClick={(e)=>togglemessage(e)}>{prompt}</Link>
+                              </Grid>
+                          </Grid>
+                      </form>
+                  </div>
+                <Box mt={8}> </Box>
+              </Container>
+            </div>
+            : 
+            <ProfileForm {...props} firstTimeUser={firstTimeUser}/>
+            }
+      </div>
+
+    )
+}
+
+export default SignInSignUpPage
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
+
+
 
 // setButtonMessage("")
 
@@ -63,29 +187,16 @@ const SignInSignUpPage = (props) => {
   //      [message]
   //   }
 
-
-  let messageOne = "Sign In", messageTwo = "Sign Up", promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
-
-    const togglemessage = (e) => {
-      e.preventDefault()
-      let newMessageValue = message === messageOne ? messageTwo : messageOne
-      let newPrompt = prompt === promptOne ? promptTwo: promptOne
-      toggleMessage(newMessageValue)
-      togglePrompt(newPrompt)
-      return
-    }
-
-
-  // const goToMainPage = () => {
+    // const goToMainPage = () => {
   //   props.history.push('/main')
   // }
-  
+
   // const submitSignUp = (e) => {
   //   const {username, email, password} = this.state
   //   const formData = {username: username, email: email, password: password}
   //   Service(formData)
   // }
-  
+
   // const submitLogIn = async (e) => {
   //   // console.log('submitLogin() fired')
   //   const {toggleAuthenticated, email, password} = this.state
@@ -97,7 +208,7 @@ const SignInSignUpPage = (props) => {
   //   // console.log("Username received as part of responseData: ", responseData.user.username)
   //   toggleAuthenticated(true, responseData.user.username, ()=>this.props.history.push('/main'))
   // }
-  
+
   // updateField = (event) => {
   //   const {value} = event.target
   //   switch (event.target.id) {
@@ -114,77 +225,3 @@ const SignInSignUpPage = (props) => {
   //       console.log('updateField() switch statement originating in LandingPage.js had no matching cases.')
   //   }
   // }
-  return ( appIsDisplayed ? 
-    
-     <div>
-      <Link to="/">
-        <Button color="#fce4ec">Back</Button>
-      </Link>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">{message}</Typography> 
-          <form className={classes.form} noValidate> 
-            { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
-            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
-            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-
-            { !showTwoButtons ?
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={null}>{message}</Button>
-            : null
-            } 
-
-            { showTwoButtons ? 
-            <div className={classes.buttonWrapper}>
-              <Button type="button" onSubmit={null} variant="contained" color="primary" className={classes.submit}> Sign Up </Button>
-              <Button type="button" onSubmit={null} variant="contained" color="primary" className={classes.submit}> Sign In </Button>
-            </div>
-            : null
-            }
-
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2"> Forgot password? </Link>
-              </Grid>
-              <Grid item>
-                <Link to="#" variant="body2" onClick={(e)=>togglemessage(e)}>{prompt}</Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Box mt={8}>
-        </Box>
-      </Container>
-    </div>
-    : null
-    
-    )
-
-
-}
-  
-
-
-      
- 
-
-
-
-export default SignInSignUpPage
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
