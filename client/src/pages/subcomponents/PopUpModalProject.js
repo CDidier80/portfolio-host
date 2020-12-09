@@ -61,23 +61,21 @@ const styles = {
 }
 
 
-const PopUpModalProject = ({ isShowing, hide }) => isShowing ? ReactDOM.createPortal(
-  <React.Fragment>
-    <div style={styles.modalOverlay} />
-    <div style={styles.modalWrapper} aria-modal aria-hidden tabIndex={-1} role="dialog">
-      <div style={styles.modal}>
-        <div style={styles.modalHeader}>
-          <button type="button" style={styles.modalCloseButton} data-dismiss="modal" aria-label="Close" onClick={hide}>
-            <span aria-hidden="true">&times;</span>
-          </button>
+const PopUpModalProject = (props) => ReactDOM.createPortal(
+    <React.Fragment>
+        <div style={styles.modalOverlay} />
+        <div style={styles.modalWrapper} aria-modal aria-hidden tabIndex={-1} role="dialog">
+            <div style={styles.modal}>
+                <div style={styles.modalHeader}>
+                    <button type="button" style={styles.modalCloseButton} data-dismiss="modal" aria-label="Close" onClick={null}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <ProjectForm setShowPopUp={props.setShowPopUp}/>
+            </div>
         </div>
-        <p>
-          <ProjectForm />
-        </p>
-      </div>
-    </div>
-  </React.Fragment>, document.body
-) : null;
+    </React.Fragment>, document.body
+) 
 
 export default PopUpModalProject
 

@@ -1,5 +1,5 @@
 // import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
 import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
 import { CreateProject, ReadProject, UpdateProject, DeleteProject} from '../Services/ProjectsService'
@@ -18,6 +18,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import ProfileForm from "./subcomponents/ProfileForm"
+import LoadingScreen from '../pages/subcomponents/LoadingScreen'
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SignInSignUpPage = (props) => {
+const SignInSignUpPage = (props) => { 
 
   {/* Variables */}
   let messageOne = "Sign In", messageTwo = "Sign Up" 
@@ -51,24 +53,42 @@ const SignInSignUpPage = (props) => {
 
   {/* Hooks */}
   const classes = useStyles();
-  const [pageIsLoaded, setLoaded] = useState(true)
+  const [pageLoaded, setLoaded] = useState(true)
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
-  const [showProfileForm, toggleProfileForm] = useState(true) 
+
   {/* <--------------manual toggle profile/login form */}
+  const [showProfileForm, toggleProfileForm] = useState(true) 
+
+  {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */}
   const [firstTimeUser, setFirstTimeUser] = useState(false)
-  // User Account (table) values
+
+  {/* <-------------- hooks for User Sign-in and Sign-up Payloads */}
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
-  // Authentication
+  {/* <-------------- toggle authentication */}
   const [authenticated, setAuth] = useState(props.authenticated)
   
+
+
+
+  {/* useEffect() for loading screen */}
+  useEffect(() => {
+      console.log("LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.")
+          if (!pageLoaded) {
+            setLoaded(true)
+          }
+        },
+    [pageLoaded]
+  ) 
+
   {/* EVENT HANDLERS */}
 
     // const buttonClick = (e, stateFuntion) => {
   //   e.preventDefault()
   // } 
+
 
   const togglemessage = (e) => {
       e.preventDefault()
@@ -116,7 +136,7 @@ const handleSignUp = async (e) => {
 
 const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
-  return ( 
+  return ( !pageLoaded ? <LoadingScreen /> :
       <div>
           {!showProfileForm ? 
           <div>
