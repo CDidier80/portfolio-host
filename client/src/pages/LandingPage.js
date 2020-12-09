@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
+import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
+import { CreateProject, ReadProject, UpdateProject, DeleteProject} from '../Services/ProjectsService'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,6 +12,7 @@ import Button from '@material-ui/core/Button';
 // import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -71,11 +75,6 @@ const LandingPage = (props) => {
     // console.log("useEffect reached")
     // setProfiles(httpRequest("ReadAllProfiles"))
 
-    // const getProfiles = async () => {
-    //   if (!pageIsLoaded) {
-    //     changeLoadedBoolean(true)
-    //   }
-    // }
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
