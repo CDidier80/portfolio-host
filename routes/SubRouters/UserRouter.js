@@ -1,6 +1,7 @@
+
 const Router = require('express').Router()
 const controller = require('../../controllers/UserController')
-const {getToken, createToken, verifyToken} = require('../../middleware/jwthandler')
+const { getToken, createToken, verifyToken } = require('../../middleware/jwthandler')
 
 // Create
 Router.post('/create', controller.CreateUser)

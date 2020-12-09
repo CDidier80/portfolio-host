@@ -25,6 +25,7 @@ const ReadProfile = async (req, res) => {
     try {
         let profileId = parseInt(req.params.profile_id)
         let profile = await Profile.findByPk(profileId)
+        let user = await User.findByPk(users)
         res.send(profile)
     } catch (error) {
         errorLog(ReadProfile, error, show)
@@ -57,7 +58,6 @@ const UpdateProfile = async (req, res) => {
         errorLog(UpdateProfile, error, show)
     }
 }
-
 
 const ReadAllProfiles = async (req, res) => {
     log(ReadAllProfiles, req, show)
