@@ -20,5 +20,5 @@ Router.delete('/delete/:user_id', controller.DeleteUser)
 Router.post('/login', controller.LogInUser, createToken)
 
 // check session
-Router.get('/session', getToken, verifyToken, UserController.RefreshSession)
+Router.get('/session', getToken, verifyToken, controller.RefreshSession)
 module.exports = Router
