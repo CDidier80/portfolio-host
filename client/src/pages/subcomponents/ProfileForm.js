@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
     width: '25ch',
   },
 }));
-const BioForm = () => {
+
+
+
+const ProfileForm = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -121,7 +124,7 @@ const BioForm = () => {
 }
 
 
-export default BioForm
+export default ProfileForm
 
   // < div className = "portfolio-page-wrapper" >
   //   <div className={classes.root}>

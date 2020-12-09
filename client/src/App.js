@@ -7,7 +7,7 @@ import LandingPage from "./pages/LandingPage"
 import SettingsPage from "./pages/SettingsPage"
 // import Mothership from "./pages/Mothership"
 import Image from "./pages/subcomponents/imageloadtestLuis"
-import BioForm from "./pages/subcomponents/BioForm"
+import ProfileForm from "./pages/subcomponents/ProfileForm"
 
 
 // import SignInSignUp from "./pages/SignInSignUp"
@@ -24,6 +24,31 @@ const App = (props) => {
         }
       }
 
+    const [session, setSession] = useState(null)
+    const [authenicated, setAuthenticated] = useState(null)
+
+  //   const verifyTokenValid = async () => {
+  //     const token = localStorage.getItem('token')
+  //     if (token) {
+  //       try {
+  //           const session = await CheckSessionService()
+  //           setSession(session)
+  //           setAuthenticated(true)
+  //           (() => props.history.push('/main'))()
+  //           } catch (error) {
+  //             setSession(null)
+  //             setAuthenticated(false)
+  //             localStorage.clear()
+  //           }
+  //     }
+  // }
+
+  // props.session = session
+  // props = {...props, ...session}
+  // props = {...props, ...authenticated}
+
+
+
 //   goToSignupPage = async (e) => {
 //     e.stopPropagation()
 //     const linkClassName = e.target.className
@@ -36,14 +61,14 @@ const App = (props) => {
       <main className="App">
         {!pageIsLoaded ? <div><h3>Loading...</h3></div> : 
           <Switch> 
-              <Route exact path="/"    component={(props) =>  <LandingPage {...props}      />  }/>
-              <Route path="/main"      component={(props) =>  <MainPage {...props}         />  }/> 
-              <Route path="/portfolio" component={(props) =>  <PortfolioPage {...props}    />  }/>
-              <Route path="/joined"    component={(props) =>  <SignInSignUpPage {...props} />  }/>             
-              <Route path="/settings"  component={(props) =>  <SettingsPage {...props}     />  }/>
-              <Route path="/imagetest" component={(props) =>  <Image {...props}            />  }/>
-              <Route path="/bio"       component={(props) =>  <BioForm {...props}          />  }/>
-              {/* <Route path="/service"   component={(props) =>  <Mothership {...props}       />  }/> */}
+              <Route exact path="/"    component={ (props) =>  <LandingPage      {...props}  />  }/>
+              <Route path="/main"      component={ (props) =>  <MainPage         {...props}  />  }/> 
+              <Route path="/portfolio" component={ (props) =>  <PortfolioPage    {...props}  />  }/>
+              <Route path="/signin"    component={ (props) =>  <SignInSignUpPage {...props}  />  }/>             
+              <Route path="/settings"  component={ (props) =>  <SettingsPage     {...props}  />  }/>
+              <Route path="/imagetest" component={ (props) =>  <Image            {...props}  />  }/>
+              <Route path="/profileform"       component={ (props) =>  <ProfileForm          {...props}  />  }/>
+              {/* <Route path="/service"   component={(props) =>  <Mothership       {...props}  />  }/> */} 
           </Switch>
         }
       </main>

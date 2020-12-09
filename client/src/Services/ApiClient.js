@@ -1,9 +1,6 @@
 import axios from 'axios'
 const ApiClient = axios.create({ baseURL: 'http://localhost:3001/api/' })
 
-
-
-
 // uncomment when AUTH is ready
 // ApiClient.interceptors.request.use(
 //     async (config) => {
@@ -15,6 +12,5 @@ const ApiClient = axios.create({ baseURL: 'http://localhost:3001/api/' })
 //     },
 //     (err) => Promise.reject(err)
 // )
-        
 
 export default ApiClient
