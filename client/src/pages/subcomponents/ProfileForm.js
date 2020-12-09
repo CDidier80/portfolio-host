@@ -124,7 +124,7 @@ const ProfileForm = (props) => {
 }
 
 
-export default BioForm
+export default ProfileForm
 
   // < div className = "portfolio-page-wrapper" >
   //   <div className={classes.root}>

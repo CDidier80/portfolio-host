@@ -1,6 +1,6 @@
 import ApiClient from "./ApiClient"
 
-const LogInUser = async (payload, params) =>  {
+export const LogInUser = async (payload, params) =>  {
     try {
         const response = await ApiClient.post(`users/login${params}`, payload)
         localStorage.setItem('token', response.data.token)
@@ -10,7 +10,7 @@ const LogInUser = async (payload, params) =>  {
     }
 }
 
-const CreateUser = async (payload, params) =>  {
+export const CreateUser = async (payload, params) =>  {
     try {
         const response = await ApiClient.post(`users/create${params}`, payload)
         return response.data
@@ -19,7 +19,7 @@ const CreateUser = async (payload, params) =>  {
     }
 }
 
-const ReadUser = async (payload, params) =>  {
+export const ReadUser = async (payload, params) =>  {
     try {
         const response = await ApiClient.get(`users/update${params}`, payload)
         return response.data
@@ -28,7 +28,7 @@ const ReadUser = async (payload, params) =>  {
     }
 }
 
-const UpdateUser = async (payload, params) =>  {
+export const UpdateUser = async (payload, params) =>  {
     try {
         const response = await ApiClient.put(`users/login${params}`, payload)
         return response.data
@@ -37,7 +37,7 @@ const UpdateUser = async (payload, params) =>  {
     }
 }
 
-const DeleteUser = async (payload, params) => {
+export const DeleteUser = async (payload, params) => {
     try {
         const response = await ApiClient.delete(`users/delete${params}`, payload)
         return response.data
@@ -46,7 +46,7 @@ const DeleteUser = async (payload, params) => {
     }
 }
 
-const CheckSessionService = async () => {
+export const CheckSessionService = async () => {
     try{
         const res = await ApiClient.get('users/session')
         return res.data
@@ -55,12 +55,12 @@ const CheckSessionService = async () => {
     }
 }
 
-module.exports = {
-    LogInUser, 
-    CreateUser, 
-    ReadUser, 
-    UpdateUser,
-    DeleteUser, 
-    CheckSessionService
-}
+// module.exports = {
+//     LogInUser, 
+//     CreateUser, 
+//     ReadUser, 
+//     UpdateUser,
+//     DeleteUser, 
+//     CheckSessionService
+// }
 

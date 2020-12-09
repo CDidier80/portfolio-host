@@ -14,8 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
-import  LogInUser from '../Services/UserService'
-import  CreateUser  from '../Services/UserService'
+import  { LogInUser } from '../Services/UserService'
+import { CreateUser } from '../Services/UserService'
 import ProfileForm from "./subcomponents/ProfileForm"
 
 const useStyles = makeStyles((theme) => ({
@@ -131,7 +131,7 @@ const handleSignUp = async () => {
                           <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={state.email}  autoComplete="email" autoFocus />
                           <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={state.password}  autoComplete="current-password" />
                           <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                          <Button type="submit" onChange={handleChange} fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={() => buttonEventHandler()}>{message}</Button>
+                          <Button type="submit" onChange={formChange} fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={() => buttonEventHandler()}>{message}</Button>
                           <Grid container>
                               <Grid item xs>
                                   <Link href="#" variant="body2"> Forgot password? </Link>
