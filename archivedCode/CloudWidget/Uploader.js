@@ -18,7 +18,7 @@ const Uploader = props => {
             maxFileSize: 1500000,
             autoUpload: false
         },
-        (error, result) => { checkUpload(result) })
+        (error, result) => {checkUpload(result)})
 
     
     const checkUpload = async (resultEvent) => {
@@ -31,14 +31,10 @@ const Uploader = props => {
                         down below
                     */
                     await __ChangePhoto(url)
-
-                    
                     await updateRender()
-                    
                 }
             }
             catch (err) { throw err }
-
         }
     }
     const updateRender = async () => {
