@@ -13,6 +13,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
+// import ProjectForm from '../pages/subcomponents/ProjectForm'
+import PopUpModal from '../pages/subcomponents/PopUpModal'
+import UsePopUp from '../pages/subcomponents/UsePopUp'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "22px",
     marginLeft: "35px"
   },
-  projectWrapper:{
+  projectWrapper: {
     display: "grid",
     gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
     gap: "10px",
@@ -98,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const PortfolioPage = (props) => {
-  // const { httpRequest, get, put, post } = props
+  const { isShowing, toggle } = UsePopUp();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   // const [displayedProfiles, setProfiles] = useState([])
@@ -111,6 +114,14 @@ const PortfolioPage = (props) => {
   const handleClose = () => {
     setAnchorEl(null);
   }
+
+  //popup
+
+  // const [isShowing, setIsShowing] = useState(false);
+
+  // function toggle() {
+  //   setIsShowing(!isShowing);
+  // }
 
   return (
     <div className="portfolio-page-wrapper">
@@ -145,18 +156,18 @@ const PortfolioPage = (props) => {
       {/* profile page below */}
 
       <div className={classes.cardProfile}>
-        <div className={classes.imageColumn}> 
+        <div className={classes.imageColumn}>
           <img className={classes.profImage}  ///image button Luis
-          src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
+            src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
         </div>
         <div className={classes.portfolioDetails}>
           <form>
-        <h2> name: </h2>
-        <h3> Chicago, Il.</h3>
-        <h3> FullStack Developer</h3>
-        <h3> Organization: Collin and Co. Ltd. </h3>
-        <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
-        <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
+            <h2> name: </h2>
+            <h3> Chicago, Il.</h3>
+            <h3> FullStack Developer</h3>
+            <h3> Organization: Collin and Co. Ltd. </h3>
+            <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
+            <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
           </form>
           <Button className="submit-Bio" variant="outlined" color="primary"> submit </Button>
 
@@ -165,8 +176,16 @@ const PortfolioPage = (props) => {
 
       {/* projects */}
       <div className={classes.projectWrapper}>
+        <h3>
+          Add project
+          <button onClick={toggle}> add project </button>
+          <PopUpModal
+            isShowing={isShowing}
+            hide={toggle}
+          />
+        </h3>
         <div> test 1</div>
-            <div> test 2</div>
+        <div> test 2</div>
         <div> test 3</div>
       </div>
     </div>
