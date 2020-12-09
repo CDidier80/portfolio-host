@@ -5,7 +5,7 @@ import PortfolioPage from "./pages/PortfolioPage"
 import SignInSignUpPage from "./pages/SignInSignUpPage"
 import LandingPage from "./pages/LandingPage"
 import SettingsPage from "./pages/SettingsPage"
-import Mothership from "./pages/Mothership"
+// import Mothership from "./pages/Mothership"
 import Image from "./pages/subcomponents/imageloadtestLuis"
 import BioForm from "./pages/subcomponents/BioForm"
 
@@ -42,7 +42,7 @@ const App = (props) => {
               <Route path="/settings"  component={(props) =>  <SettingsPage {...props}     />  }/>
               <Route path="/imagetest" component={(props) =>  <Image {...props}            />  }/>
               <Route path="/bio"       component={(props) =>  <BioForm {...props}          />  }/>
-              <Route path="/service"   component={(props) =>  <Mothership {...props}       />  }/>
+              {/* <Route path="/service"   component={(props) =>  <Mothership {...props}       />  }/> */}
           </Switch>
         }
       </main>
