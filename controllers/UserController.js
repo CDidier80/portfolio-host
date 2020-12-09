@@ -20,8 +20,6 @@ const CreateUser = async (req, res) => {
     }
 }
 
-<<<<<<< HEAD
-=======
 // const DeleteUser = async (req, res) => {
 //     log(DeleteUser, req, showLogs)
 //     try {
@@ -39,7 +37,6 @@ const CreateUser = async (req, res) => {
 //     }
 // }
 
->>>>>>> ff3610046618da4a7db35d2e23c8513ca64dd872
 const ReadUser = async (req, res) => {
     log(ReadUser, req, showLogs)
     try {

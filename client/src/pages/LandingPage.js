@@ -92,7 +92,7 @@ const LandingPage = (props) => {
                     <Toolbar>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
                         <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                            <Link to="/joined">
+                            <Link to="/signin">
                                 <MenuItem onClick={handleClose}> Login </MenuItem>
                             </Link>
                             <Link to="/portfolio">
@@ -104,7 +104,7 @@ const LandingPage = (props) => {
                         </Menu>
                         <Typography variant="h6" className={classes.title}>DevPortal</Typography>
                             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                            <Link to="/joined">
+                            <Link to="/signin">
                                 <Button color="#fce4ec">Login</Button>
                             </Link>
                     </Toolbar>
@@ -114,7 +114,7 @@ const LandingPage = (props) => {
                 <h3 className={classes.textGreeting.welcome}>Welcome to Dev Portal</h3>
                 <h4 className={classes.textGreeting.subHeader}>A window into great works</h4>
             </div>
-                <Link className={classes.loginButton} to="/joined">
+                <Link className={classes.loginButton} to="/signin">
                     <Button variant="outlined" color="primary">Login</Button>
                 </Link>
             <div className={classes.httpTest}>

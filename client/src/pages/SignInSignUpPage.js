@@ -57,7 +57,8 @@ const SignInSignUpPage = (props) => {
   const [pageIsLoaded, setLoaded] = useState(true)
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
-  const [showProfileForm, toggleProfileForm] = useState(true)
+  const [showProfileForm, toggleProfileForm] = useState(true) 
+  {/* <--------------manual toggle profile/login form */}
   const [firstTimeUser, setFirstTimeUser] = useState(false)
   // User Account (table) values
   const [name, setName] = useState("")
@@ -66,7 +67,6 @@ const SignInSignUpPage = (props) => {
   // Authentication
   const [authenticated, setAuth] = useState(props.authenticated)
   
-  const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
 
   {/* EVENT HANDLERS */}
@@ -119,7 +119,7 @@ const handleSignUp = async (e) => {
       console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
     }
 }
-
+const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
   return ( 
       <div>
