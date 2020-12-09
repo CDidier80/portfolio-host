@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
 import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 // import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,18 +65,33 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
 const LandingPage = (props) => {
-    // const {httpRequest, get, put, post} = props
+
+    {/* Variables */}
     const classes = useStyles();
+
+
+    {/* Hooks */}
     const [anchorEl, setAnchorEl] = useState(null);
-    // const [displayedProfiles, setProfiles] = useState([])
+    const [pageLoaded, setLoaded] = useState(false);
+    
+
+    {/* <-------------- updates text in search bar */}
     const [searchValue, setSearchField] = useState("")
-    // const useEffect = () => {
-    // console.log("useEffect reached")
-    // setProfiles(httpRequest("ReadAllProfiles"))
 
 
+
+    {/* useEffect() for loading screen */}
+    useEffect(() => {
+      console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
+          if (!pageLoaded) {
+            setLoaded(true)
+          }
+        },[pageLoaded]
+    ) 
+
+
+    {/* Event Handlers */}
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -84,16 +100,16 @@ const LandingPage = (props) => {
       setAnchorEl(null);
     };
 
-    return (
+    return ( !pageLoaded ? <LoadingScreen /> :
         <div>
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
                         <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                            <Link to="/signin">
-                                <MenuItem onClick={handleClose}> Login </MenuItem>
-                            </Link>
+                            <Link to="/signin">Sign In</Link>
+                                
+
                             <Link to="/portfolio">
                                 <MenuItem onClick={handleClose}>My account</MenuItem>
                             </Link>
@@ -103,9 +119,9 @@ const LandingPage = (props) => {
                         </Menu>
                         <Typography variant="h6" className={classes.title}>DevPortal</Typography>
                             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                            <Link to="/signin">
-                                <Button color="#fce4ec">Login</Button>
-                            </Link>
+                        <Link to="/signin">
+                            <Button color="#fce4ec">Login</Button>
+                        </Link>
                     </Toolbar>
                 </AppBar>
             </div>

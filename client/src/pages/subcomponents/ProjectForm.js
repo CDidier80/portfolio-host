@@ -18,45 +18,38 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ProjectForm = () => {
-  // Hooks
-  const [name, setName] = React.useState('Composed TextField');
-  const classes = useStyles();
-  const [projectTitle, setProjectTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [technologies, setTechnologies] = useState("")
-  const [image, setImage] = useState("")
-  const [link, setLink] = useState("")
+const ProjectForm = (props) => {
+    {/* Variables */}
+    const classes = useStyles();
 
-  //event handlers
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
+    {/* Hooks */}
+    const [name, setName] = useState('Composed TextField')
+    {/* <-------------- hooks for Create Project Payload */}
+    const [projectTitle, setProjectTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [technologies, setTechnologies] = useState("")
+    const [image, setImage] = useState("")
+    const [link, setLink] = useState("")
 
-  const updateTextField = async (e, updateFunction, props) => {
-    e.preventDefault()
-    // let value = e.target.value
-    // await CreateProject(value)
-    // console.log("value test: ", value)
-    setProjectTitle(e.currentTarget.name.value)
-    setDescription(e.currentTarget.name.value)
-    setTechnologies(e.currentTarget.name.value)
-    setImage(e.currentTarget.name.value)
-    setLink(e.currentTarget.name.value)
-  }
+    {/* Event Handlers */}
+    const updateTextField = (e, formUpdateFunction) => {
+      let val = e.target.value
+      formUpdateFunction(val)
+    };
 
-  // const submitForm = async (props) => {
-  //   let payload = {
-  //     projectTitle: projectTitle,
-  //     description: description,
-  //     technologies: technologies,
-  //     image: image,
-  //     link: link
-  //   }
-    // const result = await projectFunction(payload)
-    // // do something with result if needed
-    // props.history.push("/portfolio")
-  // }
+    const submitNewProject = async (e) => {
+      // console.log(props)
+        let payload = {
+          projectTitle: projectTitle,
+          description: description,
+          technologies: technologies,
+          image: image,
+          link: link
+        }
+        const result = await CreateProject(payload)
+        console.log(result)
+        props.setShowPopUp(false)
+    }
 
   return (
     <div>
@@ -88,7 +81,7 @@ const ProjectForm = () => {
             placeholder="project title" />
         </FormControl>
       </form>
-      <button> submit project</button>
+      <button onClick={() => submitNewProject()}> submit project</button>
     </div>
   );
 }

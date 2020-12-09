@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
 import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
 import { CreateProject, ReadProject, UpdateProject, DeleteProject} from '../Services/ProjectsService'
@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
 // import ProjectForm from '../pages/subcomponents/ProjectForm'
 import PopUpModalProject from '../pages/subcomponents/PopUpModalProject'
-import UsePopUpProject from '../pages/subcomponents/UsePopUpProject'
+import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,21 +99,32 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// const stylesheet = {
-// cardProfile: {
-//   display: "grid",
-//     gridTemplateColumns: "1fr 1fr",
-//       color: "red"
-// }
-// }
-
 const PortfolioPage = (props) => {
-  const { isShowing, toggle } = UsePopUpProject();
+
+  {/* Variables */}
   const classes = useStyles();
+
+  {/* Hooks */}
+  const [usersOwnProfile, setUserOwnProfile] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [pageLoaded, setLoaded] = useState(false);
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
 
+
+  {/* useEffect() for loading screen */}
+  useEffect(() => {
+    console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
+        if (!pageLoaded) {
+          setLoaded(true)
+        }
+      },
+  [pageLoaded]
+) 
+
+
+  {/* Event Handlers */}
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -130,36 +141,34 @@ const PortfolioPage = (props) => {
   //   setIsShowing(!isShowing);
   // }
 
-  return (
-    <div className="portfolio-page-wrapper">
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+  return ( !pageLoaded ? <LoadingScreen /> :
+      <div className="portfolio-page-wrapper">
+        <div className={classes.root}>
+            <AppBar position="static">
+                <Toolbar>
+                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
+                    <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
 
-              {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
-              <Link to="/joined">
-                <MenuItem onClick={handleClose}>Login</MenuItem>
-              </Link>
-              <Link to="/portfolio">
-                <MenuItem onClick={handleClose}>Portfolio</MenuItem>
-              </Link>
-              <Link to="/main">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </Link>
-              <Link to="/settings">
-                <MenuItem onClick={handleClose}>Account</MenuItem>
-              </Link>
-            </Menu>
-            <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-            {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/joined">
-              <Button color="#fce4ec">Search</Button>
-            </Link>
-          </Toolbar>
-        </AppBar>
-      </div>
+                      {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
+                      <Link to="/joined">
+                        <MenuItem onClick={handleClose}>Login</MenuItem>
+                      </Link>
+                      <Link to="/portfolio">
+                        <MenuItem onClick={handleClose}>Portfolio</MenuItem>
+                      </Link>
+                      <Link to="/main">
+                        <MenuItem onClick={handleClose}>Home</MenuItem>
+                      </Link>
+                      <Link to="/settings">
+                        <MenuItem onClick={handleClose}>Account</MenuItem>
+                      </Link>
+                    </Menu>
+                    <Typography variant="h6" className={classes.title}>DevPortal</Typography>
+                    {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
+                    <Link to="/joined"></Link>
+                </Toolbar>
+            </AppBar>
+        </div>
       {/* profile page below */}
 
       <div className={classes.cardProfile}>
@@ -186,12 +195,10 @@ const PortfolioPage = (props) => {
         <h3>
           Add project
           <div className={classes.addProject}>
-          <button className={classes.addPortBtn} 
-          onClick={toggle}> add project </button>
-          <PopUpModalProject 
-            isShowing={isShowing}
-            hide={toggle}
-          />
+          <button className={classes.addPortBtn} onClick={() => setShowPopUp((!showPopUp))}> add project </button>
+
+          { showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
+
           </div>
         </h3>
         <div className="project1"> 
