@@ -1,9 +1,9 @@
+
 const AppRouter = require('./routes/AppRouter')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const helmet = require('helmet')
 const logger = require('morgan')
-
 
 // import express & create a server instance
 const app = require('express')()
@@ -16,9 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(logger('dev'))
 app.use(helmet())
 app.use(cors())
-app.disable('X-Powered-By')
-
-
+app.disable('X-Powered-By') 
 
 // Test Route
 app.get('/', (req, res) => res.json({ message: 'Server Works' }))
