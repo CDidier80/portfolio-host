@@ -17,7 +17,11 @@
 //     }
 // }
 
+<<<<<<< HEAD
+// exports.Mothership = (props) => {
+=======
 const Mothership = (props) => {
+>>>>>>> f48d43021353c76f8f66f36b6a862f3e85cdeb1b
 
 //     /* Database Table Columns */
 //     const userFields =     ["name", "email", "password"]
@@ -321,8 +325,8 @@ const Mothership = (props) => {
 // }
 
 
-// use of data selection tbd
+// // use of data selection tbd
 
-    // const [userDataRequest, setUserDataReq] = useState([])
-    // const [projectDataRequest,setProjectDataReq] = useState([])
-    // const [profileDataRequest, setProfileDataReq] = useState([])
+//     // const [userDataRequest, setUserDataReq] = useState([])
+//     // const [projectDataRequest,setProjectDataReq] = useState([])
+//     // const [profileDataRequest, setProfileDataReq] = useState([])

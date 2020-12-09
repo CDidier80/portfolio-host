@@ -1,7 +1,7 @@
 const { User } = require('../models')
 // const { Op, literal, fn, col  } = require('sequelize')
-const {checkPassword, generatePassword} = require('../middleware/PasswordHandler')
-const  { ControllerLoggers }  = require('../Helpers')
+const { checkPassword, generatePassword } = require('../middleware/PasswordHandler')
+const { ControllerLoggers } = require('../Helpers')
 const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
 const show = true
 
@@ -11,13 +11,23 @@ const CreateUser = async (req, res) => {
     log(CreateUser, req, show)
     try {
         // console.log("The request object: ", req)
-        let {body} = req
-        const {password, name, email} = body
+        const userExists = await User.findOne({
+            where: { email: req.body.email },
+            raw: true
+        })
+        if (userExists) {
+            res.send({
+                message: 'account already exists'
+            })
+        }
+
+        let { body } = req
+        const { password, name, email } = body
         console.log("password, name and email:", password, name, email)
         const password_digest = await generatePassword(body.password)
         console.log("password_digest:", password_digest)
-        let updatedBody = {name, email, password_digest}
-        console.log("BODY WITH ADDED PASSWORD DIGEST: ",updatedBody)
+        let updatedBody = { name, email, password_digest }
+        console.log("BODY WITH ADDED PASSWORD DIGEST: ", updatedBody)
         let user = await User.create(updatedBody)
         res.send(user)
     } catch (error) {
@@ -87,40 +97,41 @@ const DeleteUser = async (req, res) => {
 }
 
 const LogInUser = async (req, res, next) => {
-    log(LogInUser, req, show)
     try {
+
         let {email, password} = req.body
 
-        let user = await User.findOne({
-            where: {
-                email: email
-            },
-            returning: true
-        })
-        if (user && await checkPassword(password, user.password_digest)) {
-            console.log("User found, password matched password digest.")
-            res.locals.payload = {_id: user._id, username: user.username}
-            console.log('res.locals payload is: ', res.locals.payload)
-            console.log('LogInUser now uses next() => createToken() in jtwhandler.js')
-            return next()    // next() refers to the createToken() method in /middleware/jwthandler.js, which is the 2nd function to run in the UserRouter.js login post request
-                             // you need return because otherwise the function will continue running. It WILL start the next function at the same time as finishing this one
+        const user = await User.findOne({ email: email })
+
+
+        if (
+            user &&
+            (await checkPassword(req.body.password, user.password_digest))
+        ) {
+            const payload = {
+                _id: user._id,
+                name: user.name,
+                userName: user.userName
+            }
+            res.locals.payload = payload
+            return next()
         }
-        res.status(401).send({ msg: 'Invalid email address or password' })
+        res.status(401).send({ msg: 'Unauthorized' })
     } catch (error) {
-        errorLog(LogInUser, error, show)
+        throw error
     }
 }
 
 const RefreshSession = (req, res) => {
     const token = res.locals.token
     res.send(token)
-    }
+}
 
 module.exports = {
     CreateUser,
     ReadUser,
     DeleteUser,
     UpdateUser,
-    LogInUser, 
+    LogInUser,
     RefreshSession
 }

@@ -63,7 +63,7 @@ const ProfileForm = (props) => {
 
         const result = await profileFunction(payload)
         // do something with result if needed
-        props.history.push("/main")
+        props.history.push("/portfolio")
     }
 
     const updateTextField = (e, updateFunction) => {
