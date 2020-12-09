@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import Paper from '@material-ui/core/Paper';
 // import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
+import TextForm from './subcomponents/TextForm'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  // card proile not material
+  // card profile not material
   cardProfile: {
     display: "grid",
     gridTemplateColumns: "1fr 2fr",
@@ -120,7 +121,7 @@ const PortfolioPage = (props) => {
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
 
               {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
-              <Link to="/signin">
+              <Link to="/joined">
                 <MenuItem onClick={handleClose}>Login</MenuItem>
               </Link>
               <Link to="/portfolio">
@@ -135,7 +136,7 @@ const PortfolioPage = (props) => {
             </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signin">
+            <Link to="/joined">
               <Button color="#fce4ec">Search</Button>
             </Link>
           </Toolbar>
@@ -145,16 +146,20 @@ const PortfolioPage = (props) => {
 
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}> 
-          <img className={classes.profImage}
+          <img className={classes.profImage}  ///image button Luis
           src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
         </div>
         <div className={classes.portfolioDetails}>
-        <h2> Collin Didier </h2>
+          <form>
+        <h2> name: </h2>
         <h3> Chicago, Il.</h3>
         <h3> FullStack Developer</h3>
         <h3> Organization: Collin and Co. Ltd. </h3>
         <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
         <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
+          </form>
+          <Button className="submit-Bio" variant="outlined" color="primary"> submit </Button>
+
         </div>
       </div>
 
@@ -169,6 +174,19 @@ const PortfolioPage = (props) => {
 }
 
 export default PortfolioPage
+
+  // < div className = { classes.portfolioDetails } >
+  //         <form>
+  //       <h2> name: </h2>
+  //       <h3> Chicago, Il.</h3>
+  //       <h3> FullStack Developer</h3>
+  //       <h3> Organization: Collin and Co. Ltd. </h3>
+  //       <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
+  //       <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
+  //         </form>
+  //         <Button className="submit-Bio" variant="outlined" color="primary"> submit </Button>
+
+  //       </div >
 
 //make each section a min. of 100vh page sections
 //make link to 
