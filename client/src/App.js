@@ -6,7 +6,6 @@ import SignInSignUpPage from "./pages/SignInSignUpPage"
 import LandingPage from "./pages/LandingPage"
 import SettingsPage from "./pages/SettingsPage"
 // import Mothership from "./pages/Mothership"
-import Image from "./pages/subcomponents/imageloadtestLuis"
 import ProfileForm from "./pages/subcomponents/ProfileForm"
 
 
@@ -66,7 +65,6 @@ const App = (props) => {
               <Route path="/portfolio" component={ (props) =>  <PortfolioPage    {...props}  />  }/>
               <Route path="/signin"    component={ (props) =>  <SignInSignUpPage {...props}  />  }/>             
               <Route path="/settings"  component={ (props) =>  <SettingsPage     {...props}  />  }/>
-              <Route path="/imagetest" component={ (props) =>  <Image            {...props}  />  }/>
               <Route path="/profileform"       component={ (props) =>  <ProfileForm          {...props}  />  }/>
               {/* <Route path="/service"   component={(props) =>  <Mothership       {...props}  />  }/> */} 
           </Switch>

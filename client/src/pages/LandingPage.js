@@ -118,7 +118,7 @@ const LandingPage = (props) => {
                     <Button variant="outlined" color="primary">Login</Button>
                 </Link>
             <div className={classes.httpTest}>
-                <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input>
+                {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
                 {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
             </div>
         </div>

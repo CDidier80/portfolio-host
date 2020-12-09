@@ -85,7 +85,7 @@ const SignInSignUpPage = (props) => {
   }
 
 
-const handleLogin = async () => {
+const handleLogin = async (e) => {
     e.preventDefault()
     console.log("User clicked login button.")
     try {
@@ -99,7 +99,7 @@ const handleLogin = async () => {
     }
   }
 
-const handleSignUp = async () => {
+const handleSignUp = async (e) => {
     e.preventDefault()
     console.log("User clicked sign up button.")
     try {
@@ -127,9 +127,9 @@ const handleSignUp = async () => {
                   <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
                   <Typography component="h1" variant="h5">{message}</Typography> 
                       <form className={classes.form} noValidate> 
-                          { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" value={state.name} autoComplete="email" autoFocus /> : null}
-                          <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={state.email}  autoComplete="email" autoFocus />
-                          <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={state.password}  autoComplete="current-password" />
+                          { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" value={name} autoComplete="email" autoFocus /> : null}
+                          <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email}  autoComplete="email" autoFocus />
+                          <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password}  autoComplete="current-password" />
                           <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
                           <Button type="submit" onChange={formChange} fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={() => buttonEventHandler()}>{message}</Button>
                           <Grid container>
