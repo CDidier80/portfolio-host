@@ -6,6 +6,7 @@ Router.post('/create/:user_id', controller.CreateProject)
 
 // // Read
 Router.get('/read/:project_id', controller.ReadProject)
+Router.get('/:user_id', controller.GetAllProjects)
 
 // Update
 Router.put('/update/:project_id', controller.UpdateProject)
@@ -13,7 +14,6 @@ Router.put('/update/:project_id', controller.UpdateProject)
 // // Delete
 // need a delete one method
 // Router.delete('/delete/:project_id', controller.DeleteProject)
-Router.get('/:user_id', controller.GetAllProjects)
 Router.delete('/:project_id', controller.DeleteProject)
 
 module.exports = Router

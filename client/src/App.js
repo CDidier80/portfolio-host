@@ -18,8 +18,6 @@ import BioForm from "./pages/subcomponents/BioForm"
 const App = (props) => {
     const [pageIsLoaded, setLoaded] = useState(true)
     
-
-
     const useEffect = () => {
         if (!pageIsLoaded) {
           setLoaded(true)
@@ -36,23 +34,18 @@ const App = (props) => {
 
     return (
       <main className="App">
-        {!pageIsLoaded ? (
-          <div>
-            <h3>Loading...</h3>
-          </div>
-        ) : (
-          <Switch>
-              <Route exact path="/" component={(props)    =>  <LandingPage {...props}/>}  />
-              <Route path="/main" component={(props)      =>  <MainPage {...props}/>}     />
-              <Route path="/portfolio" component={(props) =>  <PortfolioPage {...props}/>}/>
-              <Route path="/joined" component={(props)    =>  <SignInSignUpPage {...props}/>}/>
-              <Route path="/settings" component={(props)  =>  <SettingsPage {...props}/>} />
-              <Route path="/imagetest" component={(props) =>  <Image {...props} />} />
-              <Route path="/bio" component={(props)          =>  <BioForm {...props} />} />
-                {/* this is a development-only page for testing Services/front-back end routes*/}
-              <Route path="/service" component={(props)   =>  <Mothership {...props}/>}   />
-            </Switch>
-        )}
+        {!pageIsLoaded ? <div><h3>Loading...</h3></div> : 
+          <Switch> 
+              <Route exact path="/"    component={(props) =>  <LandingPage {...props}      />  }/>
+              <Route path="/main"      component={(props) =>  <MainPage {...props}         />  }/> 
+              <Route path="/portfolio" component={(props) =>  <PortfolioPage {...props}    />  }/>
+              <Route path="/signin"    component={(props) =>  <SignInSignUpPage {...props} />  }/>             
+              <Route path="/settings"  component={(props) =>  <SettingsPage {...props}     />  }/>
+              <Route path="/imagetest" component={(props) =>  <Image {...props}            />  }/>
+              <Route path="/bio"       component={(props) =>  <BioForm {...props}          />  }/>
+              <Route path="/service"   component={(props) =>  <Mothership {...props}       />  }/>
+          </Switch>
+        }
       </main>
     )
   }
