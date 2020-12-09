@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
     width: '25ch',
   },
 }));
-const BioForm = () => {
+
+
+
+const ProfileForm = (props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 

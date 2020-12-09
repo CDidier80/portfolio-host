@@ -14,8 +14,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
-import { LogInUser } from '../Services/UserService'
-import { CreateUser } from '../Services/UserService'
+import  LogInUser from '../Services/UserService'
+import  CreateUser  from '../Services/UserService'
+import ProfileForm from "./subcomponents/ProfileForm"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,120 +47,109 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const SignInSignUpPage = (props) => {
+  let messageOne = "Sign In", messageTwo = "Sign Up" 
+  let promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
   const classes = useStyles();
-
-  const [appIsDisplayed, toggleAppDisplay] = useState(true)
   const [pageIsLoaded, setLoaded] = useState(true)
-  const [showTwoButtons, toggleTwoButtonMode] = useState(false)
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
+  const [showProfileForm, toggleProfileForm] = useState(false)
+  // User Account (table) values
+  const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("")
+  // Authentication
+  const [authenticated, setAuth] = useState(props.authenticated)
 
 
-  let messageOne = "Sign In", messageTwo = "Sign Up", promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
 
-    const togglemessage = (e) => {
+  {/* EVENT HANDLERS */}
+
+    // const buttonClick = (e, stateFuntion) => {
+  //   e.preventDefault()
+  // } 
+
+  const togglemessage = (e) => {
       e.preventDefault()
       let newMessageValue = message === messageOne ? messageTwo : messageOne
       let newPrompt = prompt === promptOne ? promptTwo: promptOne
       toggleMessage(newMessageValue)
       togglePrompt(newPrompt)
       return
-    }
+  }
 
-    const [state, setState] = useState({
-      name: "",
-      email: "",
-      password: ""
-    })
-
-  //   const handleChange = (e) => {
-  //   const { id, value } = e.target
-  //     setState(prevState => ({
-  //       ...prevState,
-  //       [id] : value
-  //     }))
-  //   console.log(state)
-  // }
-
-  const handleChange = ({ target }) => {
-    console.log(state)
-    setState({ [target.name]: target.value, [target.email]: target.email, [target.password]: target.password })
-    console.log(setState)
+  const formChange = (e, stateFunction) => {   // [..., setState] 
+      e.preventDefault()
+      const { id, value } = e.target
+      stateFunction(value)
   }
 
 
- const handleSubmitCreate = async (event) => {
-    event.preventDefault()
+const handleLogin = async () => {
+    e.preventDefault()
+    console.log("User clicked login button.")
     try {
-      await CreateUser(state)
-      state.history.push('/join')
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleSubmitSignIn = async (event) => {
-    event.preventDefault()
-    try {
-      const loginData = await LogInUser(this.state)
-      console.log(loginData)
-      this.props.toggleAuthenticated(true, loginData.user, () =>
-        this.props.history.push('/portfolio')
+      console.log("User entered email and password: ", email, password)
+      const response = await LogInUser({ email, password, password})
+      
+        props.toggleAuthenticated(true, response.user, () => props.history.push('/portfolio')
       )
     } catch (error) {
-      this.setState({ formError: true })
+      console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
     }
   }
 
- 
-     
-  return ( appIsDisplayed ? 
-    
-    <div>
-      <Link to="/">
-        <Button color="#fce4ec">Back</Button>
-      </Link>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">{message}</Typography> 
-          <form className={classes.form} noValidate> 
-            { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" value={state.name} autoComplete="email" autoFocus /> : null}
-            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={state.email}  autoComplete="email" autoFocus />
-            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={state.password}  autoComplete="current-password" />
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+const handleSignUp = async () => {
+    e.preventDefault()
+    console.log("User clicked sign up button.")
+    try {
+      console.log("User entered email and password: ", email, password)
+      const response = await CreateUser({email, password, name})
+      props.toggleAuthenticated(true, response.user)
 
-            { !showTwoButtons ?
-            <Button type="submit" onChange={handleChange} fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={handleSubmitCreate}>{message}</Button>
-            : null
-            } 
+    } catch (error) {
+      console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
+    }
+}
 
-            { showTwoButtons ? 
-            <div className={classes.buttonWrapper}>
-              <Button type="button" onSubmit={null} variant="contained" color="primary" className={classes.submit}> Sign Up </Button>
-              <Button type="button" onSubmit={null} variant="contained" color="primary" className={classes.submit}> Sign In </Button>
+  const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
+
+  return ( 
+      <div>
+          {!showProfileForm ? 
+          <div>
+              <Link to="/">
+                  <Button color="#fce4ec">Back</Button>
+              </Link>
+              <Container component="main" maxWidth="xs">
+                  <CssBaseline />
+                  <div className={classes.paper}>
+                  <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
+                  <Typography component="h1" variant="h5">{message}</Typography> 
+                      <form className={classes.form} noValidate> 
+                          { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" value={state.name} autoComplete="email" autoFocus /> : null}
+                          <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={state.email}  autoComplete="email" autoFocus />
+                          <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={state.password}  autoComplete="current-password" />
+                          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                          <Button type="submit" onChange={handleChange} fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={() => buttonEventHandler()}>{message}</Button>
+                          <Grid container>
+                              <Grid item xs>
+                                  <Link href="#" variant="body2"> Forgot password? </Link>
+                              </Grid>
+                              <Grid item>
+                                  <Link to="#" variant="body2" onClick={(e)=>togglemessage(e)}>{prompt}</Link>
+                              </Grid>
+                          </Grid>
+                      </form>
+                  </div>
+                <Box mt={8}> </Box>
+              </Container>
             </div>
-            : null
+            : 
+            <ProfileForm {...props} />
             }
+      </div>
 
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2"> Forgot password? </Link>
-              </Grid>
-              <Grid item>
-                <Link to="#" variant="body2" onClick={(e)=>togglemessage(e)}>{prompt}</Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Box mt={8}>
-        </Box>
-      </Container>
-    </div>
-    : null
     )
 }
 

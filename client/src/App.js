@@ -7,7 +7,7 @@ import LandingPage from "./pages/LandingPage"
 import SettingsPage from "./pages/SettingsPage"
 // import Mothership from "./pages/Mothership"
 import Image from "./pages/subcomponents/imageloadtestLuis"
-import BioForm from "./pages/subcomponents/BioForm"
+import BioForm from "./pages/subcomponents/ProfileForm"
 
 
 // import SignInSignUp from "./pages/SignInSignUp"
@@ -23,6 +23,31 @@ const App = (props) => {
           setLoaded(true)
         }
       }
+
+    const [session, setSession] = useState(null)
+    const [authenicated, setAuthenticated] = useState(null)
+
+  //   const verifyTokenValid = async () => {
+  //     const token = localStorage.getItem('token')
+  //     if (token) {
+  //       try {
+  //           const session = await CheckSessionService()
+  //           setSession(session)
+  //           setAuthenticated(true)
+  //           (() => props.history.push('/main'))()
+  //           } catch (error) {
+  //             setSession(null)
+  //             setAuthenticated(false)
+  //             localStorage.clear()
+  //           }
+  //     }
+  // }
+
+  // props.session = session
+  // props = {...props, ...session}
+  // props = {...props, ...authenticated}
+
+
 
 //   goToSignupPage = async (e) => {
 //     e.stopPropagation()

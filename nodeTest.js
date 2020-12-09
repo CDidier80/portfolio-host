@@ -60,8 +60,8 @@
 // }
 
 
-let x = true
-let y = 30
+// let x = true
+// let y = 30
 
 // let returnValue = x && y
 
@@ -71,6 +71,22 @@ let y = 30
 //     return y
 // }
 
-returnValue = x ? y : null
+// returnValue = x ? y : null
 
-console.log(returnValue)
+// console.log(returnValue)
+
+
+
+
+// let objectOne = {"keyyy": "valluuuue"}
+// let objectTwo = {"keyy": "valuu"} 
+
+// let mergeTestOne = {...objectOne, objectTwo}   // ===> entire
+// let mergeTestTwo = {...objectOne, ...objectTwo}   // ===> k:v
+
+
+// mergeTestOne = {...mergeTestOne, "keyy":"valluuu"}
+
+
+// console.log(mergeTestOne)
+// console.log(mergeTestTwo)
