@@ -134,6 +134,7 @@ const handleSignUp = async (e) => {
                   <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
                   <Typography component="h1" variant="h5">{message}</Typography> 
                       <form className={classes.form} noValidate> 
+
                           { message === "Sign Up" ? <TextField onChange={(e)=>handleSignUp(e, setName)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
                           <TextField onChange={(e)=>handleSignUp(e, setEmail)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email}  autoComplete="email" autoFocus />
                           <TextField onChange={(e)=>handleSignUp(e, setPassword)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password} autoComplete="current-password" />

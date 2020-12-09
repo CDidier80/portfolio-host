@@ -1,6 +1,4 @@
 import ApiClient from "./ApiClient"
-const { get, put, post } = ApiClient 
-// del = ApiClient.delete
 
 export const CreateProfile = async (payload, params) =>  {
     try {
@@ -38,11 +36,3 @@ export const UpdateProfile = async (payload, params) =>  {
     }
 }
 
-
-
-// module.exports = {
-//     CreateProfile, 
-//     ReadProfile, 
-//     ReadAllProfiles, 
-//     UpdateProfile
-// }
