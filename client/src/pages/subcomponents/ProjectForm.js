@@ -82,6 +82,7 @@ const ProjectForm = () => {
             placeholder="project title" />
         </FormControl>
       </form>
+      <button> submit project</button>
     </div>
   );
 }
