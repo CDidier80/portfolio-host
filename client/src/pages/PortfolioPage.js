@@ -185,13 +185,20 @@ const PortfolioPage = (props) => {
           <div className={classes.addProject}>
           <button className={classes.addPortBtn} 
           onClick={toggle}> add project </button>
-          <PopUpModalProject
+          <PopUpModalProject 
             isShowing={isShowing}
             hide={toggle}
           />
           </div>
         </h3>
-        <div> test 1</div>
+        <div className="project1"> 
+        <h3> Project title: {props.projectTitle}</h3>
+          <p>Desription: {props.description} </p>
+          <p>Technologies: {props.technologies}</p>
+          <p>Image: {props.image} </p>
+          <p>Link: {props.link} </p>
+        </div>
+        <br></br>
         <div> test 2</div>
         <div> test 3</div>
       </div>

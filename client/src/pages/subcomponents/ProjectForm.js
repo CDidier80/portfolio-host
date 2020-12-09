@@ -7,6 +7,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { CreateProject } from '../../Services/ProjectsService'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,25 +33,26 @@ const ProjectForm = () => {
     setName(event.target.value);
   };
 
-  const updateTextField = (e, updateFunction) => {
+  const updateTextField = async (e, updateFunction, props) => {
     e.preventDefault()
     let value = e.target.value
-    console.log("Text value: ", value)
-    updateFunction(value)
+    await CreateProject(value)
+    console.log("value test: ", value)
+    // value.push('/portfolio')
   }
 
-  const submitForm = async (props) => {
-    let payload = {
-      projectTitle: projectTitle,
-      description: description,
-      technologies: technologies,
-      image: image,
-      link: link
-    }
+  // const submitForm = async (props) => {
+  //   let payload = {
+  //     projectTitle: projectTitle,
+  //     description: description,
+  //     technologies: technologies,
+  //     image: image,
+  //     link: link
+  //   }
     // const result = await projectFunction(payload)
     // // do something with result if needed
     // props.history.push("/portfolio")
-  }
+  // }
 
   return (
     <div>
