@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
 import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
 import { CreateProject, ReadProject, UpdateProject, DeleteProject, GetAllProjects} from '../Services/ProjectsService'
@@ -14,7 +15,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ProfileCard from '../pages/subcomponents/ProfileCard'
-import { Link } from 'react-router-dom'
+import LoadingScreen from '../pages/subcomponents/LoadingScreen'
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,73 +107,73 @@ const MainPage = (props) => {
   }
 
   {/* useEffect() for fetching Profiles & Projects to display on the main page on rendering */}
-  useEffect(() => {
-      console.log("LOG --> FILE: MainPage.js, Function: useEffect --> function reached.")
-      const populateMainPage = async () => {
-          try {
-            console.log(`LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> fetching ${profileLimit} profiles`)
-            const profilesResponse = await ReadAllProfiles() // // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-            console.log("LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> profilesResponse: ", profilesResponse)
-          } catch (error) {
-            console.log("TRY{}CATCH{} ERROR -->  FILE: MainPage.js  FUNCTION: useEffect() => populateMainPage()  MESSAGE: ", conosle.log(error))
-          }
+  // useEffect(() => {
+  //     console.log("LOG --> FILE: MainPage.js, Function: useEffect --> function reached.")
+  //     const populateMainPage = async () => {
+  //         try {
+  //           console.log(`LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> fetching ${profileLimit} profiles`)
+  //           const profilesResponse = await ReadAllProfiles() // // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+  //           console.log("LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> profilesResponse: ", profilesResponse)
+  //         } catch (error) {
+  //           console.log("TRY{}CATCH{} ERROR -->  FILE: MainPage.js  FUNCTION: useEffect() => populateMainPage()  MESSAGE: ", error)
+  //         }
 
-          try {
-          console.log(`LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> fetching ${projectLimit} profiles`)
-          const projectsResponse = await GetAllProjects() //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-          console.log("LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> projectsResponse: ", projectsResponse)
+  //         try {
+  //         console.log(`LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> fetching ${projectLimit} profiles`)
+  //         const projectsResponse = await GetAllProjects() //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+  //         console.log("LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> projectsResponse: ", projectsResponse)
 
-        } catch (error) {
-          console.log("TRY{}CATCH{} ERROR --> FILE: MainPage.js  FUNCTION: useEffect() => populateMainPage()  MESSAGE: ", conosle.log(error))
-          }
+  //       } catch (error) {
+  //         console.log("TRY{}CATCH{} ERROR --> FILE: MainPage.js  FUNCTION: useEffect() => populateMainPage()  MESSAGE: ", error)
+  //         }
 
-          const profilesToAdd = profilesResponse.data
-          const projectsToAdd = profilesResponse.data
-          setProfiles(profilesToAdd)
-          setProjects(projectsToAdd)
-          console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: Projects & Profiles added to state.")
-          if (!pageLoaded) {
-            changeLoadedBoolean(true)
-          }
-        }
-        populateMainPage()
-        console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: main page loaded: ", pageLoaded)
-    }, 
-    [pageLoaded]
-  ) 
+  //         const profilesToAdd = profilesResponse.data
+  //         const projectsToAdd = profilesResponse.data
+  //         setProfiles(profilesToAdd)
+  //         setProjects(projectsToAdd)
+  //         console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: Projects & Profiles added to state.")
+  //         if (!pageLoaded) {
+  //           changeLoadedBoolean(true)
+  //         }
+  //       }
+  //       populateMainPage()
+  //       console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: main page loaded: ", pageLoaded)
+  //   }, 
+  //   [pageLoaded]
+  // ) 
 
 
   const handleClick = (event) => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
 
 
-  return (
+  return ( !pageLoaded ? <LoadingScreen /> :
     <div>
-      {/* nav bar */}
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/joined">
-                <MenuItem onClick={handleClose}> Login </MenuItem>
-              </Link>
-              <Link to="/portfolio">
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Link>
-              <Link to="/main">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </Link>
-            </Menu>
-            <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-            {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/joined">
-              <Button color="#fce4ec">Login</Button>
-            </Link>
-          </Toolbar>
-        </AppBar>
-      </div>
-
+        {/* NAV BAR */}
+        <div className={classes.root}>
+            <AppBar position="static">
+              <Toolbar>
+                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
+                <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+                  <Link to="/joined">
+                    <MenuItem onClick={handleClose}> Login </MenuItem>
+                  </Link>
+                  <Link to="/portfolio">
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                  </Link>
+                  <Link to="/main">
+                    <MenuItem onClick={handleClose}>Home</MenuItem>
+                  </Link>
+                </Menu>
+                <Typography variant="h6" className={classes.title}>DevPortal</Typography>
+                {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
+                <Link to="/joined">
+                  <Button color="#fce4ec">Login</Button>
+                </Link>
+              </Toolbar>
+            </AppBar>
+        </div>
+        {/* END NAV BAR */}
       {/* start of profile box */}
       < div className={classes.profileCardWrapper} >
         <ProfileCard />

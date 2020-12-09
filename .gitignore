@@ -4,3 +4,4 @@ client/.eslintcache
 client/.eslintcache
 .gitignore
 client/.eslintcache
+client/package-lock.json
