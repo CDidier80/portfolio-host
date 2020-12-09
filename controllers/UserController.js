@@ -1,18 +1,24 @@
 const { User } = require('../models')
 // const { Op, literal, fn, col  } = require('sequelize')
-const { checkPassword, generatePassword } = require('../middleware/PasswordHandler')
-// const  { ControllerLoggers }  = require('../Helpers')
-// const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
-// const show = true
+const {checkPassword, generatePassword} = require('../middleware/PasswordHandler')
+const  { ControllerLoggers }  = require('../Helpers')
+const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
+const show = false
 
 
 
 const CreateUser = async (req, res) => {
-    // log(CreateUser, req, showLogs)
+    log(CreateUser, req, show)
     try {
-        const { name, email, password } = req.body
-        const passwordDigest = await hashPassword(password) // Creating a hashed password
-        const user = await User.create({ name, email, passwordDigest }) // Store the hashed password in the database
+        // console.log("The request object: ", req)
+        let {body} = req
+        const {password, name, email} = body
+        console.log("password, name and email:", password, name, email)
+        const password_digest = await generatePassword(body.password)
+        console.log("password_digest:", password_digest)
+        let updatedBody = {name, email, password_digest}
+        console.log("BODY WITH ADDED PASSWORD DIGEST: ",updatedBody)
+        let user = await User.create(updatedBody)
         res.send(user)
     } catch (error) {
         throw error
@@ -20,9 +26,25 @@ const CreateUser = async (req, res) => {
 
 }
 
+// const DeleteUser = async (req, res) => {
+//     log(DeleteUser, req, show)
+//     try {
+//         let userId = req.params.user_id
+//         await User.destroy({
+//             where: {
+//                 id: userId
+//             }
+//         })
+//         res.send({
+//             message: `Deleted user with id of ${userId}`
+//         })
+//     } catch (error) {
+//         throw error
+//     }
+// }
 
 const ReadUser = async (req, res) => {
-    // log(ReadUser, req, showLogs)
+    log(ReadUser, req, show)
     try {
         let userId = req.params.user_id
         let user = await User.findByPk(userId)
@@ -34,7 +56,7 @@ const ReadUser = async (req, res) => {
 }
 
 const UpdateUser = async (req, res) => {
-    // log(UpdateUser, req, showLogs)
+    log(UpdateUser, req, show)
     try {
         let userId = req.params.user_id
         let updatedUser = await User.update(req.body, {
@@ -50,7 +72,7 @@ const UpdateUser = async (req, res) => {
     }
 }
 const DeleteUser = async (req, res) => {
-    // log(DeleteUser, req, showLogs)
+    log(DeleteUser, req, show)
     try {
         let userId = parseInt(req.params.user_id)
         console.log(userId)
@@ -69,7 +91,7 @@ const DeleteUser = async (req, res) => {
 }
 
 const LogInUser = async (req, res, next) => {
-    // log(LogInUser, req, showLogs)
+    log(LogInUser, req, show)
     try {
         // let { email, password } = request.body
 
