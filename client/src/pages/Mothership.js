@@ -32,9 +32,9 @@ const Mothership = (props) => {
 //     const [projectController, selectProjectController]  =  useState({controllerName: "", currentPayload: null})
 //     const [projectPayload, setProjectPayload]           =  useState({body:{}, params: ""})
 
-    /* Hooks/State for Profile */
-    const [profileController, selectProfileController]  =  useState({controllerName: "", currentPayload: null})
-    const [profilePayload, setProfilePayload]           =  useState({body:{}, params: ""})
+    // /* Hooks/State for Profile */
+    // const [profileController, selectProfileController]  =  useState({controllerName: "", currentPayload: null})
+    // const [profilePayload, setProfilePayload]           =  useState({body:{}, params: ""})
 
 //     const database = {
 //         User: {
