@@ -13,7 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { LogInUser } from '../Services/UserService'
+import { CreateUser } from '../Services/UserService'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,22 +48,11 @@ const useStyles = makeStyles((theme) => ({
 const SignInSignUpPage = (props) => {
   const classes = useStyles();
 
-
   const [appIsDisplayed, toggleAppDisplay] = useState(true)
   const [pageIsLoaded, setLoaded] = useState(true)
   const [showTwoButtons, toggleTwoButtonMode] = useState(false)
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
-  
-
-// setButtonMessage("")
-
-  // const useEffect = () => {
-  //     if (!pageIsLoaded) {
-  //       setLoaded(true)
-  //     },
-  //      [message]
-  //   }
 
 
   let messageOne = "Sign In", messageTwo = "Sign Up", promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
@@ -75,48 +66,56 @@ const SignInSignUpPage = (props) => {
       return
     }
 
+    const [state, setState] = useState({
+      name: "",
+      email: "",
+      password: ""
+    })
 
-  // const goToMainPage = () => {
-  //   props.history.push('/main')
+  //   const handleChange = (e) => {
+  //   const { id, value } = e.target
+  //     setState(prevState => ({
+  //       ...prevState,
+  //       [id] : value
+  //     }))
+  //   console.log(state)
   // }
-  
-  // const submitSignUp = (e) => {
-  //   const {username, email, password} = this.state
-  //   const formData = {username: username, email: email, password: password}
-  //   Service(formData)
-  // }
-  
-  // const submitLogIn = async (e) => {
-  //   // console.log('submitLogin() fired')
-  //   const {toggleAuthenticated, email, password} = this.state
-  //   e.preventDefault()
-  //   const formData = {email: email, password: password}
-  //   // console.log("formData sent to back-end: ", formData)
-  //   const responseData =  await LoginUserService(formData)
-  //   // console.log("Response received: ",responseData)
-  //   // console.log("Username received as part of responseData: ", responseData.user.username)
-  //   toggleAuthenticated(true, responseData.user.username, ()=>this.props.history.push('/main'))
-  // }
-  
-  // updateField = (event) => {
-  //   const {value} = event.target
-  //   switch (event.target.id) {
-  //     case "username":
-  //       this.setState({username: value})
-  //       break
-  //     case "email":
-  //       this.setState({email: value})
-  //       break
-  //     case "password":
-  //       this.setState({password: value})
-  //       break
-  //     default: 
-  //       console.log('updateField() switch statement originating in LandingPage.js had no matching cases.')
-  //   }
-  // }
+
+  const handleChange = ({ target }) => {
+    console.log(state)
+    setState({ [target.name]: target.value, [target.email]: target.email, [target.password]: target.password })
+    console.log(setState)
+  }
+
+
+ const handleSubmitCreate = async (event) => {
+    event.preventDefault()
+    try {
+      await CreateUser(state)
+      state.history.push('/join')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSubmitSignIn = async (event) => {
+    event.preventDefault()
+    try {
+      const loginData = await LogInUser(this.state)
+      console.log(loginData)
+      this.props.toggleAuthenticated(true, loginData.user, () =>
+        this.props.history.push('/portfolio')
+      )
+    } catch (error) {
+      this.setState({ formError: true })
+    }
+  }
+
+ 
+     
   return ( appIsDisplayed ? 
     
-     <div>
+    <div>
       <Link to="/">
         <Button color="#fce4ec">Back</Button>
       </Link>
@@ -128,13 +127,13 @@ const SignInSignUpPage = (props) => {
           </Avatar>
           <Typography component="h1" variant="h5">{message}</Typography> 
           <form className={classes.form} noValidate> 
-            { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
-            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" autoFocus />
-            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+            { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" value={state.name} autoComplete="email" autoFocus /> : null}
+            <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={state.email}  autoComplete="email" autoFocus />
+            <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={state.password}  autoComplete="current-password" />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
 
             { !showTwoButtons ?
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={null}>{message}</Button>
+            <Button type="submit" onChange={handleChange} fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={handleSubmitCreate}>{message}</Button>
             : null
             } 
 
@@ -161,18 +160,8 @@ const SignInSignUpPage = (props) => {
       </Container>
     </div>
     : null
-    
     )
-
-
 }
-  
-
-
-      
- 
-
-
 
 export default SignInSignUpPage
 
@@ -188,3 +177,53 @@ export default SignInSignUpPage
 //     </Typography>
 //   );
 // }
+
+
+
+// setButtonMessage("")
+
+  // const useEffect = () => {
+  //     if (!pageIsLoaded) {
+  //       setLoaded(true)
+  //     },
+  //      [message]
+  //   }
+
+    // const goToMainPage = () => {
+  //   props.history.push('/main')
+  // }
+
+  // const submitSignUp = (e) => {
+  //   const {username, email, password} = this.state
+  //   const formData = {username: username, email: email, password: password}
+  //   Service(formData)
+  // }
+
+  // const submitLogIn = async (e) => {
+  //   // console.log('submitLogin() fired')
+  //   const {toggleAuthenticated, email, password} = this.state
+  //   e.preventDefault()
+  //   const formData = {email: email, password: password}
+  //   // console.log("formData sent to back-end: ", formData)
+  //   const responseData =  await LoginUserService(formData)
+  //   // console.log("Response received: ",responseData)
+  //   // console.log("Username received as part of responseData: ", responseData.user.username)
+  //   toggleAuthenticated(true, responseData.user.username, ()=>this.props.history.push('/main'))
+  // }
+
+  // updateField = (event) => {
+  //   const {value} = event.target
+  //   switch (event.target.id) {
+  //     case "username":
+  //       this.setState({username: value})
+  //       break
+  //     case "email":
+  //       this.setState({email: value})
+  //       break
+  //     case "password":
+  //       this.setState({password: value})
+  //       break
+  //     default: 
+  //       console.log('updateField() switch statement originating in LandingPage.js had no matching cases.')
+  //   }
+  // }
