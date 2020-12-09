@@ -38,11 +38,11 @@ const ProjectForm = () => {
     // let value = e.target.value
     // await CreateProject(value)
     // console.log("value test: ", value)
-    setProjectTitle(e.currentTarget.name.value)
-    setDescription(e.currentTarget.name.value)
-    setTechnologies(e.currentTarget.name.value)
-    setImage(e.currentTarget.name.value)
-    setLink(e.currentTarget.name.value)
+    setProjectTitle(e.currentTarget.projectTitle.value)
+    setDescription(e.currentTarget.description.value)
+    setTechnologies(e.currentTarget.technologies.value)
+    setImage(e.currentTarget.image.value)
+    setLink(e.currentTarget.link.value)
   }
 
   // const submitForm = async (props) => {
