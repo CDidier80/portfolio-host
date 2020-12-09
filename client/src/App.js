@@ -5,7 +5,7 @@ import PortfolioPage from "./pages/PortfolioPage"
 import SignInSignUpPage from "./pages/SignInSignUpPage"
 import LandingPage from "./pages/LandingPage"
 import SettingsPage from "./pages/SettingsPage"
-import Mothership from "./pages/Mothership"
+// import Mothership from "./pages/Mothership"
 import Image from "./pages/subcomponents/imageloadtestLuis"
 import BioForm from "./pages/subcomponents/BioForm"
 
