@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
+import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
+import { CreateProject, ReadProject, UpdateProject, DeleteProject, GetAllProjects} from '../Services/ProjectsService'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -73,11 +76,18 @@ const useStyles = makeStyles((theme) => ({
 
 
 const MainPage = (props) => {
-
-  const { httpRequest, get, put, post } = props
+  {/* Variables */}
   const classes = useStyles();
+
+  {/* Hooks */}
+  const [pageLoaded, setPageLoaded] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  {/* --------> projects & profiles fetched for display */}
   const [displayedProfiles, setProfiles] = useState([])
+  const [displayedProjects, setProjects] = useState([])
+  const [profileLimit, setProfileLimit] = useState(15)
+  const [projectLimit, setProjectLimit] = useState(15)
+
   const [searchValue, setSearchField] = useState("")
 
   function FormRow() {
@@ -93,15 +103,47 @@ const MainPage = (props) => {
     );
   }
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  {/* useEffect() for fetching Profiles & Projects to display on the main page on rendering */}
+  useEffect(() => {
+      console.log("LOG --> FILE: MainPage.js, Function: useEffect --> function reached.")
+      const populateMainPage = async () => {
+          try {
+            console.log(`LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> fetching ${profileLimit} profiles`)
+            const profilesResponse = await ReadAllProfiles() // // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+            console.log("LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> profilesResponse: ", profilesResponse)
+          } catch (error) {
+            console.log("TRY{}CATCH{} ERROR -->  FILE: MainPage.js  FUNCTION: useEffect() => populateMainPage()  MESSAGE: ", conosle.log(error))
+          }
 
-  const handleClose = () => {
-    setAnchorEl(null);
+          try {
+          console.log(`LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> fetching ${projectLimit} profiles`)
+          const projectsResponse = await GetAllProjects() //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+          console.log("LOG --> FILE: MainPage.js, FUNCTION: populateMainPage() nested in useEffect() --> projectsResponse: ", projectsResponse)
+
+        } catch (error) {
+          console.log("TRY{}CATCH{} ERROR --> FILE: MainPage.js  FUNCTION: useEffect() => populateMainPage()  MESSAGE: ", conosle.log(error))
+          }
+
+          const profilesToAdd = profilesResponse.data
+          const projectsToAdd = profilesResponse.data
+          setProfiles(profilesToAdd)
+          setProjects(projectsToAdd)
+          console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: Projects & Profiles added to state.")
+          if (!pageLoaded) {
+            changeLoadedBoolean(true)
+          }
+        }
+        populateMainPage()
+        console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: main page loaded: ", pageLoaded)
+    }, 
+    [pageLoaded]
+  ) 
 
 
-  };
+  const handleClick = (event) => setAnchorEl(event.currentTarget)
+  const handleClose = () => setAnchorEl(null)
+
+
   return (
     <div>
       {/* nav bar */}
