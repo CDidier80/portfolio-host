@@ -3,7 +3,7 @@ const { User } = require('../models')
 const { checkPassword, generatePassword } = require('../middleware/PasswordHandler')
 const { ControllerLoggers } = require('../Helpers')
 const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
-const show = false
+const show = true
 
 
 
@@ -98,7 +98,11 @@ const DeleteUser = async (req, res) => {
 
 const LogInUser = async (req, res, next) => {
     try {
-        const user = await User.findOne({ email: req.body.email })
+
+        let {email, password} = req.body
+
+        const user = await User.findOne({ email: email })
+
 
         if (
             user &&

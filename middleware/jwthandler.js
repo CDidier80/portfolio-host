@@ -6,9 +6,15 @@ require('dotenv').config()   // indicates use of .env
 const secretKey = process.env.APP_SECRET
 
 const createToken = (req,res) =>{
-    console.log('createToken() fired in jwthandler.js. This is last function to run before response sent to client')
+try {
+    console.log('LOG: jwthandler.js --> createToken() called --> attempt to sign token and add to res.locals.payload.')
     const token = jwt.sign(res.locals.payload, secretKey)
+    console.log('LOG: jwthandler.js --> token created and added to locals payload --> response sent to UserService with payload & token.')
     res.send({user: res.locals.payload, token})
+} catch (error) {
+    console.log("TRY{}CATCH{} ERROR:  FILE: jwthandler.js  FUNCTION: createToken() MESSAGE: ", conosle.log(error))
+}
+
 }
 
 
