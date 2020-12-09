@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import FilledInput from '@material-ui/core/FilledInput';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,53 +16,76 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ComposedTextField() {
+
+const ProjectForm = () => {
+  // Hooks
   const [name, setName] = React.useState('Composed TextField');
   const classes = useStyles();
+  const [projectTitle, setProjectTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [technologies, setTechnologies] = useState("")
+  const [image, setImage] = useState("")
+  const [link, setLink] = useState("")
 
+  //event handlers
   const handleChange = (event) => {
     setName(event.target.value);
   };
 
+  const updateTextField = (e, updateFunction) => {
+    e.preventDefault()
+    let value = e.target.value
+    console.log("Text value: ", value)
+    updateFunction(value)
+  }
+
+  const submitForm = async (props) => {
+    let payload = {
+      projectTitle: projectTitle,
+      description: description,
+      technologies: technologies,
+      image: image,
+      link: link
+    }
+    // const result = await projectFunction(payload)
+    // // do something with result if needed
+    // props.history.push("/portfolio")
+  }
+
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <FormControl>
-        <InputLabel htmlFor="component-simple">Name</InputLabel>
-        <Input id="component-simple" value={name} onChange={handleChange} />
-      </FormControl>
-      <FormControl>
-        <InputLabel htmlFor="component-helper">Name</InputLabel>
-        <Input
-          id="component-helper"
-          value={name}
-          onChange={handleChange}
-          aria-describedby="component-helper-text"
-        />
-        <FormHelperText id="component-helper-text">Some important helper text</FormHelperText>
-      </FormControl>
-      <FormControl disabled>
-        <InputLabel htmlFor="component-disabled">Name</InputLabel>
-        <Input id="component-disabled" value={name} onChange={handleChange} />
-        <FormHelperText>Disabled</FormHelperText>
-      </FormControl>
-      <FormControl error>
-        <InputLabel htmlFor="component-error">Name</InputLabel>
-        <Input
-          id="component-error"
-          value={name}
-          onChange={handleChange}
-          aria-describedby="component-error-text"
-        />
-        <FormHelperText id="component-error-text">Error</FormHelperText>
-      </FormControl>
-      <FormControl variant="outlined">
-        <InputLabel htmlFor="component-outlined">Name</InputLabel>
-        <OutlinedInput id="component-outlined" value={name} onChange={handleChange} label="Name" />
-      </FormControl>
-      <FormControl variant="filled">
-        <InputLabel htmlFor="component-filled">Name</InputLabel>
-        <FilledInput id="component-filled" value={name} onChange={handleChange} />
-      </FormControl>
-    </form>
+    <div>
+      <form className={classes.root} noValidate autoComplete="off">
+        <FormControl>
+          <InputLabel htmlFor="component-simple"> Project Title </InputLabel>
+          <Input id="component-simple" onChange={(e) => updateTextField(e, setProjectTitle)}
+            placeholder="project title" />
+        </FormControl>
+
+        <FormControl>
+          <InputLabel htmlFor="component-simple"> description </InputLabel>
+          <Input id="component-simple" onChange={(e) => updateTextField(e, setDescription)}
+            placeholder="project title" />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="component-simple"> technologies </InputLabel>
+          <Input id="component-simple" onChange={(e) => updateTextField(e, setTechnologies)}
+            placeholder="project title" />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="component-simple"> image project </InputLabel>
+          <Input id="component-simple" onChange={(e) => updateTextField(e, setImage)}
+            placeholder="project title" />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="component-simple"> links to project </InputLabel>
+          <Input id="component-simple" onChange={(e) => updateTextField(e, setLink)}
+            placeholder="project title" />
+        </FormControl>
+      </form>
+    </div>
   );
 }
+export default ProjectForm
+
+
+

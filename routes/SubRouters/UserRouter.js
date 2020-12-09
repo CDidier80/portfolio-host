@@ -22,4 +22,5 @@ Router.post('/login', controller.LogInUser, createToken)
 
 // check session
 Router.get('/session', getToken, verifyToken, controller.RefreshSession)
+
 module.exports = Router
