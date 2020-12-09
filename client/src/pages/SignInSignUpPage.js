@@ -1,5 +1,8 @@
 // import SignInSignUpForm from "./subcomponents/SignInSignUpForm"
 import React, {useState} from 'react';
+import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
+import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
+import { CreateProject, ReadProject, UpdateProject, DeleteProject} from '../Services/ProjectsService'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +17,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
-import  { LogInUser } from '../Services/UserService'
-import { CreateUser } from '../Services/UserService'
 import ProfileForm from "./subcomponents/ProfileForm"
 
 const useStyles = makeStyles((theme) => ({
@@ -42,10 +43,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// const goLandingPage = (e) => {
-//   e.target.push('/');
-// }
-
 const SignInSignUpPage = (props) => {
 
   {/* Variables */}
@@ -67,8 +64,6 @@ const SignInSignUpPage = (props) => {
   // Authentication
   const [authenticated, setAuth] = useState(props.authenticated)
   
-
-
   {/* EVENT HANDLERS */}
 
     // const buttonClick = (e, stateFuntion) => {
@@ -90,7 +85,6 @@ const SignInSignUpPage = (props) => {
       console.log("Field Value: ", value)
       stateFunction(value)
   }
-
 
 const handleLogin = async (e) => {
     e.preventDefault()
@@ -119,6 +113,7 @@ const handleSignUp = async (e) => {
       console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
     }
 }
+
 const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
   return ( 
