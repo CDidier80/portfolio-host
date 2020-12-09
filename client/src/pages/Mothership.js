@@ -17,7 +17,7 @@ const httpRequest = async (routeAndPayload) => {
     }
 }
 
-exports.Mothership = (props) => {
+const Mothership = (props) => {
 
     /* Database Table Columns */
     const userFields =     ["name", "email", "password"]
@@ -34,7 +34,7 @@ exports.Mothership = (props) => {
 
     /* Hooks/State for Profile */
     const [profileController, selectProfileController]  =  useState({controllerName: "", currentPayload: null})
-    const [profilePayload, setProfilePayload] =            useState({body:{}, params: ""})
+    const [profilePayload, setProfilePayload]           =  useState({body:{}, params: ""})
 
     const database = {
         User: {

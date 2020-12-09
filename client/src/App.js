@@ -36,14 +36,14 @@ const App = (props) => {
       <main className="App">
         {!pageIsLoaded ? <div><h3>Loading...</h3></div> : 
           <Switch> 
-              <Route exact path="/"    component={(props) =>  <LandingPage {...props}      />  }/>
-              <Route path="/main"      component={(props) =>  <MainPage {...props}         />  }/> 
-              <Route path="/portfolio" component={(props) =>  <PortfolioPage {...props}    />  }/>
-              <Route path="/signin"    component={(props) =>  <SignInSignUpPage {...props} />  }/>             
-              <Route path="/settings"  component={(props) =>  <SettingsPage {...props}     />  }/>
-              <Route path="/imagetest" component={(props) =>  <Image {...props}            />  }/>
-              <Route path="/bio"       component={(props) =>  <BioForm {...props}          />  }/>
-              <Route path="/service"   component={(props) =>  <Mothership {...props}       />  }/>
+              <Route exact path="/"    component={(props) =>  <LandingPage      {...props}  />  }/>
+              <Route path="/main"      component={(props) =>  <MainPage         {...props}  />  }/> 
+              <Route path="/portfolio" component={(props) =>  <PortfolioPage    {...props}  />  }/>
+              <Route path="/signin"    component={(props) =>  <SignInSignUpPage {...props}  />  }/>             
+              <Route path="/settings"  component={(props) =>  <SettingsPage     {...props}  />  }/>
+              <Route path="/imagetest" component={(props) =>  <Image            {...props}  />  }/>
+              <Route path="/bio"       component={(props) =>  <BioForm          {...props}  />  }/>
+              <Route path="/service"   component={(props) =>  <Mothership       {...props}  />  }/>
           </Switch>
         }
       </main>
