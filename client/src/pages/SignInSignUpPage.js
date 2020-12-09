@@ -47,20 +47,26 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const SignInSignUpPage = (props) => {
+
+  {/* Variables */}
   let messageOne = "Sign In", messageTwo = "Sign Up" 
   let promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
+
+  {/* Hooks */}
   const classes = useStyles();
   const [pageIsLoaded, setLoaded] = useState(true)
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
-  const [showProfileForm, toggleProfileForm] = useState(false)
+  const [showProfileForm, toggleProfileForm] = useState(true)
+  const [firstTimeUser, setFirstTimeUser] = useState(false)
   // User Account (table) values
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   // Authentication
   const [authenticated, setAuth] = useState(props.authenticated)
-
+  
+  const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
 
   {/* EVENT HANDLERS */}
@@ -80,7 +86,8 @@ const SignInSignUpPage = (props) => {
 
   const formChange = (e, stateFunction) => {   // [..., setState] 
       e.preventDefault()
-      const { id, value } = e.target
+      const { value } = e.target
+      console.log("Field Value: ", value)
       stateFunction(value)
   }
 
@@ -103,23 +110,23 @@ const handleSignUp = async (e) => {
     e.preventDefault()
     console.log("User clicked sign up button.")
     try {
-      console.log("User entered email and password: ", email, password)
+      console.log("User entered email, password and name: ", email, password, name)
       const response = await CreateUser({email, password, name})
+      setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
       props.toggleAuthenticated(true, response.user)
-
+      console.log("User Created.")
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
     }
 }
 
-  const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
   return ( 
       <div>
           {!showProfileForm ? 
           <div>
               <Link to="/">
-                  <Button color="#fce4ec">Back</Button>
+                  <Button color="#fce4ec" onClick={()=>props.history.push("/")}>Back</Button>
               </Link>
               <Container component="main" maxWidth="xs">
                   <CssBaseline />
@@ -127,11 +134,12 @@ const handleSignUp = async (e) => {
                   <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
                   <Typography component="h1" variant="h5">{message}</Typography> 
                       <form className={classes.form} noValidate> 
-                          { message === "Sign Up" ? <TextField variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" value={name} autoComplete="email" autoFocus /> : null}
-                          <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email}  autoComplete="email" autoFocus />
-                          <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password}  autoComplete="current-password" />
+
+                          { message === "Sign Up" ? <TextField onChange={(e)=>handleSignUp(e, setName)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
+                          <TextField onChange={(e)=>handleSignUp(e, setEmail)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email}  autoComplete="email" autoFocus />
+                          <TextField onChange={(e)=>handleSignUp(e, setPassword)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password} autoComplete="current-password" />
                           <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                          <Button type="submit" onChange={formChange} fullWidth variant="contained" color="primary" className={classes.submit} onSubmit={() => buttonEventHandler()}>{message}</Button>
+                          <Button type="submit"  fullWidth variant="contained" color="primary" className={classes.submit} onClick={(e) => buttonEventHandler(e)}>{message}</Button>
                           <Grid container>
                               <Grid item xs>
                                   <Link href="#" variant="body2"> Forgot password? </Link>
@@ -146,7 +154,7 @@ const handleSignUp = async (e) => {
               </Container>
             </div>
             : 
-            <ProfileForm {...props} />
+            <ProfileForm {...props} firstTimeUser={firstTimeUser}/>
             }
       </div>
 

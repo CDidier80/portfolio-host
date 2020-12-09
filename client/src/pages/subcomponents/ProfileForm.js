@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import {CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../../Services/ProfileService'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -23,102 +23,99 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
+
+// still needs cloudinary widget and event handler for string url of pic
+
+
 const ProfileForm = (props) => {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    {/* Hooks */}
+    const classes = useStyles();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [profilePicUrl, setProfilePicUrl] = useState("")
+    const [professionalTitle, setProfessionalTitle] = useState("")
+    const [organization, setOrganization] = useState("")
+    const [skills, setSkills] = useState("")
+    const [locale, setLocale] = useState("")
+    const [bio, setBio]       = useState("")
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
+    {/* Event Handlers */}
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+
+    const submitForm = async () => {
+        let payload = {
+            profilePicUrl : profilePicUrl, 
+            professionalTitle : professionalTitle, 
+            organization : organization, 
+            skills : skills, 
+            locale : locale, 
+            bio : bio, 
+        }
+        const profileFunction = props.firstTimeUser ? CreateProfile : UpdateProfile
+
+        const result = await profileFunction(payload)
+        // do something with result if needed
+        props.history.push("/main")
+    }
+
+    const updateTextField = (e, updateFunction) => {
+      e.preventDefault()
+      let value = e.target.value 
+      console.log("Text value: ", value)
+      updateFunction(value)
+    }
 
   return (
     <div>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/joined">
-                <MenuItem onClick={handleClose}> Login </MenuItem>
-              </Link>
-              <Link to="/portfolio">
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Link>
-              <Link to="/main">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </Link>
-            </Menu>
-            <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-            {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-          </Toolbar>
-        </AppBar>
+        <div className={classes.root}>
+            <AppBar position="static">  
+                <Toolbar>
+                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
+                      <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+                          <Link to="/joined">
+                              <MenuItem onClick={handleClose}> Login </MenuItem>
+                          </Link>
+                          <Link to="/portfolio">
+                              <MenuItem onClick={handleClose}>My account</MenuItem>
+                          </Link>
+                          <Link to="/main">
+                              <MenuItem onClick={handleClose}>Home</MenuItem>
+                          </Link>
+                      </Menu>
+                    <Typography variant="h6" className={classes.title}>DevPortal</Typography>
+                    {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
+                </Toolbar>
+            </AppBar>
 
-        <form>
-          <div>
-            <TextField
-              id="standard-full-width"
-              label="professional title"
-              style={{ margin: 8 }}
-              placeholder="professional title"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              id="standard-full-width"
-              label="organization"
-              style={{ margin: 8 }}
-              placeholder="organization"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              id="standard-full-width"
-              label="locale"
-              style={{ margin: 8 }}
-              placeholder="locale"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              id="standard-full-width"
-              label="skills"
-              style={{ margin: 8 }}
-              placeholder="skills"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              id="standard-full-width"
-              label="Bio"
-              style={{ margin: 8 }}
-              placeholder="Bio"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </div>
-        </form>
-      </div>
-      <button> Submit </button>
+            <form>
+                <div>
+                                      {/* Professional Title */}
+                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setProfessionalTitle)}   label="professional title" style={{ margin: 8 }} placeholder="professional title" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+
+                                      {/* Organization */}
+                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setOrganization)}        label="Organization" style={{ margin: 8 }} placeholder="organization" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+
+                                      {/* Locale */}
+                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setLocale)}              label="Locale" style={{ margin: 8 }} placeholder="locale" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+
+                                      {/* Skills */}
+                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setSkills)}              label="Skills" style={{ margin: 8 }} placeholder="skills" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+
+                                      {/* Biography */}
+                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setBio)}                 label="Biography" style={{ margin: 8 }} placeholder="Bio" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+
+                </div>
+            </form>
+        </div>
+        <button onClick={()=>submitForm()}> Submit </button>
     </div>
   );
 }
