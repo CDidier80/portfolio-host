@@ -35,10 +35,14 @@ const ProjectForm = () => {
 
   const updateTextField = async (e, updateFunction, props) => {
     e.preventDefault()
-    let value = e.target.value
-    await CreateProject(value)
-    console.log("value test: ", value)
-    // value.push('/portfolio')
+    // let value = e.target.value
+    // await CreateProject(value)
+    // console.log("value test: ", value)
+    setProjectTitle(e.currentTarget.name.value)
+    setDescription(e.currentTarget.name.value)
+    setTechnologies(e.currentTarget.name.value)
+    setImage(e.currentTarget.name.value)
+    setLink(e.currentTarget.name.value)
   }
 
   // const submitForm = async (props) => {
