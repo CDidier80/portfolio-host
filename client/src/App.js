@@ -13,7 +13,6 @@ import ProfileForm from "./pages/subcomponents/ProfileForm"
 // import ProtectedRoute from './components/ProtectedRoute'
 // import Layout from '../src/pages/components/Layout'
 // hello
-
 const App = (props) => {
     const [pageIsLoaded, setLoaded] = useState(true)
     
