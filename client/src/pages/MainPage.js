@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const MainPage = (props) => {
+  
   {/* Variables */}
   const classes = useStyles();
 
