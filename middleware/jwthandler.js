@@ -12,7 +12,7 @@ try {
     console.log('LOG: jwthandler.js --> token created and added to locals payload --> response sent to UserService with payload & token.')
     res.send({user: res.locals.payload, token})
 } catch (error) {
-    console.log("TRY{}CATCH{} ERROR:  FILE: jwthandler.js  FUNCTION: createToken() MESSAGE: ", conosle.log(error))
+    console.log("TRY{}CATCH{} ERROR:  FILE: jwthandler.js  FUNCTION: createToken() MESSAGE: ", console.log(error))
 }
 
 }

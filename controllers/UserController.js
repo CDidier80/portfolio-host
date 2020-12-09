@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Profile } = require('../models')
 // const { Op, literal, fn, col  } = require('sequelize')
 const { checkPassword, generatePassword } = require('../middleware/PasswordHandler')
 const { ControllerLoggers } = require('../Helpers')
@@ -10,7 +10,7 @@ const show = true
 const CreateUser = async (req, res) => {
     log(CreateUser, req, show)
     try {
-        // console.log("The request object: ", req)
+        // check if an email already exists
         const userExists = await User.findOne({
             where: { email: req.body.email },
             raw: true
@@ -20,7 +20,7 @@ const CreateUser = async (req, res) => {
                 message: 'account already exists'
             })
         }
-
+        // creates new user
         let { body } = req
         const { password, name, email } = body
         console.log("password, name and email:", password, name, email)
@@ -34,23 +34,6 @@ const CreateUser = async (req, res) => {
         errorLog(CreateUser, error, show)
     }
 }
-
-// const DeleteUser = async (req, res) => {
-//     log(DeleteUser, req, show)
-//     try {
-//         let userId = req.params.user_id
-//         await User.destroy({
-//             where: {
-//                 id: userId
-//             }
-//         })
-//         res.send({
-//             message: `Deleted user with id of ${userId}`
-//         })
-//     } catch (error) {
-//         throw error
-//     }
-// }
 
 const ReadUser = async (req, res) => {
     log(ReadUser, req, show)
@@ -102,8 +85,9 @@ const LogInUser = async (req, res, next) => {
         let {email, password} = req.body
 
         const user = await User.findOne({ email: email })
-
-
+        let { id } = user.dataValues
+        const profile = await Profile.findOne({userId: id})
+        
         if (
             user &&
             (await checkPassword(req.body.password, user.password_digest))
@@ -111,7 +95,8 @@ const LogInUser = async (req, res, next) => {
             const payload = {
                 _id: user._id,
                 name: user.name,
-                userName: user.userName
+                userName: user.userName,
+                ...profile.dataValues
             }
             res.locals.payload = payload
             return next()
