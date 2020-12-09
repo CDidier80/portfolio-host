@@ -1,55 +1,55 @@
 import ApiClient from "./ApiClient"
-const { get, put, post } = ApiClient, del = ApiClient.delete
+// const { get, put, post } = ApiClient, del = ApiClient.delete
 
-const LogInUser = async (payload, params) =>  {
+export const LogInUser = async (payload, params) =>  {
     try {
-        const response = await post(`users/login${params}`, payload)
+        const response = await ApiClient.post(`users/login${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
-const CreateUser = async (payload, params) =>  {
+export const CreateUser = async (payload, params) =>  {
     try {
-        const response = await post(`users/create${params}`, payload)
+        const response = await ApiClient.post(`users/create${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
-const ReadUser = async (payload, params) =>  {
+export const ReadUser = async (payload, params) =>  {
     try {
-        const response = await get(`users/update${params}`, payload)
+        const response = await ApiClient.get(`users/update${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
-const UpdateUser = async (payload, params) =>  {
+export const UpdateUser = async (payload, params) =>  {
     try {
-        const response = await put(`users/login${params}`, payload)
+        const response = await ApiClient.put(`users/login${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
-const DeleteUser = async (payload, params) => {
+export const DeleteUser = async (payload, params) => {
     try {
-        const response = await del(`users/delete${params}`, payload)
+        const response = await ApiClient.delete(`users/delete${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
-module.exports = {
-    LogInUser, 
-    CreateUser, 
-    ReadUser, 
-    UpdateUser,
-    DeleteUser
-}
+// module.exports = {
+//     LogInUser, 
+//     CreateUser, 
+//     ReadUser, 
+//     UpdateUser,
+//     DeleteUser
+// }
