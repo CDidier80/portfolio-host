@@ -32,17 +32,6 @@ const ReadProfile = async (req, res) => {
     }
 }
 
-// const ReadProfile = async (req, res) => {
-//     log(ReadProfile, req, show)
-//     try {
-//         let profileId = req.params.profile_id
-//         let profile = await Profile.findByPk(profileId)
-//         res.send(profile)
-//     } catch (error) {
-//         errorLog(CreateProfile, error, show)
-//     }
-// }
-
 const UpdateProfile = async (req, res) => {
     log(UpdateProfile, req, show)
     try {
@@ -58,17 +47,20 @@ const UpdateProfile = async (req, res) => {
         errorLog(UpdateProfile, error, show)
     }
 }
-
+// method to get all the profiles based on the limits set by user
 const ReadAllProfiles = async (req, res) => {
-    log(ReadAllProfiles, req, show)
     try {
-        const allProfiles = await Profile.findAll()
+        // limit brought by front end
+        const { limit } = req.body
+        // if needed to parse into int
+        // limit = parseInt(limit)
+        const allProfiles = await Profile.findAll({
+            limit: limit
+        })
         console.log(allProfiles)
         res.send(allProfiles)
     } catch (error) {
-        // console.log("error:", error)
-        // errorLog(ReadAllProfiles, error, show)
-        null
+        throw error 
     }
 }
 
