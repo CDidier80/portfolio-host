@@ -1,6 +1,6 @@
 import  { useState } from 'react';
 
-const PopUp = () => {
+const UsePopUpProject = () => {
 // pop up to add new project
   const [isShowing, setIsShowing] = useState(false);
 
@@ -14,4 +14,4 @@ const PopUp = () => {
   }
 };
 
-export default PopUp
+export default UsePopUpProject

@@ -14,8 +14,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
 // import ProjectForm from '../pages/subcomponents/ProjectForm'
-import PopUpModal from '../pages/subcomponents/PopUpModal'
-import UsePopUp from '../pages/subcomponents/UsePopUp'
+import PopUpModalProject from '../pages/subcomponents/PopUpModalProject'
+import UsePopUpProject from '../pages/subcomponents/UsePopUpProject'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,6 +62,10 @@ const useStyles = makeStyles((theme) => ({
     subHeader: {
       fontSize: "20px"
     },
+    addProject: {
+      textAlign: "center",
+      paddingTop: "2rem"
+    }, 
   },
   httpTest: {
     margin: "0 auto",
@@ -101,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 const PortfolioPage = (props) => {
-  const { isShowing, toggle } = UsePopUp();
+  const { isShowing, toggle } = UsePopUpProject();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   // const [displayedProfiles, setProfiles] = useState([])
@@ -178,13 +182,23 @@ const PortfolioPage = (props) => {
       <div className={classes.projectWrapper}>
         <h3>
           Add project
-          <button onClick={toggle}> add project </button>
-          <PopUpModal
+          <div className={classes.addProject}>
+          <button className={classes.addPortBtn} 
+          onClick={toggle}> add project </button>
+          <PopUpModalProject 
             isShowing={isShowing}
             hide={toggle}
           />
+          </div>
         </h3>
-        <div> test 1</div>
+        <div className="project1"> 
+        <h3> Project title: {props.projectTitle}</h3>
+          <p>Desription: {props.description} </p>
+          <p>Technologies: {props.technologies}</p>
+          <p>Image: {props.image} </p>
+          <p>Link: {props.link} </p>
+        </div>
+        <br></br>
         <div> test 2</div>
         <div> test 3</div>
       </div>
