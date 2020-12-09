@@ -36,8 +36,10 @@ function Copyright() {
   );
 }
 
-export default function SignInSignUpForm(props) {
+const SignInSignUpForm = (props) => {
 
+
+  const [pageLoaded, setPageLoaded] = useState(false);
   const root = props.styleChoice !== "formStyles" ? 
     {
       "background-color": "rgba(255,255,255,.4)",
@@ -110,3 +112,5 @@ export default function SignInSignUpForm(props) {
     </Grid>
   );
 }
+
+export default SignInSignUpForm
