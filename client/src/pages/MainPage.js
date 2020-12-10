@@ -111,7 +111,7 @@ const MainPage = (props) => {
         const profilesResponse = await ReadAllProfiles( {limit : profileLimit} ) // // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
         const projectsResponse = await GetAllProjects({limit : profileLimit}) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
         const profilesToAdd = profilesResponse
-        
+
         console.log("Profiles response: ", profilesToAdd)
         
         const projectsToAdd = projectsResponse
@@ -171,7 +171,7 @@ const MainPage = (props) => {
                       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
                       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
                           <Link to="/joined">
-                            <MenuItem onClick={handleClose}> Login </MenuItem>
+                              <MenuItem onClick={handleClose}> Login </MenuItem>
                           </Link>
                           <Link to="/portfolio">
                               <MenuItem onClick={handleClose}>My account</MenuItem>
