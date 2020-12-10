@@ -1,8 +1,10 @@
-import { __UploadPhoto, __LoadImages} from "../services/CloudinaryService"
+import { __UploadPhoto, __LoadImages } from "../../Services/CloudinaryService"
+const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME
+const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET
 
 const CloudinaryWidget = props => {
-    const {userId, projectOrProfilePic } = props
-    const oneOrMany = projectOrProfilePic === "Project" ? true: false
+    const { userId, projectOrProfilePic } = props
+    const oneOrMany = projectOrProfilePic === "Project" ? true : false
     const widget = window.cloudinary.createUploadWidget(
         {
             cloudName: CLOUD_NAME,
@@ -12,7 +14,7 @@ const CloudinaryWidget = props => {
             maxFileSize: 1500000,
             autoUpload: false
         },
-        (error, result) => {checkUpload(result)})
+        (error, result) => { checkUpload(result) })
 
     const checkUpload = async (resultEvent) => {
         if (resultEvent.event === 'success') {
