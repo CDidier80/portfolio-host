@@ -7,7 +7,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import { CreateProject } from '../../Services/ProjectsService'
+import { CreateProject, UpdateProject } from '../../Services/ProjectsService'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,8 +37,9 @@ const ProjectForm = (props) => {
       formUpdateFunction(val)
     };
 
-    const submitNewProject = async (e) => {
+    const submitProject = async (e) => {
       // console.log(props)
+      const serviceFunction = props.updateOrCreate === "CreateProject" ? CreateProject : UpdateProject
         let payload = {
           title: projectTitle,
           description: description,
@@ -46,8 +47,7 @@ const ProjectForm = (props) => {
           image: image,
           link: link
         }
-        console.log(payload)
-        const result = await CreateProject(payload)
+        const result = await serviceFunction(payload)
         console.log(result)
         props.setShowPopUp(false)
     }
@@ -82,7 +82,7 @@ const ProjectForm = (props) => {
             placeholder="project title" />
         </FormControl>
       </form>
-      <button onClick={() => submitNewProject()}> submit project</button>
+      <button onClick={() => submitProject()}> submit project</button>
     </div>
   );
 }

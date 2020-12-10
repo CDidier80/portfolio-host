@@ -47,36 +47,29 @@ const useStyles = makeStyles((theme) => ({
 
 const SignInSignUpPage = (props) => { 
 
-  {/* Variables */}
-  let messageOne = "Sign In", messageTwo = "Sign Up" 
-  let promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
+    {/* Variables */}
+    let messageOne = "Sign In", messageTwo = "Sign Up" 
+    let promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
 
-  {/* Hooks */}
-  const classes = useStyles();
-  const [pageLoaded, setLoaded] = useState(true)
-  const [message, toggleMessage] = useState("Sign In")
-  const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
+    {/* Hooks */}
+    const classes = useStyles();
+    const [pageLoaded, setLoaded] = useState(true)
+    const [message, toggleMessage] = useState("Sign In")
+    const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
 
-  {/* <--------------manual toggle profile/login form */}
-  const [showProfileForm, toggleProfileForm] = useState(false) 
+    {/* <--------------manual toggle profile/login form */}
+    const [showProfileForm, toggleProfileForm] = useState(true) 
 
-  {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */}
-  const [firstTimeUser, setFirstTimeUser] = useState(false)
+    {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */}
+    const [firstTimeUser, setFirstTimeUser] = useState(false)
 
-  {/* <-------------- hooks for User Sign-in and Sign-up Payloads */}
-  // const [name, setName] = useState("")
-  // const [password, setPassword] = useState("")
-  // const [email, setEmail] = useState("")
-  // {/* <-------------- toggle authentication */}
-  // const [authenticated, setAuth] = useState(props.authenticated)
-  const [userState, setState ] = useState({
-    name: '',
-    email: '',
-    password: ''
-  })
-
-
-
+    {/* <-------------- hooks for User Sign-in and Sign-up Payloads */}
+    const [name, setName] = useState("")
+    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
+    {/* <-------------- toggle authentication */}
+    const [authenticated, setAuth] = useState(props.authenticated)
+  
   {/* useEffect() for loading screen */}
   useEffect(() => {
       console.log("LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.")
@@ -88,10 +81,6 @@ const SignInSignUpPage = (props) => {
   ) 
 
   {/* EVENT HANDLERS */}
-
-    // const buttonClick = (e, stateFuntion) => {
-  //   e.preventDefault()
-  // } 
 
 
   const togglemessage = (e) => {

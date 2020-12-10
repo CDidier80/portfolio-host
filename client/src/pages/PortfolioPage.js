@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   cardProfile: {
     display: "grid",
     gridTemplateColumns: "1fr 2fr",
-    color: "red"
+    color: "black"
   },
   profImage: {
     border: "1px solid black",
@@ -46,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
     gap: "10px",
     gridAutoRows: "100px",
-    color: "red",
+    color: "black",
     marginTop: "55px",
     marginLeft: "25px",
     marginRight: "25px",
-    border: "5px solid red"
+    border: "5px solid black"
   },
   title: {
     flexGrow: 1,
@@ -105,10 +105,11 @@ const PortfolioPage = (props) => {
   const classes = useStyles();
 
   {/* Hooks */}
-  const [usersOwnProfile, setUserOwnProfile] = useState(false);
+  const [usersOwnProfile, setUserOwnProfile] = useState(props.usersOwnProfile);  // boolean
   const [showPopUp, setShowPopUp] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [pageLoaded, setLoaded] = useState(false);
+  const [updateOrCreate, setUpdateOrCreate] = useState(null)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
 
@@ -123,7 +124,6 @@ const PortfolioPage = (props) => {
   [pageLoaded]
 ) 
 
-
   {/* Event Handlers */}
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -133,13 +133,10 @@ const PortfolioPage = (props) => {
     setAnchorEl(null);
   }
 
-  //popup
-
-  // const [isShowing, setIsShowing] = useState(false);
-
-  // function toggle() {
-  //   setIsShowing(!isShowing);
-  // }
+  const openPopUp = (e, formType) => {
+    setShowPopUp((!showPopUp))
+    setUpdateOrCreate(formType)
+  }
 
   return ( !pageLoaded ? <LoadingScreen /> :
       <div className="portfolio-page-wrapper">
@@ -185,7 +182,7 @@ const PortfolioPage = (props) => {
             <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
             <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
           </form>
-          <Button className="submit-Bio" variant="outlined" color="primary"> submit </Button>
+          <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
 
         </div>
       </div>
@@ -195,10 +192,8 @@ const PortfolioPage = (props) => {
         <h3>
           Add project
           <div className={classes.addProject}>
-          <button className={classes.addPortBtn} onClick={() => setShowPopUp((!showPopUp))}> add project </button>
-
+          <button className={classes.addProjBtn} onClick={(e) => openPopUp(e, "CreateProject")}> add project </button>
           { showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
-
           </div>
         </h3>
         <div className="project1"> 
@@ -207,6 +202,11 @@ const PortfolioPage = (props) => {
           <p>Technologies: {props.technologies}</p>
           <p>Image: {props.image} </p>
           <p>Link: {props.link} </p>
+          {/* update /delete project*/}
+          <div>
+            <button className={classes.addPortBtn} onClick={(e) => openPopUp(e, "UpdateProject")}> update </button>
+            {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} updateOrCreate={updateOrCreate} />}
+        </div>
         </div>
         <br></br>
         <div> test 2</div>

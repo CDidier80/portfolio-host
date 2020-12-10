@@ -1,8 +1,9 @@
 import ApiClient from "./ApiClient"
 
 export const CreateProfile = async (payload, params) =>  {
+    console.log("LOG:-->  FILE: ProfileServices.js  FUNCTION: CreateProfile() -->  Reached, carrying payload: ", payload)
     try {
-        const response = await ApiClient.post(`projects/create${params}`, payload)
+        const response = await ApiClient.post(`profile/create${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
@@ -10,8 +11,9 @@ export const CreateProfile = async (payload, params) =>  {
 }
 
 export const ReadProfile = async (payload, params) =>  {
+    console.log("LOG:-->  FILE: ProfileServices.js  FUNCTION: ReadProfile() -->  Reached, carrying payload: ", payload)
     try {
-        const response = await ApiClient.get(`projects/read${params}`, payload)
+        const response = await ApiClient.get(`profile/read${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
@@ -19,8 +21,9 @@ export const ReadProfile = async (payload, params) =>  {
 }
 
 export const ReadAllProfiles = async (payload, params) =>  {
+    console.log("LOG:-->  FILE: ProfileServices.js  FUNCTION: ReadAllProfiles() -->  Reached, carrying payload: ", payload)
     try {
-        const response = await ApiClient.get(`projects/read${params}`, payload)
+        const response = await ApiClient.get(`profile/`, payload)
         return response.data
     } catch (error) {
         console.log(error)
@@ -28,8 +31,9 @@ export const ReadAllProfiles = async (payload, params) =>  {
 }
 
 export const UpdateProfile = async (payload, params) =>  {
+    console.log("LOG:-->  FILE: ProfileServices.js  FUNCTION: UpdateProfile() -->  Reached, carrying payload: ", payload)
     try {
-        const response = await ApiClient.put(`projects/update${params}`, payload)
+        const response = await ApiClient.put(`profile/update${params}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
