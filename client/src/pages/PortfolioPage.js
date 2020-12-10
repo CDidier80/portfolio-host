@@ -19,6 +19,10 @@ import TextForm from './subcomponents/TextForm'
 import ProjectForm from '../pages/subcomponents/ProjectForm'
 import PopUpModalProject from '../pages/subcomponents/PopUpModalProject'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
+import Grid from '@material-ui/core/Grid';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Paper from '@material-ui/core/Paper';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,10 +54,35 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "55px",
     marginLeft: "25px",
     marginRight: "25px",
-    border: "5px solid black"
+    border: "2px solid black",
+    borderRadius: "10px",
+    backgroundColor: "F3F2EF"
+  },
+  projectWrapper: {
+    margin: "0 auto",
+    paddingLeft: "30px"
   },
   title: {
     flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 1200,
+    borderRadius: "5px",
+    boxShadow: "0 0 2px black"
+  },
+  image: {
+    width: 200,
+    height: 170,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    borderRadius: "5px",
+    boxShadow: "0 0 2px black"
   },
   textGreeting: {
     display: "block",
@@ -191,27 +220,59 @@ const PortfolioPage = (props) => {
       {/* projects */}
       <div className={classes.projectWrapper}>
         <h3>
-          Add project
+          Projects:
           <div className={classes.addProject}>
           <button className={classes.addProjBtn} onClick={(e) => openPopUp(e, "CreateProject")}> add project </button>
           { showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
           </div>
         </h3>
         <div className="project1"> 
-        <h3> Project title: {props.projectTitle}</h3>
-          <p>Desription: {props.description} </p>
+        {/* <h3> Project title: {props.projectTitle}</h3>
+          <p>Description: {props.description} </p>
           <p>Technologies: {props.technologies}</p>
           <p>Image: {props.image} </p>
-          <p>Link: {props.link} </p>
-          {/* update /delete project*/}
-          <div>
-            <button className={classes.addPortBtn} onClick={(e) => openPopUp(e, "UpdateProject")}> update </button>
-            {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} updateOrCreate={updateOrCreate} />}
-        </div>
+          <p>Link: {props.link} </p> */}
+          <div className={classes.root}>
+            <Paper style={{ Width: "50%" }} className={classes.paper}>
+              <Grid container spacing={2}>
+                <Grid item>
+                  <ButtonBase className={classes.image}>
+                    <img className={classes.img} alt="complex"
+                      src="https://dg.imgix.net/do-you-think-you-re-happy-jgdbfiey-en/landscape/do-you-think-you-re-happy-jgdbfiey-9bb0198eeccd0a3c3c13aed064e2e2b3.jpg?ts=1520525855&ixlib=rails-4.1.0&auto=format%2Ccompress&fit=min&w=700&h=394&dpr=2&ch=Width%2CDPR" />
+                  </ButtonBase>
+                </Grid>
+                <Grid item xs={6} sm container>
+                  <Grid item xs container direction="column" spacing={4}>
+                    <Grid item xs>
+                      <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
+                        Compliment your day
+                      </Typography>
+                      <Typography gutterBottom variant="subtitle1">
+                        Times are rough, so check out my simple compliment app, built in my 15 minute challenge
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        React 
+                      </Typography>
+                      <Typography variant="body2" >
+                        Technologies: React, Javascript, Phyton, MongoDb
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Link to="portfolio">
+                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
+                          https://www.linkedin.com/in/collin-didier/detail/recent-activity/shares/
+                        </Typography>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <button className={classes.updateBtn} onClick={(e) => openPopUp(e, "UpdateProject")}> update </button>
+              {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} updateOrCreate={updateOrCreate} />}
+            </Paper>
+          </div>
         </div>
         <br></br>
-        <div> test 2</div>
-        <div> test 3</div>
       </div>
     </div>
   )
