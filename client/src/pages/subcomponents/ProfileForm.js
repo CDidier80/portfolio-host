@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../../Services/ProfileService'
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -21,12 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
-
 // still needs cloudinary widget and event handler for string url of pic
-
 
 const ProfileForm = (props) => {
 
@@ -39,7 +36,6 @@ const ProfileForm = (props) => {
     const [skills, setSkills] = useState("")
     const [locale, setLocale] = useState("")
     const [bio, setBio]       = useState("")
-
 
     {/* Event Handlers */}
     const handleClick = (event) => {
@@ -59,11 +55,16 @@ const ProfileForm = (props) => {
             locale : locale, 
             bio : bio, 
         }
+        console.log("User Payload upon submit form click: ", payload)
         const profileFunction = props.firstTimeUser ? CreateProfile : UpdateProfile
+        console.log("LOG: At form submit Profile Form identifies first time user as: ", props.firstTimeUser)
 
-        const result = await profileFunction(payload)
-        // do something with result if needed
-        props.history.push("/portfolio")
+        const profileSubmissionResult = await profileFunction(payload)
+
+        console.log("LOG:-->  FILE: PorfileForm.js  FUNCTION: submitForm() --> API response:", profileSubmissionResult)
+        // do something with profileSubmissionResult if needed
+        console.log("LOG --> FILE: PortfolioPage.js, Function: submitForm() --> function reached.")
+        props.history.push({pathname: "/portfolio", state:  {profile: profileSubmissionResult, usersOwnProfile: true}})
     }
 
     const updateTextField = (e, updateFunction) => {

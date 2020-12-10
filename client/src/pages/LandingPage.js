@@ -110,7 +110,7 @@ const LandingPage = (props) => {
     },
 
     welcome: {
-      fontSize: "50px",
+      fontSize: "70px",
       fontFamily: "Roboto"
     },
 
@@ -145,26 +145,21 @@ const LandingPage = (props) => {
         justifyContent: "space-evenly"
     },
 
-    buttons: {
-      width: "80px",
+    loginButton: {
+      minWidth: "200x",
       height: "40px",
-      fontSize: "18px"
+      fontSize: "14px"
     },
 
     portButton: {
-      width: "80px",
+      minWidth: "200x",
       height: "40px",
-      fontSize: "12px",
+      fontSize: "14px",
     },
 
 
 
-    submitTestButton: {
-      height: "80px",
-      width: "80px",
-      color: "black",
-      backgroundColor: "white"
-    }
+
   }
     
 
@@ -198,11 +193,11 @@ const LandingPage = (props) => {
                 </AppBar>
             </div>
             <div style={mainStyles.textGreeting}>
-                <h3 style={mainStyles.welcome}>Welcome to Dev Portal</h3>
+                <h3 style={mainStyles.welcome}>Dev Portal</h3>
                 <h4 style={mainStyles.subHeader}>A window into great works</h4>
             </div>
             <div style={mainStyles.buttonWrapper}>
-                <Button style={mainStyles.buttons} onClick={()=>props.history.push("/signin")} variant="outlined" color="primary">Login</Button>
+                <Button style={mainStyles.loginButton} onClick={()=>props.history.push("/signin")} variant="outlined" color="primary">Login</Button>
                 <Button style={mainStyles.portButton} onClick={()=>props.history.push("/main")} variant="outlined" color="primary">View Portfolios</Button>
             </div>
             <div style={mainStyles.httpTest}>

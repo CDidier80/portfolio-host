@@ -1,0 +1,2 @@
+submit profile form redirects to portfolio on submit
+failed sign up does not redirect to profile form
