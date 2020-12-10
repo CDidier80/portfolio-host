@@ -162,11 +162,7 @@ const MainPage = (props) => {
   const handleClose = () => setAnchorEl(null)
 
 //  return ( !pageLoaded ? <LoadingScreen /> :
-<<<<<<< HEAD
   return (!pageLoaded ? <LoadingScreen /> :
-=======
-  return ( !pageLoaded ? <LoadingScreen /> :
->>>>>>> edeccb04b0f22033fcc3c020c68d0650491cb687
       <div>
           {/* NAV BAR */}
           <div className={classes.root}>
