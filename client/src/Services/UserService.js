@@ -12,7 +12,7 @@ import ApiClient from "./ApiClient"
 // 8) React function receives response and indicates an "authenticated" state for the session -->
 export const LogInUser = async (payload, params) =>  {
     try {
-        const response = await ApiClient.post(`users/login${params}`, payload)
+        const response = await ApiClient.post(`users/login`, payload)
         localStorage.setItem('token', response.data.token)
         return response.data
     } catch (error) {
