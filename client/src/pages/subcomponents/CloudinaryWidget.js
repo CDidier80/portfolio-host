@@ -36,6 +36,7 @@ const CloudinaryWidget = props => {
             catch (err) { throw err }
         }
     }
+    
     const updateRender = async () => {
         // console.log('inside the render function in widget', props)
     }

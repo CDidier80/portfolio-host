@@ -18,7 +18,7 @@ const App = (props) => {
     const [session, setSession] = useState(null)
     const [authenticated, setAuth] = useState(false)
 
-    const [random, setRandom]= useState(false)
+    const [userInfo, setUserInfo]= useState(null)
   //   const verifyTokenValid = async () => {
   //     const token = localStorage.getItem('token')
   //     if (token) {
@@ -81,7 +81,7 @@ empty props object of the child component
               <Route exact path="/"      component={ (props) =>  <LandingPage      {...props}  authenticated={authenticated} /> }/>
               <Route path="/main"        component={ (props) =>  <MainPage         {...props}  authenticated={authenticated} />  }/> 
               <Route path="/portfolio"   component={ (props) =>  <PortfolioPage    {...props}  authenticated={authenticated} />  }/>
-              <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} setAuth={setAuth}/>  }/>             
+              <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} setAuth={setAuth} setUserInfo={setUserInfo}/>}/>             
               <Route path="/settings"    component={ (props) =>  <SettingsPage     {...props}  authenticated={authenticated} />  }/>
               <Route path="/profileform" component={ (props) =>  <ProfileForm      {...props}  authenticated={authenticated} />  }/>              
           </Switch>
