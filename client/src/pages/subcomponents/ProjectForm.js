@@ -41,7 +41,7 @@ const ProjectForm = (props) => {
       // console.log(props)
       const serviceFunction = props.updateOrCreate === "CreateProject" ? CreateProject : UpdateProject
         let payload = {
-          projectTitle: projectTitle,
+          title: projectTitle,
           description: description,
           technologies: technologies,
           image: image,
