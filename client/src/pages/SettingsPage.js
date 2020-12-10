@@ -3,7 +3,7 @@ import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionSe
 import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
 import { CreateProject, ReadProject, UpdateProject, DeleteProject} from '../Services/ProjectsService'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
-
+import NavBar from '../pages/subcomponents/NavBar'
 
 const SettingsPage = (props) => { 
     const [pageLoaded, setLoaded] = useState(false);
@@ -21,7 +21,7 @@ const SettingsPage = (props) => {
 
     return ( !pageLoaded ? <LoadingScreen /> :
         <div>
-            
+          <NavBar {...props} />  
         </div>
     )
 }

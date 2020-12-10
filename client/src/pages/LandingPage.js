@@ -14,7 +14,7 @@ import NavBar from './subcomponents/NavBar'
 
 
 const LandingPage = (props) => {
-
+    console.log("Landing page props: ",props)
     {/* Variables */}
 
 
@@ -69,7 +69,7 @@ const LandingPage = (props) => {
       width: "60%",
       height: "80px",
       backgroundColor: "white",
-      border: "1px solid black"
+      border: "1px solid propsck"
     },
 
     buttonWrapper: {
@@ -96,7 +96,7 @@ const LandingPage = (props) => {
     submitTestButton: {
       height: "80px",
       width: "80px",
-      color: "black",
+      color: "propsck",
       backgroundColor: "white"
     }
 
@@ -105,7 +105,7 @@ const LandingPage = (props) => {
 
     return ( !pageLoaded ? <LoadingScreen /> :
         <div>
-            <NavBar />
+            <NavBar props={props}/>
             <div style={mainStyles.textGreeting}>
                 <h3 style={mainStyles.welcome}>Dev Portal</h3>
                 <h4 style={mainStyles.subHeader}>A window into great works</h4>

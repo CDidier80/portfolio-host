@@ -153,7 +153,7 @@ const MainPage = (props) => {
 
   return ( !pageLoaded ? <LoadingScreen /> :
       <div>
-          <NavBar />
+          <NavBar {...props} />
           {/* start of profile box */}
           <div className={classes.profileCardWrapper} >
               {displayedProfiles.map((profile, index)=>(

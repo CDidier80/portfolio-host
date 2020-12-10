@@ -166,18 +166,10 @@ const PortfolioPage = (props) => {
     console.log("functionreach")
     toggleWidgetVisibility(!isWidgetOpen)
   }
-  // the existence of something on a page is always a conditional rendering question
-  //show this = true or false? - everything single time
-  //decide what has to be true for the component to show
-  // create a hook representing the truth or falsy of that condition
-  //other parts of the page can change whether your condition is true or false
-  // use curly boys with a ternary operation to tell a component to render or not
-
-
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
-      <NavBar />
+      <NavBar {...props} />
       {/* profile page below */}
       {isWidgetOpen ? <CloudinaryWidget /> : null}
       <div className={classes.cardProfile}>

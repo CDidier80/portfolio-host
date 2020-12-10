@@ -19,6 +19,7 @@ import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import ProfileForm from "./subcomponents/ProfileForm"
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
+import NavBar from './subcomponents/NavBar';
 
 const logs = [
   "LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.", 
@@ -79,7 +80,7 @@ const SignInSignUpPage = (props) => {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   {/* <-------------- toggle authentication */ }
-  const [authenticated, setAuth] = useState(props.authenticated)
+  
 
   {/* useEffect() for loading screen */ }
   useEffect(() => {
@@ -117,7 +118,7 @@ const SignInSignUpPage = (props) => {
 
       const response = await LogInUser({ email, password })
       if (response) {
-        setAuth(true)
+        props.setAuth(true)
         props.history.push('/main')
       }
       console.log('wrong password')
@@ -130,7 +131,6 @@ const SignInSignUpPage = (props) => {
     e.preventDefault()
     console.log(logs[3])
     try {
-
         const response = await CreateUser({ email, password, name })
         console.log(logs[4], response)
         console.log(response.message)
@@ -146,7 +146,7 @@ const SignInSignUpPage = (props) => {
             toggleProfileForm(true)
             return setEmail("")
           }
-          await update(setFirstTimeUser, setAuth, toggleProfileForm, setEmail)
+          await update(setFirstTimeUser, props.setAuth, toggleProfileForm, setEmail)
           console.log("email reached")
       } else {  
           console.log(logs[6])
@@ -158,13 +158,13 @@ const SignInSignUpPage = (props) => {
     }
   }
 
-
   const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div>
+      <NavBar {...props} />
       {!showProfileForm ?
-        <div>
+        <div style={{marginTop:"25px"}}>
           <Link to="/">
             <Button color="#fce4ec" onClick={() => props.history.push("/")}>Back</Button>
           </Link>

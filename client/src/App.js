@@ -23,8 +23,7 @@ const App = (props) => {
       }
 
     const [session, setSession] = useState(null)
-    const [authenicated, setAuthenticated] = useState(null)
-
+    const [authenticated, setAuth] = useState(false)
   //   const verifyTokenValid = async () => {
   //     const token = localStorage.getItem('token')
   //     if (token) {
@@ -41,11 +40,36 @@ const App = (props) => {
   //     }
   // }
 
-  // props.session = session
-  // props = {...props, ...session}
-  // props = {...props, ...authenticated}
+
+  // props is an object with set k:v pairs in React
+  // it comes with 3 main keys: location, history, and match
+  
+  // props = {...props, ...setAuth, ...authenticated}
+
+/*
+props is an object with set k:v pairs in React
+it comes with 3 main keys: location, history, and match
+props = {
+  location: {"stuff"},
+  history: {"stuff"}, --> added by Browser Router
+  match: {"stuff"}
+}
+
+inline props on components add a new key:value pair to props: 
+<component newProp={example: value} />  =>
+
+props = {
+  location: {"stuff"},
+  history: {"stuff"}, 
+  match: {"stuff"},
+  newProp: {example : value}
+}
+
+When you pass props with spread operator {...props} you're emptying the contents of the parent props into the 
+empty props object of the child component
 
 
+*/
 //   goToSignupPage = async (e) => {
 //     e.stopPropagation()
 //     const linkClassName = e.target.className
@@ -54,16 +78,17 @@ const App = (props) => {
 //     await this.props.history.push('/login')
 // }
 
+
     return (
       <main className="App">
         {!pageIsLoaded ? <div><h3>Loading...</h3></div> : 
           <Switch> 
-              <Route exact path="/"    component={ (props) =>  <LandingPage      {...props}  />  }/>
-              <Route path="/main"      component={ (props) =>  <MainPage         {...props}  />  }/> 
-              <Route path="/portfolio" component={ (props) =>  <PortfolioPage    {...props}  />  }/>
-              <Route path="/signin"    component={ (props) =>  <SignInSignUpPage {...props}  />  }/>             
-              <Route path="/settings"  component={ (props) =>  <SettingsPage     {...props}  />  }/>
-              <Route path="/profileform"       component={ (props) =>  <ProfileForm          {...props}  />  }/>              
+              <Route exact path="/"      component={ (props) =>  <LandingPage      {...props}  authenticated={authenticated} setAuth={setAuth}/> }/>
+              <Route path="/main"        component={ (props) =>  <MainPage         {...props}  authenticated={authenticated} setAuth={setAuth}/>  }/> 
+              <Route path="/portfolio"   component={ (props) =>  <PortfolioPage    {...props}  authenticated={authenticated} setAuth={setAuth}/>  }/>
+              <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} setAuth={setAuth}/>  }/>             
+              <Route path="/settings"    component={ (props) =>  <SettingsPage     {...props}  authenticated={authenticated} setAuth={setAuth}/>  }/>
+              <Route path="/profileform" component={ (props) =>  <ProfileForm      {...props}  authenticated={authenticated} setAuth={setAuth}/>  }/>              
           </Switch>
         }
       </main>
@@ -72,3 +97,4 @@ const App = (props) => {
 
 export default withRouter(App)
 
+// appJsProps={...props}
