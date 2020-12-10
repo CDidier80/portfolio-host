@@ -7,13 +7,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-// import Grid from '@material-ui/core/Grid';
-// import Paper from '@material-ui/core/Paper';
-// import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
 import ProjectForm from '../pages/subcomponents/ProjectForm'
@@ -22,15 +15,10 @@ import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Paper from '@material-ui/core/Paper';
+import NavBar from './subcomponents/NavBar'
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   // card profile not material
   cardProfile: {
     display: "grid",
@@ -154,13 +142,6 @@ const PortfolioPage = (props) => {
 ) 
 
   {/* Event Handlers */}
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  }
 
   const openPopUp = (e, formType) => {
     setShowPopUp((!showPopUp))
@@ -169,34 +150,8 @@ const PortfolioPage = (props) => {
 
   return ( !pageLoaded ? <LoadingScreen /> :
       <div className="portfolio-page-wrapper">
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-                    <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-
-                      {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
-                      <Link to="/signin">
-                        <MenuItem onClick={handleClose}>Login</MenuItem>
-                      </Link>
-                      <Link to="/portfolio">
-                        <MenuItem onClick={handleClose}>Portfolio</MenuItem>
-                      </Link>
-                      <Link to="/main">
-                        <MenuItem onClick={handleClose}>Home</MenuItem>
-                      </Link>
-                      <Link to="/settings">
-                        <MenuItem onClick={handleClose}>Account</MenuItem>
-                      </Link>
-                    </Menu>
-                    <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-                    {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                    <Link to="/signin"></Link>
-                </Toolbar>
-            </AppBar>
-        </div>
+        <NavBar />
       {/* profile page below */}
-
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
           <img className={classes.profImage}  ///image button Luis

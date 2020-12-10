@@ -9,22 +9,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 // import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
+import NavBar from './subcomponents/NavBar'
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
   textGreeting: {
     display: "block",
     marginLeft: "5vw",
@@ -90,18 +79,6 @@ const LandingPage = (props) => {
         },[pageLoaded]
     ) 
 
-
-    {/* Event Handlers */}
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-
-
-
     const mainStyles = {
 
     textGreeting: {
@@ -157,8 +134,6 @@ const LandingPage = (props) => {
       fontSize: "12px",
     },
 
-
-
     submitTestButton: {
       height: "80px",
       width: "80px",
@@ -171,32 +146,9 @@ const LandingPage = (props) => {
 
 
 
-
     return ( !pageLoaded ? <LoadingScreen /> :
         <div>
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-                        <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                            <Link to="/signin">
-                              <MenuItem onClick={handleClose}>Login</MenuItem>
-                            </Link>
-                            <Link to="/portfolio">
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                            </Link>
-                            <Link to="/main">
-                              <MenuItem onClick={handleClose}>Home</MenuItem>
-                            </Link>
-                        </Menu>
-                        <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-                            {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                        <Link to="/signin">
-                            <Button color="#fce4ec">Login</Button>
-                        </Link>
-                    </Toolbar>
-                </AppBar>
-            </div>
+            <NavBar />
             <div style={mainStyles.textGreeting}>
                 <h3 style={mainStyles.welcome}>Welcome to Dev Portal</h3>
                 <h4 style={mainStyles.subHeader}>A window into great works</h4>
@@ -214,28 +166,3 @@ const LandingPage = (props) => {
 }
 
 export default LandingPage
-
-// const HomePage = ()  => {
-//   return(
-// <div>
-// <h3>
-//   Welcome to Dev Ports
-// </h3>
-// <h4>
-//   Your site to easy share your portfolio and make new connection with other developers.
-// </h4>
-// <Link to="/login">
-//   <Button variant="outlined" color="primary">
-//     Login
-// </Button>
-// </Link>
-//   <Link to="/signup">
-//     <Button variant="outlined" color="primary">
-//       Sign up
-// </Button>
-//   </Link>
-// </div>
-//   )
-// }
-
-// export default HomePage
