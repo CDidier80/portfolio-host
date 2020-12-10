@@ -161,8 +161,8 @@ const MainPage = (props) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
 
-
-  return ( !pageLoaded ? <LoadingScreen /> :
+//  return ( !pageLoaded ? <LoadingScreen /> :
+  return ( pageLoaded ? <LoadingScreen /> :
       <div>
           {/* NAV BAR */}
           <div className={classes.root}>
@@ -199,7 +199,7 @@ const MainPage = (props) => {
   )
 }
 
-export default MainPage
+export default MainPage 
 
 
 
