@@ -20,6 +20,17 @@ import { Link } from 'react-router-dom';
 import ProfileForm from "./subcomponents/ProfileForm"
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
+const logs = [
+  "LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.", 
+  "User entered email and password: ",
+  "Error thrown in SignInSignUpPage.js at handleLogin(): ",
+  "User clicked sign up button.",
+  "LOG: FILE: SignInSignUpPage.js FUNCTION: handleSignUp --> USER ACCOUNT CREATED SUCCESSFULLY",
+  "LOG: FILE: SignInSignUpPage.js FUNCTION: handleSignUp --> CreateUser response: ",
+  "LOG: FILE: SignInSignUpPage.js FUNCTION: handleSignUp --> failed to create account, but no error was thrown",
+  "LOG: FILE: SignInSignUpPage.js FUNCTION: handleSignUp --> response: ",
+  "Error thrown in SignInSignUpPage.js at handleSignUp(): "
+]
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -72,7 +83,7 @@ const SignInSignUpPage = (props) => {
 
   {/* useEffect() for loading screen */ }
   useEffect(() => {
-    console.log("LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.")
+    console.log(logs[0])
     if (!pageLoaded) {
       setLoaded(true)
     }
@@ -102,7 +113,7 @@ const SignInSignUpPage = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
-      console.log("User entered email and password: ", email, password)
+      console.log(logs[1], email, password)
       const response = await LogInUser({ email, password })
       if (response) {
         setAuth(true)
@@ -113,36 +124,40 @@ const SignInSignUpPage = (props) => {
       }
 
     } catch (error) {
-      console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
+      console.log(logs[2], error)
     }
   }
 
   const handleSignUp = async (e) => {
     e.preventDefault()
-    console.log("User clicked sign up button.")
+    console.log(logs[3])
     try {
-      const response = await CreateUser({ email, password, name })
-      console.log(response)
-
-      if (response.id !== null) {
-        console.log("LOG: USER ACCOUNT CREATED SUCCESSFULLY")
-        console.log("response: ", response)
-        setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
-        setAuth(true)
-        toggleProfileForm(true)
+        const response = await CreateUser({ email, password, name })
+        console.log(logs[4], response)
+        console.log(response.message)
+        if (Object.keys(response).length !== 1) {
+          console.log(logs[5], response)
+          // setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
+          // setAuth(true)
+          // toggleProfileForm(true)
+          // setEmail("")
+          const update = (setFirstTimeUser, setAuth, toggleProfileForm, setEmail) => {
+            setFirstTimeUser(true)
+            setAuth(true)
+            toggleProfileForm(true)
+            return setEmail("")
+          }
+          await update(setFirstTimeUser, setAuth, toggleProfileForm, setEmail)
+          console.log("email reached")
       } else {  
-          console.log("failed to create account, but no error was thrown")
-          console.log("response: ", response)
-      } else {
-        console.log("failed to create account, but no error was thrown")
-        console.log("response: ", response)
-
-      }
-
+          console.log(logs[6])
+          console.log(logs[7], response)
+      } 
     } catch (error) {
-      console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
+      console.log(logs[8], error)
     }
   }
+
 
   const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
