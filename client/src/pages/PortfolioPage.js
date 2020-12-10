@@ -124,7 +124,9 @@ const PortfolioPage = (props) => {
   console.log("props", props)
   console.log("props.history: ", props.history)
   console.log("props.history.location: ", props.history.location)
-  // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+
+
   {/* Variables */ }
   const classes = useStyles();
   {/* Hooks */ }
@@ -177,13 +179,13 @@ const PortfolioPage = (props) => {
             alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
-            {/* <h2>{name}</h2>
+              <h2>{name}</h2>
                 <h3>{locale}</h3>
                 <h3>{professionalTitle}</h3>
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
-                <p>{skills}</p> */}
-            <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
+                <p>{skills}</p>
+              <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
           </div>
         </div>
       </div>
@@ -195,11 +197,11 @@ const PortfolioPage = (props) => {
           {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
         </div>
         <div className="project1">
-          {/* <h3> Project title: {props.projectTitle}</h3>
+          <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
           <p>Technologies: {props.technologies}</p>
-          sWidgetOpenmage: {prosWidgetOpenmage} </p>
-          <p>Link: {props.link} </p> */}
+         {/* <p>{propsWidgetOpenmage} </p> */}
+          <p>Link: {props.link} </p>
           <div className={classes.root}>
             <Paper style={{ Width: "50%" }} className={classes.paper}>
               <Grid container spacing={2}>
