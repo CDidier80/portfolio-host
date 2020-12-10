@@ -100,7 +100,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PortfolioPage = (props) => {
-
+  let profile = props.profile
+  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.profile
   {/* Variables */}
   const classes = useStyles();
 
@@ -174,14 +175,14 @@ const PortfolioPage = (props) => {
             src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
         </div>
         <div className={classes.portfolioDetails}>
-          <form>
-            <h2> name: </h2>
-            <h3> Chicago, Il.</h3>
-            <h3> FullStack Developer</h3>
-            <h3> Organization: Collin and Co. Ltd. </h3>
-            <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
-            <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
-          </form>
+          <div>
+  <h2>{name}</h2>
+  <h3>{locale}</h3>
+  <h3>{professionalTitle}</h3>
+  <h3>{organization}</h3>
+  <h4>{bio}</h4>
+  <p> {skills}</p>
+          </div>
           <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
 
         </div>
