@@ -112,11 +112,9 @@ const MainPage = (props) => {
         // const projectsResponse = await GetAllProjects({limit : profileLimit}) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
         const profilesToAdd = profilesResponse
         console.log("Profiles response: ", profilesToAdd)
-        // const projectsToAdd = projectsResponse.data
+        const projectsToAdd = projectsResponse.data
         setProfiles(profilesToAdd)
-        // setProjects(projectsToAdd)
-
-
+        setProjects(projectsToAdd)
 
 
         //   try {
