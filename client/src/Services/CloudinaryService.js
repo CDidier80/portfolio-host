@@ -1,7 +1,6 @@
 import ApiClient from './ApiClient'
 
-// in the project change it to upload
-export const __ChangePhoto = async (url) => {
+export const __UploadPhoto = async (url) => {
     try {
         let userId = 1
         let updatePhoto = { picture: url }
