@@ -100,6 +100,70 @@ const LandingPage = (props) => {
       setAnchorEl(null);
     };
 
+
+
+    const mainStyles = {
+
+    textGreeting: {
+      display: "block",
+      textAlign: "center",
+    },
+
+    welcome: {
+      fontSize: "50px",
+      fontFamily: "Roboto"
+    },
+
+    subHeader: {
+      fontSize: "20px", 
+      fontFamily: "Roboto", 
+      textAlign: "center",
+      marginTop: "0"
+    },
+
+    httpTest: {
+      margin: "0 auto",
+      marginTop: "70px",
+      width: "300px",
+      height: "50px",
+      display: "flex",
+      justifyContent: "spaceBetween",
+    },
+
+    textfield: {
+      width: "60%",
+      height: "80px",
+      backgroundColor: "white",
+      border: "1px solid black"
+    },
+
+    buttonWrapper: {
+        margin: "0 auto",
+        width: "40vw",
+        // backgroundColor: "green",
+        display: "flex", 
+        justifyContent: "space-evenly"
+    },
+
+    buttons: {
+      width: "80px",
+      height: "40px",
+      fontSize: "18px"
+    },
+
+    submitTestButton: {
+      height: "80px",
+      width: "80px",
+      color: "black",
+      backgroundColor: "white"
+    }
+  }
+    
+
+
+
+
+
     return ( !pageLoaded ? <LoadingScreen /> :
         <div>
             <div className={classes.root}>
@@ -125,14 +189,18 @@ const LandingPage = (props) => {
                     </Toolbar>
                 </AppBar>
             </div>
-            <div className={classes.textGreeting}>
-                <h3 className={classes.textGreeting.welcome}>Welcome to Dev Portal</h3>
-                <h4 className={classes.textGreeting.subHeader}>A window into great works</h4>
+
+
+            <div style={mainStyles.textGreeting}>
+                <h3 style={mainStyles.welcome}>Welcome to Dev Portal</h3>
+                <h4 style={mainStyles.subHeader}>A window into great works</h4>
             </div>
-                <Link className={classes.loginButton} to="/signin">
-                    <Button variant="outlined" color="primary">Login</Button>
-                </Link>
-            <div className={classes.httpTest}>
+
+            <div style={mainStyles.buttonWrapper}>
+                <Button style={mainStyles.buttons} onClick={()=>props.history.push("/signin")} variant="outlined" color="primary">Login</Button>
+                <Button style={mainStyles.buttons} onClick={()=>props.history.push("/signin")} variant="outlined" color="primary">View Portfolios</Button>
+            </div>
+            <div style={mainStyles.httpTest}>
                 {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
                 {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
             </div>
