@@ -101,12 +101,14 @@ const SignInSignUpPage = (props) => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    console.log("User clicked login button.")
+    // console.log("User clicked login button.")
     try {
+
       console.log("User entered email and password: ", email, password)
-      const response = await LogInUser({ email, password, password })
+       const response = await LogInUser({ email, password })
 
       setAuth(true, () => props.history.push('/main')
+
       )
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)

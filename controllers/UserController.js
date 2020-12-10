@@ -83,11 +83,12 @@ const LogInUser = async (req, res, next) => {
     try {
 
         let {email, password} = req.body
-
+        console.log(email, password)
         const user = await User.findOne({ email: email })
         let { id } = user.dataValues
         const profile = await Profile.findOne({userId: id})
-        
+        console.log('req.body: ', req.body.password)
+        console.log('digest', user.password_digest)
         if (
             user &&
             (await checkPassword(req.body.password, user.password_digest))
@@ -106,6 +107,7 @@ const LogInUser = async (req, res, next) => {
         throw error
     }
 }
+
 
 const RefreshSession = (req, res) => {
     const token = res.locals.token
