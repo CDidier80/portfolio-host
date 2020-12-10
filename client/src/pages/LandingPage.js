@@ -15,6 +15,9 @@ import NavBar from './subcomponents/NavBar'
 
 const LandingPage = (props) => {
 
+    {/* Variables */}
+
+
     {/* Hooks */}
     const [anchorEl, setAnchorEl] = useState(null);
     const [pageLoaded, setLoaded] = useState(false);
