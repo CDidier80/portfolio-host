@@ -144,11 +144,7 @@ const MainPage = (props) => {
         //   console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: Projects & Profiles added to state.")
 
         }
-
-
         populateMainPage()
-
-        
         // console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: main page loaded: ", pageLoaded)
         if (!pageLoaded) {
           setLoaded(true)
@@ -192,12 +188,10 @@ const MainPage = (props) => {
 
           {/* start of profile box */}
           <div className={classes.profileCardWrapper} >
-              {/* {displayedProfiles.map((profile, index)=>{
+              {displayedProfiles.map((profile, index)=>(
+                <ProfileCard {...props} profile={profile}/>
+              ))}
 
-              } */}
-
-              <ProfileCard />
-              <ProfileCard />
           </div >
       </div>
   )

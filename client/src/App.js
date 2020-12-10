@@ -46,7 +46,6 @@ const App = (props) => {
   // props = {...props, ...authenticated}
 
 
-
 //   goToSignupPage = async (e) => {
 //     e.stopPropagation()
 //     const linkClassName = e.target.className
