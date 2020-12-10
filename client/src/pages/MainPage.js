@@ -17,8 +17,6 @@ import Paper from '@material-ui/core/Paper';
 import ProfileCard from '../pages/subcomponents/ProfileCard'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -77,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
 const MainPage = (props) => {
   
   {/* Variables */}
@@ -97,12 +94,12 @@ const MainPage = (props) => {
   function FormRow() {
     return (
       <React.Fragment>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}></Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}></Paper>
-        </Grid>
+          <Grid item xs={6}>
+              <Paper className={classes.paper}></Paper>
+          </Grid>
+          <Grid item xs={4}>
+              <Paper className={classes.paper}></Paper>
+          </Grid>
       </React.Fragment>
     );
   }
@@ -149,38 +146,39 @@ const MainPage = (props) => {
 
 
   return ( !pageLoaded ? <LoadingScreen /> :
-    <div>
-        {/* NAV BAR */}
-        <div className={classes.root}>
-            <AppBar position="static">
-              <Toolbar>
-                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-                <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                  <Link to="/joined">
-                    <MenuItem onClick={handleClose}> Login </MenuItem>
-                  </Link>
-                  <Link to="/portfolio">
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                  </Link>
-                  <Link to="/main">
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                  </Link>
-                </Menu>
-                <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-                {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                <Link to="/joined">
-                  <Button color="#fce4ec">Login</Button>
-                </Link>
-              </Toolbar>
-            </AppBar>
-        </div>
-        {/* END NAV BAR */}
-      {/* start of profile box */}
-      < div className={classes.profileCardWrapper} >
-        <ProfileCard />
-        <ProfileCard />
-      </div >
-    </div>
+      <div>
+          {/* NAV BAR */}
+          <div className={classes.root}>
+              <AppBar position="static">
+                  <Toolbar>
+                      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
+                      <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+                          <Link to="/joined">
+                            <MenuItem onClick={handleClose}> Login </MenuItem>
+                          </Link>
+                          <Link to="/portfolio">
+                              <MenuItem onClick={handleClose}>My account</MenuItem>
+                          </Link>
+                          <Link to="/main">
+                              <MenuItem onClick={handleClose}>Home</MenuItem>
+                          </Link>
+                      </Menu>
+                      <Typography variant="h6" className={classes.title}>DevPortal</Typography>
+                      {/* LINK TO SignInSignUp page. <Link /> can accept props to send if need be*/}
+                      <Link to="/joined">
+                          <Button color="#fce4ec">Login</Button>
+                      </Link>
+                  </Toolbar>
+              </AppBar>
+          </div>
+          {/* END NAV BAR */}
+
+          {/* start of profile box */}
+          <div className={classes.profileCardWrapper} >
+              <ProfileCard />
+              <ProfileCard />
+          </div >
+      </div>
   )
 }
 
