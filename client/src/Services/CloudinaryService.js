@@ -1,11 +1,9 @@
 import ApiClient from './ApiClient'
 
-export const __UploadPhoto = async (url) => {
+export const __UploadPhoto = async (profileId, url) => {
     try {
-        let userId = 1
-        let updatePhoto = { picture: url }
-        console.log(updatePhoto)
-        const res = await ApiClient.put(`/users/update/${userId}`, updatePhoto)
+        let updatePhoto = { profilePicture: url }
+        const res = await ApiClient.put(`/profile/update/${profileId}`, updatePhoto)
         return res.config.data
     } catch (error) {
         throw error
@@ -15,10 +13,10 @@ export const __UploadPhoto = async (url) => {
 
 // to display image on the screen
 
-export const __LoadImages = async () => {
+export const __LoadImages = async (profileId) => {
     try {
-        let userId = 1
-        const res = await ApiClient.get(`users/read/${userId}`)
+
+        const res = await ApiClient.get(`profile/read/${profileId}`)
         console.log('after res: ', res.data.picture)
         return res.data.picture
     } catch (error) {
