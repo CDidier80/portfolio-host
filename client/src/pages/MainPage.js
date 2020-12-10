@@ -109,10 +109,13 @@ const MainPage = (props) => {
       console.log("LOG --> FILE: MainPage.js, Function: useEffect --> function reached.")
       const populateMainPage = async () => {
         const profilesResponse = await ReadAllProfiles( {limit : profileLimit} ) // // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-        // const projectsResponse = await GetAllProjects({limit : profileLimit}) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+        const projectsResponse = await GetAllProjects({limit : profileLimit}) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
         const profilesToAdd = profilesResponse
+        
         console.log("Profiles response: ", profilesToAdd)
-        const projectsToAdd = projectsResponse.data
+        
+        const projectsToAdd = projectsResponse
+        console.log("Projects response: ", projectsToAdd)
         setProfiles(profilesToAdd)
         setProjects(projectsToAdd)
 
