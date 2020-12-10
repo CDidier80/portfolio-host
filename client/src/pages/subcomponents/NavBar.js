@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const NavBar = (props) => {
-  
+  console.log("LOG: NAVBAR PROPS: ", props)
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -33,43 +33,45 @@ const NavBar = (props) => {
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null)
   };
 
+  const logOut = () => {
+    setAnchorEl(null)
+    props.setAuth(false)
+    localStorage.clear()
+  }
+  
   return (
     <div>
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-            {props.authenticated ? 
-            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                <Link to="/portfolio">
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                </Link>
-                <Link to="/main">
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                </Link>
-                <Link to="/">
-                  <MenuItem onClick={handleClose}>Home</MenuItem>
-                </Link>
-            </Menu>
-            : 
-            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                <Link to="/signin">
-                    <MenuItem onClick={handleClose}>Login</MenuItem>
-                </Link>
-                <Link to="/signin">
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                </Link>
-                <Link to="/portfolio">
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                </Link>
-                <Link to="/">
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                </Link>
-            </Menu>
-            }
+              <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+
+                  {props.authenticated &&
+                    <Link to={"/"}> 
+                        <MenuItem onClick={()=>logOut()}>Sign Out</MenuItem>
+                    </Link> 
+                  }
+                  {props.authenticated &&
+                    <Link to="/settings">
+                        <MenuItem onClick={handleClose}>Account Settings</MenuItem>
+                    </Link>
+                  }
+                  {props.authenticated &&
+                    <Link to="/portfolio">
+                        <MenuItem onClick={handleClose}>Your Portfolio</MenuItem>
+                    </Link>
+                  }
+                  {!props.authenticated &&
+                    <Link to="/signin">
+                        <MenuItem onClick={handleClose}>Sign In</MenuItem>
+                    </Link>
+                  }
+
+              </Menu>
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
           </Toolbar>
