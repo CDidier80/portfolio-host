@@ -22,7 +22,7 @@ import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 import NavBar from './subcomponents/NavBar';
 
 const logs = [
-  "LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.", 
+  "LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.",
   "User entered email and password: ",
   "Error thrown in SignInSignUpPage.js at handleLogin(): ",
   "User clicked sign up button.",
@@ -80,7 +80,7 @@ const SignInSignUpPage = (props) => {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   {/* <-------------- toggle authentication */ }
-  
+
 
   {/* useEffect() for loading screen */ }
   useEffect(() => {
@@ -131,27 +131,27 @@ const SignInSignUpPage = (props) => {
     e.preventDefault()
     console.log(logs[3])
     try {
-        const response = await CreateUser({ email, password, name })
-        console.log(logs[4], response)
-        console.log(response.message)
-        if (Object.keys(response).length !== 1) {
-          console.log(logs[5], response)
-          // setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
-          // setAuth(true)
-          // toggleProfileForm(true)
-          // setEmail("")
-          const update = (setFirstTimeUser, setAuth, toggleProfileForm, setEmail) => {
-            setFirstTimeUser(true)
-            setAuth(true)
-            toggleProfileForm(true)
-            return setEmail("")
-          }
-          await update(setFirstTimeUser, props.setAuth, toggleProfileForm, setEmail)
-          console.log("email reached")
-      } else {  
-          console.log(logs[6])
-          console.log(logs[7], response)
-      } 
+      const response = await CreateUser({ email, password, name })
+      console.log(logs[4], response)
+      console.log(response.message)
+      if (Object.keys(response).length !== 1) {
+        console.log(logs[5], response)
+        // setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
+        // setAuth(true)
+        // toggleProfileForm(true)
+        // setEmail("")
+        const update = (setFirstTimeUser, setAuth, toggleProfileForm, setEmail) => {
+          setFirstTimeUser(true)
+          setAuth(true)
+          toggleProfileForm(true)
+          return setEmail("")
+        }
+        await update(setFirstTimeUser, props.setAuth, toggleProfileForm, setEmail)
+        console.log("email reached")
+      } else {
+        console.log(logs[6])
+        console.log(logs[7], response)
+      }
 
     } catch (error) {
       console.log(logs[8], error)
@@ -162,9 +162,8 @@ const SignInSignUpPage = (props) => {
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div>
-      <NavBar {...props} />
       {!showProfileForm ?
-        <div style={{marginTop:"25px"}}>
+        <div>
           <Link to="/">
             <Button color="#fce4ec" onClick={() => props.history.push("/")}>Back</Button>
           </Link>
