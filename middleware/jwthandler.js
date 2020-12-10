@@ -17,7 +17,6 @@ try {
 
 }
 
-
 // The below two functions are called only once by UserRouter.js in it's refresh-session get request
 // To refresh the session, we must 1) get the token, 2) verify the token, and 3 refresh the session
 // In UserRouter.js code: Router.get('/UserControllerJs/refresh/session/', getToken, verifyToken, UserController.RefreshSession)
@@ -44,8 +43,6 @@ const verifyToken = (req,res,next) => {
     }})
     return next() // move on to RefreshSession() in UserController.js
 }
-
-
 
 module.exports = {
     createToken, 

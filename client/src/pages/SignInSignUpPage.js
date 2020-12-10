@@ -107,9 +107,10 @@ const SignInSignUpPage = (props) => {
       console.log("User entered email and password: ", email, password)
        const response = await LogInUser({ email, password })
 
-      setAuth(true, () => props.history.push('/main')
+      setAuth(true)
+    // () => props.history.push('/main'
 
-      )
+    //   )
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
     }
