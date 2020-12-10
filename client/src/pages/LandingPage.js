@@ -34,7 +34,7 @@ const LandingPage = (props) => {
           if (!pageLoaded) {
             setLoaded(true)
           }
-        },[pageLoaded]
+        }
     ) 
 
     const mainStyles = {
@@ -83,22 +83,19 @@ const LandingPage = (props) => {
     loginButton: {
       minWidth: "200x",
       height: "40px",
-      fontSize: "14px"
+      fontSize: "14px",
+      marginRight: "15px"
     },
 
     portButton: {
       minWidth: "200x",
       height: "40px",
       fontSize: "14px",
+      marginLeft: "15px"
     },
 
 
-    submitTestButton: {
-      height: "80px",
-      width: "80px",
-      color: "propsck",
-      backgroundColor: "white"
-    }
+
 
   }
     

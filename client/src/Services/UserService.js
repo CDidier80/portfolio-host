@@ -31,7 +31,7 @@ export const LogInUser = async (payload) =>  {
 export const CreateUser = async (payload) =>  {
     try {
         const response = await ApiClient.post(`users/create`, payload)
-        return response.data
+        return response
     } catch (error) {
         console.log(error)
     }

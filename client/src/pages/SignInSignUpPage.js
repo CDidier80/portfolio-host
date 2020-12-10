@@ -58,22 +58,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignInSignUpPage = (props) => {
-
+  // const {authenticated} = props
   {/* Variables */ }
   let messageOne = "Sign In", messageTwo = "Sign Up"
   let promptOne = "Don't have an account? Sign up", promptTwo = "Already have an account? Sign in"
 
   {/* Hooks */ }
-  const classes = useStyles();
   const [pageLoaded, setLoaded] = useState(true)
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
+
 
   {/* <--------------manual toggle profile/login form */ }
   const [showProfileForm, toggleProfileForm] = useState(false)
 
   {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */ }
   const [firstTimeUser, setFirstTimeUser] = useState(false)
+
+  // const [userFormInfo, updateUserFormInfo] = useState({auth: authenticated, firstTimeUser: false, showProfileForm: false  })
 
   {/* <-------------- hooks for User Sign-in and Sign-up Payloads */ }
   const [name, setName] = useState("")
@@ -88,12 +90,10 @@ const SignInSignUpPage = (props) => {
     if (!pageLoaded) {
       setLoaded(true)
     }
-  },
-    [pageLoaded]
+  }, []
   )
-
+ const classes = useStyles();
   {/* EVENT HANDLERS */ }
-
 
   const togglemessage = (e) => {
     e.preventDefault()
@@ -131,66 +131,73 @@ const SignInSignUpPage = (props) => {
     e.preventDefault()
     console.log(logs[3])
     try {
-      const response = await CreateUser({ email, password, name })
-      console.log(logs[4], response)
-      console.log(response.message)
-      if (Object.keys(response).length !== 1) {
-        console.log(logs[5], response)
-        // setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
-        // setAuth(true)
-        // toggleProfileForm(true)
-        // setEmail("")
-        const update = (setFirstTimeUser, setAuth, toggleProfileForm, setEmail) => {
-          setFirstTimeUser(true)
-          setAuth(true)
-          toggleProfileForm(true)
-          return setEmail("")
+        const response = await CreateUser({ email, password, name })
+        console.log(logs[4], response)
+        console.log(response.message)
+          // toggleProfileForm(true)
+        if (response.status === 200){
+          console.log(logs[5], response)
+          togglemessage(e)
         }
-        await update(setFirstTimeUser, props.setAuth, toggleProfileForm, setEmail)
-        console.log("email reached")
-      } else {
-        console.log(logs[6])
-        console.log(logs[7], response)
-      }
+            // updateUserFormInfo(auth: true, firstTimeUser: true,  toggleProfileForm: )
+            
+  //  else {
+  //         console.log(logs[6])
+  //         console.log(logs[7], response)
 
+
+  //  }|
     } catch (error) {
       console.log(logs[8], error)
     }
   }
 
+
+  // const moveToProfileForm = function(setAuth, setFirstTimeUsersetEmailtoggleProfileForm) {
+  //   setAuth(true)
+  //   setFirstTimeUser(true)
+  //   setEmail("")
+  //   toggleProfileForm(true)
+  // }
+
+
+
+
+
   const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div>
-      {!showProfileForm ?
-        <div>
-          <Link to="/">
-            <Button color="#fce4ec" onClick={() => props.history.push("/")}>Back</Button>
-          </Link>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-              <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
-              <Typography component="h1" variant="h5">{message}</Typography>
-              <form className={classes.form} noValidate>
+        <NavBar {...props} />
+        {!showProfileForm ?
+        <div style={{marginTop:"25px"}}>
+            <Link to="/">
+              <Button color="#fce4ec" onClick={() => props.history.push("/")}>Back</Button>
+            </Link>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
+                    <Typography component="h1" variant="h5">{message}</Typography>
+                    <form className={classes.form} noValidate>
+                        {message === "Sign Up" ? <TextField onChange={(e) => updateTexfield(e, setName)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
+                        <TextField onChange={(e) => updateTexfield(e, setEmail)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email} autoComplete="email" autoFocus />
+                        <TextField onChange={(e) => updateTexfield(e, setPassword)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password} autoComplete="current-password" />
+                        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={(e) => buttonEventHandler(e)}>{message}</Button>
+                        <Grid container>
+                            <Grid item xs>
+                                <Link href="#" variant="body2"> Forgot password? </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link to="#" variant="body2" onClick={(e) => togglemessage(e)}>{prompt}</Link>
+                            </Grid>
+                        </Grid>
+                    </form>
+              </div>
+              {/* <Box mt={8}> </Box> */}
+              </Container>
 
-                {message === "Sign Up" ? <TextField onChange={(e) => updateTexfield(e, setName)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
-                <TextField onChange={(e) => updateTexfield(e, setEmail)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email} autoComplete="email" autoFocus />
-                <TextField onChange={(e) => updateTexfield(e, setPassword)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password} autoComplete="current-password" />
-                <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={(e) => buttonEventHandler(e)}>{message}</Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2"> Forgot password? </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link to="#" variant="body2" onClick={(e) => togglemessage(e)}>{prompt}</Link>
-                  </Grid>
-                </Grid>
-              </form>
-            </div>
-            <Box mt={8}> </Box>
-          </Container>
         </div>
         :
         <ProfileForm {...props} firstTimeUser={firstTimeUser} />
