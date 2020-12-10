@@ -90,6 +90,21 @@ const LogInUser = async (req, res) => {
                 email: email
             }
         })
+
+        if (Profile.Rows === undefined) {
+            if (
+                user &&
+                (await checkPassword(req.body.password, user.password_digest))
+            ) {
+                const payload = {
+                    _id: user._id,
+                    name: user.name,
+                }
+                let token = createToken(payload)
+                return res.send({ user, token })
+            }
+            res.status(401).send({ msg: 'Unauthorized' })
+        }
         let { id } = user.dataValues
         const profile = await Profile.findOne({ userId: id })
 
@@ -104,7 +119,7 @@ const LogInUser = async (req, res) => {
                 ...profile.dataValues
             }
             let token = createToken(payload)
-        
+
             return res.send({ user, token })
         }
         res.status(401).send({ msg: 'Unauthorized' })
