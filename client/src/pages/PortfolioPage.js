@@ -153,14 +153,19 @@ const PortfolioPage = (props) => {
     setShowPopUp((!showPopUp))
     setUpdateOrCreate(formType)
   }
+
+  setProfileImage("https://image.flaticon.com/icons/png/512/23/23228.png")
+
   const goCloudinary = (e) => {
     console.log("functionreach")
     toggleWidgetVisibility(!isWidgetOpen)
   }
-  const deleteDefaultImg = (e) => {
-    console.log("image changed", "image")
-    setProfileImage(!seeDefaultImage)
-  }
+
+  // const deleteDefaultImg =(e) => {
+  //   console.log("image changed", "image")
+  //   setProfileImage(!seeDefaultImage)
+  // }
+
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
       <NavBar {...props} />
@@ -169,7 +174,7 @@ const PortfolioPage = (props) => {
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
           <img className={classes.profImage} onClick={(e) => goCloudinary()} placeholder="upload image"
-            src="https://image.flaticon.com/icons/png/512/23/23228.png" alt="default profile image" />
+            alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
             {/* <h2>{name}</h2>

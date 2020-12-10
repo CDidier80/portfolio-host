@@ -55,6 +55,7 @@ const UpdateProfile = async (req, res) => {
 // method to get all the profiles based on the limits set by user
 const ReadAllProfiles = async (req, res) => {
     log(ReadAllProfiles, req, show)
+    console.log(Profile.row)
     if (Profile.Rows === undefined) {
         res.send(false)
     }
