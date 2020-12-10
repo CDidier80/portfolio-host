@@ -10,6 +10,12 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../../Services/ProfileService'
 
+const logs = [
+"User Payload upon submit form click: ", 
+"LOG: At form submit Profile Form identifies first time user as: ",
+"LOG:-->  FILE: PorfileForm.js  FUNCTION: submitForm() --> API response: ",
+"LOG --> FILE: PortfolioPage.js, Function: submitForm() --> function reached."
+]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,16 +61,16 @@ const ProfileForm = (props) => {
             locale : locale, 
             bio : bio, 
         }
-        console.log("User Payload upon submit form click: ", payload)
+        console.log(logs[0], payload)
         const profileFunction = props.firstTimeUser ? CreateProfile : UpdateProfile
-        console.log("LOG: At form submit Profile Form identifies first time user as: ", props.firstTimeUser)
+        console.log(logs[1], props.firstTimeUser)
 
-        const profileSubmissionResult = await profileFunction(payload)
+        const profileResponse = await profileFunction(payload)
+        console.log(logs[2], profileResponse)
+        console.log(logs[3])
 
-        console.log("LOG:-->  FILE: PorfileForm.js  FUNCTION: submitForm() --> API response:", profileSubmissionResult)
-        // do something with profileSubmissionResult if needed
-        console.log("LOG --> FILE: PortfolioPage.js, Function: submitForm() --> function reached.")
-        props.history.push({pathname: "/portfolio", state:  {profile: profileSubmissionResult, usersOwnProfile: true}})
+        profileResponse.message !== "account already exists" && props.history.push({pathname: "/portfolio", state:  {profile: profileResponse, usersOwnProfile: true}})
+        return
     }
 
     const updateTextField = (e, updateFunction) => {
