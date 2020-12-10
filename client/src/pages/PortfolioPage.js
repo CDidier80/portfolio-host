@@ -17,7 +17,6 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Paper from '@material-ui/core/Paper';
 import NavBar from './subcomponents/NavBar'
 import CloudinaryWidget from './subcomponents/CloudinaryWidget'
-
 const useStyles = makeStyles((theme) => ({
   // card profile not material
   cardProfile: {
@@ -63,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     boxShadow: "0 0 2px black"
   },
-
   image: {
     width: 200,
     height: 170,
@@ -122,17 +120,13 @@ const useStyles = makeStyles((theme) => ({
     },
   }
 }));
-
 const PortfolioPage = (props) => {
   console.log("props", props)
   console.log("props.history: ", props.history)
   console.log("props.history.location: ", props.history.location)
   // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
-
-
   {/* Variables */ }
   const classes = useStyles();
-
   {/* Hooks */ }
   {/* <--------------profile allows editing priveledges when user views their own profile */ }
   // const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
@@ -142,9 +136,9 @@ const PortfolioPage = (props) => {
   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
   const [isWidgetOpen, toggleWidgetVisibility] = useState(false)
+  const [seeDefaultImage, setProfileImage] = useState(true)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
-
   {/* useEffect() for loading screen */ }
   useEffect(() => {
     console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
@@ -154,19 +148,19 @@ const PortfolioPage = (props) => {
   },
     [pageLoaded]
   )
-
   {/* Event Handlers */ }
-
   const openPopUp = (e, formType) => {
     setShowPopUp((!showPopUp))
     setUpdateOrCreate(formType)
   }
-
   const goCloudinary = (e) => {
     console.log("functionreach")
     toggleWidgetVisibility(!isWidgetOpen)
   }
-
+  const deleteDefaultImg = (e) => {
+    console.log("image changed", "image")
+    setProfileImage(!seeDefaultImage)
+  }
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
       <NavBar {...props} />
@@ -175,28 +169,26 @@ const PortfolioPage = (props) => {
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
           <img className={classes.profImage} onClick={(e) => goCloudinary()} placeholder="upload image"
-            src="https://image.flaticon.com/icons/png/512/23/23228.png" alt="" />
+            src="https://image.flaticon.com/icons/png/512/23/23228.png" alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
-              {/* <h2>{name}</h2>
+            {/* <h2>{name}</h2>
                 <h3>{locale}</h3>
                 <h3>{professionalTitle}</h3>
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
                 <p>{skills}</p> */}
-              <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
+            <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
           </div>
         </div>
       </div>
-
       {/* projects */}
       <div className={classes.projectWrapper}>
         <h3> Projects: </h3>
-          <div className={classes.addProject}>
-            <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small"  onClick={(e) => openPopUp(e, "CreateProject")}> add project </Button>
-            {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
-          </div>
-        
+        <div className={classes.addProject}>
+          <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "CreateProject")}> add project </Button>
+          {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
+        </div>
         <div className="project1">
           {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
@@ -209,36 +201,35 @@ const PortfolioPage = (props) => {
                 <Grid item>
                   <ButtonBase className={classes.image}> upload image
                     <CloudinaryWidget />
-
                   </ButtonBase>
                 </Grid>
                 <Grid item xs={6} sm container>
                   <Grid item xs container direction="column" spacing={4}>
                     <Grid item xs>
                       <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
-                        Compliment your day
+                        Name: {props.location.state}
                       </Typography>
                       <Typography gutterBottom variant="subtitle1">
-                        Times are rough, so check out my simple compliment app, built in my 15 minute challenge
+                        Title project: {props.location.state}
                       </Typography>
                       <Typography variant="body2" gutterBottom>
-                        React
+                        Description: {props.location.state}
                       </Typography>
                       <Typography variant="body2" >
-                        Technologies: React, Javascript, Phyton, MongoDb
+                        Technologies: {props.location.state}
                       </Typography>
                     </Grid>
                     <Grid item>
                       <Link to="portfolio">
                         <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
-                          https://www.linkedin.com/in/collin-didier/detail/recent-activity/shares/
+                          Link to project: {props.location.state}
                         </Typography>
                       </Link>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-              <Button className={classes.updateBtn} variant="outlined" color="primary" size="small"  onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
+              <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
               {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} updateOrCreate={updateOrCreate} />}
             </Paper>
           </div>
@@ -248,46 +239,4 @@ const PortfolioPage = (props) => {
     </div>
   )
 }
-
 export default PortfolioPage
-
-  // < div className = { classes.portfolioDetails } >
-  //         <form>
-  //       <h2> name: </h2>
-  //       <h3> Chicago, Il.</h3>
-  //       <h3> FullStack Developer</h3>
-  //       <h3> Organization: Collin and Co. Ltd. </h3>
-  //       <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
-  //       <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
-  //         </form>
-  //         <Button className="submit-Bio" variant="outlined" color="primary"> submit </Button>
-
-  //       </div >
-
-//make each section a min. of 100vh page sections
-//make link to 
-
-//   < img className = { classes.profilePict }
-// src = " https://media-exp1.licdn.com/dsWidgetOpenmage/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
-// alt = "profisWidgetOpenmage" />
-//           <h1>Collien Didier</h1>
-//           <p className="title"> CEO and Founder of Collin and Co. </p>
-//           <p>General Assembly</p>
-//           <a href="#"> GitHub </a>
-//           <p><button>Contact</button></p>
-
-//page will show:
-// PROFILES
-// profilePicture: 
-// professionalTitle: 
-// organization: 
-// skills
-// locale
-// bio
-
-// PROJECT:
-// title: 
-// description: 
-// technologies: 
-// projectPicture: 
-// deployLink: 
