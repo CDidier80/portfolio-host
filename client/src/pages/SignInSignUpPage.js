@@ -114,15 +114,13 @@ const SignInSignUpPage = (props) => {
     e.preventDefault()
     try {
       console.log(logs[1], email, password)
+
       const response = await LogInUser({ email, password })
       if (response) {
         setAuth(true)
         props.history.push('/main')
       }
-      else {
-        console.log('wrong email')
-      }
-
+      console.log('wrong password')
     } catch (error) {
       console.log(logs[2], error)
     }
@@ -132,6 +130,7 @@ const SignInSignUpPage = (props) => {
     e.preventDefault()
     console.log(logs[3])
     try {
+
         const response = await CreateUser({ email, password, name })
         console.log(logs[4], response)
         console.log(response.message)
@@ -153,6 +152,7 @@ const SignInSignUpPage = (props) => {
           console.log(logs[6])
           console.log(logs[7], response)
       } 
+
     } catch (error) {
       console.log(logs[8], error)
     }
