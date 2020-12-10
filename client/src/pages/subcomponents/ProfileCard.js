@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { Link, NavLink } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 
 const useStyles = makeStyles((theme) => ({

@@ -133,10 +133,6 @@ const SignInSignUpPage = (props) => {
       } else {  
           console.log("failed to create account, but no error was thrown")
           console.log("response: ", response)
-      } else {
-        console.log("failed to create account, but no error was thrown")
-        console.log("response: ", response)
-
       }
 
     } catch (error) {

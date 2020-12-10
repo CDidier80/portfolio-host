@@ -63,8 +63,7 @@ const App = (props) => {
               <Route path="/portfolio" component={ (props) =>  <PortfolioPage    {...props}  />  }/>
               <Route path="/signin"    component={ (props) =>  <SignInSignUpPage {...props}  />  }/>             
               <Route path="/settings"  component={ (props) =>  <SettingsPage     {...props}  />  }/>
-              <Route path="/profileform"       component={ (props) =>  <ProfileForm          {...props}  />  }/>
-              {/* <Route path="/service"   component={(props) =>  <Mothership       {...props}  />  }/> */} 
+              <Route path="/profileform"       component={ (props) =>  <ProfileForm          {...props}  />  }/>              
           </Switch>
         }
       </main>
