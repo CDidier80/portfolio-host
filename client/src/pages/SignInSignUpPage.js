@@ -102,16 +102,12 @@ const SignInSignUpPage = (props) => {
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
-      console.log("User entered email and password: ", email, password)
       const response = await LogInUser({ email, password })
       if (response) {
         setAuth(true)
         props.history.push('/main')
       }
-      else {
-        console.log('wrong email')
-      }
-
+      console.log('wrong password')
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
     }
@@ -130,12 +126,12 @@ const SignInSignUpPage = (props) => {
         setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
         setAuth(true)
         toggleProfileForm(true)
-      } else {  
-          console.log("failed to create account, but no error was thrown")
-          console.log("response: ", response)
       } else {
         console.log("failed to create account, but no error was thrown")
         console.log("response: ", response)
+        // } else {
+        //   console.log("failed to create account, but no error was thrown")
+        //   console.log("response: ", response)
 
       }
 

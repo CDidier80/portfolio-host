@@ -16,6 +16,7 @@ import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Paper from '@material-ui/core/Paper';
 import NavBar from './subcomponents/NavBar'
+import CloudinaryWidget from './subcomponents/CloudinaryWidget'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -203,8 +204,7 @@ const PortfolioPage = (props) => {
               <Grid container spacing={2}>
                 <Grid item>
                   <ButtonBase className={classes.image}>
-                    <img className={classes.img} alt="complex"
-                      src="https://dg.imgix.net/do-you-think-you-re-happy-jgdbfiey-en/landscape/do-you-think-you-re-happy-jgdbfiey-9bb0198eeccd0a3c3c13aed064e2e2b3.jpg?ts=1520525855&ixlib=rails-4.1.0&auto=format%2Ccompress&fit=min&w=700&h=394&dpr=2&ch=Width%2CDPR" />
+                    <CloudinaryWidget />
                   </ButtonBase>
                 </Grid>
                 <Grid item xs={6} sm container>

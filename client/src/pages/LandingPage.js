@@ -16,7 +16,7 @@ import NavBar from './subcomponents/NavBar'
 const LandingPage = (props) => {
 
     {/* Variables */}
-    const classes = useStyles();
+    // const classes = useStyles();
 
 
     {/* Hooks */}
