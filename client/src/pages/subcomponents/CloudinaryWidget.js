@@ -1,8 +1,11 @@
+import React from 'react';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { __UploadPhoto, __LoadImages } from "../../Services/CloudinaryService"
 
-import { __UploadPhoto, __LoadImages} from "../../Services/CloudinaryService"
 
 const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME
 const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET
+
 
 const CloudinaryWidget = props => {
     const { userId, projectOrProfilePic } = props
@@ -33,11 +36,19 @@ const CloudinaryWidget = props => {
     const updateRender = async () => {
         await props.setImages()
     }
+    widget.open()
 
     return (
         <div className="uploader">
             <div className="uploader">
-                <button className="btn indigo darken-3" onClick={() => widget.open()}><i className="material-icons left">cloud_upload</i>Upload file</button>
+                
+                {/* <Button
+                    variant="contained"
+                    color="default"
+                    className={classes.button}
+                    startIcon={<CloudUploadIcon />}
+                    onClick={() => widget.open()}
+                /> */}
             </div>
         </div>
     )

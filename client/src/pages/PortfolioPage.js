@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     paddingLeft: "30px"
   },
+  addProjBtn: {
+    marginBottom: "12px"
+  },
   title: {
     flexGrow: 1,
   },
@@ -60,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     boxShadow: "0 0 2px black"
   },
+
   image: {
     width: 200,
     height: 170,
@@ -71,6 +75,9 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '100%',
     borderRadius: "5px",
     boxShadow: "0 0 2px black"
+  },
+  updateBioBtn: {
+    marginLeft: "400px"
   },
   textGreeting: {
     display: "block",
@@ -175,32 +182,29 @@ const PortfolioPage = (props) => {
       {isWidgetOpen ? <CloudinaryWidget /> : null}
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
-          <img className={classes.profImage} onClick={(e) => goCloudinary()} sWidgetOpenmage button Luis
-            src="https://media-exp1.licdn.com/dsWidgetOpenmage/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
+          <img className={classes.profImage} onClick={(e) => goCloudinary()} placeholder="upload image"
+            src="https://image.flaticon.com/icons/png/512/23/23228.png" alt="" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
-            <div>
               {/* <h2>{name}</h2>
                 <h3>{locale}</h3>
                 <h3>{professionalTitle}</h3>
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
                 <p>{skills}</p> */}
-            </div>
-            <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
+              <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
           </div>
         </div>
       </div>
 
       {/* projects */}
       <div className={classes.projectWrapper}>
-        <h3>
-          Projects:
+        <h3> Projects: </h3>
           <div className={classes.addProject}>
-            <button className={classes.addProjBtn} onClick={(e) => openPopUp(e, "CreateProject")}> add project </button>
+            <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small"  onClick={(e) => openPopUp(e, "CreateProject")}> add project </Button>
             {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
           </div>
-        </h3>
+        
         <div className="project1">
           {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
@@ -211,7 +215,7 @@ const PortfolioPage = (props) => {
             <Paper style={{ Width: "50%" }} className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
-                  <ButtonBase className={classes.image}>
+                  <ButtonBase className={classes.image}> upload image
                     <CloudinaryWidget />
                   </ButtonBase>
                 </Grid>
@@ -241,7 +245,7 @@ const PortfolioPage = (props) => {
                   </Grid>
                 </Grid>
               </Grid>
-              <button className={classes.updateBtn} onClick={(e) => openPopUp(e, "UpdateProject")}> update </button>
+              <Button className={classes.updateBtn} variant="outlined" color="primary" size="small"  onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
               {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} updateOrCreate={updateOrCreate} />}
             </Paper>
           </div>
