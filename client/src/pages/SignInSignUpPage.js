@@ -68,14 +68,8 @@ const SignInSignUpPage = (props) => {
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
 
-
-  {/* <--------------manual toggle profile/login form */ }
-  const [showProfileForm, toggleProfileForm] = useState(false)
-
   {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */ }
-  const [firstTimeUser, setFirstTimeUser] = useState(false)
 
-  // const [userFormInfo, updateUserFormInfo] = useState({auth: authenticated, firstTimeUser: false, showProfileForm: false  })
 
   {/* <-------------- hooks for User Sign-in and Sign-up Payloads */ }
   const [name, setName] = useState("")
@@ -153,14 +147,6 @@ const SignInSignUpPage = (props) => {
   }
 
 
-  // const moveToProfileForm = function(setAuth, setFirstTimeUsersetEmailtoggleProfileForm) {
-  //   setAuth(true)
-  //   setFirstTimeUser(true)
-  //   setEmail("")
-  //   toggleProfileForm(true)
-  // }
-
-
 
 
 
@@ -169,7 +155,6 @@ const SignInSignUpPage = (props) => {
   return (!pageLoaded ? <LoadingScreen /> :
     <div>
         <NavBar {...props} />
-        {!showProfileForm ?
         <div style={{marginTop:"25px"}}>
             <Link to="/">
               <Button color="#fce4ec" onClick={() => props.history.push("/")}>Back</Button>
@@ -197,11 +182,8 @@ const SignInSignUpPage = (props) => {
               </div>
               {/* <Box mt={8}> </Box> */}
               </Container>
-
         </div>
-        :
-        <ProfileForm {...props} firstTimeUser={firstTimeUser} />
-      }
+
     </div>
 
   )
