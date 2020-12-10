@@ -16,7 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
-// import ProjectForm from '../pages/subcomponents/ProjectForm'
+import ProjectForm from '../pages/subcomponents/ProjectForm'
 import PopUpModalProject from '../pages/subcomponents/PopUpModalProject'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
@@ -184,7 +184,7 @@ const PortfolioPage = (props) => {
   <p> {skills}</p>
           </div>
           <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
-
+          </Link>
         </div>
       </div>
 

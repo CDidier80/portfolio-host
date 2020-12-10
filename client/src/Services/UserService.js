@@ -10,7 +10,7 @@ import ApiClient from "./ApiClient"
 // 6) FILE: jwthandler.js,      FUNCTION: CreateToken(),   PURPOSE: Use secret key in .env to get token, add to payload, and send response -->
 // 7) FILE: UserService.js,     FUNCTION: LogInUser(),     PURPOSE: Receive response, place token in local storage, and return to client -->
 // 8) React function receives response and indicates an "authenticated" state for the session -->
-export const LogInUser = async (payload, params) =>  {
+export const LogInUser = async (payload) =>  {
     try {
         const response = await ApiClient.post(`users/login`, payload)
         localStorage.setItem('token', response.data.token)

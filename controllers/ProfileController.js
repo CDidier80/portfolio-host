@@ -1,4 +1,4 @@
-const { User, Profile } = require('../models')
+const { User, Profile, sequelize } = require('../models')
 // const { Op, literal, fn, col } = require('sequelize')
 const  { ControllerLoggers }  = require('../Helpers')
 const log = ControllerLoggers.ProfileControllerLog, errorLog = ControllerLoggers.ProfileControllerErrorLog
@@ -50,13 +50,20 @@ const UpdateProfile = async (req, res) => {
 // method to get all the profiles based on the limits set by user
 const ReadAllProfiles = async (req, res) => {
     log(ReadAllProfiles, req, show)
+    const user = await User.find
     try {
         // limit brought by front end
         const { limit } = req.body
         // if needed to parse into int
         // limit = parseInt(limit)
         const allProfiles = await Profile.findAll({
-            limit: limit
+            limit: limit,
+            include: [
+                {
+                    model: User,
+                    as: 'user'
+                }
+            ]
         })
         console.log(allProfiles)
         res.send(allProfiles)
