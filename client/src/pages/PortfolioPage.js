@@ -16,7 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
-// import ProjectForm from '../pages/subcomponents/ProjectForm'
+import ProjectForm from '../pages/subcomponents/ProjectForm'
 import PopUpModalProject from '../pages/subcomponents/PopUpModalProject'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
@@ -175,15 +175,16 @@ const PortfolioPage = (props) => {
         </div>
         <div className={classes.portfolioDetails}>
           <form>
-            <h2> name: </h2>
-            <h3> Chicago, Il.</h3>
-            <h3> FullStack Developer</h3>
-            <h3> Organization: Collin and Co. Ltd. </h3>
-            <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
-            <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
+            <h2> name:  </h2>
+            <h3> Location:</h3>
+            <h3> professional title: </h3>
+            <h3> Organization: </h3>
+            <h4> Bio: </h4>
+            <p> Skills: </p>
           </form>
+          <Link to="/profileform">
           <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
-
+          </Link>
         </div>
       </div>
 
