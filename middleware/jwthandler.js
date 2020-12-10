@@ -27,10 +27,10 @@ const getToken = (req, res, next) => {
     // the bearer-token is found in our req.headers (all requests have headers, some default others added by you)
     // The key is "authorization". All together it looks like {authorization: "bearer lakdjglkajdsklglk4"}
     // The below split separates the word "bearer" into a separate string from token "alksndgoiu137q6skxjfhsg" 
-    const token = req.headers['authorization'].split(' ')[1]  // separate them at the space
+    const token = req.headers.authorization.split(' ')[1]  // separate them at the space
     // example "Bearer 87nfkajhjhgd76947dt928"  --- >   "Bearer"   "87nfkajhjhgd76947dt928"
     // Store the token as a new key:value pair in res.locals
-    res.locals.token = token // locals exist along the back-end routes within .res - > response sent. 
+    token ? (res.locals.token = token) : (res.locals.token = null) // locals exist along the back-end routes within .res - > response sent. 
     next() // move on to verify token
 }
 

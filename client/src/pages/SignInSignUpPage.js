@@ -101,16 +101,17 @@ const SignInSignUpPage = (props) => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    // console.log("User clicked login button.")
     try {
-
       console.log("User entered email and password: ", email, password)
-       const response = await LogInUser({ email, password })
+      const response = await LogInUser({ email, password })
+      if (response) {
+        setAuth(true)
+        props.history.push('/main')
+      }
+      else {
+        console.log('wrong email')
+      }
 
-      setAuth(true)
-    // () => props.history.push('/main'
-
-    //   )
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
     }
@@ -132,6 +133,10 @@ const SignInSignUpPage = (props) => {
       } else {  
           console.log("failed to create account, but no error was thrown")
           console.log("response: ", response)
+      } else {
+        console.log("failed to create account, but no error was thrown")
+        console.log("response: ", response)
+
       }
 
     } catch (error) {

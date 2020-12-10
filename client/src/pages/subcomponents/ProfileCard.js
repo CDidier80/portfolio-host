@@ -5,6 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +32,10 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0 0 2px black"
   }
 }));
+
+
+
+
 
 const ProfileCard = (props) => {
   let profile = props.profile

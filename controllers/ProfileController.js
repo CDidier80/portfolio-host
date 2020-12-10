@@ -50,12 +50,12 @@ const UpdateProfile = async (req, res) => {
 // method to get all the profiles based on the limits set by user
 const ReadAllProfiles = async (req, res) => {
     log(ReadAllProfiles, req, show)
-    const user = await User.find
     try {
         // limit brought by front end
         const { limit } = req.body
         // if needed to parse into int
         // limit = parseInt(limit)
+        // const limit = 1
         const allProfiles = await Profile.findAll({
             limit: limit,
             include: [
@@ -65,7 +65,6 @@ const ReadAllProfiles = async (req, res) => {
                 }
             ]
         })
-        console.log(allProfiles)
         res.send(allProfiles)
     } catch (error) {
         throw error 
