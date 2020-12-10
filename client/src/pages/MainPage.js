@@ -15,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ProfileCard from '../pages/subcomponents/ProfileCard'
+import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
 
 
@@ -147,7 +148,7 @@ const MainPage = (props) => {
   const handleClose = () => setAnchorEl(null)
 
 
-  return ( !pageLoaded ? :
+  return ( !pageLoaded ? <LoadingScreen /> :
     <div>
         {/* NAV BAR */}
         <div className={classes.root}>
