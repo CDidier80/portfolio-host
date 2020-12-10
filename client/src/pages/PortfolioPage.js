@@ -154,8 +154,10 @@ const PortfolioPage = (props) => {
       {/* profile page below */}
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
+          <a href="/"  > 
           <img className={classes.profImage}  ///image button Luis
             src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
+            </a>
         </div>
         <div className={classes.portfolioDetails}>
           <form>
