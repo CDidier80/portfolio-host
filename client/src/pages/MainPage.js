@@ -155,12 +155,16 @@ const MainPage = (props) => {
       <div>
           <NavBar {...props} />
           {/* start of profile box */}
+          {displayedProfiles ? (
           <div className={classes.profileCardWrapper} >
               {displayedProfiles.map((profile, index)=>(
                 <ProfileCard {...props} profile={profile}/>
               ))}
-
-          </div >
+        </div >
+            ) : 
+                (
+                <h3> no profiles yet </h3>
+                )}
       </div>
   )
 }
