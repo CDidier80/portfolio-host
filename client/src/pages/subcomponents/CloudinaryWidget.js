@@ -8,13 +8,7 @@ const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET
 
 
 const CloudinaryWidget = props => {
-<<<<<<< HEAD
-
-  
-
-=======
     console.log('inside widget', props)
->>>>>>> 96c458f8afcef343b886f41f320985e8dca01b2f
     const { userId, projectOrProfilePic } = props
   
     const oneOrMany = projectOrProfilePic === "Project" ? true : false
@@ -51,14 +45,6 @@ const CloudinaryWidget = props => {
     return (
         <div className="uploader">
             <div className="uploader">
-                
-                {/* <Button
-                    variant="contained"
-                    color="default"
-                    className={classes.button}
-                    startIcon={<CloudUploadIcon />}
-                    onClick={() => widget.open()}
-                /> */}
             </div>
         </div>
     )
