@@ -147,7 +147,7 @@ const PortfolioPage = (props) => {
                     <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
 
                       {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
-                      <Link to="/joined">
+                      <Link to="/signin">
                         <MenuItem onClick={handleClose}>Login</MenuItem>
                       </Link>
                       <Link to="/portfolio">
@@ -162,7 +162,7 @@ const PortfolioPage = (props) => {
                     </Menu>
                     <Typography variant="h6" className={classes.title}>DevPortal</Typography>
                     {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                    <Link to="/joined"></Link>
+                    <Link to="/signin"></Link>
                 </Toolbar>
             </AppBar>
         </div>
