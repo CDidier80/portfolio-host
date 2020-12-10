@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { __UploadPhoto, __LoadImages } from "../../Services/CloudinaryService"
 
@@ -8,6 +8,8 @@ const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET
 
 
 const CloudinaryWidget = props => {
+
+  
 
     const { userId, projectOrProfilePic } = props
   
@@ -30,16 +32,17 @@ const CloudinaryWidget = props => {
                 if (url) {
                     // take on two parameters, the user id and url of photo
                     await __UploadPhoto(userId, url)
-                    await updateRender()
+                    // await updateRender()
                 }
             }
             catch (err) { throw err }
         }
     }
-    const updateRender = async () => {
-        // console.log('inside the render function in widget', props)
-    }
-    widget.open()
+
+
+    useEffect(() => {
+        props.widgetOpen ? widget.open() : widget.close()
+    }, [props.widgetOpen]) 
 
     return (
         <div className="uploader">
