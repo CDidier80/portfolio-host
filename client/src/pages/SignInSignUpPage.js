@@ -106,7 +106,7 @@ const SignInSignUpPage = (props) => {
       console.log("User entered email and password: ", email, password)
       const response = await LogInUser({ email, password, password })
 
-      props.toggleAuthenticated(true, response.user, () => props.history.push('/portfolio')
+      setAuth(true, () => props.history.push('/main')
       )
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
@@ -118,8 +118,18 @@ const SignInSignUpPage = (props) => {
     console.log("User clicked sign up button.")
     try {
       const response = await CreateUser({ email, password, name })
-      setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
-      setAuth(true)
+      console.log(response)
+
+      if (response.id !== null) {
+        console.log("LOG: USER ACCOUNT CREATED SUCCESSFULLY")
+        console.log("response: ", response)
+        setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
+        setAuth(true)
+      } else {  
+          console.log("failed to create account, but no error was thrown")
+          console.log("response: ", response)
+      }
+
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
     }
