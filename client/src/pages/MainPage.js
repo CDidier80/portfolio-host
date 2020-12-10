@@ -192,7 +192,9 @@ const MainPage = (props) => {
 
           {/* start of profile box */}
           <div className={classes.profileCardWrapper} >
-              {}
+              {/* {displayedProfiles.map((profile, index)=>{
+
+              } */}
 
               <ProfileCard />
               <ProfileCard />
