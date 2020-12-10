@@ -19,7 +19,7 @@ const App = (props) => {
     const [authenticated, setAuth] = useState(false)
     const [user, setUser] = useState(null)
 
-    const [random, setRandom]= useState(false)
+    const [userInfo, setUserInfo]= useState(null)
   //   const verifyTokenValid = async () => {
   //     const token = localStorage.getItem('token')
   //     if (token) {
@@ -86,7 +86,7 @@ console.log("saveUser", props)
               <Route exact path="/"      component={ (props) =>  <LandingPage      {...props}  authenticated={authenticated} /> }/>
               <Route path="/main"        component={ (props) =>  <MainPage         {...props}  authenticated={authenticated} />  }/> 
               <Route path="/portfolio"   component={ (props) =>  <PortfolioPage    {...props}  authenticated={authenticated} />  }/>
-              <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} setAuth={setAuth}/>  }/>             
+              <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} setAuth={setAuth} setUserInfo={setUserInfo}/>}/>             
               <Route path="/settings"    component={ (props) =>  <SettingsPage     {...props}  authenticated={authenticated} />  }/>
               <Route path="/profileform" component={ (props) =>  <ProfileForm      {...props}  authenticated={authenticated} />  }/>              
           </Switch>
