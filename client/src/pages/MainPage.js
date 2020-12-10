@@ -16,17 +16,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ProfileCard from '../pages/subcomponents/ProfileCard'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
+import NavBar from './subcomponents/NavBar'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
   textGreeting: {
     display: "block",
     marginLeft: "5vw",
@@ -144,11 +136,7 @@ const MainPage = (props) => {
         //   console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: Projects & Profiles added to state.")
 
         }
-
-
         populateMainPage()
-
-        
         // console.log("LOG --> FILE: MainPage.js FUNCTION: useEffect() => populateMainPage() MESSAGE: main page loaded: ", pageLoaded)
         if (!pageLoaded) {
           setLoaded(true)
@@ -165,40 +153,13 @@ const MainPage = (props) => {
 
   return ( !pageLoaded ? <LoadingScreen /> :
       <div>
-          {/* NAV BAR */}
-          <div className={classes.root}>
-              <AppBar position="static">
-                  <Toolbar>
-                      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-                      <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                          <Link to="/signin">
-                              <MenuItem onClick={handleClose}> Login </MenuItem>
-                          </Link>
-                          <Link to="/portfolio">
-                              <MenuItem onClick={handleClose}>My account</MenuItem>
-                          </Link>
-                          <Link to="/main">
-                              <MenuItem onClick={handleClose}>Home</MenuItem>
-                          </Link>
-                      </Menu>
-                      <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-                      {/* LINK TO SignInSignUp page. <Link /> can accept props to send if need be*/}
-                      <Link to="/signin">
-                          <Button color="#fce4ec">Login</Button>
-                      </Link>
-                  </Toolbar>
-              </AppBar>
-          </div>
-          {/* END NAV BAR */}
-
+          <NavBar />
           {/* start of profile box */}
           <div className={classes.profileCardWrapper} >
-              {/* {displayedProfiles.map((profile, index)=>{
+              {displayedProfiles.map((profile, index)=>(
+                <ProfileCard {...props} profile={profile}/>
+              ))}
 
-              } */}
-
-              <ProfileCard />
-              <ProfileCard />
           </div >
       </div>
   )

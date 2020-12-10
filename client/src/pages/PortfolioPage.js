@@ -7,13 +7,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-// import Grid from '@material-ui/core/Grid';
-// import Paper from '@material-ui/core/Paper';
-// import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
 import ProjectForm from '../pages/subcomponents/ProjectForm'
@@ -22,15 +15,10 @@ import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Paper from '@material-ui/core/Paper';
+import NavBar from './subcomponents/NavBar'
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   // card profile not material
   cardProfile: {
     display: "grid",
@@ -129,19 +117,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PortfolioPage = (props) => {
+  console.log("props", props)
+  console.log("props.history: ", props.history)
+  console.log("props.history.location: ",  props.history.location)
+  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+
 
   {/* Variables */}
   const classes = useStyles();
 
   {/* Hooks */}
-  const [usersOwnProfile, setUserOwnProfile] = useState(props.usersOwnProfile);  // boolean
+{/* <--------------profile allows editing priveledges when user views their own profile */ }
+  const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
   const [showPopUp, setShowPopUp] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [pageLoaded, setLoaded] = useState(false);
+  {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
-
 
   {/* useEffect() for loading screen */}
   useEffect(() => {
@@ -154,13 +148,6 @@ const PortfolioPage = (props) => {
 ) 
 
   {/* Event Handlers */}
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  }
 
   const openPopUp = (e, formType) => {
     setShowPopUp((!showPopUp))
@@ -169,52 +156,31 @@ const PortfolioPage = (props) => {
 
   return ( !pageLoaded ? <LoadingScreen /> :
       <div className="portfolio-page-wrapper">
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
-                    <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+        <NavBar />
 
-                      {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
-                      <Link to="/signin">
-                        <MenuItem onClick={handleClose}>Login</MenuItem>
-                      </Link>
-                      <Link to="/portfolio">
-                        <MenuItem onClick={handleClose}>Portfolio</MenuItem>
-                      </Link>
-                      <Link to="/main">
-                        <MenuItem onClick={handleClose}>Home</MenuItem>
-                      </Link>
-                      <Link to="/settings">
-                        <MenuItem onClick={handleClose}>Account</MenuItem>
-                      </Link>
-                    </Menu>
-                    <Typography variant="h6" className={classes.title}>DevPortal</Typography>
-                    {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                    <Link to="/signin"></Link>
-                </Toolbar>
-            </AppBar>
-        </div>
       {/* profile page below */}
-
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
+          <a href="/"  > 
           <img className={classes.profImage}  ///image button Luis
+
             src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
+            </a>
+
+            src={profilePicture} alt="" />
+
         </div>
         <div className={classes.portfolioDetails}>
-          <form>
-            <h2> name:  </h2>
-            <h3> Location:</h3>
-            <h3> professional title: </h3>
-            <h3> Organization: </h3>
-            <h4> Bio: </h4>
-            <p> Skills: </p>
-          </form>
-          <Link to="/profileform">
-          <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
-          </Link>
-        </div>
+            <div>
+                <h2>{name}</h2>
+                <h3>{locale}</h3>
+                <h3>{professionalTitle}</h3>
+                <h3>{organization}</h3>
+                <h4>{bio}</h4>
+                <p>{skills}</p>
+          </div>
+              <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
+          </div>
       </div>
 
       {/* projects */}
