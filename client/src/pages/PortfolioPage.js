@@ -105,7 +105,7 @@ const PortfolioPage = (props) => {
   const classes = useStyles();
 
   {/* Hooks */}
-  const [usersOwnProfile, setUserOwnProfile] = useState(false);
+  const [usersOwnProfile, setUserOwnProfile] = useState(props.usersOwnProfile);  // boolean
   const [showPopUp, setShowPopUp] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [pageLoaded, setLoaded] = useState(false);
@@ -124,7 +124,6 @@ const PortfolioPage = (props) => {
   [pageLoaded]
 ) 
 
-
   {/* Event Handlers */}
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -138,14 +137,6 @@ const PortfolioPage = (props) => {
     setShowPopUp((!showPopUp))
     setUpdateOrCreate(formType)
   }
-
-  //popup
-
-  // const [isShowing, setIsShowing] = useState(false);
-
-  // function toggle() {
-  //   setIsShowing(!isShowing);
-  // }
 
   return ( !pageLoaded ? <LoadingScreen /> :
       <div className="portfolio-page-wrapper">

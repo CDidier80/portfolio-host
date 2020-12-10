@@ -1,8 +1,4 @@
-import { __ChangePhoto, __LoadImages} from "../services/CloudinaryService"
-
-// env variables here
-
-
+import { __UploadPhoto, __LoadImages} from "../services/CloudinaryService"
 
 const CloudinaryWidget = props => {
     const {userId, projectOrProfilePic } = props
@@ -23,11 +19,7 @@ const CloudinaryWidget = props => {
             try {
                 const url = await resultEvent.info.secure_url
                 if (url) {
-                    /*
-                        method/service to send the image back to DB
-                        down below
-                    */
-                    await __ChangePhoto(url)
+                    await __UploadPhoto(url)
                     await updateRender()
                 }
             }
