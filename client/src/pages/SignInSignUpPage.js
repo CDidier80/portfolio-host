@@ -101,11 +101,10 @@ const SignInSignUpPage = (props) => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    console.log("User clicked login button.")
+    // console.log("User clicked login button.")
     try {
-      console.log("User entered email and password: ", email, password)
-      const response = await LogInUser({ email, password, password })
-
+      // console.log( email, password )
+      const response = await LogInUser({ email, password })
       props.toggleAuthenticated(true, response.user, () => props.history.push('/portfolio')
       )
     } catch (error) {
