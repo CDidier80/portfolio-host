@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
-import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
-import { CreateProject, ReadProject, UpdateProject, DeleteProject} from '../Services/ProjectsService'
+import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService } from '../Services/UserService'
+import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile } from '../Services/ProfileService'
+import { CreateProject, ReadProject, UpdateProject, DeleteProject } from '../Services/ProjectsService'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,7 +17,6 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Paper from '@material-ui/core/Paper';
 import NavBar from './subcomponents/NavBar'
 import CloudinaryWidget from './subcomponents/CloudinaryWidget'
-
 
 const useStyles = makeStyles((theme) => ({
   // card profile not material
@@ -86,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     addProject: {
       textAlign: "center",
       paddingTop: "2rem"
-    }, 
+    },
   },
   httpTest: {
     margin: "0 auto",
@@ -120,68 +119,77 @@ const useStyles = makeStyles((theme) => ({
 const PortfolioPage = (props) => {
   console.log("props", props)
   console.log("props.history: ", props.history)
-  console.log("props.history.location: ",  props.history.location)
-  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+  console.log("props.history.location: ", props.history.location)
+  // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
 
 
-  {/* Variables */}
+  {/* Variables */ }
   const classes = useStyles();
 
-  {/* Hooks */}
-{/* <--------------profile allows editing priveledges when user views their own profile */ }
-  const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
+  {/* Hooks */ }
+  {/* <--------------profile allows editing priveledges when user views their own profile */ }
+  // const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
   const [showPopUp, setShowPopUp] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [pageLoaded, setLoaded] = useState(false);
   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
+  const [isWidgetOpen, toggleWidgetVisibility] = useState(false)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
 
-  {/* useEffect() for loading screen */}
+  {/* useEffect() for loading screen */ }
   useEffect(() => {
     console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
-        if (!pageLoaded) {
-          setLoaded(true)
-        }
-      },
-  [pageLoaded]
-) 
+    if (!pageLoaded) {
+      setLoaded(true)
+    }
+  },
+    [pageLoaded]
+  )
 
-  {/* Event Handlers */}
+  {/* Event Handlers */ }
 
   const openPopUp = (e, formType) => {
     setShowPopUp((!showPopUp))
     setUpdateOrCreate(formType)
   }
 
-  return ( !pageLoaded ? <LoadingScreen /> :
-      <div className="portfolio-page-wrapper">
-        <NavBar />
+  const goCloudinary = (e) => {
+    console.log("functionreach")
+    toggleWidgetVisibility(!isWidgetOpen)
+  }
+  // the existence of something on a page is always a conditional rendering question
+  //show this = true or false? - everything single time
+  //decide what has to be true for the component to show
+  // create a hook representing the truth or falsy of that condition
+  //other parts of the page can change whether your condition is true or false
+  // use curly boys with a ternary operation to tell a component to render or not
 
+
+
+  return (!pageLoaded ? <LoadingScreen /> :
+    <div className="portfolio-page-wrapper">
+      <NavBar />
       {/* profile page below */}
+      {isWidgetOpen ? <CloudinaryWidget /> : null}
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
-          <a href="/"  > 
-          <img className={classes.profImage}  ///image button Luis
-
-            src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
-            </a>
-
-            src={profilePicture} alt="" />
-
-        </div>
-        <div className={classes.portfolioDetails}>
+          <img className={classes.profImage} onClick={(e) => goCloudinary()} sWidgetOpenmage button Luis
+            src="https://media-exp1.licdn.com/dsWidgetOpenmage/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
+          {/* // src={profilePicture} alt="" /> */}
+          <div className={classes.portfolioDetails}>
             <div>
-                <h2>{name}</h2>
+              {/* <h2>{name}</h2>
                 <h3>{locale}</h3>
                 <h3>{professionalTitle}</h3>
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
-                <p>{skills}</p>
+                <p>{skills}</p> */}
+            </div>
+            <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
           </div>
-              <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
-          </div>
+        </div>
       </div>
 
       {/* projects */}
@@ -189,15 +197,15 @@ const PortfolioPage = (props) => {
         <h3>
           Projects:
           <div className={classes.addProject}>
-          <button className={classes.addProjBtn} onClick={(e) => openPopUp(e, "CreateProject")}> add project </button>
-          { showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
+            <button className={classes.addProjBtn} onClick={(e) => openPopUp(e, "CreateProject")}> add project </button>
+            {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
           </div>
         </h3>
-        <div className="project1"> 
-        {/* <h3> Project title: {props.projectTitle}</h3>
+        <div className="project1">
+          {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
           <p>Technologies: {props.technologies}</p>
-          <p>Image: {props.image} </p>
+          sWidgetOpenmage: {prosWidgetOpenmage} </p>
           <p>Link: {props.link} </p> */}
           <div className={classes.root}>
             <Paper style={{ Width: "50%" }} className={classes.paper}>
@@ -217,7 +225,7 @@ const PortfolioPage = (props) => {
                         Times are rough, so check out my simple compliment app, built in my 15 minute challenge
                       </Typography>
                       <Typography variant="body2" gutterBottom>
-                        React 
+                        React
                       </Typography>
                       <Typography variant="body2" >
                         Technologies: React, Javascript, Phyton, MongoDb
@@ -263,8 +271,8 @@ export default PortfolioPage
 //make link to 
 
 //   < img className = { classes.profilePict }
-// src = " https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
-// alt = "profile-image" />
+// src = " https://media-exp1.licdn.com/dsWidgetOpenmage/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
+// alt = "profisWidgetOpenmage" />
 //           <h1>Collien Didier</h1>
 //           <p className="title"> CEO and Founder of Collin and Co. </p>
 //           <p>General Assembly</p>

@@ -126,12 +126,11 @@ const SignInSignUpPage = (props) => {
         setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
         setAuth(true)
         toggleProfileForm(true)
-      } else {
-        console.log("failed to create account, but no error was thrown")
-        console.log("response: ", response)
-        // } else {
-        //   console.log("failed to create account, but no error was thrown")
-        //   console.log("response: ", response)
+
+      } else {  
+          console.log("failed to create account, but no error was thrown")
+          console.log("response: ", response)
+
 
       }
 

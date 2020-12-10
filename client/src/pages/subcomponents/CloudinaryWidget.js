@@ -1,4 +1,6 @@
-import { __UploadPhoto, __LoadImages } from "../../Services/CloudinaryService"
+
+import { __UploadPhoto, __LoadImages} from "../../Services/CloudinaryService"
+
 const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME
 const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET
 
