@@ -28,9 +28,9 @@ export const LogInUser = async (payload, params) =>  {
 // 6) FILE: UserController.js,  FUNCTION: CreateUser(),       PURPOSE (step 2): Save user account in DB with hashed password -->
 // 7) FILE: UserService.js,     FUNCTION: CreateUser(),       PURPOSE: Receive response and return to client -->
 // 8) React function receives user payload and indicates an "authenticated" state for the session -->
-export const CreateUser = async (payload, params) =>  {
+export const CreateUser = async (payload) =>  {
     try {
-        const response = await ApiClient.post(`users/create${params}`, payload)
+        const response = await ApiClient.post(`users/create`, payload)
         return response.data
     } catch (error) {
         console.log(error)
