@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const NavBar = (props) => {
+  
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -41,22 +42,36 @@ const NavBar = (props) => {
         <AppBar position="static">
           <Toolbar>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
+            {props.authenticated ? 
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-              <Link to="/signin">
-                <MenuItem onClick={handleClose}>Login</MenuItem>
-              </Link>
-              <Link to="/portfolio">
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Link>
-              <Link to="/main">
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-              </Link>
+                <Link to="/portfolio">
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                </Link>
+                <Link to="/main">
+                    <MenuItem onClick={handleClose}>Home</MenuItem>
+                </Link>
+                <Link to="/">
+                  <MenuItem onClick={handleClose}>Home</MenuItem>
+                </Link>
             </Menu>
+            : 
+            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+                <Link to="/signin">
+                    <MenuItem onClick={handleClose}>Login</MenuItem>
+                </Link>
+                <Link to="/signin">
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                </Link>
+                <Link to="/portfolio">
+                    <MenuItem onClick={handleClose}>Home</MenuItem>
+                </Link>
+                <Link to="/">
+                    <MenuItem onClick={handleClose}>Home</MenuItem>
+                </Link>
+            </Menu>
+            }
             <Typography variant="h6" className={classes.title}>DevPortal</Typography>
             {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-            <Link to="/signin">
-              <Button color="#fce4ec">Login</Button>
-            </Link>
           </Toolbar>
         </AppBar>
       </div>
