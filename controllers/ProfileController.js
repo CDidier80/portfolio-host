@@ -22,18 +22,13 @@ const CreateProfile = async (req, res) => {
 
 const ReadProfile = async (req, res) => {
     log(ReadProfile, req, show)
-    if (Profile.Rows === undefined) {
-        res.send(false)
-    }
-    else {
-        try {
-            let profileId = parseInt(req.params.profile_id)
-            let profile = await Profile.findByPk(profileId)
-            let user = await User.findByPk(users)
-            res.send(profile)
-        } catch (error) {
-            errorLog(ReadProfile, error, show)
-        }
+    try {
+        let profileId = parseInt(req.params.profile_id)
+        let profile = await Profile.findByPk(profileId)
+        let user = await User.findByPk(users)
+        res.send(profile)
+    } catch (error) {
+        errorLog(ReadProfile, error, show)
     }
 }
 
@@ -55,30 +50,25 @@ const UpdateProfile = async (req, res) => {
 // method to get all the profiles based on the limits set by user
 const ReadAllProfiles = async (req, res) => {
     log(ReadAllProfiles, req, show)
-    if (Profile.Rows === undefined) {
-        res.send(false)
-    }
-    else {
-        try {
-            // limit brought by front end
-            const { limit } = req.body
-            // if needed to parse into int
-            // limit = parseInt(limit)
-            // const limit = 1
-            const allProfiles = await Profile.findAll({
-                limit: limit,
-                include: [
-                    {
-                        model: User,
-                        as: 'user'
-                    }
-                ]
-            })
-            res.send(allProfiles)
-        }
-        catch (error) {
-            throw error
-        }
+    const user = await User.find
+    try {
+        // limit brought by front end
+        const { limit } = req.body
+        // if needed to parse into int
+        // limit = parseInt(limit)
+        const allProfiles = await Profile.findAll({
+            limit: limit,
+            include: [
+                {
+                    model: User,
+                    as: 'user'
+                }
+            ]
+        })
+        console.log(allProfiles)
+        res.send(allProfiles)
+    } catch (error) {
+        throw error
     }
 }
 
@@ -88,4 +78,3 @@ module.exports = {
     ReadProfile,
     ReadAllProfiles
 }
-

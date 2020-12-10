@@ -17,7 +17,6 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Paper from '@material-ui/core/Paper';
 import NavBar from './subcomponents/NavBar'
 import CloudinaryWidget from './subcomponents/CloudinaryWidget'
-
 const useStyles = makeStyles((theme) => ({
   // card profile not material
   cardProfile: {
@@ -63,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     boxShadow: "0 0 2px black"
   },
-
   image: {
     width: 200,
     height: 170,
@@ -122,7 +120,6 @@ const useStyles = makeStyles((theme) => ({
     },
   }
 }));
-
 const PortfolioPage = (props) => {
   console.log("props", props)
   console.log("props.history: ", props.history)
@@ -132,7 +129,6 @@ const PortfolioPage = (props) => {
 
   {/* Variables */ }
   const classes = useStyles();
-
   {/* Hooks */ }
   {/* <--------------profile allows editing priveledges when user views their own profile */ }
   // const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
@@ -144,7 +140,6 @@ const PortfolioPage = (props) => {
   const [isWidgetOpen, toggleWidgetVisibility] = useState(false)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
-
   {/* useEffect() for loading screen */ }
   useEffect(() => {
     console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
@@ -154,9 +149,7 @@ const PortfolioPage = (props) => {
   },
     [pageLoaded]
   )
-
   {/* Event Handlers */ }
-
   const openPopUp = (e, formType) => {
     setShowPopUp((!showPopUp))
     setUpdateOrCreate(formType)
@@ -191,7 +184,6 @@ const PortfolioPage = (props) => {
           </div>
         </div>
       </div>
-
       {/* projects */}
       <div className={classes.projectWrapper}>
         <h3> Projects: </h3>
@@ -212,7 +204,6 @@ const PortfolioPage = (props) => {
                 <Grid item>
                   <ButtonBase className={classes.image}> upload image
                     <CloudinaryWidget />
-
                   </ButtonBase>
                 </Grid>
                 <Grid item xs={6} sm container>
@@ -251,46 +242,4 @@ const PortfolioPage = (props) => {
     </div>
   )
 }
-
 export default PortfolioPage
-
-  // < div className = { classes.portfolioDetails } >
-  //         <form>
-  //       <h2> name: </h2>
-  //       <h3> Chicago, Il.</h3>
-  //       <h3> FullStack Developer</h3>
-  //       <h3> Organization: Collin and Co. Ltd. </h3>
-  //       <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
-  //       <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
-  //         </form>
-  //         <Button className="submit-Bio" variant="outlined" color="primary"> submit </Button>
-
-  //       </div >
-
-//make each section a min. of 100vh page sections
-//make link to 
-
-//   < img className = { classes.profilePict }
-// src = " https://media-exp1.licdn.com/dsWidgetOpenmage/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk"
-// alt = "profisWidgetOpenmage" />
-//           <h1>Collien Didier</h1>
-//           <p className="title"> CEO and Founder of Collin and Co. </p>
-//           <p>General Assembly</p>
-//           <a href="#"> GitHub </a>
-//           <p><button>Contact</button></p>
-
-//page will show:
-// PROFILES
-// profilePicture: 
-// professionalTitle: 
-// organization: 
-// skills
-// locale
-// bio
-
-// PROJECT:
-// title: 
-// description: 
-// technologies: 
-// projectPicture: 
-// deployLink: 
