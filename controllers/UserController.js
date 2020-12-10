@@ -80,7 +80,7 @@ const DeleteUser = async (req, res) => {
     }
 }
 
-const LogInUser = async (req, res, next) => {
+const LogInUser = async (req, res) => {
     try {
 
         let { email } = req.body
@@ -104,6 +104,7 @@ const LogInUser = async (req, res, next) => {
                 ...profile.dataValues
             }
             let token = createToken(payload)
+        
             return res.send({ user, token })
         }
         res.status(401).send({ msg: 'Unauthorized' })
