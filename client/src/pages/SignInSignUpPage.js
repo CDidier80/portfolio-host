@@ -58,7 +58,7 @@ const SignInSignUpPage = (props) => {
     const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
 
     {/* <--------------manual toggle profile/login form */}
-    const [showProfileForm, toggleProfileForm] = useState(true)
+    const [showProfileForm, toggleProfileForm] = useState(false) 
 
     {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */}
     const [firstTimeUser, setFirstTimeUser] = useState(false)
@@ -92,11 +92,19 @@ const SignInSignUpPage = (props) => {
     return
   }
 
+<<<<<<< HEAD
   const formChange = (e, stateFunction) => {   // [..., setState] 
     e.preventDefault()
     const { value } = e.target
     console.log("Field Value: ", value)
     stateFunction(value)
+=======
+  const updateTexfield = (e, stateFunction) => {   // [..., setState] 
+      e.preventDefault()
+      const { value } = e.target
+      console.log("Field Value: ", value)
+      stateFunction(value)
+>>>>>>> a67f3fcf652c8b6d51042077d137758194593945
   }
 
   const handleLogin = async (e) => {
@@ -120,13 +128,14 @@ const SignInSignUpPage = (props) => {
       console.log("User entered email, password and name: ", email, password, name)
       const response = await CreateUser({ email, password, name })
       setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
-      props.toggleAuthenticated(true, response.user)
-      console.log("User Created.")
+      setAuth(true)
+      // console.log("User Created.")
     } catch (error) {
       console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
     }
   }
 
+<<<<<<< HEAD
   const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
   return (!pageLoaded ? <LoadingScreen /> :
@@ -157,6 +166,41 @@ const SignInSignUpPage = (props) => {
                   </Grid>
                 </Grid>
               </form>
+=======
+const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
+
+  return ( !pageLoaded ? <LoadingScreen /> :
+      <div>
+          {!showProfileForm ? 
+          <div>
+              <Link to="/">
+                  <Button color="#fce4ec" onClick={()=>props.history.push("/")}>Back</Button>
+              </Link>
+              <Container component="main" maxWidth="xs">
+                  <CssBaseline />
+                  <div className={classes.paper}>
+                  <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
+                  <Typography component="h1" variant="h5">{message}</Typography> 
+                      <form className={classes.form} noValidate> 
+
+                          { message === "Sign Up" ? <TextField onChange={(e)=>updateTexfield(e, setName)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
+                          <TextField onChange={(e)=>updateTexfield(e, setEmail)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email}  autoComplete="email" autoFocus />
+                          <TextField onChange={(e)=>updateTexfield(e, setPassword)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password} autoComplete="current-password" />
+                          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+                          <Button type="submit"  fullWidth variant="contained" color="primary" className={classes.submit} onClick={(e) => buttonEventHandler(e)}>{message}</Button>
+                          <Grid container>
+                              <Grid item xs>
+                                  <Link href="#" variant="body2"> Forgot password? </Link>
+                              </Grid>
+                              <Grid item>
+                                  <Link to="#" variant="body2" onClick={(e)=>togglemessage(e)}>{prompt}</Link>
+                              </Grid>
+                          </Grid>
+                      </form>
+                  </div>
+                <Box mt={8}> </Box>
+              </Container>
+>>>>>>> a67f3fcf652c8b6d51042077d137758194593945
             </div>
             <Box mt={8}> </Box>
           </Container>
