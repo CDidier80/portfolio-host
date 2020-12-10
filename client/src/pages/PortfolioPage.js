@@ -179,7 +179,7 @@ const PortfolioPage = (props) => {
     <div className="portfolio-page-wrapper">
       <NavBar {...props} />
       {/* profile page below */}
-      {isWidgetOpen ? <CloudinaryWidget /> : null}
+      {isWidgetOpen ? <CloudinaryWidget {...props} /> : null}
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
           <img className={classes.profImage} onClick={(e) => goCloudinary()} placeholder="upload image"
