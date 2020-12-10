@@ -91,6 +91,7 @@ const ProfileForm = (props) => {
 
   return (
     <div>
+      <NavBar />
         <div style={styles.profileFormWrapper}>
                             {/* Professional Title */}
           <TextField  onChange={(e)=>updateTextField(e, setProfessionalTitle)}   label="professional title" style={{ margin: 8 }} placeholder="professional title" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
