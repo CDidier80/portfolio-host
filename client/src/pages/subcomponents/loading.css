@@ -94,7 +94,14 @@
     color: #3bb2d0;
     }
 }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+    width: 100vw;
+    height: 100vh;
 
+}
 
 
 

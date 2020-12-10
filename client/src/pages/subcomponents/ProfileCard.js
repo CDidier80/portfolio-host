@@ -13,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
-    maxWidth: 500,
+    maxWidth: 660,
+    borderRadius: "5px",
+    boxShadow: "0 0 2px black"
   },
   image: {
     width: 128,
@@ -24,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     maxWidth: '100%',
     maxHeight: '100%',
-  },
+    borderRadius: "5px",
+    boxShadow: "0 0 2px black"
+  }
 }));
 
 const ProfileCard = (props) => {
@@ -43,7 +47,7 @@ const ProfileCard = (props) => {
             <Grid item xs={6} sm container>
               <Grid item xs container direction="column" spacing={4}>
                 <Grid item xs>
-                  <Typography gutterBottom variant="subtitle1">
+                  <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
                     Collin Didier
                 </Typography>
                   <Typography gutterBottom variant="subtitle1">
@@ -51,14 +55,15 @@ const ProfileCard = (props) => {
                 </Typography>
                   <Typography variant="body2" gutterBottom>
                     Developer keen to create better code and debug all errors.
+                    Click on my portfolio to see some of my work.
                 </Typography>
-                  <Typography variant="body2" color="textSecondary">
+                  <Typography variant="body2" >
                     Technologies: React, Javascript, Phyton, MongoDb
                 </Typography>
                 </Grid>
                 <Grid item>
                   <Link to="portfolio">
-                    <Typography variant="body2" style={{ cursor: 'pointer' }}>
+                    <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
                       See portfolio
                 </Typography>
                   </Link>
@@ -70,6 +75,6 @@ const ProfileCard = (props) => {
       </div>
     </div>
   )
-  }
+}
 
 export default ProfileCard
