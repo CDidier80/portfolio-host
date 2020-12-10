@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Upload() {
+export default function Upload(props) {
     const [fileInputState, setFileInputState] = useState('');
     const [previewSource, setPreviewSource] = useState('');
     const [selectedFile, setSelectedFile] = useState();
