@@ -8,7 +8,7 @@ const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET
 
 
 const CloudinaryWidget = props => {
-
+    console.log('inside widget', props)
     const { userId, projectOrProfilePic } = props
   
     const oneOrMany = projectOrProfilePic === "Project" ? true : false
