@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,14 +34,17 @@ const useStyles = makeStyles((theme) => ({
 const ProfileCard = (props) => {
   let profile = props.profile
   const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.profile
+  console.log("profile logged in ProfileCard: ", profile)
   const classes = useStyles();
+
+  // props.history.location["state"] = props
   return (
     <div>
       <div className={classes.root}>
         <Paper style={{ Width: "50%" }} className={classes.paper}>
           <Grid container spacing={2}>
             <Grid item>
-              <ButtonBase className={classes.image}>
+              <ButtonBase className={classes.image}> 
                 <img className={classes.img} alt="complex" src={profilePicture} />
               </ButtonBase>
             </Grid>
@@ -54,9 +57,8 @@ const ProfileCard = (props) => {
                   <Typography variant="body2">{skills}</Typography>
                 </Grid>
                 <Grid item>
-                  <Link to="portfolio">
-                    <Typography onClick={()=>props.history.push("/portfolio", profile={profile})}variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>See portfolio</Typography>
-                  </Link>
+
+                <NavLink className="signupNavlink" to={{pathname: "/portfolio", state: {profile: profile}}}>View Portfolio</NavLink>
                 </Grid>
               </Grid>
             </Grid>

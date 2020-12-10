@@ -100,8 +100,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PortfolioPage = (props) => {
-  let profile = props.profile
-  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.profile
+  console.log(props)
+  // console.log(props.history)
+  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
   {/* Variables */}
   const classes = useStyles();
 
@@ -113,7 +114,6 @@ const PortfolioPage = (props) => {
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
-
 
   {/* useEffect() for loading screen */}
   useEffect(() => {
@@ -149,17 +149,17 @@ const PortfolioPage = (props) => {
 
                       {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
                       <Link to="/signin">
-                        <MenuItem onClick={handleClose}>Login</MenuItem>
+                          <MenuItem onClick={handleClose}>Login</MenuItem>
                       </Link>
                       <Link to="/portfolio">
-                        <MenuItem onClick={handleClose}>Portfolio</MenuItem>
+                          <MenuItem onClick={handleClose}>Portfolio</MenuItem>
                       </Link>
                       <Link to="/main">
-                        <MenuItem onClick={handleClose}>Home</MenuItem>
+                          <MenuItem onClick={handleClose}>Home</MenuItem>
                       </Link>
-                      <Link to="/settings">
-                        <MenuItem onClick={handleClose}>Account</MenuItem>
-                      </Link>
+                        <Link to="/settings">
+                          <MenuItem onClick={handleClose}>Account</MenuItem>
+                        </Link>
                     </Menu>
                     <Typography variant="h6" className={classes.title}>DevPortal</Typography>
                     {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
@@ -172,20 +172,19 @@ const PortfolioPage = (props) => {
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
           <img className={classes.profImage}  ///image button Luis
-            src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" alt="" />
+            src={profilePicture} alt="" />
         </div>
         <div className={classes.portfolioDetails}>
-          <div>
-  <h2>{name}</h2>
-  <h3>{locale}</h3>
-  <h3>{professionalTitle}</h3>
-  <h3>{organization}</h3>
-  <h4>{bio}</h4>
-  <p> {skills}</p>
+            <div>
+                <h2>{name}</h2>
+                <h3>{locale}</h3>
+                <h3>{professionalTitle}</h3>
+                <h3>{organization}</h3>
+                <h4>{bio}</h4>
+                <p>{skills}</p>
           </div>
-          <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
-          </Link>
-        </div>
+              <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
+          </div>
       </div>
 
       {/* projects */}
