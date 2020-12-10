@@ -1,6 +1,7 @@
 const { User, Profile } = require('../models')
 // const { Op, literal, fn, col  } = require('sequelize')
 const { checkPassword, generatePassword } = require('../middleware/PasswordHandler')
+const { createToken } = require('../middleware/jwthandler')
 const { ControllerLoggers } = require('../Helpers')
 const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
 const show = true
@@ -82,13 +83,16 @@ const DeleteUser = async (req, res) => {
 const LogInUser = async (req, res, next) => {
     try {
 
-        let {email, password} = req.body
-        console.log(email, password)
-        const user = await User.findOne({ email: email })
+        let { email } = req.body
+
+        const user = await User.findOne({
+            where: {
+                email: email
+            }
+        })
         let { id } = user.dataValues
-        const profile = await Profile.findOne({userId: id})
-        console.log('req.body: ', req.body.password)
-        console.log('digest', user.password_digest)
+        const profile = await Profile.findOne({ userId: id })
+
         if (
             user &&
             (await checkPassword(req.body.password, user.password_digest))
@@ -99,8 +103,8 @@ const LogInUser = async (req, res, next) => {
                 userName: user.userName,
                 ...profile.dataValues
             }
-            res.locals.payload = payload
-            return next()
+            let token = createToken(payload)
+            return res.send({ user, token })
         }
         res.status(401).send({ msg: 'Unauthorized' })
     } catch (error) {
@@ -108,10 +112,16 @@ const LogInUser = async (req, res, next) => {
     }
 }
 
-
-const RefreshSession = (req, res) => {
-    const token = res.locals.token
-    res.send(token)
+const RefreshSession = async (req, res) => {
+    try {
+        const { token } = res.locals
+        const user = await User.findByPk(token.id, {
+            attributes: ['id', 'name', 'emai']
+        })
+        res.send({ user, status: 'OK' })
+    } catch (error) {
+        throw error
+    }
 }
 
 module.exports = {
