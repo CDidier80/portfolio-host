@@ -1,8 +1,11 @@
 import ApiClient from "./ApiClient"
 
-export const CreateProject = async (payload, params) =>  {
+export const CreateProject = async (payload) =>  {
     try {
-        const response = await ApiClient.post(`projects/create${params}`, payload)
+        let params = '41be33bc-6aca-4c12-ad05-cff4ed120075' 
+        console.log(params)
+        const response = await ApiClient.post(`projects/create/${params}`, payload)
+        console.log('after post',response)
         return response.data
     } catch (error) {
         console.log(error)

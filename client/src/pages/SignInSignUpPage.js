@@ -58,18 +58,22 @@ const SignInSignUpPage = (props) => {
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
 
   {/* <--------------manual toggle profile/login form */}
-  const [showProfileForm, toggleProfileForm] = useState(true) 
+  const [showProfileForm, toggleProfileForm] = useState(false) 
 
   {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */}
   const [firstTimeUser, setFirstTimeUser] = useState(false)
 
   {/* <-------------- hooks for User Sign-in and Sign-up Payloads */}
-  const [name, setName] = useState("")
-  const [password, setPassword] = useState("")
-  const [email, setEmail] = useState("")
-  {/* <-------------- toggle authentication */}
-  const [authenticated, setAuth] = useState(props.authenticated)
-  
+  // const [name, setName] = useState("")
+  // const [password, setPassword] = useState("")
+  // const [email, setEmail] = useState("")
+  // {/* <-------------- toggle authentication */}
+  // const [authenticated, setAuth] = useState(props.authenticated)
+  const [userState, setState ] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
 
 
 
@@ -106,35 +110,41 @@ const SignInSignUpPage = (props) => {
       stateFunction(value)
   }
 
-const handleLogin = async (e) => {
-    e.preventDefault()
-    console.log("User clicked login button.")
-    try {
-      console.log("User entered email and password: ", email, password)
-      const response = await LogInUser({ email, password, password})
+// const handleLogin = async (e) => {
+//     e.preventDefault()
+//     console.log("User clicked login button.")
+//     try {
+//       console.log("User entered email and password: ", email, password)
+//       const response = await LogInUser({ email, password, password})
       
-        props.toggleAuthenticated(true, response.user, () => props.history.push('/portfolio')
-      )
-    } catch (error) {
-      console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
-    }
-  }
+//         props.toggleAuthenticated(true, response.user, () => props.history.push('/portfolio')
+//       )
+//     } catch (error) {
+//       console.log("Error thrown in SignInSignUpPage.js at handleLogin(): ", error)
+//     }
+//   }
 
 const handleSignUp = async (e) => {
-    e.preventDefault()
-    console.log("User clicked sign up button.")
-    try {
-      console.log("User entered email, password and name: ", email, password, name)
-      const response = await CreateUser({email, password, name})
-      setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
-      props.toggleAuthenticated(true, response.user)
-      console.log("User Created.")
-    } catch (error) {
-      console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
-    }
+  const {id, value } = e.target
+  setState(prevState => ({
+    ...prevState,
+    [id] : value
+  }))
+
+    // e.preventDefault()
+    // console.log("User clicked sign up button.")
+    // try {
+    //   console.log("User entered email, password and name: ", email, password, name)
+    //   const response = await CreateUser({email, password, name})
+    //   setFirstTimeUser(true)  // identifies the user as having logged in for the very first time. This lets us know the profile form will send a "CreateProfile" request rather than "UpdateProfile" for return users
+    //   props.toggleAuthenticated(true, response.user)
+    //   console.log("User Created.")
+    // } catch (error) {
+    //   console.log("Error thrown in SignInSignUpPage.js at handleSignUp(): ", error)
+    // }
 }
 
-const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
+// const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
 
   return ( !pageLoaded ? <LoadingScreen /> :
       <div>
@@ -150,9 +160,9 @@ const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
                   <Typography component="h1" variant="h5">{message}</Typography> 
                       <form className={classes.form} noValidate> 
 
-                          { message === "Sign Up" ? <TextField onChange={(e)=>handleSignUp(e, setName)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
-                          <TextField onChange={(e)=>handleSignUp(e, setEmail)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={email}  autoComplete="email" autoFocus />
-                          <TextField onChange={(e)=>handleSignUp(e, setPassword)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={password} autoComplete="current-password" />
+                          { message === "Sign Up" ? <TextField onChange={(e)=>handleSignUp(e, state.name)} variant="outlined" margin="normal" required fullWidth id="name" label="name" name="name" autoComplete="email" autoFocus /> : null}
+                          <TextField onChange={(e)=>handleSignUp(e, user.email)} variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" value={user.email}  autoComplete="email" autoFocus />
+                          <TextField onChange={(e)=>handleSignUp(e, user.password)} variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" value={user.password} autoComplete="current-password" />
                           <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
                           <Button type="submit"  fullWidth variant="contained" color="primary" className={classes.submit} onClick={(e) => buttonEventHandler(e)}>{message}</Button>
                           <Grid container>

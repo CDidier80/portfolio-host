@@ -40,12 +40,13 @@ const ProjectForm = (props) => {
     const submitNewProject = async (e) => {
       // console.log(props)
         let payload = {
-          projectTitle: projectTitle,
+          title: projectTitle,
           description: description,
           technologies: technologies,
           image: image,
           link: link
         }
+        console.log(payload)
         const result = await CreateProject(payload)
         console.log(result)
         props.setShowPopUp(false)
