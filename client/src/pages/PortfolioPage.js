@@ -124,7 +124,7 @@ const PortfolioPage = (props) => {
   console.log("props", props)
   console.log("props.history: ", props.history)
   console.log("props.history.location: ", props.history.location)
-  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+  // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
 
 
   {/* Variables */ }
@@ -138,7 +138,6 @@ const PortfolioPage = (props) => {
   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
   const [isWidgetOpen, toggleWidgetVisibility] = useState(false)
-  const [seeDefaultImage, setProfileImage] = useState(true)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
   {/* useEffect() for loading screen */ }
@@ -156,35 +155,31 @@ const PortfolioPage = (props) => {
     setUpdateOrCreate(formType)
   }
 
-  setProfileImage("https://image.flaticon.com/icons/png/512/23/23228.png")
 
-  const goCloudinary = (e) => {
+  const goCloudinary = () => {
     console.log("functionreach")
     toggleWidgetVisibility(!isWidgetOpen)
   }
-
-  // const deleteDefaultImg =(e) => {
-  //   console.log("image changed", "image")
-  //   setProfileImage(!seeDefaultImage)
-  // }
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
       <NavBar {...props} />
       {/* profile page below */}
-      {isWidgetOpen ? <CloudinaryWidget /> : null}
+
+      {isWidgetOpen ? <CloudinaryWidget {...props} /> : null}
+
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
-          <img className={classes.profImage} onClick={(e) => goCloudinary()} placeholder="upload image"
+          <img className={classes.profImage} onClick={() => goCloudinary()} placeholder="upload image"
             alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
-              <h2>{name}</h2>
+              {/* <h2>{name}</h2>
                 <h3>{locale}</h3>
                 <h3>{professionalTitle}</h3>
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
-                <p>{skills}</p>
+                <p>{skills}</p> */}
               <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
           </div>
         </div>
@@ -196,6 +191,7 @@ const PortfolioPage = (props) => {
           <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "CreateProject")}> add project </Button>
           {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
         </div>
+
         <div className="project1">
           <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>

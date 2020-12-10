@@ -17,6 +17,7 @@ const App = (props) => {
     const [pageIsLoaded, setLoaded] = useState(true)
     const [session, setSession] = useState(null)
     const [authenticated, setAuth] = useState(false)
+    const [user, setUser] = useState(null)
 
     const [random, setRandom]= useState(false)
   //   const verifyTokenValid = async () => {
@@ -72,6 +73,10 @@ empty props object of the child component
 //     await this.setState({loginPageDefault: linkClassName})
 //     await this.props.history.push('/login')
 // }
+
+const saveUser = (props, index) => {
+console.log("saveUser", props)
+}
 
 
     return (
