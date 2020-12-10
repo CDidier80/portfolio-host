@@ -22,7 +22,7 @@ import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 import NavBar from './subcomponents/NavBar';
 
 const logs = [
-  "LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.", 
+  "LOG --> FILE: SignInSignUpPage.js, Function: useEffect --> function reached.",
   "User entered email and password: ",
   "Error thrown in SignInSignUpPage.js at handleLogin(): ",
   "User clicked sign up button.",
@@ -82,7 +82,7 @@ const SignInSignUpPage = (props) => {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   {/* <-------------- toggle authentication */ }
-  
+
 
   {/* useEffect() for loading screen */ }
   useEffect(() => {
@@ -145,6 +145,7 @@ const SignInSignUpPage = (props) => {
   //         console.log(logs[6])
   //         console.log(logs[7], response)
 
+
   //  }|
     } catch (error) {
       console.log(logs[8], error)
@@ -196,6 +197,7 @@ const SignInSignUpPage = (props) => {
               </div>
               {/* <Box mt={8}> </Box> */}
               </Container>
+
         </div>
         :
         <ProfileForm {...props} firstTimeUser={firstTimeUser} />

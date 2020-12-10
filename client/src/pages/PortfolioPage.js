@@ -142,6 +142,7 @@ const PortfolioPage = (props) => {
   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
   const [isWidgetOpen, toggleWidgetVisibility] = useState(false)
+  const [seeDefaultImage, setProfileImage] = useState(true)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
 
@@ -162,10 +163,17 @@ const PortfolioPage = (props) => {
     setUpdateOrCreate(formType)
   }
 
+  setProfileImage("https://image.flaticon.com/icons/png/512/23/23228.png")
+
   const goCloudinary = (e) => {
     console.log("functionreach")
     toggleWidgetVisibility(!isWidgetOpen)
   }
+
+  // const deleteDefaultImg =(e) => {
+  //   console.log("image changed", "image")
+  //   setProfileImage(!seeDefaultImage)
+  // }
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
@@ -175,7 +183,7 @@ const PortfolioPage = (props) => {
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
           <img className={classes.profImage} onClick={(e) => goCloudinary()} placeholder="upload image"
-            src="https://image.flaticon.com/icons/png/512/23/23228.png" alt="" />
+            alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
               {/* <h2>{name}</h2>
@@ -216,22 +224,22 @@ const PortfolioPage = (props) => {
                   <Grid item xs container direction="column" spacing={4}>
                     <Grid item xs>
                       <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
-                        Compliment your day
+                        Name: {props.location.state}
                       </Typography>
                       <Typography gutterBottom variant="subtitle1">
-                        Times are rough, so check out my simple compliment app, built in my 15 minute challenge
+                        Title project: {props.location.state}
                       </Typography>
                       <Typography variant="body2" gutterBottom>
-                        React
+                        Description: {props.location.state}
                       </Typography>
                       <Typography variant="body2" >
-                        Technologies: React, Javascript, Phyton, MongoDb
+                        Technologies: {props.location.state}
                       </Typography>
                     </Grid>
                     <Grid item>
                       <Link to="portfolio">
                         <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
-                          https://www.linkedin.com/in/collin-didier/detail/recent-activity/shares/
+                          Link to project: {props.location.state}
                         </Typography>
                       </Link>
                     </Grid>
