@@ -129,17 +129,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PortfolioPage = (props) => {
-  console.log(props)
-  // console.log(props.history)
+  console.log("props", props)
+  console.log("props.history: ", props.history)
+  console.log("props.history.location: ",  props.history.location)
   const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+
+
   {/* Variables */}
   const classes = useStyles();
 
   {/* Hooks */}
-  const [usersOwnProfile, setUserOwnProfile] = useState(props.usersOwnProfile);  // boolean
+{/* <--------------profile allows editing priveledges when user views their own profile */ }
+  const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
   const [showPopUp, setShowPopUp] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [pageLoaded, setLoaded] = useState(false);
+  {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
