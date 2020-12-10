@@ -5,7 +5,9 @@ const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME
 const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET
 
 const CloudinaryWidget = props => {
+
     const { userId, projectOrProfilePic } = props
+  
     const oneOrMany = projectOrProfilePic === "Project" ? true : false
     const widget = window.cloudinary.createUploadWidget(
         {
@@ -23,7 +25,8 @@ const CloudinaryWidget = props => {
             try {
                 const url = await resultEvent.info.secure_url
                 if (url) {
-                    await __UploadPhoto(url)
+                    // take on two parameters, the user id and url of photo
+                    await __UploadPhoto(userId, url)
                     await updateRender()
                 }
             }
@@ -31,7 +34,7 @@ const CloudinaryWidget = props => {
         }
     }
     const updateRender = async () => {
-        await props.setImages()
+        // console.log('inside the render function in widget', props)
     }
 
     return (

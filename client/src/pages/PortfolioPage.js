@@ -212,7 +212,7 @@ const PortfolioPage = (props) => {
               <Grid container spacing={2}>
                 <Grid item>
                   <ButtonBase className={classes.image}>
-                    <CloudinaryWidget />
+                    <CloudinaryWidget {...props}  />
                   </ButtonBase>
                 </Grid>
                 <Grid item xs={6} sm container>
