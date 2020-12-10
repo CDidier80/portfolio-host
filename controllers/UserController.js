@@ -21,7 +21,7 @@ const CreateUser = async (req, res) => {
                 message: 'account already exists'
             })
         }
-        // creates new user
+
         let { body } = req
         const { password, name, email } = body
         console.log("password, name and email:", password, name, email)
@@ -30,9 +30,18 @@ const CreateUser = async (req, res) => {
         let updatedBody = { name, email, password_digest }
         console.log("BODY WITH ADDED PASSWORD DIGEST: ", updatedBody)
         let user = await User.create(updatedBody)
+
+
+        let userId = user.dataValues.id
+        const profileBody = {
+            userId,
+            profilePicture: 'https://image.flaticon.com/icons/png/512/23/23228.png',
+            ...req.body
+        }
+        let profile = await Profile.create(profileBody)
         res.send(user)
     } catch (error) {
-        errorLog(CreateUser, error, show)
+        throw error
     }
 }
 
@@ -90,21 +99,6 @@ const LogInUser = async (req, res) => {
                 email: email
             }
         })
-
-        if (Profile.Rows === undefined) {
-            if (
-                user &&
-                (await checkPassword(req.body.password, user.password_digest))
-            ) {
-                const payload = {
-                    _id: user._id,
-                    name: user.name,
-                }
-                let token = createToken(payload)
-                return res.send({ user, token })
-            }
-            res.status(401).send({ msg: 'Unauthorized' })
-        }
         let { id } = user.dataValues
         const profile = await Profile.findOne({ userId: id })
 

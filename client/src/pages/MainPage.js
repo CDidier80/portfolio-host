@@ -149,27 +149,21 @@ const MainPage = (props) => {
   const handleClick = (event) => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
 
-//  return ( !pageLoaded ? <LoadingScreen /> :
+  //  return ( !pageLoaded ? <LoadingScreen /> :
 
-  return ( !pageLoaded ? <LoadingScreen /> :
-      <div>
-          <NavBar {...props} />
-          {/* start of profile box */}
-          {displayedProfiles ? (
-          <div className={classes.profileCardWrapper} >
-              {displayedProfiles.map((profile, index)=>(
-                <ProfileCard {...props} profile={profile}/>
-              ))}
-        </div >
-            ) : 
-                (
-                <h3> no profiles yet </h3>
-                )}
-      </div>
+  return (!pageLoaded ? <LoadingScreen /> :
+    <div>
+      <NavBar {...props} />
+      {/* start of profile box */}
+      <div className={classes.profileCardWrapper} >
+        {displayedProfiles.map((profile, index) => (
+          <ProfileCard {...props} profile={profile} />
+        ))}
 
+      </div >
+    </div>
   )
 }
-
 
 export default MainPage
 
