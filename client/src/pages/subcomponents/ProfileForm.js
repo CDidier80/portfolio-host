@@ -80,7 +80,7 @@ const ProfileForm = (props) => {
                 <Toolbar>
                     <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
                       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                          <Link to="/joined">
+                          <Link to="/signin">
                               <MenuItem onClick={handleClose}> Login </MenuItem>
                           </Link>
                           <Link to="/portfolio">
@@ -131,7 +131,7 @@ export default ProfileForm
   //         <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
 
   //           {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
-  //           <Link to="/joined">
+  //           <Link to="/signin">
   //             <MenuItem onClick={handleClose}>Login</MenuItem>
   //           </Link>
   //           <Link to="/portfolio">

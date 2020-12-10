@@ -162,7 +162,8 @@ const MainPage = (props) => {
   const handleClose = () => setAnchorEl(null)
 
 //  return ( !pageLoaded ? <LoadingScreen /> :
-  return ( pageLoaded ? <LoadingScreen /> :
+
+  return ( !pageLoaded ? <LoadingScreen /> :
       <div>
           {/* NAV BAR */}
           <div className={classes.root}>
@@ -170,7 +171,7 @@ const MainPage = (props) => {
                   <Toolbar>
                       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}> Menu </Button>
                       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                          <Link to="/joined">
+                          <Link to="/signin">
                               <MenuItem onClick={handleClose}> Login </MenuItem>
                           </Link>
                           <Link to="/portfolio">
@@ -182,7 +183,7 @@ const MainPage = (props) => {
                       </Menu>
                       <Typography variant="h6" className={classes.title}>DevPortal</Typography>
                       {/* LINK TO SignInSignUp page. <Link /> can accept props to send if need be*/}
-                      <Link to="/joined">
+                      <Link to="/signin">
                           <Button color="#fce4ec">Login</Button>
                       </Link>
                   </Toolbar>
@@ -192,6 +193,10 @@ const MainPage = (props) => {
 
           {/* start of profile box */}
           <div className={classes.profileCardWrapper} >
+              {/* {displayedProfiles.map((profile, index)=>{
+
+              } */}
+
               <ProfileCard />
               <ProfileCard />
           </div >

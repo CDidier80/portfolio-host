@@ -16,7 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 // import ProfileCard from '../pages/subcomponents/ProfileCard'
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
-// import ProjectForm from '../pages/subcomponents/ProjectForm'
+import ProjectForm from '../pages/subcomponents/ProjectForm'
 import PopUpModalProject from '../pages/subcomponents/PopUpModalProject'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 
@@ -147,7 +147,7 @@ const PortfolioPage = (props) => {
                     <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
 
                       {/* There should be 2 links -- one for sign in and one for sign up. They should conditionally render the SignInSignUpPage*/}
-                      <Link to="/joined">
+                      <Link to="/signin">
                         <MenuItem onClick={handleClose}>Login</MenuItem>
                       </Link>
                       <Link to="/portfolio">
@@ -162,7 +162,7 @@ const PortfolioPage = (props) => {
                     </Menu>
                     <Typography variant="h6" className={classes.title}>DevPortal</Typography>
                     {/** LINK TO SignInSignUp page. <Link /> can accept props to send if need be**/}
-                    <Link to="/joined"></Link>
+                    <Link to="/signin"></Link>
                 </Toolbar>
             </AppBar>
         </div>
@@ -175,15 +175,16 @@ const PortfolioPage = (props) => {
         </div>
         <div className={classes.portfolioDetails}>
           <form>
-            <h2> name: </h2>
-            <h3> Chicago, Il.</h3>
-            <h3> FullStack Developer</h3>
-            <h3> Organization: Collin and Co. Ltd. </h3>
-            <h4> Highly motivated and skilled developer, with a great eye for detail and finding bugs</h4>
-            <p> Skills: React, Javascript, HTML, CSS, MongoDB, Express, Phyton </p>
+            <h2> name:  </h2>
+            <h3> Location:</h3>
+            <h3> professional title: </h3>
+            <h3> Organization: </h3>
+            <h4> Bio: </h4>
+            <p> Skills: </p>
           </form>
+          <Link to="/profileform">
           <Button className="submit-Bio" variant="outlined" color="primary"> update </Button>
-
+          </Link>
         </div>
       </div>
 

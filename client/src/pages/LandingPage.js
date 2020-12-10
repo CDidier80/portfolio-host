@@ -151,6 +151,14 @@ const LandingPage = (props) => {
       fontSize: "18px"
     },
 
+    portButton: {
+      width: "80px",
+      height: "40px",
+      fontSize: "12px",
+    },
+
+
+
     submitTestButton: {
       height: "80px",
       width: "80px",
@@ -189,16 +197,13 @@ const LandingPage = (props) => {
                     </Toolbar>
                 </AppBar>
             </div>
-
-
             <div style={mainStyles.textGreeting}>
                 <h3 style={mainStyles.welcome}>Welcome to Dev Portal</h3>
                 <h4 style={mainStyles.subHeader}>A window into great works</h4>
             </div>
-
             <div style={mainStyles.buttonWrapper}>
                 <Button style={mainStyles.buttons} onClick={()=>props.history.push("/signin")} variant="outlined" color="primary">Login</Button>
-                <Button style={mainStyles.buttons} onClick={()=>props.history.push("/signin")} variant="outlined" color="primary">View Portfolios</Button>
+                <Button style={mainStyles.portButton} onClick={()=>props.history.push("/main")} variant="outlined" color="primary">View Portfolios</Button>
             </div>
             <div style={mainStyles.httpTest}>
                 {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
