@@ -30,11 +30,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const styles = {
+  profileFormWrapper: {
+    width: "70vw",
+    minWidth: "600px",
+    maxWidth: "1200px"
+  }
+}
 
 // still needs cloudinary widget and event handler for string url of pic
 
 const ProfileForm = (props) => {
-
+    const classes = useStyles()
     {/* Hooks */}
     // const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -84,24 +91,23 @@ const ProfileForm = (props) => {
 
   return (
     <div>
-        <NavBar />
-                  <div>
-                                      {/* Professional Title */}
-                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setProfessionalTitle)}   label="professional title" style={{ margin: 8 }} placeholder="professional title" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+        <div style={styles.profileFormWrapper}>
+                            {/* Professional Title */}
+          <TextField  onChange={(e)=>updateTextField(e, setProfessionalTitle)}   label="professional title" style={{ margin: 8 }} placeholder="professional title" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
-                                      {/* Organization */}
-                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setOrganization)}        label="Organization" style={{ margin: 8 }} placeholder="organization" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+                            {/* Organization */}
+          <TextField  onChange={(e)=>updateTextField(e, setOrganization)}        label="Organization" style={{ margin: 8 }} placeholder="organization" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
-                                      {/* Locale */}
-                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setLocale)}              label="Locale" style={{ margin: 8 }} placeholder="locale" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+                            {/* Locale */}
+          <TextField  onChange={(e)=>updateTextField(e, setLocale)}              label="Locale" style={{ margin: 8 }} placeholder="locale" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
-                                      {/* Skills */}
-                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setSkills)}              label="Skills" style={{ margin: 8 }} placeholder="skills" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+                            {/* Skills */}
+          <TextField onChange={(e)=>updateTextField(e, setSkills)}              label="Skills" style={{ margin: 8 }} placeholder="skills" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
-                                      {/* Biography */}
-                    <TextField id="standard-full-width" onChange={(e)=>updateTextField(e, setBio)}                 label="Biography" style={{ margin: 8 }} placeholder="Bio" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
-                </div>
-        <button onClick={()=>submitForm()}> Submit </button>
+                            {/* Biography */}
+          <TextField  onChange={(e)=>updateTextField(e, setBio)}                 label="Biography" style={{ margin: 8 }} placeholder="Bio" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+      </div>
+      <button onClick={()=>submitForm()}> Submit</button>
     </div>
   );
 }
