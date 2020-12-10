@@ -1,21 +1,18 @@
 import ApiClient from './ApiClient'
 
 
-// in the project change it to upload
-export const __ChangePhoto = async (url) => {
+export const __UploadPhoto = async (url) => {
     try {
         let userId = 1
         let updatePhoto = { picture: url }
         console.log(updatePhoto)
-        const res = await ApiClient.put(`/users/update/${userId}`, updatePhoto)
+        const res = await ApiClient.put(`/users/update/${userId}`, uploadPhoto)
         return res.config.data
     } catch (error) {
         throw error
     }
 }
 
-
-// to display image on the screen
 
 export const __LoadImages = async () => {
     try {
