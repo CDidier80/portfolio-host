@@ -51,7 +51,7 @@ const ProfileCard = (props) => {
           <Grid container spacing={2}>
             <Grid item>
               <ButtonBase className={classes.image}> 
-dd profile                <img className={classes.img} alt="complex" src={profile.profilePicture} />
+                <img className={classes.img} alt="complex" src={profilePicture} />
               </ButtonBase>
             </Grid>
             <Grid item xs={6} sm container>
