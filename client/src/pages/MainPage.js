@@ -159,7 +159,6 @@ const MainPage = (props) => {
         {displayedProfiles.map((profile, index) => (
           <ProfileCard {...props} profile={profile} />
         ))}
-
       </div >
     </div>
   )
