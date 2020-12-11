@@ -81,6 +81,7 @@ empty props object of the child component
               <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} userInfo={userInfo} setAuth={setAuth} setUserInfo={setUserInfo}/>}/>             
               <Route path="/settings"    component={ (props) =>  <SettingsPage     {...props}  authenticated={authenticated} userInfo={userInfo} setAuth={setAuth}/>  }/>
               <Route path="/profileform" component={ (props) =>  <ProfileForm      {...props}  authenticated={authenticated} userInfo={userInfo} setAuth={setAuth}/>  }/>             
+              
           </Switch>
         }
       </main>
