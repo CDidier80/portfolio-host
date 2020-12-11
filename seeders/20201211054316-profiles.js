@@ -1,7 +1,7 @@
 'use strict';
 const { User, sequelize } = require('../models')
 const faker = require('faker');
-const { query } = require('express');
+
 
 const profilePictures = [
   'images/pexels-adrienn-1542085.jpg',
@@ -100,7 +100,6 @@ module.exports = {
         }
       })
     )
-    console.log('before return: ', profiles)
     return queryInterface.bulkInsert('profiles', profiles)
   },
 
