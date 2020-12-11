@@ -29,9 +29,10 @@ const CloudinaryWidget = props => {
                 const url = await resultEvent.info.secure_url
                 if (url) {
                     // take on two parameters, the user id and url of photo
-                    await __UploadPhoto(userId, url)
+                    props.setPicUrl(url)
                     // await updateRender()
                 }
+                
             }
             catch (err) { throw err }
         }
@@ -43,7 +44,7 @@ const CloudinaryWidget = props => {
 
     return (
         <div className="uploader">
-            <div style ={{backgroundColor: "green"}}className="uploader">
+            <div style ={{backgroundColor: "green"}}className="uploader">HELLLOOOOOO
             </div>
         </div>
     )

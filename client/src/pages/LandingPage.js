@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 // import IconButton from '@material-ui/core/IconButton';
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 import NavBar from './subcomponents/NavBar'
+import Footer from './subcomponents/Footer'
 
 
 const LandingPage = (props) => {
@@ -115,6 +116,7 @@ const LandingPage = (props) => {
                 {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
                 {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
             </div>
+            <Footer />
         </div>
     );
 }
