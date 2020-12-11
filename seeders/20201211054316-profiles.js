@@ -4,15 +4,15 @@ const faker = require('faker');
 
 
 const profilePictures = [
-  'images/pexels-adrienn-1542085.jpg',
-  'images/pexels-designecologist-975680.jpg',
-  'images/pexels-giftpunditscom-1310474.jpg',
-  'images/pexels-jimmy-jimmy-1484794.jpg',
-  'images/pexels-jimmy-jimmy-1484810.jpg',
-  'images/pexels-martin-péchy-2078265.jpg',
-  'images/pexels-pixabay-220453.jpg',
-  'images/pexels-pixabay-415829.jpg',
-  'images/pexels-sebastian-libuda-678783.jpg'
+  'https://images.pexels.com/photos/4067753/pexels-photo-4067753.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/5414020/pexels-photo-5414020.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/6053890/pexels-photo-6053890.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/730017/pexels-photo-730017.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+  'https://images.pexels.com/photos/4431045/pexels-photo-4431045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'
 ]
 
 const professional_title = [
