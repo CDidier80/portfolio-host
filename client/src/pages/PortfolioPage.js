@@ -32,12 +32,13 @@ const useStyles = makeStyles((theme) => ({
     width: "230px",
     height: "230px",
     display: "block",
-    margin: "0 auto"
+    margin: "0 auto",
   },
   projectWrapper: {
     margin: "0 auto",
     // paddingLeft: "30px"
     width: "95%", 
+    maxWidth: "1200px",
   },
   linkPort: {
     textDecoration: "none"
@@ -123,6 +124,14 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "14px",
       marginTop: "0px"
       
+    },
+    profileBio: {
+      width: '75%',
+      minWidth: '450px',
+      marginTop: '140px',
+      textAlign: 'center',
+      paddingLeft: '20px',
+      paddingRight: '20px'
     }
   }
 ));
@@ -145,11 +154,15 @@ const ProjectCard = (props) => {
     },
     projectTitle: {
       fontSize: "20px",
+    },
+    projectCardWrapper: {
+      marginBottom: '20px',
+      boxShadow: '0 0 3px black',
     }
   }
 
   return (
-    <div className="project1">
+    <div style={styles.projectCardWrapper}>
       {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
           <p>Technologies: {props.technologies}</p> */}
@@ -256,8 +269,9 @@ const PortfolioPage = (props) => {
             <h3 className={classes.subtext}> {profile.locale}</h3>
           </div>
         </div>
-        {/* <p>{profile.skills}</p>
-        <h4>{profile.bio}</h4> */}
+
+        <h4 className={classes.profileBio}>"{profile.bio}"</h4>
+        {/* <p>{profile.skills}</p> */}
       </div>
 
 
@@ -268,8 +282,7 @@ const PortfolioPage = (props) => {
         <div className={classes.addProject}>
           <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
           {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
-        </div>
-
+        </div> 
         <div className="projectsWrapper">
           {projects.map((project, index) => {
 
