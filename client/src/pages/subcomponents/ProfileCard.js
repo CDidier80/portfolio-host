@@ -8,39 +8,54 @@ import { Link, NavLink } from 'react-router-dom'
 
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-    maxWidth: 660,
-    borderRadius: "5px",
-    // boxShadow: "0 0 4px black"
-  },
-  image: {
-    width: 128,
-    height: 128,
-    boxShadow: "0 0 4px black",
-    borderRadius: "5px",
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    borderRadius: "5px",
-    // boxShadow: "0 0 4px black"
-  }
-}));
 
 
 const ProfileCard = (props) => {
   let profile = props.profile
-  console.log('inside prop:',props.profile.profilePicture)
-  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.profile
-  
+  console.log('inside prop:', props.profile.profilePicture)
+  const { bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId } = props.profile
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+      maxWidth: 660,
+      borderRadius: "5px",
+      boxShadow: "0 0 4px black"
+    },
+    imageWrapper: {
+      width: 128,
+      height: 128,
+      border: "1px solid black",
+      borderRadius: "5px",
+      background: `url(${profilePicture})`,
+      backgroundSize: 'cover',
+      backgroundRepeate: 'none',
+    },
+    img: {
+      margin: 'auto',
+      display: 'block',
+      maxWidth: '100%',
+      maxHeight: '100%',
+      borderRadius: "5px",
+      boxShadow: "0 0 4px black"
+    },
+    name: {
+      textAlign: 'center',
+      fontWeight: 'bold',
+      paddingTop: '6px',
+      fontSize: '18px',
+    },
+    signupNavlink: {
+      textDecoration: 'none',
+    }
+  }));
+
+
+
   // console.log("profile logged in ProfileCard: ", profile)
   const classes = useStyles();
 
@@ -51,10 +66,10 @@ const ProfileCard = (props) => {
         <Paper style={{ Width: "50%" }} className={classes.paper}>
           <Grid container spacing={2}>
             <Grid item>
-              <ButtonBase className={classes.image}> 
-                <img className={classes.img} alt="complex" src={profilePicture} />
+              <ButtonBase className={classes.imageWrapper}>
+                {/* <img className={classes.img} alt="complex" src={profilePicture} /> */}
               </ButtonBase>
-              <Typography className={name} gutterBottom variant="subtitle1">{props.profile.user.name}</Typography> 
+              <Typography className={classes.name} gutterBottom variant="subtitle1">{props.profile.user.name}</Typography>
             </Grid>
             <Grid item xs={6} sm container>
               <Grid item xs container direction="column" spacing={4}>
@@ -66,9 +81,10 @@ const ProfileCard = (props) => {
                   <Typography gutterBottom variant="subtitle1">{professionalTitle}</Typography>
                   <Typography variant="body2" gutterBottom>{bio}</Typography>
                   <Typography variant="body2">{skills}</Typography>
+                  <NavLink className={classes.signupNavlink} to={{ pathname: "/portfolio", state: { profile: profile } }}>View Portfolio</NavLink>
                 </Grid>
                 <Grid item>
-                  <NavLink className="signupNavlink" to={{pathname: "/portfolio", state: {profile: profile}}}>View Portfolio</NavLink>
+                  {/* <NavLink className="signupNavlink" to={{ pathname: "/portfolio", state: { profile: profile } }}>View Portfolio</NavLink> */}
                 </Grid>
               </Grid>
             </Grid>
@@ -89,9 +105,9 @@ export default ProfileCard
   <Paper style={{ Width: "50%" }} className={classes.paper}>
     <Grid container spacing={2}>
       <Grid item>
-        <ButtonBase className={classes.image}>
+        <ButtonBase className={classes.imageWrapper}>
           <img className={classes.img} alt="complex"
-            src="https://media-exp1.licdn.com/dms/image/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" />
+            src="https://media-exp1.licdn.com/dms/imageWrapper/C4E03AQGUsbLOaj6-8A/profile-displayphoto-shrink_800_800/0/1594259451378?e=1613001600&v=beta&t=QeZtzDqZd4_ONzoRmBvE3v-O47fKZbqzyXrOxPTzhwk" />
         </ButtonBase>
       </Grid>
       <Grid item xs={6} sm container>
