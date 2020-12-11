@@ -1,4 +1,4 @@
-aimport React from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: 128,
     height: 128,
+    border: "1px solid black"
   },
   img: {
     margin: 'auto',
