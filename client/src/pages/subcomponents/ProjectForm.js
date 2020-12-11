@@ -19,70 +19,81 @@ const useStyles = makeStyles((theme) => ({
 
 
 const ProjectForm = (props) => {
-    {/* Variables */}
-    const classes = useStyles();
+  {/* Variables */ }
+  console.log("LOG: ProjectForm.js --> PROPS RECEIVED, ", props)
+  const {profile, user} = props
+  const classes = useStyles();
 
-    {/* Hooks */}
-    const [name, setName] = useState('Composed TextField')
-    {/* <-------------- hooks for Create Project Payload */}
-    const [projectTitle, setProjectTitle] = useState("")
-    const [description, setDescription] = useState("")
-    const [technologies, setTechnologies] = useState("")
-    const [image, setImage] = useState("")
-    const [link, setLink] = useState("")
+  {/* Hooks */ }
+  const [name, setName] = useState('Composed TextField')
+  {/* <-------------- hooks for Create Project Payload */ }
+  const [projectTitle, setProjectTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [technologies, setTechnologies] = useState("")
+  // const [image, setImage] = useState("")
+  const [link, setLink] = useState("")
 
-    {/* Event Handlers */}
-    const updateTextField = (e, formUpdateFunction) => {
-      let val = e.target.value
-      formUpdateFunction(val)
-    };
 
-    const submitProject = async (e) => {
-      // console.log(props)
-      const serviceFunction = props.updateOrCreate === "CreateProject" ? CreateProject : UpdateProject
-        let payload = {
-          title: projectTitle,
-          description: description,
-          technologies: technologies,
-          image: image,
-          link: link
-        }
-        const result = await serviceFunction(payload)
-        console.log(result)
-        props.setShowPopUp(false)
+  {/* Event Handlers */ }
+  const updateTextField = (e, formUpdateFunction) => {
+    let val = e.target.value
+    console.log("TEXTFIELD VALUE:", val)
+    formUpdateFunction(val)
+  };
+
+  const submitProject = async (e) => {
+    e.preventDefault()
+    try {
+      let payload = {
+        id: user.id,
+        title: projectTitle,
+        description: description,
+        technologies: technologies,
+        deployLink: link,
+
+      }
+      const result = await CreateProject(payload)
+      console.log(result)
+      props.setShowPopUp(false)
+      console.log("setshowup TEST", props.setShowPopUp())
+    } catch (error) {
+      throw error
     }
+  }
 
   return (
     <div>
       <form className={classes.root} noValidate autoComplete="off">
         <FormControl>
           <InputLabel htmlFor="component-simple"> Project Title </InputLabel>
-          <Input id="component-simple" onChange={(e) => updateTextField(e, setProjectTitle)}
+          <Input name="title" id="component-simple" onChange={(e) => updateTextField(e, setProjectTitle)}
             placeholder="project title" />
         </FormControl>
 
         <FormControl>
           <InputLabel htmlFor="component-simple"> description </InputLabel>
-          <Input id="component-simple" onChange={(e) => updateTextField(e, setDescription)}
-            placeholder="project title" />
+          <Input name="description" id="component-simple" onChange={(e) => updateTextField(e, setDescription)}
+            placeholder="description" />
         </FormControl>
         <FormControl>
           <InputLabel htmlFor="component-simple"> technologies </InputLabel>
-          <Input id="component-simple" onChange={(e) => updateTextField(e, setTechnologies)}
-            placeholder="project title" />
+          <Input name="technologies" id="component-simple" onChange={(e) => updateTextField(e, setTechnologies)}
+            placeholder="technologies" />
         </FormControl>
         <FormControl>
-          <InputLabel htmlFor="component-simple"> image project </InputLabel>
-          <Input id="component-simple" onChange={(e) => updateTextField(e, setImage)}
-            placeholder="project title" />
+          <InputLabel htmlFor="component-simple"> deploy link </InputLabel>
+          <Input name="deployLink" id="component-simple" onChange={(e) => updateTextField(e, setLink)}
+            placeholder="deploy Link" />
         </FormControl>
-        <FormControl>
+        <input type="hidden" name="user_id" value={props.user.id}></input>
+        {/* hidden - allowd you to send info that the user can not modify !!!!!!!!!!!!!!!*/}
+        {/* <FormControl>
           <InputLabel htmlFor="component-simple"> links to project </InputLabel>
           <Input id="component-simple" onChange={(e) => updateTextField(e, setLink)}
             placeholder="project title" />
-        </FormControl>
+        </FormControl> */}
       </form>
-      <button onClick={() => submitProject()}> submit project</button>
+      <button onClick={(e) => submitProject(e)}> submit project</button>
     </div>
   );
 }
