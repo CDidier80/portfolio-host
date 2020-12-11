@@ -63,7 +63,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "13px",
     backgroundColor: "white",
     borderRadius: "10px",
-    boxShadow: "0 0 4px white"
+    boxShadow: "0 0 10px black",
+    gridGap: "1.3rem"
   }
 }));
 

@@ -19,9 +19,6 @@ import CloudinaryWidget from './subcomponents/CloudinaryWidget'
 
 
 
-
-
-
 const useStyles = makeStyles((theme) => ({
   // card profile not material
   cardProfile: {
@@ -230,8 +227,6 @@ const PortfolioPage = (props) => {
     setShowPopUp(!showPopUp)
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   // useEffect(() => {
   //   console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
   //   const populatePortfolioPage = async () => {
@@ -252,10 +247,7 @@ const PortfolioPage = (props) => {
   //   [pageLoaded]
   // )
   // console.log(showProjectPicWidget)
-=======
-=======
 
->>>>>>> ae08f65b4d11677cfb3891a60ebf608bfe5e0adb
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
     const populatePortfolioPage = async () => {
@@ -276,11 +268,6 @@ const PortfolioPage = (props) => {
     [pageLoaded]
   )
   console.log(showProjectPicWidget)
-<<<<<<< HEAD
->>>>>>> 853392374da511297380ba8c5873ba87ea967cc6
-=======
-
->>>>>>> ae08f65b4d11677cfb3891a60ebf608bfe5e0adb
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
@@ -288,27 +275,18 @@ const PortfolioPage = (props) => {
           {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
           <div className={classes.cardProfile}>
             <div className={classes.imageColumn}>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
               {/* <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
                 <h2 style={classes.name}>{user.name}</h2>
                 <h3>{profile.professionalTitle}</h3> */}
                 {/* <h3>{profile.organization}</h3>
                 <h3>{profile.locale}</h3> */}
-=======
-=======
 
->>>>>>> ae08f65b4d11677cfb3891a60ebf608bfe5e0adb
                 <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
                 <h2 style={classes.subtext}> {user.name}</h2>
                 <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
                 <h3 style={classes.subtext} > {profile.organization}</h3>
                 <h3 style={classes.subtext} > {profile.locale}</h3>
-<<<<<<< HEAD
->>>>>>> 853392374da511297380ba8c5873ba87ea967cc6
-=======
-
->>>>>>> ae08f65b4d11677cfb3891a60ebf608bfe5e0adb
             </div>
 
         {/* <p>{profile.skills}</p>
