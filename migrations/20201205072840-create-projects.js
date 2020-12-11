@@ -1,4 +1,5 @@
 'use strict';
+const uuid = require("uuid").v4
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('projects', {
@@ -6,7 +7,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.literal('uuid_generate_v4()')
+        defaultValue: uuid()
       },
       userId: {
         type: Sequelize.UUID,
