@@ -223,26 +223,6 @@ const PortfolioPage = (props) => {
     setShowPopUp(!showPopUp)
   }
 
-  // useEffect(() => {
-  //   console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
-  //   const populatePortfolioPage = async () => {
-  //     // console.log(user.id)
-  //     // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-
-
-  //     // console.log("Projects response: ", projectsResponse)
-  //     // setProjects(projectsResponse)
-
-  //   }
-  //   populatePortfolioPage()
-  //   console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
-  //   if (!pageLoaded) {
-  //     setLoaded(true)
-  //   }
-  // },
-  //   [pageLoaded]
-  // )
-  // console.log(showProjectPicWidget)
 
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
