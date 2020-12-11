@@ -1,4 +1,4 @@
-
+const path = require('path')
 const AppRouter = require('./routes/AppRouter')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -14,9 +14,15 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(logger('dev'))
-app.use(helmet())
+// app.use(helmet())   ok in development
+app.use(helmet({ contentSecurityPolicy: false }))   // for deployment
 app.use(cors())
 app.disable('X-Powered-By') 
+app.use(express.static(path.join(__dirname, 'client', 'build')))   // for deployment
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+)
+
 
 // Test Route
 app.get('/', (req, res) => res.json({ message: 'Server Works' }))

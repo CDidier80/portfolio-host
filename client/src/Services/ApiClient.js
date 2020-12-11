@@ -1,5 +1,9 @@
 import axios from 'axios'
-const ApiClient = axios.create({ baseURL: 'http://localhost:3001/api/' })
+// const ApiClient = axios.create({ baseURL: 'http://localhost:3001/api/' })   // for development
+const ApiClient = axios.create({ baseURL: process.env.NODE_ENV === 'production'     // <-- for deployment
+? `${window.location.origin}/api`
+: '<your local backend server>/api' }) 
+
 
 
 // used only after user is logged in and authenticated. They maintain authenticated status by checking the validity of the current tokenbuggi

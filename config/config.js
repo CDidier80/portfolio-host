@@ -1,3 +1,6 @@
+require('dotenv').config()
+
+module.exports =
 {
   "development": {
     "database": "port_dev_development",
