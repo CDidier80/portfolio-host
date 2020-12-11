@@ -128,7 +128,18 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
 const ProjectCard = (props) =>  {
+  const {project} = props
+  const classes = useStyles();
+
+  {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
+  // const [showProfileCloudinary, toggleProfileCloudinary] = useState(false)
+
+  // const [displayedProfiles, setProfiles] = useState([])
+  // const [searchValue, setSearchField] = useState("")
+
+
   return (
     <div>
        <div className="project1">
@@ -141,36 +152,28 @@ const ProjectCard = (props) =>  {
             <Paper  className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
-                  <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={props.projectUrl}></img>                  
+                  <img style={classes.profilePic} src={project.projectUrl}></img>                  
                 </Grid>
                 <Grid item xs={6} sm container>
                   <Grid item xs container direction="column" spacing={4}>
                     <Grid item xs>
-                      <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
-                        Name: {props.location}
-                      </Typography>
-                      <Typography gutterBottom variant="subtitle1">
-                        Title project: {props.title}
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        Description: {props.location.state}
-                      </Typography>
-                      <Typography variant="body2" >
-                        Technologies: {props.location.state}
-                      </Typography>
+                      {/* <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
+                        Name: {project.location}
+                      </Typography> */}
+                      <Typography gutterBottom variant="subtitle1"> Title project: {project.title} </Typography>
+                      <Typography variant="body2" gutterBottom> Description: {project.description} </Typography>
+                      <Typography variant="body2" > Technologies: {project.technologies} </Typography>
                     </Grid>
                     <Grid item>
                       <Link to="portfolio">
-                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
-                          Link to project: {props.location.state}
-                        </Typography>
+                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>Link to project: {project.link}</Typography>
                       </Link>
                     </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-              <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
-              {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />}
+              {/* <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
+              {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />} */}
             </Paper>
           </div>
         </div>
@@ -181,136 +184,10 @@ const ProjectCard = (props) =>  {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const useStyles = makeStyles((theme) => ({
-//   // card profile not material
-//   cardProfile: {
-//     display: "grid",
-//     gridTemplateColumns: "1fr 2fr",
-//     color: "black"
-//   },
-//   profImage: {
-//     border: "1px solid black",
-//     borderRadius: "325px",
-//     width: "230px",
-//     height: "230px",
-//     marginTop: "22px",
-//     marginLeft: "35px"
-//   },
-//   projectWrapper: {
-//     display: "grid",
-//     gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
-//     gap: "10px",
-//     gridAutoRows: "100px",
-//     color: "black",
-//     marginTop: "55px",
-//     marginLeft: "25px",
-//     marginRight: "25px",
-//     border: "2px solid black",
-//     borderRadius: "10px",
-//     backgroundColor: "F3F2EF"
-//   },
-//   projectWrapper: {
-//     margin: "0 auto",
-//     paddingLeft: "30px"
-//   },
-//   addProjBtn: {
-//     marginBottom: "12px"
-//   },
-//   title: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     margin: 'auto',
-//     maxWidth: 1200,
-//     borderRadius: "5px",
-//     boxShadow: "0 0 2px black"
-//   },
-//   image: {
-//     width: 200,
-//     height: 170,
-//   },
-//   img: {
-//     margin: 'auto',
-//     display: 'block',
-//     maxWidth: '100%',
-//     maxHeight: '100%',
-//     borderRadius: "5px",
-//     boxShadow: "0 0 2px black"
-//   },
-//   updateBioBtn: {
-//     marginLeft: "400px"
-//   },
-//   textGreeting: {
-//     display: "block",
-//     marginLeft: "5vw",
-//     alignText: "left",
-//     welcome: {
-//       fontSize: "35px"
-//     },
-//     subHeader: {
-//       fontSize: "20px"
-//     },
-//     addProject: {
-//       textAlign: "center",
-//       paddingTop: "2rem"
-//     },
-//   },
-//   httpTest: {
-//     margin: "0 auto",
-//     marginTop: "70px",
-//     width: "300px",
-//     height: "50px",
-//     display: "flex",
-//     justifyContent: "spaceBetween",
-//     textfield: {
-//       width: "60%",
-//       height: "80px",
-//       backgroundColor: "white",
-//       border: "1px solid black"
-//     },
-//     loginButton: {
-//       display: "block",
-//       margin: "0 auto",
-//       width: "80px",
-//       height: "40px",
-//       fontSize: "18px"
-//     },
-//     submitTestButton: {
-//       height: "80px",
-//       width: "80px",
-//       color: "black",
-//       backgroundColor: "white"
-//     },
-//   }
-// }));
-
-
 const PortfolioPage = (props) => {
   console.log("props", props)
   const {profile, user} = props.userInfo
   // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
-
-
   {/* Variables */ }
   const classes = useStyles();
   {/* Hooks */ }
@@ -327,15 +204,7 @@ const PortfolioPage = (props) => {
   const [projects, setProjects] = useState([])
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
-  {/* useEffect() for loading screen */ }
-  useEffect(() => {
-    console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
-    if (!pageLoaded) {
-      setLoaded(true)
-    }
-  },
-    [pageLoaded]
-  )
+ 
 
   {/* Event Handlers */ }
   const openPopUp = (e, formType) => {
@@ -361,6 +230,7 @@ const PortfolioPage = (props) => {
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
     const populatePortfolioPage = async () => {
+      console.log(user.id)
       const projectsResponse = await GetUsersProjects({ userId: user.id }) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
 
 
@@ -369,31 +239,27 @@ const PortfolioPage = (props) => {
 
     }
     populatePortfolioPage()
-    console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: main page loaded: ", pageLoaded)
+    console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
     if (!pageLoaded) {
       setLoaded(true)
     }
   },
     [pageLoaded]
   )
-
-
   console.log(showProjectPicWidget)
+
+
+
+
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
-      <NavBar {...props} />
-      {/* profile page below */}
-      <div style={{width: "150px", height: "150px", backgroundColor: "yellow"}}>
-
-      {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
-
-      </div>
-
-
+        <NavBar {...props} />
+        <div style={{width: "150px", height: "150px", backgroundColor: "yellow"}}>
+            {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
+        </div>
       <div className={classes.cardProfile}>
-        <div className={classes.imageColumn}>
-          <img className={classes.profImage} placeholder="upload image"
-            alt="default profile image" />
+          <div className={classes.imageColumn}>
+          <img className={classes.profImage} placeholder="upload image" alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
 
@@ -407,28 +273,26 @@ const PortfolioPage = (props) => {
           </div>
         </div>
       </div>
+
+
+
+
       {/* projects */}
       <div className={classes.projectWrapper}>
         <h3> Projects: </h3>
         <div className={classes.addProject}>
           <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
-          {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject}/>}
+          {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
         </div>
 
-        <div className="projectsWrapper">
+        {/* <div className="projectsWrapper">
               {projects.map((project, index) => {
 
                 return(
-                  <ProjectCard project={project}/>
+                  <ProjectCard {...props} project={project} />
                 )
               })}
-        </div>
-
-
-
-
-
-
+        </div> */}
 
         <div className="project1">
           {/* <h3> Project title: {props.projectTitle}</h3>

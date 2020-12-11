@@ -55,14 +55,9 @@ const GetAllProjectsUser = async (req, res) => {
         const { limit } = req.body
         let userId = req.params.user_id
         let projectsData = await Projects.findAll({
-            userId: userId,
-            limit: limit,
-            include: [
-                {
-                    model: projects,
-                    as: 'user'
-                }
-            ]
+            where: {
+                user_id: userId
+            }
         })
         res.send(projectsData)
     } catch (error) {
