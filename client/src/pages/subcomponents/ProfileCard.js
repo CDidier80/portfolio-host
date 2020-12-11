@@ -17,12 +17,12 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     maxWidth: 660,
     borderRadius: "5px",
-    boxShadow: "0 0 4px black"
+    // boxShadow: "0 0 4px black"
   },
   image: {
     width: 128,
     height: 128,
-    border: "1px solid black",
+    boxShadow: "0 0 4px black",
     borderRadius: "5px",
   },
   img: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     maxHeight: '100%',
     borderRadius: "5px",
-    boxShadow: "0 0 4px black"
+    // boxShadow: "0 0 4px black"
   }
 }));
 
