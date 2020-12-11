@@ -1,12 +1,11 @@
 import ApiClient from "./ApiClient"
 
-export const CreateProject = async (payload, params) =>  {
+export const CreateProject = async (payload) =>  {
     console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: CreateProject() -->  Reached, carrying payload: ", payload)
 
     try {
-        let params = '41be33bc-6aca-4c12-ad05-cff4ed120075' 
-        console.log(params)
-        const response = await ApiClient.post(`projects/create/${params}`, payload)
+        let userId = payload.id
+        const response = await ApiClient.post(`projects/create/${userId}`, payload)
         console.log('after post',response)
         return response.data
     } catch (error) {
@@ -14,18 +13,19 @@ export const CreateProject = async (payload, params) =>  {
     }
 }
 
-export const ReadProject = async (payload, params) =>  {
+export const ReadProject = async (payload) =>  {
     console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: ReadProject() -->  Reached, carrying payload: ", payload)
 
     try {
-        const response = await ApiClient.get(`projects/read${params}`, payload)
+        let projectId = payload.id
+        const response = await ApiClient.get(`projects/read${projectId}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
-export const GetAllProjects = async (payload, params) =>  {
+export const GetAllProjects = async (payload) =>  {
     console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: GetAllProjects() -->  Reached, carrying payload: ", payload)
 
     try {
@@ -36,22 +36,24 @@ export const GetAllProjects = async (payload, params) =>  {
     }
 }
 
-export const UpdateProject = async (payload, params) =>  {
+export const UpdateProject = async (payload) =>  {
     console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: UpdateProject() -->  Reached, carrying payload: ", payload)
 
     try {
-        const response = await ApiClient.put(`projects/update${params}`, payload)
+        let projectId = payload.id
+        const response = await ApiClient.put(`projects/update${projectId}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
     }
 }
 
-export const DeleteProject = async (payload, params) =>  {
+export const DeleteProject = async (payload) =>  {
     console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: DeleteProject() -->  Reached, carrying payload: ", payload)
 
     try {
-        const response = await ApiClient.delete(`projects/${params}`, payload)
+        let projectId = payload.id
+        const response = await ApiClient.delete(`projects/${projectId}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
