@@ -175,7 +175,7 @@ const ProjectCard = (props) => {
                 </Grid>
                 <Grid item>
                   <Link className={classes.linkPort} to="portfolio">
-                    <Typography variant="body2" className={classes.linkPort}>View Project: {project.deployLink}</Typography>
+                    <Typography variant="body2" className={classes.linkPort}>View Project{project.deployLink}</Typography>
                   </Link>
                 </Grid>
               </Grid>
@@ -242,10 +242,10 @@ const PortfolioPage = (props) => {
   console.log(showProjectPicWidget)
 
   return (!pageLoaded ? <LoadingScreen /> :
-    <div className="portfolio-page-wrapper">
+    <div>
       <NavBar {...props} />
-
       {showProjectPicWidget ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
+      <div className={classes.projectWrapper}>
       <div className={classes.cardProfile}>
         <div className={classes.leftColumnWrapper}>
           <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
@@ -262,7 +262,8 @@ const PortfolioPage = (props) => {
 
 
       {/* projects */}
-      <div className={classes.projectWrapper}>
+      <div > 
+      {/* className={classes.projectWrapper} */}
         <h3> Projects: </h3>
         <div className={classes.addProject}>
           <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
@@ -277,6 +278,7 @@ const PortfolioPage = (props) => {
             )
           })}
         </div>
+      </div>
       </div>
     </div>
   )
