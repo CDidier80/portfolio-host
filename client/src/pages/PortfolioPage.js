@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService } from '../Services/UserService'
 import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile } from '../Services/ProfileService'
 import { CreateProject, ReadProject, UpdateProject, DeleteProject, GetUsersProjects } from '../Services/ProjectsService'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -123,6 +123,9 @@ const useStyles = makeStyles((theme) => ({
       color: "black",
       backgroundColor: "white"
     },
+    name : {
+      textA: "center"
+    }
   }
 }));
 
@@ -214,20 +217,6 @@ const PortfolioPage = (props) => {
 
   }
 
-  // const handleProfileCloudinary = (e) => {
-  //   e.preventDefault()
-  //   toggleProfileCloudinary(!showProfileCloudinary)
-    
-  // }
-
-
-  // const handleProjectCloudinary = (e) => {
-  //     e.preventDefault()
-  //     console.log("clicked")
-  //     toggleProjectPicWidget(!showProjectPicWidget)
-  // }
-
-
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
     const populatePortfolioPage = async () => {
@@ -249,31 +238,23 @@ const PortfolioPage = (props) => {
   )
   console.log(showProjectPicWidget)
 
-
-
-
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
         <NavBar {...props} />
           {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
           <div className={classes.cardProfile}>
             <div className={classes.imageColumn}>
-              <img className={classes.profImage} placeholder="upload image" alt="default profile image" />
-                {/* // src={profilePicture} alt="" /> */}
-                <div className={classes.portfolioDetails}>
+              <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
+                <h2 style={classes.name}>{user.name}</h2>
+                <h3>{profile.professionalTitle}</h3>
+                <h3>{profile.professionalTitle}</h3>
+                <h3>{profile.organization}</h3>
+                <h3>{profile.locale}</h3>
+            </div>
 
-              {/* <h2>{name}</h2>
-                <h3>{locale}</h3>
-                <h3>{professionalTitle}</h3>
-                <h3>{organization}</h3>
-                <h4>{bio}</h4>
-                <p>{skills}</p> */}
-
-          </div>
-        </div>
+        <p>{profile.skills}</p>
+        <h4>{profile.bio}</h4>
       </div>
-
-
 
 
       {/* projects */}
@@ -284,7 +265,7 @@ const PortfolioPage = (props) => {
           {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
         </div>
 
-       <div className="projectsWrapper">
+        <div className="projectsWrapper">
               {projects.map((project, index) => {
 
                 return(
@@ -292,51 +273,6 @@ const PortfolioPage = (props) => {
                 )
               })}
         </div> 
-
-        <div className="project1">
-          {/* <h3> Project title: {props.projectTitle}</h3>
-          <p>Description: {props.description} </p>
-          <p>Technologies: {props.technologies}</p> */}
-         {/* <p>{propsWidgetOpenmage} </p> */}
-          {/* <p>Link: {props.link} </p> */}
-          <div className={classes.root}>
-            <Paper  className={classes.paper}>
-              <Grid container spacing={2}>
-                <Grid item>
-                  <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>                  
-                </Grid>
-                <Grid item xs={6} sm container>
-                  <Grid item xs container direction="column" spacing={4}>
-                    <Grid item xs>
-                      <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
-                        Name: {props.location.state}
-                      </Typography>
-                      <Typography gutterBottom variant="subtitle1">
-                        Title project: {props.location.state}
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        Description: {props.location.state}
-                      </Typography>
-                      <Typography variant="body2" >
-                        Technologies: {props.location.state}
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Link to="portfolio">
-                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
-                          Link to project: {props.location.state}
-                        </Typography>
-                      </Link>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
-              {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />}
-            </Paper>
-          </div>
-        </div>
-        <br></br>
       </div>
     </div>
   )
