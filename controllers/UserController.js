@@ -79,7 +79,7 @@ const UpdateUser = async (req, res) => {
 const DeleteUser = async (req, res) => {
     log(DeleteUser, req, show)
     try {
-        let userId = parseInt(req.params.user_id)
+        let userId = req.params.user_id
         console.log(userId)
         await User.destroy({
             where: {
