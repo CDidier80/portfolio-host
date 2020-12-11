@@ -9,6 +9,7 @@ import CloudinaryWidget from '../pages/subcomponents/CloudinaryWidget'
 import { StylesProvider } from '@material-ui/core'
 
 const SettingsPage = (props) => { 
+    // props.userInfo
     const [pageLoaded, setLoaded] = useState(false);
     const [widgetDisplayed, toggleWidget] = useState(false)
 
