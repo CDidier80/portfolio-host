@@ -110,6 +110,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "white",
       border: "1px solid black"
     },
+    imageColumn: {
+      display: "block", 
+
+    },
     loginButton: {
       display: "block",
       margin: "0 auto",
@@ -124,7 +128,10 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "white"
     },
     name : {
-      textA: "center"
+      textAlign: "center"
+    }, 
+    subtext : {
+      marginLeft: "10px"
     }
   }
 }));
@@ -142,7 +149,12 @@ const ProjectCard = (props) =>  {
 
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
-
+  const styles = {
+    image: {
+      maxWidth: "300px", 
+      
+    }
+  }
 
   return (
     <div>
@@ -156,7 +168,9 @@ const ProjectCard = (props) =>  {
             <Paper  className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
-                  <img style={classes.profilePic} src={project.projectUrl}></img>                  
+
+                  <img style={styles.image} src={project.projectPicture}></img>                  
+
                 </Grid>
                 <Grid item xs={6} sm container>
                   <Grid item xs container direction="column" spacing={4}>
@@ -189,9 +203,9 @@ const ProjectCard = (props) =>  {
 
 
 const PortfolioPage = (props) => {
-  console.log("props", props)
-  // const {profile, user} = props.userInfo
-  // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+  console.log("PROPS INSIDE PORTFOLIO PAGE", props)
+  const {profile, user} = props.userInfo
+
   {/* Variables */ }
   const classes = useStyles();
   {/* Hooks */ }
@@ -214,29 +228,30 @@ const PortfolioPage = (props) => {
   const openPopUp = (e, formType) => {
     e.preventDefault()
     setShowPopUp(!showPopUp)
-
   }
 
-  // useEffect(() => {
-  //   console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
-  //   const populatePortfolioPage = async () => {
-  //     // console.log(user.id)
-  //     // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+
+  useEffect(() => {
+    console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
+    const populatePortfolioPage = async () => {
+      console.log(user.id)
+      const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
 
 
-  //     // console.log("Projects response: ", projectsResponse)
-  //     // setProjects(projectsResponse)
+      console.log("Projects response: ", projectsResponse)
+      setProjects(projectsResponse)
 
-  //   }
-  //   populatePortfolioPage()
-  //   console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
-  //   if (!pageLoaded) {
-  //     setLoaded(true)
-  //   }
-  // },
-  //   [pageLoaded]
-  // )
-  // console.log(showProjectPicWidget)
+    }
+    populatePortfolioPage()
+    console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
+    if (!pageLoaded) {
+      setLoaded(true)
+    }
+  },
+    [pageLoaded]
+  )
+  console.log(showProjectPicWidget)
+
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
@@ -244,11 +259,13 @@ const PortfolioPage = (props) => {
           {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
           <div className={classes.cardProfile}>
             <div className={classes.imageColumn}>
-              {/* <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
-                <h2 style={classes.name}>{user.name}</h2>
-                <h3>{profile.professionalTitle}</h3> */}
-                {/* <h3>{profile.organization}</h3>
-                <h3>{profile.locale}</h3> */}
+
+                <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
+                <h2 style={classes.subtext}> {user.name}</h2>
+                <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
+                <h3 style={classes.subtext} > {profile.organization}</h3>
+                <h3 style={classes.subtext} > {profile.locale}</h3>
+
             </div>
 
         {/* <p>{profile.skills}</p>
