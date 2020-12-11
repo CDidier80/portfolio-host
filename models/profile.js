@@ -44,7 +44,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Profile',
-    tableName: 'profiles'
+    tableName: 'profiles',
+    subQuery: false
   });
   return Profile;
 };
