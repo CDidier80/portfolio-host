@@ -18,13 +18,10 @@ import NavBar from './subcomponents/NavBar'
 import CloudinaryWidget from './subcomponents/CloudinaryWidget'
 
 
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 20a1126e4f837f0764a981827581042e68e7e5c2
 const useStyles = makeStyles((theme) => ({
   // card profile not material
   cardProfile: {
@@ -130,10 +127,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
-
-import React from 'react'
 
 const ProjectCard = (props) =>  {
   return (
@@ -207,109 +200,109 @@ const ProjectCard = (props) =>  {
 
 
 
-const useStyles = makeStyles((theme) => ({
-  // card profile not material
-  cardProfile: {
-    display: "grid",
-    gridTemplateColumns: "1fr 2fr",
-    color: "black"
-  },
-  profImage: {
-    border: "1px solid black",
-    borderRadius: "325px",
-    width: "230px",
-    height: "230px",
-    marginTop: "22px",
-    marginLeft: "35px"
-  },
-  projectWrapper: {
-    display: "grid",
-    gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
-    gap: "10px",
-    gridAutoRows: "100px",
-    color: "black",
-    marginTop: "55px",
-    marginLeft: "25px",
-    marginRight: "25px",
-    border: "2px solid black",
-    borderRadius: "10px",
-    backgroundColor: "F3F2EF"
-  },
-  projectWrapper: {
-    margin: "0 auto",
-    paddingLeft: "30px"
-  },
-  addProjBtn: {
-    marginBottom: "12px"
-  },
-  title: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-    maxWidth: 1200,
-    borderRadius: "5px",
-    boxShadow: "0 0 2px black"
-  },
-  image: {
-    width: 200,
-    height: 170,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    borderRadius: "5px",
-    boxShadow: "0 0 2px black"
-  },
-  updateBioBtn: {
-    marginLeft: "400px"
-  },
-  textGreeting: {
-    display: "block",
-    marginLeft: "5vw",
-    alignText: "left",
-    welcome: {
-      fontSize: "35px"
-    },
-    subHeader: {
-      fontSize: "20px"
-    },
-    addProject: {
-      textAlign: "center",
-      paddingTop: "2rem"
-    },
-  },
-  httpTest: {
-    margin: "0 auto",
-    marginTop: "70px",
-    width: "300px",
-    height: "50px",
-    display: "flex",
-    justifyContent: "spaceBetween",
-    textfield: {
-      width: "60%",
-      height: "80px",
-      backgroundColor: "white",
-      border: "1px solid black"
-    },
-    loginButton: {
-      display: "block",
-      margin: "0 auto",
-      width: "80px",
-      height: "40px",
-      fontSize: "18px"
-    },
-    submitTestButton: {
-      height: "80px",
-      width: "80px",
-      color: "black",
-      backgroundColor: "white"
-    },
-  }
-}));
+// const useStyles = makeStyles((theme) => ({
+//   // card profile not material
+//   cardProfile: {
+//     display: "grid",
+//     gridTemplateColumns: "1fr 2fr",
+//     color: "black"
+//   },
+//   profImage: {
+//     border: "1px solid black",
+//     borderRadius: "325px",
+//     width: "230px",
+//     height: "230px",
+//     marginTop: "22px",
+//     marginLeft: "35px"
+//   },
+//   projectWrapper: {
+//     display: "grid",
+//     gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
+//     gap: "10px",
+//     gridAutoRows: "100px",
+//     color: "black",
+//     marginTop: "55px",
+//     marginLeft: "25px",
+//     marginRight: "25px",
+//     border: "2px solid black",
+//     borderRadius: "10px",
+//     backgroundColor: "F3F2EF"
+//   },
+//   projectWrapper: {
+//     margin: "0 auto",
+//     paddingLeft: "30px"
+//   },
+//   addProjBtn: {
+//     marginBottom: "12px"
+//   },
+//   title: {
+//     flexGrow: 1,
+//   },
+//   paper: {
+//     padding: theme.spacing(2),
+//     margin: 'auto',
+//     maxWidth: 1200,
+//     borderRadius: "5px",
+//     boxShadow: "0 0 2px black"
+//   },
+//   image: {
+//     width: 200,
+//     height: 170,
+//   },
+//   img: {
+//     margin: 'auto',
+//     display: 'block',
+//     maxWidth: '100%',
+//     maxHeight: '100%',
+//     borderRadius: "5px",
+//     boxShadow: "0 0 2px black"
+//   },
+//   updateBioBtn: {
+//     marginLeft: "400px"
+//   },
+//   textGreeting: {
+//     display: "block",
+//     marginLeft: "5vw",
+//     alignText: "left",
+//     welcome: {
+//       fontSize: "35px"
+//     },
+//     subHeader: {
+//       fontSize: "20px"
+//     },
+//     addProject: {
+//       textAlign: "center",
+//       paddingTop: "2rem"
+//     },
+//   },
+//   httpTest: {
+//     margin: "0 auto",
+//     marginTop: "70px",
+//     width: "300px",
+//     height: "50px",
+//     display: "flex",
+//     justifyContent: "spaceBetween",
+//     textfield: {
+//       width: "60%",
+//       height: "80px",
+//       backgroundColor: "white",
+//       border: "1px solid black"
+//     },
+//     loginButton: {
+//       display: "block",
+//       margin: "0 auto",
+//       width: "80px",
+//       height: "40px",
+//       fontSize: "18px"
+//     },
+//     submitTestButton: {
+//       height: "80px",
+//       width: "80px",
+//       color: "black",
+//       backgroundColor: "white"
+//     },
+//   }
+// }));
 
 
 const PortfolioPage = (props) => {

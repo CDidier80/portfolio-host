@@ -41,7 +41,8 @@ const LandingPage = (props) => {
     const mainStyles = {
     wrapper: {
         backgroundImage: "url('https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?cs=srgb&dl=pexels-negative-space-169573.jpg&fm=jpg')",
-        backgroundSize: "cover", minHeight: "91vh", paddingTop: "5vh"
+        backgroundSize: "cover", minHeight: "91vh", paddingTop: "5vh",
+        backgroundColor: "0 100% 90% 0.4",
     },
     textGreeting: {
       display: "block",
@@ -50,14 +51,15 @@ const LandingPage = (props) => {
 
     welcome: {
       fontSize: "70px",
-      fontFamily: "Roboto"
+      fontFamily: "Roboto",
+      marginTop: "0",
     },
-
     subHeader: {
-      fontSize: "20px", 
+      fontSize: "40px", 
+      fontWeight: "700px",
       fontFamily: "Roboto", 
       textAlign: "center",
-      marginTop: "0"
+      marginTop: "0",
     },
 
     httpTest: {
@@ -112,8 +114,8 @@ const LandingPage = (props) => {
                 <h4 style={mainStyles.subHeader}>A window into great works</h4>
             </div>
             <div style={mainStyles.buttonWrapper}>
-                <Button style={mainStyles.loginButton} onClick={()=>props.history.push("/signin")} variant="outlined" color="primary">Login</Button>
-                <Button style={mainStyles.portButton} onClick={()=>props.history.push("/main")} variant="outlined" color="primary">View Portfolios</Button>
+                <Button style={mainStyles.loginButton} onClick={()=>props.history.push("/signin")} variant="contained" color="primary">Login</Button>
+                <Button style={mainStyles.portButton} onClick={()=>props.history.push("/main")} variant="contained" color="primary">View Portfolios</Button>
             </div>
             <div style={mainStyles.httpTest}>
                 {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
