@@ -39,7 +39,12 @@ const CreateUser = async (req, res) => {
             ...req.body
         }
         let profile = await Profile.create(profileBody)
-        res.send(profile)
+        let response = {
+            user,
+            ...profile
+        }
+        res.send(response)
+
     } catch (error) {
         throw error
     }
@@ -114,8 +119,8 @@ const LogInUser = async (req, res) => {
             }
             let token = createToken(payload)
 
-            return res.send({ user, token })
-        }
+            return res.send({ user, profile, token })
+        }   
         res.status(401).send({ msg: 'Unauthorized' })
     } catch (error) {
         throw error
