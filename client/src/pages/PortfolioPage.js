@@ -175,7 +175,9 @@ const PortfolioPage = (props) => {
       <NavBar {...props} />
       {/* profile page below */}
       <div style={{width: "150px", height: "150px", backgroundColor: "yellow"}}>
+
       {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
+
       </div>
 
 
@@ -185,12 +187,14 @@ const PortfolioPage = (props) => {
             alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
+
               {/* <h2>{name}</h2>
                 <h3>{locale}</h3>
                 <h3>{professionalTitle}</h3>
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
                 <p>{skills}</p> */}
+
           </div>
         </div>
       </div>
@@ -220,7 +224,7 @@ const PortfolioPage = (props) => {
          {/* <p>{propsWidgetOpenmage} </p> */}
           {/* <p>Link: {props.link} </p> */}
           <div className={classes.root}>
-            <Paper style={{ width: "50vw", minWidth: "600px" }} className={classes.paper}>
+            <Paper  className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
                   <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>                  

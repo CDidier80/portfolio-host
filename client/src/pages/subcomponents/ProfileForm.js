@@ -81,6 +81,7 @@ const ProfileForm = (props) => {
         const profileResponse = await UpdateProfile(payload)
         console.log(logs[2], profileResponse)
         console.log(logs[3])
+        props.history.push('/portfolio')
         return
     }
 
