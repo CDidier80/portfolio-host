@@ -62,8 +62,8 @@ The project itself will be deployed using Heroku.
 ![wireframe](./img/profilePage.png)
 
 ## Screenshots
-Screenshots of site to follow upon launch
-![screenshot1](./img/)
+Screenshots of site 
+![screenshot1](./img/landingpagePortDev.png)
 
 
 ## Code snippet

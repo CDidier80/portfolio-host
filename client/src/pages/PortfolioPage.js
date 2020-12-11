@@ -168,7 +168,9 @@ const ProjectCard = (props) =>  {
             <Paper  className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
+
                   <img style={styles.image} src={project.projectPicture}></img>                  
+
                 </Grid>
                 <Grid item xs={6} sm container>
                   <Grid item xs container direction="column" spacing={4}>
@@ -228,6 +230,7 @@ const PortfolioPage = (props) => {
     setShowPopUp(!showPopUp)
   }
 
+
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
     const populatePortfolioPage = async () => {
@@ -249,21 +252,24 @@ const PortfolioPage = (props) => {
   )
   console.log(showProjectPicWidget)
 
+
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
         <NavBar {...props} />
           {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
           <div className={classes.cardProfile}>
             <div className={classes.imageColumn}>
+
                 <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
                 <h2 style={classes.subtext}> {user.name}</h2>
                 <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
                 <h3 style={classes.subtext} > {profile.organization}</h3>
                 <h3 style={classes.subtext} > {profile.locale}</h3>
+
             </div>
 
-        <p>{profile.skills}</p>
-        <h4>{profile.bio}</h4>
+        {/* <p>{profile.skills}</p>
+        <h4>{profile.bio}</h4> */}
       </div>
 
 
