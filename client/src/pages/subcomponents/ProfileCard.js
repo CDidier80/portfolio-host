@@ -17,12 +17,13 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     maxWidth: 660,
     borderRadius: "5px",
-    boxShadow: "0 0 2px black"
+    boxShadow: "0 0 4px black"
   },
   image: {
     width: 128,
     height: 128,
-    border: "1px solid black"
+    border: "1px solid black",
+    borderRadius: "5px",
   },
   img: {
     margin: 'auto',
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     maxHeight: '100%',
     borderRadius: "5px",
-    boxShadow: "0 0 2px black"
+    boxShadow: "0 0 4px black"
   }
 }));
 
@@ -58,7 +59,9 @@ const ProfileCard = (props) => {
             <Grid item xs={6} sm container>
               <Grid item xs container direction="column" spacing={4}>
                 <Grid item xs>
+
                   {/* <Typography className={name} gutterBottom variant="subtitle1">{props.profile.user.name}</Typography>  */}
+
                   {/* <Typography className={classes.img} src={profile.profilePicture}></Typography>  */}
                   <Typography gutterBottom variant="subtitle1">{professionalTitle}</Typography>
                   <Typography variant="body2" gutterBottom>{bio}</Typography>
