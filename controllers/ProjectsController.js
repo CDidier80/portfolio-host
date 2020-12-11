@@ -53,7 +53,9 @@ const GetAllProjects = async (req, res) => {
 const GetAllProjectsUser = async (req, res) => {
     log(GetAllProjectsUser, req, show)
     try {
+
         let userId = req.params.userId
+
         let projectsData = await Projects.findAll({
             where: {
                 user_id: userId

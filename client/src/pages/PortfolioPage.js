@@ -143,7 +143,7 @@ const ProjectCard = (props) =>  {
 
   return (
     <div>
-       <div className="project1">
+      <div className="project1">
           {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
           <p>Technologies: {props.technologies}</p> */}
