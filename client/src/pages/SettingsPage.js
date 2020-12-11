@@ -12,6 +12,7 @@ const SettingsPage = (props) => {
     const {profile, user} = props.userInfo
     const [pageLoaded, setLoaded] = useState(false);
     const [widgetDisplayed, toggleWidget] = useState(false)
+    const [picUrl, setPicUrl] = useState("")
 
     // const {name} = props.name
     {/* useEffect() for loading screen */}
@@ -46,6 +47,9 @@ const SettingsPage = (props) => {
             fontSize: "38px",
             textAlign: "center",
             fontWeight: "bold"
+        },
+        deleteButton: {
+                
         }
     }
 
@@ -63,15 +67,18 @@ const SettingsPage = (props) => {
         <div>
             <NavBar {...props} />  
             <div style={styles.settingsPageWrapper}>
-                {widgetDisplayed ? <CloudinaryWidget {...props} /> : null}
-                <img onClick={()=>toggleWidget(!widgetDisplayed)} style={styles.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>
-                <h1 style={styles.nameTag}>Collin Didier</h1>
-                <ProfileForm {...props}  />
-                <button onClick={(e)=>deleteAccount(e)}>Delete Account</button>
+                {widgetDisplayed ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
+                <img onClick={()=>toggleWidget(!widgetDisplayed)} style={styles.profilePic} src={profile.profilePicture}></img>
+                <h1 style={styles.nameTag}>{user.name}</h1>
+                <ProfileForm {...props}  picUrl={picUrl}/>
+
+                <button styles={styles.deleteButton} onClick={(e)=>deleteAccount(e)}>Delete Account</button>
             </div>
         </div>
     )
 }
+
+
 
 export default SettingsPage
 

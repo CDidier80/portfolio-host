@@ -39,12 +39,13 @@ const CloudinaryWidget = props => {
     }
 
     useEffect((props) => {
+        console.log("Use effect props: ", props)
         props.widgetOpen ? widget.open() : widget.close()
     }, [props.widgetOpen]) 
 
     return (
         <div className="uploader">
-            <div style ={{backgroundColor: "green"}}className="uploader">HELLLOOOOOO
+            <div style ={{backgroundColor: "green"}}className="uploader">
             </div>
         </div>
     )
@@ -52,5 +53,5 @@ const CloudinaryWidget = props => {
 
 export default CloudinaryWidget;
 
-
+//collindidier@mail.com
 
