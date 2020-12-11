@@ -39,7 +39,7 @@ const CreateUser = async (req, res) => {
             ...req.body
         }
         let profile = await Profile.create(profileBody)
-        res.send(user)
+        res.send(profile)
     } catch (error) {
         throw error
     }
