@@ -19,9 +19,6 @@ import CloudinaryWidget from './subcomponents/CloudinaryWidget'
 
 
 
-
-
-
 const useStyles = makeStyles((theme) => ({
   // card profile not material
   cardProfile: {
@@ -135,8 +132,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }));
-
-
 
 
 const ProjectCard = (props) =>  {
