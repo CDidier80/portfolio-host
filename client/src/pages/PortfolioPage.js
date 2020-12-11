@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
       color: "black",
       backgroundColor: "white"
     },
-    name : {
+    name: {
       textA: "center"
     }
   }
@@ -132,9 +132,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const ProjectCard = (props) =>  {
+const ProjectCard = (props) => {
   console.log("A project card was made")
-  const {project} = props
+  const { project } = props
   const classes = useStyles();
 
   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
@@ -147,42 +147,42 @@ const ProjectCard = (props) =>  {
   return (
     <div>
       <div className="project1">
-          {/* <h3> Project title: {props.projectTitle}</h3>
+        {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
           <p>Technologies: {props.technologies}</p> */}
-         {/* <p>{propsWidgetOpenmage} </p> */}
-          {/* <p>Link: {props.link} </p> */}
-          <div className={classes.root}>
-            <Paper  className={classes.paper}>
-              <Grid container spacing={2}>
-                <Grid item>
-                  <img style={classes.profilePic} src={project.projectPicture}></img>                  
-                </Grid>
-                <Grid item xs={6} sm container>
-                  <Grid item xs container direction="column" spacing={4}>
-                    <Grid item xs>
-                      {/* <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
+        {/* <p>{propsWidgetOpenmage} </p> */}
+        {/* <p>Link: {props.link} </p> */}
+        <div className={classes.root}>
+          <Paper className={classes.paper}>
+            <Grid container spacing={2}>
+              <Grid item>
+                <img style={classes.profilePic} src={project.projectPicture}></img>
+              </Grid>
+              <Grid item xs={6} sm container>
+                <Grid item xs container direction="column" spacing={4}>
+                  <Grid item xs>
+                    {/* <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
                         Name: {project.location}
                       </Typography> */}
-                      <Typography gutterBottom variant="subtitle1"> Title project: {project.title} </Typography>
-                      <Typography variant="body2" gutterBottom> Description: {project.description} </Typography>
-                      <Typography variant="body2" > Technologies: {project.technologies} </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Link to="portfolio">
-                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>Link to project: {project.deployLink}</Typography>
-                      </Link>
-                    </Grid>
+                    <Typography gutterBottom variant="subtitle1"> Title project: {project.title} </Typography>
+                    <Typography variant="body2" gutterBottom> Description: {project.description} </Typography>
+                    <Typography variant="body2" > Technologies: {project.technologies} </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Link to="portfolio">
+                      <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>Link to project: {project.deployLink}</Typography>
+                    </Link>
                   </Grid>
                 </Grid>
               </Grid>
-              {/* <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
+            </Grid>
+            {/* <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
               {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />} */}
-            </Paper>
-          </div>
+          </Paper>
         </div>
-        <br></br>
       </div>
+      <br></br>
+    </div>
   )
 }
 
@@ -190,8 +190,8 @@ const ProjectCard = (props) =>  {
 
 const PortfolioPage = (props) => {
   console.log("props", props)
-  // const {profile, user} = props.userInfo
-  // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+  const { profile, user } = props.userInfo
+  const { bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId } = props.location.state
   {/* Variables */ }
   const classes = useStyles();
   {/* Hooks */ }
@@ -208,7 +208,7 @@ const PortfolioPage = (props) => {
   const [projects, setProjects] = useState([])
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
- 
+
 
   {/* Event Handlers */ }
   const openPopUp = (e, formType) => {
@@ -240,16 +240,16 @@ const PortfolioPage = (props) => {
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
-        <NavBar {...props} />
-          {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
-          <div className={classes.cardProfile}>
-            <div className={classes.imageColumn}>
-              <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
-                <h2 style={classes.name}>{user.name}</h2>
-                <h3>{profile.professionalTitle}</h3>
-                <h3>{profile.organization}</h3>
-                <h3>{profile.locale}</h3>
-            </div>
+      <NavBar {...props} />
+      {showProjectPicWidget ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
+      <div className={classes.cardProfile}>
+        <div className={classes.imageColumn}>
+          <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
+          <h2 style={classes.name}>{user.name}</h2>
+          <h3>{profile.professionalTitle}</h3>
+          <h3>{profile.organization}</h3>
+          <h3>{profile.locale}</h3>
+        </div>
 
         <p>{profile.skills}</p>
         <h4>{profile.bio}</h4>
@@ -265,13 +265,13 @@ const PortfolioPage = (props) => {
         </div>
 
         <div className="projectsWrapper">
-              {projects.map((project, index) => {
+          {projects.map((project, index) => {
 
-                return(
-                  <ProjectCard {...props} project={project} />
-                )
-              })}
-        </div> 
+            return (
+              <ProjectCard {...props} project={project} />
+            )
+          })}
+        </div>
       </div>
     </div>
   )
