@@ -107,12 +107,13 @@ const SignInSignUpPage = (props) => {
 
       const response = await LogInUser({ email, password })
       if (response) {
+        console.log("PAYLOAD RESPONSE FROM LOG IN: ", response)
         props.setUserInfo(response)
         props.setAuth(true)
         props.history.push('/main')
-        console.log("PAYLOAD RESONSE FROM LOG IN: ", response)
+        
       }
-      console.log('wrong password')
+      // console.log('wrong password')
     } catch (error) {
       console.log(logs[2], error)
     }

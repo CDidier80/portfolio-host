@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const ProfileCard = (props) => {
   let profile = props.profile
   const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.profile
-  console.log("profile logged in ProfileCard: ", profile)
+  // console.log("profile logged in ProfileCard: ", profile)
   const classes = useStyles();
 
   // props.history.location["state"] = props
