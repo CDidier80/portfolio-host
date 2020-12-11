@@ -51,17 +51,18 @@ const GetAllProjects = async (req, res) => {
     }
 }
 const GetAllProjectsUser = async (req, res) => {
+    log(GetAllProjectsUser, req, show)
     try {
-        const { limit } = req.body
-        let userId = req.params.user_id
+        let userId = req.params.userId
         let projectsData = await Projects.findAll({
             where: {
                 user_id: userId
             }
         })
+        console.log("Projects Data in ProjectsController.js: ", projectsData)
         res.send(projectsData)
     } catch (error) {
-        throw error
+        console.log("TRYCATCH{} in GetAllProjectsuser() controller: ", error)
     }
 }
 const UpdateProject = async (req, res) => {
