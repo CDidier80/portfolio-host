@@ -153,7 +153,7 @@ const ProjectCard = (props) =>  {
             <Paper  className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
-                  <img style={classes.profilePic} src={project.projectUrl}></img>                  
+                  <img style={classes.profilePic} src={project.projectPicture}></img>                  
                 </Grid>
                 <Grid item xs={6} sm container>
                   <Grid item xs container direction="column" spacing={4}>
