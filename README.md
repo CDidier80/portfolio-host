@@ -50,8 +50,7 @@ The project itself will be deployed using Heroku.
 - about me section 
 - contact information.
 4. User projects shared will show an image and link of his/her app/site.
-5. User can choose if he/she wants to share contact details.
-6. Users will be able to view other developer profiles on the home page.
+5. Users will be able to view other developer profiles on the home page.
 
 ## ERD
 ![wireframe](./img/PortfolioHost.png)
@@ -66,20 +65,18 @@ Screenshots of site
 ![screenshot1](./img/landingpagePortDev.png)
 ![screenshot2](./img/mainpageDevP.png)
 
-## Code snippet
-Code Snippet of API
-![code snippet](./img/)
-
 
 ## Trello link
 https://trello.com/b/xMfBTgOV/portfolio-host 
 
-## API link's
-
-
 ## Credits
+- https://www.pexels.com
+- https://material-ui.com
 
 ## Future updates
 - Mutliple templates for users to display their profile.
+- Search function, to search users by name.
+- Search function, to search users by skills.
+- User should have the option if he/she wants to share contact details.
 
 
