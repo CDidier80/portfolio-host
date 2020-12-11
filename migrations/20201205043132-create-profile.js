@@ -39,7 +39,7 @@ module.exports = {
       bio: {
         type: Sequelize.STRING
       },
-      createdAt: {
+      createdat: {
         field: 'created_at',
         allowNull: false,
         type: Sequelize.DATE,
