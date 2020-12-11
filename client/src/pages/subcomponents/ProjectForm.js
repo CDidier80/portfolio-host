@@ -36,6 +36,7 @@ const ProjectForm = (props) => {
   const [link, setLink] = useState("")
 
 
+
   {/* Event Handlers */ }
     const updateTextField = (e, formUpdateFunction) => {
       let val = e.target.value
@@ -57,11 +58,13 @@ const ProjectForm = (props) => {
         const result = await projectServiceFunction(payload)
         console.log(result)
         props.togglePopup(false)
-        console.log("setshowup TEST", props.setShowPopUp())
       } catch (error) {
         throw error
       }
     }
+
+
+
 
   return (
     <div>

@@ -150,7 +150,7 @@ const MainPage = (props) => {
 
   const handleClick = (event) => setAnchorEl(event.currentTarget)
   const handleClose = () => setAnchorEl(null)
-
+  console.log(displayedProfiles)
   //  return ( !pageLoaded ? <LoadingScreen /> :
 
   return (!pageLoaded ? <LoadingScreen /> :

@@ -1,6 +1,6 @@
 const { Projects } = require('../models')
 // const { CreateUser } = require('./UserController')
-const  { ControllerLoggers }  = require('../Helpers')
+const { ControllerLoggers } = require('../Helpers')
 const log = ControllerLoggers.ProjectsControllerLog, errorLog = ControllerLoggers.ProjectsControllerErrorLog
 const show = true
 
@@ -15,23 +15,23 @@ const CreateProject = async (req, res) => {
         }
         let project = await Projects.create(projectBody)
         res.send(project)
-    } catch(error) {
+    } catch (error) {
         errorLog(error)
     }
 }
 
 const ReadProject = async (req, res) => {
     log(CreateProject, req, show)
-    try{
+    try {
         let projectId = req.params.project_id
         let updatedProject = await Projects.update(req.body, {
             where: {
                 id: projectId
             },
-            returning:true
+            returning: true
         })
         res.send(updatedProject)
-    } catch(error) {
+    } catch (error) {
         errorLog(error)
     }
 }
@@ -46,11 +46,29 @@ const GetAllProjects = async (req, res) => {
             limit: limit
         })
         res.send(projects)
-    } catch(error) {
+    } catch (error) {
         errorLog(error)
     }
 }
-
+const GetAllProjectsUser = async (req, res) => {
+    try {
+        const { limit } = req.body
+        let userId = req.params.user_id
+        let projectsData = await Projects.findAll({
+            userId: userId,
+            limit: limit,
+            include: [
+                {
+                    model: projects,
+                    as: 'user'
+                }
+            ]
+        })
+        res.send(projectsData)
+    } catch (error) {
+        throw error
+    }
+}
 const UpdateProject = async (req, res) => {
     log(UpdateProject, req, show)
     try {
@@ -58,7 +76,7 @@ const UpdateProject = async (req, res) => {
         let projectId = req.params.project_id
         let project = await Projects.findByPk(projectId)
         res.send(project)
-    } catch(error) {
+    } catch (error) {
         throw error
     }
 }
@@ -67,10 +85,10 @@ const DeleteProject = async (req, res) => {
     log(DeleteProject, req, show)
     try {
         let projectId = req.params.project_id
-        await Projects.destroy({    
-            where: {id:projectId}
+        await Projects.destroy({
+            where: { id: projectId }
         })
-        res.send({message: 'project destroyed'})
+        res.send({ message: 'project destroyed' })
     } catch (err) {
         throw err
     }
@@ -82,5 +100,6 @@ module.exports = {
     UpdateProject,
     GetAllProjects,
     ReadProject,
-    DeleteProject
+    DeleteProject,
+    GetAllProjectsUser
 }
