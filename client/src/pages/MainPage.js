@@ -19,6 +19,10 @@ import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 import NavBar from './subcomponents/NavBar'
 
 const useStyles = makeStyles((theme) => ({
+  pageWrapper: {
+    backgroundColor: "rgba(240, 240, 240, 1)", 
+    height: "100vh"
+  },
   textGreeting: {
     display: "block",
     marginLeft: "5vw",
@@ -60,11 +64,11 @@ const useStyles = makeStyles((theme) => ({
   profileCardWrapper: {
     display: "grid",
     gridTemplateColumns: "50% 50%",
-    paddingTop: "13px",
+    paddingTop: "35px",
     backgroundColor: "white",
-    borderRadius: "10px",
-    boxShadow: "0 0 10px black",
-    gridGap: "1.3rem"
+
+    gridGap: "1.3rem",
+    backgroundColor: "rgba(240, 240, 240, 1)"
   }
 }));
 
@@ -132,7 +136,7 @@ const MainPage = (props) => {
   //  return ( !pageLoaded ? <LoadingScreen /> :
 
   return (!pageLoaded ? <LoadingScreen /> :
-    <div>
+    <div className={classes.pageWrapper}>
       <NavBar {...props} />
       {/* start of profile box */}
       <div className={classes.profileCardWrapper} >

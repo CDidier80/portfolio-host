@@ -12,6 +12,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +47,7 @@ const NavBar = (props) => {
   // console.log("LOG: NAVBAR PROPS: ", props)
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] =useState(false)
 
   const openHamburgerMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -60,14 +63,24 @@ const NavBar = (props) => {
     localStorage.clear()
   }
 
+  const handleClick = () => {
+    setOpen((prev) => !prev);
+  };
+
+  const handleClickAway = () => {
+    setOpen(false);
+  };
+
   return (
-    <div>
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={openHamburgerMenu}>
-              <MenuIcon />
-              <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+
+          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={openHamburgerMenu}>
+          
+            <MenuIcon />
+            <ClickAwayListener onClickAway={handleClickAway}>
+            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <Link to="/">
                   <MenuItem onClick={handleClose}>Home</MenuItem>
                 </Link>
@@ -87,6 +100,7 @@ const NavBar = (props) => {
                 {!props.authenticated &&
                   <Link to="/signin">
                     <MenuItem onClick={handleClose}>Sign In</MenuItem>
+
                   </Link>
                 }
                 {props.authenticated &&
@@ -95,7 +109,11 @@ const NavBar = (props) => {
                   </Link>
                 }
               </Menu>
+            </ClickAwayListener>
             </IconButton>
+
+
+
 
             {/* <Button aria-controls="simple-menu" aria-haspopup="true" onClick={openHamburgerMenu}> Menu </Button> */}
 
@@ -104,8 +122,9 @@ const NavBar = (props) => {
           </Toolbar>
         </AppBar>
       </div>
-    </div>
+      
   )
 }
+
 
 export default NavBar
