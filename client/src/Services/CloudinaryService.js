@@ -23,3 +23,12 @@ export const __LoadImages = async (profileId) => {
         throw error
     }
 }
+export const __LoadProjectPhoto = async (projectId) => {
+    try {
+        let updatePhoto = { projectPicture: url }
+        const res = await ApiClient.put(`/project/update/${projectId}`, updatePhoto)
+        return res.config.data
+    } catch (error) {
+        throw error
+    }
+}
