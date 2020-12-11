@@ -64,8 +64,7 @@ const ProfileCard = (props) => {
                   <Typography variant="body2">{skills}</Typography>
                 </Grid>
                 <Grid item>
-
-                <NavLink className="signupNavlink" to={{pathname: "/portfolio", state: {profile: profile}}}>View Portfolio</NavLink>
+                  <NavLink className="signupNavlink" to={{pathname: "/portfolio", state: {profile: profile}}}>View Portfolio</NavLink>
                 </Grid>
               </Grid>
             </Grid>
