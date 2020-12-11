@@ -55,9 +55,9 @@ export const UpdateUser = async (payload, params) =>  {
     }
 }
 
-export const DeleteUser = async (payload, params) => {
+export const DeleteUser = async (payload) => {
     try {
-        const response = await ApiClient.delete(`users/delete${params}`, payload)
+        const response = await ApiClient.delete(`users/delete${payload}`)
         return response.data
     } catch (error) {
         console.log(error)
