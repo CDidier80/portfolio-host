@@ -70,7 +70,7 @@ const ProfileForm = (props) => {
         
         let payload = {
             id: profile.id,
-            profilePicUrl : profilePicUrl, 
+            profilePicUrl : props.picUrl, 
             professionalTitle : professionalTitle, 
             organization : organization, 
             skills : skills, 

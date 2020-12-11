@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService} from '../Services/UserService'
-import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile} from '../Services/ProfileService'
-import { CreateProject, ReadProject, UpdateProject, DeleteProject} from '../Services/ProjectsService'
+import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService } from '../Services/UserService'
+import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile } from '../Services/ProfileService'
+import { CreateProject, ReadProject, UpdateProject, DeleteProject } from '../Services/ProjectsService'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,34 +15,35 @@ import Footer from './subcomponents/Footer'
 
 
 const LandingPage = (props) => {
-    console.log("Landing page props: ",props)
-    {/* Variables */}
+  console.log("Landing page props: ", props)
+  {/* Variables */ }
 
 
-    {/* Hooks */}
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [pageLoaded, setLoaded] = useState(false);
-    
-
-    {/* <-------------- updates text in search bar */}
-    const [searchValue, setSearchField] = useState("")
+  {/* Hooks */ }
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [pageLoaded, setLoaded] = useState(false);
 
 
+  {/* <-------------- updates text in search bar */ }
+  const [searchValue, setSearchField] = useState("")
 
-    {/* useEffect() for loading screen */}
-    useEffect(() => {
-      console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
-          if (!pageLoaded) {
-            setLoaded(true)
-          }
-        }
-    ) 
 
-    const mainStyles = {
+
+  {/* useEffect() for loading screen */ }
+  useEffect(() => {
+    console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
+    if (!pageLoaded) {
+      setLoaded(true)
+    }
+  }
+  )
+
+  const mainStyles = {
     wrapper: {
-        backgroundImage: "url('https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?cs=srgb&dl=pexels-negative-space-169573.jpg&fm=jpg')",
-        backgroundSize: "cover", minHeight: "91vh", paddingTop: "5vh",
-        backgroundColor: "0 100% 90% 0.4",
+      backgroundImage: "url('https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?cs=srgb&dl=pexels-negative-space-169573.jpg&fm=jpg')",
+      backgroundSize: "cover", minHeight: "91vh", paddingTop: "5vh",
+      backgroundColor: "0 100% 90% 0.4",
+      paddingTop: "0",
     },
     textGreeting: {
       display: "block",
@@ -52,12 +53,12 @@ const LandingPage = (props) => {
     welcome: {
       fontSize: "70px",
       fontFamily: "Roboto",
-      marginTop: "0",
+      paddingTop: "4px",
     },
     subHeader: {
-      fontSize: "40px", 
+      fontSize: "40px",
       fontWeight: "700px",
-      fontFamily: "Roboto", 
+      fontFamily: "Roboto",
       textAlign: "center",
       marginTop: "0",
     },
@@ -79,11 +80,11 @@ const LandingPage = (props) => {
     },
 
     buttonWrapper: {
-        margin: "0 auto",
-        width: "40vw",
-        // backgroundColor: "green",
-        display: "flex", 
-        justifyContent: "space-evenly"
+      margin: "0 auto",
+      width: "40vw",
+      // backgroundColor: "green",
+      display: "flex",
+      justifyContent: "space-evenly"
     },
 
     loginButton: {
@@ -104,26 +105,26 @@ const LandingPage = (props) => {
 
 
   }
-    
 
-    return ( !pageLoaded ? <LoadingScreen /> :
-        <div style={mainStyles.wrapper}>
-            <NavBar props={props}/>
-            <div style={mainStyles.textGreeting}>
-                <h3 style={mainStyles.welcome}>Dev Portal</h3>
-                <h4 style={mainStyles.subHeader}>A window into great works</h4>
-            </div>
-            <div style={mainStyles.buttonWrapper}>
-                <Button style={mainStyles.loginButton} onClick={()=>props.history.push("/signin")} variant="contained" color="primary">Login</Button>
-                <Button style={mainStyles.portButton} onClick={()=>props.history.push("/main")} variant="contained" color="primary">View Portfolios</Button>
-            </div>
-            <div style={mainStyles.httpTest}>
-                {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
-                {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
-            </div>
-            <Footer />
-        </div>
-    );
+
+  return (!pageLoaded ? <LoadingScreen /> :
+    <div style={mainStyles.wrapper}>
+      <NavBar props={props} />
+      <div style={mainStyles.textGreeting}>
+        <h3 style={mainStyles.welcome}>Dev Portal</h3>
+        <h4 style={mainStyles.subHeader}>A window into great works</h4>
+      </div>
+      <div style={mainStyles.buttonWrapper}>
+        <Button style={mainStyles.loginButton} onClick={() => props.history.push("/signin")} variant="contained" color="primary">Login</Button>
+        <Button style={mainStyles.portButton} onClick={() => props.history.push("/main")} variant="contained" color="primary">View Portfolios</Button>
+      </div>
+      <div style={mainStyles.httpTest}>
+        {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
+        {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
 export default LandingPage
