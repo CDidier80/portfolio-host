@@ -48,6 +48,13 @@ const SettingsPage = (props) => {
             fontWeight: "bold"
         }
     }
+
+    const deleteAccount = (e) => {
+        let response = await DeleteUser({})
+    }
+
+
+
 {/* <blockquote class="imgur-embed-pub" lang="en" data-id="iySHWfo"><a href="https://imgur.com/iySHWfo">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script> */}
     return ( !pageLoaded ? <LoadingScreen /> :
         <div>
@@ -57,6 +64,7 @@ const SettingsPage = (props) => {
                 <img onClick={()=>toggleWidget(!widgetDisplayed)} style={styles.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>
                 <h1 style={styles.nameTag}>Collin Didier</h1>
                 <ProfileForm {...props}  />
+                <button onClick={(e)=>deleteAccount(e)}>
             </div>
         </div>
     )
