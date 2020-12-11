@@ -217,26 +217,26 @@ const PortfolioPage = (props) => {
 
   }
 
-  useEffect(() => {
-    console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
-    const populatePortfolioPage = async () => {
-      // console.log(user.id)
-      // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+  // useEffect(() => {
+  //   console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
+  //   const populatePortfolioPage = async () => {
+  //     // console.log(user.id)
+  //     // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
 
 
-      // console.log("Projects response: ", projectsResponse)
-      // setProjects(projectsResponse)
+  //     // console.log("Projects response: ", projectsResponse)
+  //     // setProjects(projectsResponse)
 
-    }
-    populatePortfolioPage()
-    console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
-    if (!pageLoaded) {
-      setLoaded(true)
-    }
-  },
-    [pageLoaded]
-  )
-  console.log(showProjectPicWidget)
+  //   }
+  //   populatePortfolioPage()
+  //   console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
+  //   if (!pageLoaded) {
+  //     setLoaded(true)
+  //   }
+  // },
+  //   [pageLoaded]
+  // )
+  // console.log(showProjectPicWidget)
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
@@ -244,15 +244,15 @@ const PortfolioPage = (props) => {
           {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
           <div className={classes.cardProfile}>
             <div className={classes.imageColumn}>
-              <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
+              {/* <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
                 <h2 style={classes.name}>{user.name}</h2>
-                <h3>{profile.professionalTitle}</h3>
-                <h3>{profile.organization}</h3>
-                <h3>{profile.locale}</h3>
+                <h3>{profile.professionalTitle}</h3> */}
+                {/* <h3>{profile.organization}</h3>
+                <h3>{profile.locale}</h3> */}
             </div>
 
-        <p>{profile.skills}</p>
-        <h4>{profile.bio}</h4>
+        {/* <p>{profile.skills}</p>
+        <h4>{profile.bio}</h4> */}
       </div>
 
 
