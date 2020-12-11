@@ -64,7 +64,7 @@ The project itself will be deployed using Heroku.
 ## Screenshots
 Screenshots of site 
 ![screenshot1](./img/landingpagePortDev.png)
-
+![screenshot2](./img/mainpageDevP.png)
 
 ## Code snippet
 Code Snippet of API
