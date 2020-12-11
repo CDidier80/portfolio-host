@@ -176,7 +176,7 @@ const PortfolioPage = (props) => {
       <NavBar {...props} />
       {/* profile page below */}
       <div style={{width: "150px", height: "150px", backgroundColor: "yellow"}}>
-      {showProjectPicWidget? <CloudinaryWidget style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
+        {showProjectPicWidget ? <CloudinaryWidget style={{ border: "5px solid black", backgroundColor: "green" }}{...props.widgetOpen} setPicUrl={setPicUrl}/> : null}
       </div>
       {/* {showProfileCloudinary ? <CloudinaryWidget {...props} setPicUrl={setPicUrl}/> : null} */}
 
@@ -186,12 +186,12 @@ const PortfolioPage = (props) => {
             alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
-              {/* <h2>{name}</h2>
+              <h2>{name}</h2>
                 <h3>{locale}</h3>
                 <h3>{professionalTitle}</h3>
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
-                <p>{skills}</p> */}
+                <p>{skills}</p>
               <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
           </div>
         </div>
@@ -211,7 +211,7 @@ const PortfolioPage = (props) => {
          {/* <p>{propsWidgetOpenmage} </p> */}
           {/* <p>Link: {props.link} </p> */}
           <div className={classes.root}>
-            <Paper style={{ width: "50vw", minWidth: "600px" }} className={classes.paper}>
+            <Paper  className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
                   
