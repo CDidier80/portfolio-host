@@ -137,7 +137,9 @@ const PortfolioPage = (props) => {
   const [pageLoaded, setLoaded] = useState(false);
   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   const [updateOrCreate, setUpdateOrCreate] = useState(null)
-  const [isWidgetOpen, toggleWidgetVisibility] = useState(false)
+  // const [showProfileCloudinary, toggleProfileCloudinary] = useState(false)
+  const [showProjectPicWidget, toggleProjectPicWidget] = useState(false)
+  const [picUrl, setPicUrl] = useState("")
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
   {/* useEffect() for loading screen */ }
@@ -155,22 +157,32 @@ const PortfolioPage = (props) => {
     setUpdateOrCreate(formType)
   }
 
+  // const handleProfileCloudinary = (e) => {
+  //   e.preventDefault()
+  //   toggleProfileCloudinary(!showProfileCloudinary)
+    
+  // }
 
-  const goCloudinary = () => {
-    console.log("functionreach")
-    toggleWidgetVisibility(!isWidgetOpen)
-  }
 
+  // const handleProjectCloudinary = (e) => {
+  //     e.preventDefault()
+  //     console.log("clicked")
+  //     toggleProjectPicWidget(!showProjectPicWidget)
+  // }
+
+  console.log(showProjectPicWidget)
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
       <NavBar {...props} />
       {/* profile page below */}
-
-      {isWidgetOpen ? <CloudinaryWidget {...props} /> : null}
+      <div style={{width: "150px", height: "150px", backgroundColor: "yellow"}}>
+      {showProjectPicWidget? <CloudinaryWidget style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
+      </div>
+      {/* {showProfileCloudinary ? <CloudinaryWidget {...props} setPicUrl={setPicUrl}/> : null} */}
 
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
-          <img className={classes.profImage} onClick={() => goCloudinary()} placeholder="upload image"
+          <img className={classes.profImage} placeholder="upload image"
             alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
@@ -199,12 +211,11 @@ const PortfolioPage = (props) => {
          {/* <p>{propsWidgetOpenmage} </p> */}
           {/* <p>Link: {props.link} </p> */}
           <div className={classes.root}>
-            <Paper style={{ Width: "50%" }} className={classes.paper}>
+            <Paper style={{ width: "50vw", minWidth: "600px" }} className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
-                  <ButtonBase className={classes.image}> upload image
-                    <CloudinaryWidget />
-                  </ButtonBase>
+                  
+                  <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>                  
                 </Grid>
                 <Grid item xs={6} sm container>
                   <Grid item xs container direction="column" spacing={4}>

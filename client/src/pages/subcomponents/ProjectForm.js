@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ProjectForm = (props) => {
   {/* Variables */ }
-  // console.log(props.userInfo)
+  console.log("LOG: ProjectForm.js --> PROPS RECEIVED, ", props)
+  const {profile, user} = props
   const classes = useStyles();
 
   {/* Hooks */ }
@@ -32,21 +33,24 @@ const ProjectForm = (props) => {
   // const [image, setImage] = useState("")
   const [link, setLink] = useState("")
 
+
   {/* Event Handlers */ }
   const updateTextField = (e, formUpdateFunction) => {
     let val = e.target.value
-    console.log("lisa check", val)
+    console.log("TEXTFIELD VALUE:", val)
     formUpdateFunction(val)
   };
 
   const submitProject = async (e) => {
-    // e.preventDefault()
+    e.preventDefault()
     try {
       let payload = {
+        id: user.id,
         title: projectTitle,
         description: description,
         technologies: technologies,
-        deployLink: link
+        deployLink: link,
+
       }
       const result = await CreateProject(payload)
       console.log(result)
@@ -89,7 +93,7 @@ const ProjectForm = (props) => {
             placeholder="project title" />
         </FormControl> */}
       </form>
-      <button onClick={() => submitProject()}> submit project</button>
+      <button onClick={(e) => submitProject(e)}> submit project</button>
     </div>
   );
 }
