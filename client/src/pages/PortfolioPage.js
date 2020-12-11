@@ -186,12 +186,12 @@ const PortfolioPage = (props) => {
             alt="default profile image" />
           {/* // src={profilePicture} alt="" /> */}
           <div className={classes.portfolioDetails}>
-              <h2>{name}</h2>
-                <h3>{locale}</h3>
-                <h3>{professionalTitle}</h3>
-                <h3>{organization}</h3>
-                <h4>{bio}</h4>
-                <p>{skills}</p>
+              <h2>{props.name}</h2>
+                <h3>{props.locale}</h3>
+                <h3>{props.professionalTitle}</h3>
+                <h3>{props.organization}</h3>
+                <h4>{props.bio}</h4>
+                <p>{props.skills}</p>
               <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
           </div>
         </div>
