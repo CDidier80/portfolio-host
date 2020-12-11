@@ -39,13 +39,13 @@ module.exports = {
       bio: {
         type: Sequelize.STRING
       },
-      createdat: {
+      createdAt: {
         field: 'created_at',
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date(),
       },
-      updatedat: {
+      updatedAt: {
         field: 'updated_at',
         allowNull: false,
         type: Sequelize.DATE,
