@@ -62,7 +62,10 @@ const ProfileForm = (props) => {
     };
 
     const submitForm = async () => {
+
+        
         let payload = {
+            userId: props.userId,
             profilePicUrl : profilePicUrl, 
             professionalTitle : professionalTitle, 
             organization : organization, 
@@ -71,10 +74,9 @@ const ProfileForm = (props) => {
             bio : bio, 
         }
         console.log(logs[0], payload)
-        const profileFunction = props.firstTimeUser ? CreateProfile : UpdateProfile
         console.log(logs[1], props.firstTimeUser)
 
-        const profileResponse = await profileFunction(payload)
+        const profileResponse = await UpdateProfile(payload)
         console.log(logs[2], profileResponse)
         console.log(logs[3])
 
