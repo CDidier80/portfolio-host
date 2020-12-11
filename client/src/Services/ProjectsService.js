@@ -30,6 +30,7 @@ export const GetAllProjects = async (payload) =>  {
 
     try {
         const response = await ApiClient.get(`projects/`, payload)
+        console.log("RESPONSE TO GET ALL PROJECTS in Projects Service :", response)
         return response.data
     } catch (error) {
         console.log(error)
