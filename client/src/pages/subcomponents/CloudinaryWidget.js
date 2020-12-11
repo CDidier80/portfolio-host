@@ -43,7 +43,7 @@ const CloudinaryWidget = props => {
 
     return (
         <div className="uploader">
-            <div className="uploader">
+            <div style ={{backgroundColor: "green"}}className="uploader">
             </div>
         </div>
     )

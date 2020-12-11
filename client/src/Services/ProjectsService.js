@@ -18,7 +18,7 @@ export const ReadProject = async (payload) =>  {
 
     try {
         let projectId = payload.id
-        const response = await ApiClient.get(`projects/read${projectId}`, payload)
+        const response = await ApiClient.get(`projects/read/${projectId}`, payload)
         return response.data
     } catch (error) {
         console.log(error)
