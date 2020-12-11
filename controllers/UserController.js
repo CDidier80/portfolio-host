@@ -1,6 +1,6 @@
 const { User, Profile } = require('../models')
 // const { Op, literal, fn, col  } = require('sequelize')
-const { checkPassword, generatePassword } = require('../middleware/PasswordHandler')
+const { checkPassword, generatePassword } = require('../middleware/passwordhandler')
 const { createToken } = require('../middleware/jwthandler')
 const { ControllerLoggers } = require('../Helpers')
 const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
