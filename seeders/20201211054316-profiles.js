@@ -1,4 +1,8 @@
 'use strict';
+const {User, sequelize } = require('../models')
+const faker = require('faker');
+const { query } = require('express');
+
 const profilePictures = [
   'images/pexels-adrienn-1542085.jpg',
   'images/pexels-designecologist-975680.jpg',
@@ -13,23 +17,20 @@ const profilePictures = [
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    const profiles = await Promise.all(
+      [...Array(10)].map(async () => {
+        let user = await User.findOne({ order: sequelize.random(), raw: true})
+        return {
+          user_id: user.id,
+          profile_picture: profilePictures[Math.random * profilePictures.length],
+          professional_title: 'Software Engineer'
+        }
+      })
+    )
+    return queryInterface.bulkInsert  ('profiles', profiles)
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    return queryInterface.bulkDelete('profiles')
   }
 };

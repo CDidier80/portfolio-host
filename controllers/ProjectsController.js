@@ -52,7 +52,7 @@ const GetAllProjects = async (req, res) => {
 }
 const GetAllProjectsUser = async (req, res) => {
     try {
-        const { limit } = req.body
+        console.log(req.params.user_id)
         let userId = req.params.user_id
         let projectsData = await Projects.findAll({
             where: {

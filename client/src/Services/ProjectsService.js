@@ -38,10 +38,10 @@ export const GetAllProjects = async (payload) =>  {
 }
 
 export const GetUsersProjects = async (payload) =>  {
-    console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: GetAllProjects() -->  Reached, carrying payload: ", payload)
+    console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: GetAllProjects() -->  Reached, carrying payload: ", payload.id)
 
     try {
-        const response = await ApiClient.get(`projects/user`, payload)
+        const response = await ApiClient.get(`projects/${payload.id}`, payload)
         return response.data
     } catch (error) {
         console.log(error)

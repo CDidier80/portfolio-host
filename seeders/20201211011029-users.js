@@ -1,7 +1,7 @@
 'use strict';
 const { query } = require('express');
 const faker = require('faker')
-const users = [...Array(25)].map(() => ({
+const users = [...Array(10)].map(() => ({
   name: faker.name.firstName(),
   email: faker.internet.email(),
   password_digest: faker.internet.password(),
