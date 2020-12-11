@@ -105,7 +105,11 @@ const LogInUser = async (req, res) => {
             }
         })
         let { id } = user.dataValues
-        const profile = await Profile.findOne({ userId: id })
+        const profile = await Profile.findOne({
+            where: {
+                userId: id
+            }
+        })
 
         if (
             user &&
@@ -120,7 +124,7 @@ const LogInUser = async (req, res) => {
             let token = createToken(payload)
 
             return res.send({ user, profile, token })
-        }   
+        }
         res.status(401).send({ msg: 'Unauthorized' })
     } catch (error) {
         throw error
