@@ -187,7 +187,7 @@ const ProjectCard = (props) =>  {
 
 const PortfolioPage = (props) => {
   console.log("props", props)
-  const {profile, user} = props.userInfo
+  // const {profile, user} = props.userInfo
   // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
   {/* Variables */ }
   const classes = useStyles();
@@ -231,12 +231,12 @@ const PortfolioPage = (props) => {
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
     const populatePortfolioPage = async () => {
-      console.log(user.id)
-      const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+      // console.log(user.id)
+      // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
 
 
-      console.log("Projects response: ", projectsResponse)
-      setProjects(projectsResponse)
+      // console.log("Projects response: ", projectsResponse)
+      // setProjects(projectsResponse)
 
     }
     populatePortfolioPage()
