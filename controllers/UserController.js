@@ -44,6 +44,7 @@ const CreateUser = async (req, res) => {
             ...profile
         }
         res.send(response)
+
     } catch (error) {
         throw error
     }
