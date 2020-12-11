@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: 128,
     height: 128,
+    border: "1px solid black"
   },
   img: {
     margin: 'auto',

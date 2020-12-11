@@ -35,6 +35,7 @@ const styles = {
     fontSize: "1.4rem", 
     textDecoration: "none",
     fontWeight: "bold", 
+    paddingLeft: "10px"
 
   }
 
