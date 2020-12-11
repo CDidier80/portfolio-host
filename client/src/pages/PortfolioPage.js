@@ -264,10 +264,8 @@ const PortfolioPage = (props) => {
         </div>
         <br></br>
       </div>
-      <Footer />
     </div>
   )
 }
 export default PortfolioPage
 
-// collindidier@mail.com

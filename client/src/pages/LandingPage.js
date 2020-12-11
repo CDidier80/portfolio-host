@@ -39,7 +39,10 @@ const LandingPage = (props) => {
     ) 
 
     const mainStyles = {
-
+    wrapper: {
+        backgroundImage: "url('https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?cs=srgb&dl=pexels-negative-space-169573.jpg&fm=jpg')",
+        backgroundSize: "cover", minHeight: "91vh", paddingTop: "5vh"
+    },
     textGreeting: {
       display: "block",
       textAlign: "center",
@@ -102,7 +105,7 @@ const LandingPage = (props) => {
     
 
     return ( !pageLoaded ? <LoadingScreen /> :
-        <div>
+        <div style={mainStyles.wrapper}>
             <NavBar props={props}/>
             <div style={mainStyles.textGreeting}>
                 <h3 style={mainStyles.welcome}>Dev Portal</h3>
