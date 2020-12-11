@@ -9,8 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 import TextForm from './subcomponents/TextForm'
-import ProjectForm from '../pages/subcomponents/ProjectForm'
-import PopUpModalProject from '../pages/subcomponents/PopUpModalProject'
+import ProjectForm from './subcomponents/ProjectForm'
 import LoadingScreen from '../pages/subcomponents/LoadingScreen'
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -122,8 +121,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const PortfolioPage = (props) => {
   console.log("props", props)
-  console.log("props.history: ", props.history)
-  console.log("props.history.location: ", props.history.location)
+  const {profile, user} = props.userInfo
   // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
 
 
@@ -136,9 +134,9 @@ const PortfolioPage = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [pageLoaded, setLoaded] = useState(false);
   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
-  const [updateOrCreate, setUpdateOrCreate] = useState(null)
   // const [showProfileCloudinary, toggleProfileCloudinary] = useState(false)
   const [showProjectPicWidget, toggleProjectPicWidget] = useState(false)
+  const [showAddProject, setAddProject] = useState(false)
   const [picUrl, setPicUrl] = useState("")
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
@@ -153,8 +151,9 @@ const PortfolioPage = (props) => {
   )
   {/* Event Handlers */ }
   const openPopUp = (e, formType) => {
-    setShowPopUp((!showPopUp))
-    setUpdateOrCreate(formType)
+    e.preventDefault()
+    setShowPopUp(!showPopUp)
+
   }
 
   // const handleProfileCloudinary = (e) => {
@@ -176,9 +175,9 @@ const PortfolioPage = (props) => {
       <NavBar {...props} />
       {/* profile page below */}
       <div style={{width: "150px", height: "150px", backgroundColor: "yellow"}}>
-      {showProjectPicWidget? <CloudinaryWidget style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
+      {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
       </div>
-      {/* {showProfileCloudinary ? <CloudinaryWidget {...props} setPicUrl={setPicUrl}/> : null} */}
+
 
       <div className={classes.cardProfile}>
         <div className={classes.imageColumn}>
@@ -192,7 +191,6 @@ const PortfolioPage = (props) => {
                 <h3>{organization}</h3>
                 <h4>{bio}</h4>
                 <p>{skills}</p> */}
-              <Button className={classes.updateBioBtn} variant="outlined" size="small" color="primary"> update </Button>
           </div>
         </div>
       </div>
@@ -200,9 +198,20 @@ const PortfolioPage = (props) => {
       <div className={classes.projectWrapper}>
         <h3> Projects: </h3>
         <div className={classes.addProject}>
-          <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "CreateProject")}> add project </Button>
-          {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} />}
+          <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
+          {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject}/>}
         </div>
+
+
+
+
+
+
+
+
+
+
+
 
         <div className="project1">
           {/* <h3> Project title: {props.projectTitle}</h3>
@@ -214,7 +223,6 @@ const PortfolioPage = (props) => {
             <Paper style={{ width: "50vw", minWidth: "600px" }} className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
-                  
                   <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>                  
                 </Grid>
                 <Grid item xs={6} sm container>
@@ -244,7 +252,7 @@ const PortfolioPage = (props) => {
                 </Grid>
               </Grid>
               <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
-              {showPopUp && <PopUpModalProject setShowPopUp={setShowPopUp} updateOrCreate={updateOrCreate} />}
+              {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />}
             </Paper>
           </div>
         </div>
@@ -254,3 +262,5 @@ const PortfolioPage = (props) => {
   )
 }
 export default PortfolioPage
+
+// collindidier@mail.com
