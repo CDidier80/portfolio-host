@@ -91,6 +91,21 @@ const ProfileForm = (props) => {
       console.log("Text value: ", value)
       updateFunction(value)
     }
+    const styles = {
+      submitButton: {
+        minWidth: "200x",
+        height: "40px",
+        fontSize: "14px",
+        
+        justifyContent: "center",
+        justifySelf: "center",
+        alignContent: "center"
+        
+    },
+    submitButtonWrapper: {
+        marginTop: "20px"
+    }
+    }
 
   return (
     <div>
@@ -110,7 +125,11 @@ const ProfileForm = (props) => {
                             {/* Biography */}
           <TextField  onChange={(e)=>updateTextField(e, setBio)}                 label="Biography" style={{ margin: 8 }} placeholder={profile.bio} fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
       </div>
-      <button onClick={(e)=>submitForm(e)}> Submit</button>
+
+      <div style={styles.submitButtonWrapper}>
+          <Button styles={styles.submitButton} variant="contained" color="primary" onClick={(e)=>submitForm(e)}>Submit</Button>
+      </div>
+
     </div>
   );
 }

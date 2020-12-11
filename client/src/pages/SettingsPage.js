@@ -7,6 +7,7 @@ import NavBar from '../pages/subcomponents/NavBar'
 import ProfileForm from '../pages/subcomponents/ProfileForm'
 import CloudinaryWidget from '../pages/subcomponents/CloudinaryWidget'
 import { StylesProvider } from '@material-ui/core'
+import Button from '@material-ui/core/Button';
 
 const SettingsPage = (props) => { 
     const {profile, user} = props.userInfo
@@ -49,7 +50,21 @@ const SettingsPage = (props) => {
             fontWeight: "bold"
         },
         deleteButton: {
-                
+            minWidth: "200x",
+            height: "40px",
+            fontSize: "14px",
+            
+            justifyContent: "center",
+            justifySelf: "center",
+            alignContent: "center"
+            
+        },
+        deleteButtonWrapper: {
+            display: "block",
+            margin: "0 auto",
+            marginTop: "20vh",
+            width: "300px",
+            paddingLeft: "70px"
         }
     }
 
@@ -71,8 +86,9 @@ const SettingsPage = (props) => {
                 <img onClick={()=>toggleWidget(!widgetDisplayed)} style={styles.profilePic} src={profile.profilePicture}></img>
                 <h1 style={styles.nameTag}>{user.name}</h1>
                 <ProfileForm {...props}  picUrl={picUrl}/>
-
-                <button styles={styles.deleteButton} onClick={(e)=>deleteAccount(e)}>Delete Account</button>
+                <div style={styles.deleteButtonWrapper}>
+                    <Button styles={styles.deleteButton} variant="contained" color="primary" onClick={(e)=>deleteAccount(e)}>Delete Account</Button>
+                </div>
             </div>
         </div>
     )

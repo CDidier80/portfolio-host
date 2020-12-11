@@ -119,8 +119,7 @@ const LandingPage = (props) => {
         <Button style={mainStyles.portButton} onClick={() => props.history.push("/main")} variant="contained" color="primary">View Portfolios</Button>
       </div>
       <div style={mainStyles.httpTest}>
-        {/* <input className={classes.httpTest.textfield} onChange={(e) => setSearchField(e.target.value)}></input> */}
-        {/* <button className={classes.httpTest.submitTestButton} onClick={()=>httpRequest("createProfile", {body:{}} )}>Submit httpRequest</button> */}
+
       </div>
       <Footer />
     </div>
