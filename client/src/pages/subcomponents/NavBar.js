@@ -68,6 +68,9 @@ const NavBar = (props) => {
           <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={openHamburgerMenu}>
             <MenuIcon />
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+                <Link to="/">
+                    <MenuItem onClick={handleClose}>Home</MenuItem>
+                </Link>
               {props.authenticated &&
                 <Link to={"/"}> 
                     <MenuItem onClick={()=>logOut()}>Sign Out</MenuItem>
