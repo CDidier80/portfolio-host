@@ -1,4 +1,4 @@
-import React from 'react';
+aimport React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -50,14 +50,14 @@ const ProfileCard = (props) => {
           <Grid container spacing={2}>
             <Grid item>
               <ButtonBase className={classes.image}> 
-                {/* <img className={classes.img} alt="complex" src={props.profile.profilePicture} /> */}
+dd profile                <img className={classes.img} alt="complex" src={profile.profilePicture} />
               </ButtonBase>
             </Grid>
             <Grid item xs={6} sm container>
               <Grid item xs container direction="column" spacing={4}>
                 <Grid item xs>
                   <Typography className={name} gutterBottom variant="subtitle1">{props.profile.user.name}</Typography> 
-                  <Typography className={classes.img} src = {props.profile.profilePicture}></Typography> 
+                  {/* <Typography className={classes.img} src={profile.profilePicture}></Typography>  */}
                   <Typography gutterBottom variant="subtitle1">{professionalTitle}</Typography>
                   <Typography variant="body2" gutterBottom>{bio}</Typography>
                   <Typography variant="body2">{skills}</Typography>
