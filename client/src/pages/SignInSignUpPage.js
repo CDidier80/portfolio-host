@@ -68,15 +68,10 @@ const SignInSignUpPage = (props) => {
   const [message, toggleMessage] = useState("Sign In")
   const [prompt, togglePrompt] = useState("Don't have an account? Sign up")
 
-  {/* <-------------- set "create" or "update" crud request for profile depending on first time user status */ }
-
-
   {/* <-------------- hooks for User Sign-in and Sign-up Payloads */ }
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
-  {/* <-------------- toggle authentication */ }
-
 
   {/* useEffect() for loading screen */ }
   useEffect(() => {
@@ -147,9 +142,6 @@ const SignInSignUpPage = (props) => {
       console.log(logs[8], error)
     }
   }
-
-
-
 
 
   const buttonEventHandler = message === "Sign In" ? handleLogin : handleSignUp
