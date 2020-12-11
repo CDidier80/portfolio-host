@@ -31,25 +31,16 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "325px",
     width: "230px",
     height: "230px",
-    marginTop: "22px",
-    marginLeft: "35px"
-  },
-  projectWrapper: {
-    display: "grid",
-    gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
-    gap: "10px",
-    gridAutoRows: "100px",
-    color: "black",
-    marginTop: "55px",
-    marginLeft: "25px",
-    marginRight: "25px",
-    border: "2px solid black",
-    borderRadius: "10px",
-    backgroundColor: "F3F2EF"
+    display: "block",
+    margin: "0 auto"
   },
   projectWrapper: {
     margin: "0 auto",
-    paddingLeft: "30px"
+    // paddingLeft: "30px"
+    width: "95%", 
+  },
+  linkPort: {
+    textDecoration: "none"
   },
   addProjBtn: {
     marginBottom: "12px"
@@ -94,22 +85,9 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: "2rem"
     },
   },
-  httpTest: {
-    margin: "0 auto",
-    marginTop: "70px",
-    width: "300px",
-    height: "50px",
-    display: "flex",
-    justifyContent: "spaceBetween",
-    textfield: {
-      width: "60%",
-      height: "80px",
-      backgroundColor: "white",
-      border: "1px solid black"
-    },
-    imageColumn: {
+    leftColumnWrapper: {
       display: "block",
-
+      padding: "15px 0 10px 25px"
     },
     loginButton: {
       display: "block",
@@ -125,13 +103,29 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "white"
     },
     name: {
-      textAlign: "center"
+      textAlign: "center", 
+      fontSize: "28px",
+      marginBottom: "0"
+
+    },
+    professionalTitle: {
+      textAlign: "center", 
+      fontSize: "16px",
+      marginTop: "4px"
+    },
+    subtextWrapper: {
+      width: "95%",
+      margin: "0 auto",
+      display: "flex",
+      justifyContent: "space-evenly"
     },
     subtext: {
-      marginLeft: "10px"
+      fontSize: "14px",
+      marginTop: "0px"
+      
     }
   }
-}));
+));
 
 
 const ProjectCard = (props) => {
@@ -148,6 +142,9 @@ const ProjectCard = (props) => {
     image: {
       maxWidth: "300px",
 
+    },
+    projectTitle: {
+      fontSize: "20px",
     }
   }
 
@@ -172,13 +169,13 @@ const ProjectCard = (props) => {
                   {/* <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
                         Name: {project.location}
                       </Typography> */}
-                  <Typography gutterBottom variant="subtitle1"> Title project: {project.title} </Typography>
-                  <Typography variant="body2" gutterBottom> Description: {project.description} </Typography>
+                  <Typography style={styles.projectTitle} gutterBottom variant="subtitle1"> {project.title} </Typography>
+                  <Typography variant="body2" gutterBottom>{project.description} </Typography>
                   <Typography variant="body2" > Technologies: {project.technologies} </Typography>
                 </Grid>
                 <Grid item>
-                  <Link to="portfolio">
-                    <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>Link to project: {project.deployLink}</Typography>
+                  <Link className={classes.linkPort} to="portfolio">
+                    <Typography variant="body2" className={classes.linkPort}>View Project: {project.deployLink}</Typography>
                   </Link>
                 </Grid>
               </Grid>
@@ -223,27 +220,6 @@ const PortfolioPage = (props) => {
     setShowPopUp(!showPopUp)
   }
 
-  // useEffect(() => {
-  //   console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
-  //   const populatePortfolioPage = async () => {
-  //     // console.log(user.id)
-  //     // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-
-
-  //     // console.log("Projects response: ", projectsResponse)
-  //     // setProjects(projectsResponse)
-
-  //   }
-  //   populatePortfolioPage()
-  //   console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
-  //   if (!pageLoaded) {
-  //     setLoaded(true)
-  //   }
-  // },
-  //   [pageLoaded]
-  // )
-  // console.log(showProjectPicWidget)
-
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
     const populatePortfolioPage = async () => {
@@ -271,12 +247,14 @@ const PortfolioPage = (props) => {
 
       {showProjectPicWidget ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
       <div className={classes.cardProfile}>
-        <div className={classes.imageColumn}>
+        <div className={classes.leftColumnWrapper}>
           <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
-          <h2 style={classes.subtext}> {user.name}</h2>
-          <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
-          <h3 style={classes.subtext} > {profile.organization}</h3>
-          <h3 style={classes.subtext} > {profile.locale}</h3>
+          <h2 className={classes.name}>{user.name}</h2>
+          <h3 className={classes.professionalTitle} > {profile.professionalTitle}</h3>
+          <div className={classes.subtextWrapper}>
+            <h3 className={classes.subtext}> {profile.organization}</h3>
+            <h3 className={classes.subtext}> {profile.locale}</h3>
+          </div>
         </div>
         {/* <p>{profile.skills}</p>
         <h4>{profile.bio}</h4> */}

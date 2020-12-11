@@ -62,6 +62,8 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   profileCardWrapper: {
+    width: "85vw",
+    margin: "0 auto",
     display: "grid",
     gridTemplateColumns: "50% 50%",
     paddingTop: "35px",
