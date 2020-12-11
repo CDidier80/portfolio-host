@@ -17,8 +17,6 @@ const App = (props) => {
     const [pageIsLoaded, setLoaded] = useState(true)
     const [session, setSession] = useState(null)
     const [authenticated, setAuth] = useState(false)
-    const [user, setUser] = useState(null)
-
     const [userInfo, setUserInfo]= useState(null)
   //   const verifyTokenValid = async () => {
   //     const token = localStorage.getItem('token')
@@ -74,21 +72,20 @@ empty props object of the child component
 //     await this.props.history.push('/login')
 // }
 
-const saveUser = (props, index) => {
-console.log("saveUser", props)
+const saveUser = (e, props, index) => {
+console.log("saveUser", e)
 }
-
 
     return (
       <main className="App">
         {!pageIsLoaded ? <div><h3>Loading...</h3></div> : 
           <Switch> 
-              <Route exact path="/"      component={ (props) =>  <LandingPage      {...props}  authenticated={authenticated} /> }/>
-              <Route path="/main"        component={ (props) =>  <MainPage         {...props}  authenticated={authenticated} />  }/> 
-              <Route path="/portfolio"   component={ (props) =>  <PortfolioPage    {...props}  authenticated={authenticated} />  }/>
-              <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} setAuth={setAuth} setUserInfo={setUserInfo}/>}/>             
-              <Route path="/settings"    component={ (props) =>  <SettingsPage     {...props}  authenticated={authenticated} />  }/>
-              <Route path="/profileform" component={ (props) =>  <ProfileForm      {...props}  authenticated={authenticated} />  }/>              
+              <Route exact path="/"      component={ (props) =>  <LandingPage      {...props}  authenticated={authenticated} userInfo={userInfo} /> }/>
+              <Route path="/main"        component={ (props) =>  <MainPage         {...props}  authenticated={authenticated} userInfo={userInfo} />  }/> 
+              <Route path="/portfolio"   component={ (props) =>  <PortfolioPage    {...props}  authenticated={authenticated} userInfo={userInfo} />  }/>
+              <Route path="/signin"      component={ (props) =>  <SignInSignUpPage {...props}  authenticated={authenticated} userInfo={userInfo} setAuth={setAuth} setUserInfo={setUserInfo}/>}/>             
+              <Route path="/settings"    component={ (props) =>  <SettingsPage     {...props}  authenticated={authenticated} userInfo={userInfo} />  }/>
+              <Route path="/profileform" component={ (props) =>  <ProfileForm      {...props}  authenticated={authenticated} userInfo={userInfo} />  }/>              
           </Switch>
         }
       </main>

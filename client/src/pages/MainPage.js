@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MainPage = (props) => {
-
+  console.log(props)
   {/* Variables */ }
   const classes = useStyles();
 
@@ -159,7 +159,6 @@ const MainPage = (props) => {
         {displayedProfiles.map((profile, index) => (
           <ProfileCard {...props} profile={profile} />
         ))}
-
       </div >
     </div>
   )
