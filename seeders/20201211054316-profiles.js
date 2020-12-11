@@ -54,7 +54,6 @@ const organization = [
   'NASA',
 ]
 
-
 const bio = [
   faker.lorem.sentence(),
   faker.lorem.sentence(),
@@ -79,7 +78,6 @@ const skills = [
   'SQL',
   'MATLAB',
 ]
-
 
 
 module.exports = {
