@@ -1,482 +1,344 @@
-// import React, { useState, useEffect } from 'react';
-// import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService } from '../Services/UserService'
-// import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile } from '../Services/ProfileService'
-// import { CreateProject, ReadProject, UpdateProject, DeleteProject, GetUsersProjects } from '../Services/ProjectsService'
-// import { makeStyles } from '@material-ui/core/styles';
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
-// import Button from '@material-ui/core/Button';
-// import { Link } from 'react-router-dom'
-// import TextForm from './subcomponents/TextForm'
-// import ProjectForm from './subcomponents/ProjectForm'
-// import LoadingScreen from '../pages/subcomponents/LoadingScreen'
-// import Grid from '@material-ui/core/Grid';
-// import ButtonBase from '@material-ui/core/ButtonBase';
-// import Paper from '@material-ui/core/Paper';
-// import NavBar from './subcomponents/NavBar'
-// import CloudinaryWidget from './subcomponents/CloudinaryWidget'
+import React, { useState, useEffect } from 'react';
+import { CreateUser, LogInUser, ReadUser, UpdateUser, DeleteUser, CheckSessionService } from '../Services/UserService'
+import { CreateProfile, ReadProfile, ReadAllProfiles, UpdateProfile } from '../Services/ProfileService'
+import { CreateProject, ReadProject, UpdateProject, DeleteProject, GetUsersProjects } from '../Services/ProjectsService'
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom'
+import TextForm from './subcomponents/TextForm'
+import ProjectForm from './subcomponents/ProjectForm'
+import LoadingScreen from '../pages/subcomponents/LoadingScreen'
+import Grid from '@material-ui/core/Grid';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Paper from '@material-ui/core/Paper';
+import NavBar from './subcomponents/NavBar'
+import CloudinaryWidget from './subcomponents/CloudinaryWidget'
 
 
 
 
 
 
-// const useStyles = makeStyles((theme) => ({
-//   // card profile not material
-//   cardProfile: {
-//     display: "grid",
-//     gridTemplateColumns: "1fr 2fr",
-//     color: "black"
-//   },
-//   profImage: {
-//     border: "1px solid black",
-//     borderRadius: "325px",
-//     width: "230px",
-//     height: "230px",
-//     marginTop: "22px",
-//     marginLeft: "35px"
-//   },
-//   projectWrapper: {
-//     display: "grid",
-//     gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
-//     gap: "10px",
-//     gridAutoRows: "100px",
-//     color: "black",
-//     marginTop: "55px",
-//     marginLeft: "25px",
-//     marginRight: "25px",
-//     border: "2px solid black",
-//     borderRadius: "10px",
-//     backgroundColor: "F3F2EF"
-//   },
-//   projectWrapper: {
-//     margin: "0 auto",
-//     paddingLeft: "30px"
-//   },
-//   addProjBtn: {
-//     marginBottom: "12px"
-//   },
-//   title: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(2),
-//     margin: 'auto',
-//     maxWidth: 1200,
-//     borderRadius: "5px",
-//     boxShadow: "0 0 2px black"
-//   },
-//   image: {
-//     width: 200,
-//     height: 170,
-//   },
-//   img: {
-//     margin: 'auto',
-//     display: 'block',
-//     maxWidth: '100%',
-//     maxHeight: '100%',
-//     borderRadius: "5px",
-//     boxShadow: "0 0 2px black"
-//   },
-//   updateBioBtn: {
-//     marginLeft: "400px"
-//   },
-//   textGreeting: {
-//     display: "block",
-//     marginLeft: "5vw",
-//     alignText: "left",
-//     welcome: {
-//       fontSize: "35px"
-//     },
-//     subHeader: {
-//       fontSize: "20px"
-//     },
-//     addProject: {
-//       textAlign: "center",
-//       paddingTop: "2rem"
-//     },
-//   },
-//   httpTest: {
-//     margin: "0 auto",
-//     marginTop: "70px",
-//     width: "300px",
-//     height: "50px",
-//     display: "flex",
-//     justifyContent: "spaceBetween",
-//     textfield: {
-//       width: "60%",
-//       height: "80px",
-//       backgroundColor: "white",
-//       border: "1px solid black"
-//     },
-//     loginButton: {
-//       display: "block",
-//       margin: "0 auto",
-//       width: "80px",
-//       height: "40px",
-//       fontSize: "18px"
-//     },
-//     submitTestButton: {
-//       height: "80px",
-//       width: "80px",
-//       color: "black",
-//       backgroundColor: "white"
-//     },
-//   }
-// }));
-
-
-
-// const ProjectCard = (props) =>  {
-//   return (
-//     <div>
-//        <div className="project1">
-//           {/* <h3> Project title: {props.projectTitle}</h3>
-//           <p>Description: {props.description} </p>
-//           <p>Technologies: {props.technologies}</p> */}
-//          {/* <p>{propsWidgetOpenmage} </p> */}
-//           {/* <p>Link: {props.link} </p> */}
-//           <div className={classes.root}>
-//             <Paper  className={classes.paper}>
-//               <Grid container spacing={2}>
-//                 <Grid item>
-//                   <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={props.projectUrl}></img>                  
-//                 </Grid>
-//                 <Grid item xs={6} sm container>
-//                   <Grid item xs container direction="column" spacing={4}>
-//                     <Grid item xs>
-//                       <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
-//                         Name: {props.location}
-//                       </Typography>
-//                       <Typography gutterBottom variant="subtitle1">
-//                         Title project: {props.title}
-//                       </Typography>
-//                       <Typography variant="body2" gutterBottom>
-//                         Description: {props.location.state}
-//                       </Typography>
-//                       <Typography variant="body2" >
-//                         Technologies: {props.location.state}
-//                       </Typography>
-//                     </Grid>
-//                     <Grid item>
-//                       <Link to="portfolio">
-//                         <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
-//                           Link to project: {props.location.state}
-//                         </Typography>
-//                       </Link>
-//                     </Grid>
-//                   </Grid>
-//                 </Grid>
-//               </Grid>
-//               <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
-//               {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />}
-//             </Paper>
-//           </div>
-//         </div>
-//         <br></br>
-//       </div>
-//   )
-// }
+const useStyles = makeStyles((theme) => ({
+  // card profile not material
+  cardProfile: {
+    display: "grid",
+    gridTemplateColumns: "1fr 2fr",
+    color: "black"
+  },
+  profImage: {
+    border: "1px solid black",
+    borderRadius: "325px",
+    width: "230px",
+    height: "230px",
+    marginTop: "22px",
+    marginLeft: "35px"
+  },
+  projectWrapper: {
+    display: "grid",
+    gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
+    gap: "10px",
+    gridAutoRows: "100px",
+    color: "black",
+    marginTop: "55px",
+    marginLeft: "25px",
+    marginRight: "25px",
+    border: "2px solid black",
+    borderRadius: "10px",
+    backgroundColor: "F3F2EF"
+  },
+  projectWrapper: {
+    margin: "0 auto",
+    paddingLeft: "30px"
+  },
+  addProjBtn: {
+    marginBottom: "12px"
+  },
+  title: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 1200,
+    borderRadius: "5px",
+    boxShadow: "0 0 2px black"
+  },
+  image: {
+    width: 200,
+    height: 170,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    borderRadius: "5px",
+    boxShadow: "0 0 2px black"
+  },
+  updateBioBtn: {
+    marginLeft: "400px"
+  },
+  textGreeting: {
+    display: "block",
+    marginLeft: "5vw",
+    alignText: "left",
+    welcome: {
+      fontSize: "35px"
+    },
+    subHeader: {
+      fontSize: "20px"
+    },
+    addProject: {
+      textAlign: "center",
+      paddingTop: "2rem"
+    },
+  },
+  httpTest: {
+    margin: "0 auto",
+    marginTop: "70px",
+    width: "300px",
+    height: "50px",
+    display: "flex",
+    justifyContent: "spaceBetween",
+    textfield: {
+      width: "60%",
+      height: "80px",
+      backgroundColor: "white",
+      border: "1px solid black"
+    },
+    loginButton: {
+      display: "block",
+      margin: "0 auto",
+      width: "80px",
+      height: "40px",
+      fontSize: "18px"
+    },
+    submitTestButton: {
+      height: "80px",
+      width: "80px",
+      color: "black",
+      backgroundColor: "white"
+    },
+  }
+}));
 
 
 
 
+const ProjectCard = (props) =>  {
+  const {project} = props
+  const classes = useStyles();
+
+  {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
+  // const [showProfileCloudinary, toggleProfileCloudinary] = useState(false)
+
+  // const [displayedProfiles, setProfiles] = useState([])
+  // const [searchValue, setSearchField] = useState("")
+
+
+  return (
+    <div>
+      <div className="project1">
+          {/* <h3> Project title: {props.projectTitle}</h3>
+          <p>Description: {props.description} </p>
+          <p>Technologies: {props.technologies}</p> */}
+         {/* <p>{propsWidgetOpenmage} </p> */}
+          {/* <p>Link: {props.link} </p> */}
+          <div className={classes.root}>
+            <Paper  className={classes.paper}>
+              <Grid container spacing={2}>
+                <Grid item>
+                  <img style={classes.profilePic} src={project.projectUrl}></img>                  
+                </Grid>
+                <Grid item xs={6} sm container>
+                  <Grid item xs container direction="column" spacing={4}>
+                    <Grid item xs>
+                      {/* <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
+                        Name: {project.location}
+                      </Typography> */}
+                      <Typography gutterBottom variant="subtitle1"> Title project: {project.title} </Typography>
+                      <Typography variant="body2" gutterBottom> Description: {project.description} </Typography>
+                      <Typography variant="body2" > Technologies: {project.technologies} </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Link to="portfolio">
+                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>Link to project: {project.link}</Typography>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+              {/* <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
+              {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />} */}
+            </Paper>
+          </div>
+        </div>
+        <br></br>
+      </div>
+  )
+}
 
 
 
+const PortfolioPage = (props) => {
+  console.log("props", props)
+  const {profile, user} = props.userInfo
+  // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
+  {/* Variables */ }
+  const classes = useStyles();
+  {/* Hooks */ }
+  {/* <--------------profile allows editing priveledges when user views their own profile */ }
+  // const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [pageLoaded, setLoaded] = useState(false);
+  {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
+  // const [showProfileCloudinary, toggleProfileCloudinary] = useState(false)
+  const [showProjectPicWidget, toggleProjectPicWidget] = useState(false)
+  const [showAddProject, setAddProject] = useState(false)
+  const [picUrl, setPicUrl] = useState("")
+  const [projects, setProjects] = useState([])
+  // const [displayedProfiles, setProfiles] = useState([])
+  // const [searchValue, setSearchField] = useState("")
+ 
 
+  {/* Event Handlers */ }
+  const openPopUp = (e, formType) => {
+    e.preventDefault()
+    setShowPopUp(!showPopUp)
 
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-// // const useStyles = makeStyles((theme) => ({
-// //   // card profile not material
-// //   cardProfile: {
-// //     display: "grid",
-// //     gridTemplateColumns: "1fr 2fr",
-// //     color: "black"
-// //   },
-// //   profImage: {
-// //     border: "1px solid black",
-// //     borderRadius: "325px",
-// //     width: "230px",
-// //     height: "230px",
-// //     marginTop: "22px",
-// //     marginLeft: "35px"
-// //   },
-// //   projectWrapper: {
-// //     display: "grid",
-// //     gridTemplateColumns: "repeat(minmax(350px, 1fr 1fr 1fr))",
-// //     gap: "10px",
-// //     gridAutoRows: "100px",
-// //     color: "black",
-// //     marginTop: "55px",
-// //     marginLeft: "25px",
-// //     marginRight: "25px",
-// //     border: "2px solid black",
-// //     borderRadius: "10px",
-// //     backgroundColor: "F3F2EF"
-// //   },
-// //   projectWrapper: {
-// //     margin: "0 auto",
-// //     paddingLeft: "30px"
-// //   },
-// //   addProjBtn: {
-// //     marginBottom: "12px"
-// //   },
-// //   title: {
-// //     flexGrow: 1,
-// //   },
-// //   paper: {
-// //     padding: theme.spacing(2),
-// //     margin: 'auto',
-// //     maxWidth: 1200,
-// //     borderRadius: "5px",
-// //     boxShadow: "0 0 2px black"
-// //   },
-// //   image: {
-// //     width: 200,
-// //     height: 170,
-// //   },
-// //   img: {
-// //     margin: 'auto',
-// //     display: 'block',
-// //     maxWidth: '100%',
-// //     maxHeight: '100%',
-// //     borderRadius: "5px",
-// //     boxShadow: "0 0 2px black"
-// //   },
-// //   updateBioBtn: {
-// //     marginLeft: "400px"
-// //   },
-// //   textGreeting: {
-// //     display: "block",
-// //     marginLeft: "5vw",
-// //     alignText: "left",
-// //     welcome: {
-// //       fontSize: "35px"
-// //     },
-// //     subHeader: {
-// //       fontSize: "20px"
-// //     },
-// //     addProject: {
-// //       textAlign: "center",
-// //       paddingTop: "2rem"
-// //     },
-// //   },
-// //   httpTest: {
-// //     margin: "0 auto",
-// //     marginTop: "70px",
-// //     width: "300px",
-// //     height: "50px",
-// //     display: "flex",
-// //     justifyContent: "spaceBetween",
-// //     textfield: {
-// //       width: "60%",
-// //       height: "80px",
-// //       backgroundColor: "white",
-// //       border: "1px solid black"
-// //     },
-// //     loginButton: {
-// //       display: "block",
-// //       margin: "0 auto",
-// //       width: "80px",
-// //       height: "40px",
-// //       fontSize: "18px"
-// //     },
-// //     submitTestButton: {
-// //       height: "80px",
-// //       width: "80px",
-// //       color: "black",
-// //       backgroundColor: "white"
-// //     },
-// //   }
-// // }));
-
-
-// const PortfolioPage = (props) => {
-//   console.log("props", props)
-//   const {profile, user} = props.userInfo
-//   // const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.location.state
-
-
-//   {/* Variables */ }
-//   const classes = useStyles();
-//   {/* Hooks */ }
-//   {/* <--------------profile allows editing priveledges when user views their own profile */ }
-//   // const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
-//   const [showPopUp, setShowPopUp] = useState(false);
-//   const [anchorEl, setAnchorEl] = useState(null);
-//   const [pageLoaded, setLoaded] = useState(false);
-//   {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
-//   // const [showProfileCloudinary, toggleProfileCloudinary] = useState(false)
-//   const [showProjectPicWidget, toggleProjectPicWidget] = useState(false)
-//   const [showAddProject, setAddProject] = useState(false)
-//   const [picUrl, setPicUrl] = useState("")
-//   const [projects, setProjects] = useState([])
-//   // const [displayedProfiles, setProfiles] = useState([])
-//   // const [searchValue, setSearchField] = useState("")
-//   {/* useEffect() for loading screen */ }
-//   useEffect(() => {
-//     console.log("LOG --> FILE: PortfolioPage.js, Function: useEffect --> function reached.")
-//     if (!pageLoaded) {
-//       setLoaded(true)
-//     }
-//   },
-//     [pageLoaded]
-//   )
-
-//   {/* Event Handlers */ }
-//   const openPopUp = (e, formType) => {
-//     e.preventDefault()
-//     setShowPopUp(!showPopUp)
-
-//   }
-
-//   // const handleProfileCloudinary = (e) => {
-//   //   e.preventDefault()
-//   //   toggleProfileCloudinary(!showProfileCloudinary)
+  // const handleProfileCloudinary = (e) => {
+  //   e.preventDefault()
+  //   toggleProfileCloudinary(!showProfileCloudinary)
     
-//   // }
+  // }
 
 
-//   // const handleProjectCloudinary = (e) => {
-//   //     e.preventDefault()
-//   //     console.log("clicked")
-//   //     toggleProjectPicWidget(!showProjectPicWidget)
-//   // }
+  // const handleProjectCloudinary = (e) => {
+  //     e.preventDefault()
+  //     console.log("clicked")
+  //     toggleProjectPicWidget(!showProjectPicWidget)
+  // }
 
 
-//   useEffect(() => {
-//     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
-//     const populatePortfolioPage = async () => {
-//       const projectsResponse = await GetUsersProjects({ userId: user.id }) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+  useEffect(() => {
+    console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
+    const populatePortfolioPage = async () => {
+      console.log(user.id)
+      const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
 
 
-//       console.log("Projects response: ", projectsResponse)
-//       setProjects(projectsResponse)
+      console.log("Projects response: ", projectsResponse)
+      setProjects(projectsResponse)
 
-//     }
-//     populatePortfolioPage()
-//     console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: main page loaded: ", pageLoaded)
-//     if (!pageLoaded) {
-//       setLoaded(true)
-//     }
-//   },
-//     [pageLoaded]
-//   )
-
-
-//   console.log(showProjectPicWidget)
-//   return (!pageLoaded ? <LoadingScreen /> :
-//     <div className="portfolio-page-wrapper">
-//       <NavBar {...props} />
-//       {/* profile page below */}
-//       <div style={{width: "150px", height: "150px", backgroundColor: "yellow"}}>
-
-//       {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} style={{border:"5px solid black", backgroundColor:"green"}}{...props} setPicUrl={setPicUrl}/> : null}
-
-//       </div>
-
-
-//       <div className={classes.cardProfile}>
-//         <div className={classes.imageColumn}>
-//           <img className={classes.profImage} placeholder="upload image"
-//             alt="default profile image" />
-//           {/* // src={profilePicture} alt="" /> */}
-//           <div className={classes.portfolioDetails}>
-
-//               {/* <h2>{name}</h2>
-//                 <h3>{locale}</h3>
-//                 <h3>{professionalTitle}</h3>
-//                 <h3>{organization}</h3>
-//                 <h4>{bio}</h4>
-//                 <p>{skills}</p> */}
-
-//           </div>
-//         </div>
-//       </div>
-//       {/* projects */}
-//       <div className={classes.projectWrapper}>
-//         <h3> Projects: </h3>
-//         <div className={classes.addProject}>
-//           <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
-//           {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject}/>}
-//         </div>
-
-//         <div className="projectsWrapper">
-//               {projects.map((project, index) => {
-
-//                 return(
-//                   <ProjectCard project={project}/>
-//                 )
-//               })}
-//         </div>
+    }
+    populatePortfolioPage()
+    console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
+    if (!pageLoaded) {
+      setLoaded(true)
+    }
+  },
+    [pageLoaded]
+  )
+  console.log(showProjectPicWidget)
 
 
 
 
+  return (!pageLoaded ? <LoadingScreen /> :
+    <div className="portfolio-page-wrapper">
+        <NavBar {...props} />
+            {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
+      <div className={classes.cardProfile}>
+          <div className={classes.imageColumn}>
+          <img className={classes.profImage} placeholder="upload image" alt="default profile image" />
+          {/* // src={profilePicture} alt="" /> */}
+          <div className={classes.portfolioDetails}>
+
+              {/* <h2>{name}</h2>
+                <h3>{locale}</h3>
+                <h3>{professionalTitle}</h3>
+                <h3>{organization}</h3>
+                <h4>{bio}</h4>
+                <p>{skills}</p> */}
+
+          </div>
+        </div>
+      </div>
 
 
 
-//         <div className="project1">
-//           {/* <h3> Project title: {props.projectTitle}</h3>
-//           <p>Description: {props.description} </p>
-//           <p>Technologies: {props.technologies}</p> */}
-//          {/* <p>{propsWidgetOpenmage} </p> */}
-//           {/* <p>Link: {props.link} </p> */}
-//           <div className={classes.root}>
-//             <Paper  className={classes.paper}>
-//               <Grid container spacing={2}>
-//                 <Grid item>
-//                   <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>                  
-//                 </Grid>
-//                 <Grid item xs={6} sm container>
-//                   <Grid item xs container direction="column" spacing={4}>
-//                     <Grid item xs>
-//                       <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
-//                         Name: {props.location.state}
-//                       </Typography>
-//                       <Typography gutterBottom variant="subtitle1">
-//                         Title project: {props.location.state}
-//                       </Typography>
-//                       <Typography variant="body2" gutterBottom>
-//                         Description: {props.location.state}
-//                       </Typography>
-//                       <Typography variant="body2" >
-//                         Technologies: {props.location.state}
-//                       </Typography>
-//                     </Grid>
-//                     <Grid item>
-//                       <Link to="portfolio">
-//                         <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
-//                           Link to project: {props.location.state}
-//                         </Typography>
-//                       </Link>
-//                     </Grid>
-//                   </Grid>
-//                 </Grid>
-//               </Grid>
-//               <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
-//               {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />}
-//             </Paper>
-//           </div>
-//         </div>
-//         <br></br>
-//       </div>
-//     </div>
-//   )
-// }
-// export default PortfolioPage
+
+      {/* projects */}
+      <div className={classes.projectWrapper}>
+        <h3> Projects: </h3>
+        <div className={classes.addProject}>
+          <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
+          {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
+        </div>
+
+        {/* <div className="projectsWrapper">
+              {projects.map((project, index) => {
+
+                return(
+                  <ProjectCard {...props} project={project} />
+                )
+              })}
+        </div> */}
+
+        <div className="project1">
+          {/* <h3> Project title: {props.projectTitle}</h3>
+          <p>Description: {props.description} </p>
+          <p>Technologies: {props.technologies}</p> */}
+         {/* <p>{propsWidgetOpenmage} </p> */}
+          {/* <p>Link: {props.link} </p> */}
+          <div className={classes.root}>
+            <Paper  className={classes.paper}>
+              <Grid container spacing={2}>
+                <Grid item>
+                  <img onClick={(e)=>toggleProjectPicWidget(!showProjectPicWidget)} style={classes.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>                  
+                </Grid>
+                <Grid item xs={6} sm container>
+                  <Grid item xs container direction="column" spacing={4}>
+                    <Grid item xs>
+                      <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
+                        Name: {props.location.state}
+                      </Typography>
+                      <Typography gutterBottom variant="subtitle1">
+                        Title project: {props.location.state}
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        Description: {props.location.state}
+                      </Typography>
+                      <Typography variant="body2" >
+                        Technologies: {props.location.state}
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Link to="portfolio">
+                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>
+                          Link to project: {props.location.state}
+                        </Typography>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
+              {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />}
+            </Paper>
+          </div>
+        </div>
+        <br></br>
+      </div>
+    </div>
+  )
+}
+export default PortfolioPage
 
