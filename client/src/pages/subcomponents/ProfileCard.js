@@ -59,15 +59,16 @@ const ProfileCard = (props) => {
             <Grid item xs={6} sm container>
               <Grid item xs container direction="column" spacing={4}>
                 <Grid item xs>
-              
+
+                  {/* <Typography className={name} gutterBottom variant="subtitle1">{props.profile.user.name}</Typography>  */}
+
                   {/* <Typography className={classes.img} src={profile.profilePicture}></Typography>  */}
                   <Typography gutterBottom variant="subtitle1">{professionalTitle}</Typography>
                   <Typography variant="body2" gutterBottom>{bio}</Typography>
                   <Typography variant="body2">{skills}</Typography>
                 </Grid>
                 <Grid item>
-
-                <NavLink className="signupNavlink" to={{pathname: "/portfolio", state: {profile: profile}}}>View Portfolio</NavLink>
+                  <NavLink className="signupNavlink" to={{pathname: "/portfolio", state: {profile: profile}}}>View Portfolio</NavLink>
                 </Grid>
               </Grid>
             </Grid>

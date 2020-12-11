@@ -134,8 +134,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 const ProjectCard = (props) =>  {
   console.log("A project card was made")
   const {project} = props
@@ -154,7 +152,6 @@ const ProjectCard = (props) =>  {
   }
 
   return (
-    <div>
       <div className="project1">
           {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
@@ -192,8 +189,7 @@ const ProjectCard = (props) =>  {
             </Paper>
           </div>
         </div>
-        <br></br>
-      </div>
+
   )
 }
 
@@ -272,23 +268,16 @@ const PortfolioPage = (props) => {
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
         <NavBar {...props} />
-          {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
-          <div className={classes.cardProfile}>
-            <div className={classes.imageColumn}>
 
-              {/* <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
-                <h2 style={classes.name}>{user.name}</h2>
-                <h3>{profile.professionalTitle}</h3> */}
-                {/* <h3>{profile.organization}</h3>
-                <h3>{profile.locale}</h3> */}
-
-                <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
-                <h2 style={classes.subtext}> {user.name}</h2>
-                <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
-                <h3 style={classes.subtext} > {profile.organization}</h3>
-                <h3 style={classes.subtext} > {profile.locale}</h3>
-            </div>
-
+            {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
+              <div className={classes.cardProfile}>
+                <div className={classes.imageColumn}>
+                    <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
+                    <h2 style={classes.subtext}> {user.name}</h2>
+                    <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
+                    <h3 style={classes.subtext} > {profile.organization}</h3>
+                    <h3 style={classes.subtext} > {profile.locale}</h3>
+                </div>
         {/* <p>{profile.skills}</p>
         <h4>{profile.bio}</h4> */}
       </div>
@@ -314,6 +303,8 @@ const PortfolioPage = (props) => {
     </div>
   )
 }
+
+
 export default PortfolioPage
 
 
