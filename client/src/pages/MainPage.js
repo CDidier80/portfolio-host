@@ -69,6 +69,8 @@ const useStyles = makeStyles((theme) => ({
 
 const MainPage = (props) => {
   console.log("LOG: MainPage.js --> PROPS RECIEVED: ",  props)
+  const{user, profile} = props
+  
   {/* Variables */ }
   const classes = useStyles();
 
