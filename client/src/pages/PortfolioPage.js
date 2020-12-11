@@ -130,6 +130,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const ProjectCard = (props) =>  {
+  console.log("A project card was made")
   const {project} = props
   const classes = useStyles();
 
@@ -166,7 +167,7 @@ const ProjectCard = (props) =>  {
                     </Grid>
                     <Grid item>
                       <Link to="portfolio">
-                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>Link to project: {project.link}</Typography>
+                        <Typography variant="body2" style={{ cursor: 'pointer' }} className={classes.linkPort}>Link to project: {project.deployLink}</Typography>
                       </Link>
                     </Grid>
                   </Grid>
@@ -254,12 +255,12 @@ const PortfolioPage = (props) => {
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
         <NavBar {...props} />
-            {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
-      <div className={classes.cardProfile}>
-          <div className={classes.imageColumn}>
-          <img className={classes.profImage} placeholder="upload image" alt="default profile image" />
-          {/* // src={profilePicture} alt="" /> */}
-          <div className={classes.portfolioDetails}>
+          {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
+          <div className={classes.cardProfile}>
+            <div className={classes.imageColumn}>
+              <img className={classes.profImage} placeholder="upload image" alt="default profile image" />
+                {/* // src={profilePicture} alt="" /> */}
+                <div className={classes.portfolioDetails}>
 
               {/* <h2>{name}</h2>
                 <h3>{locale}</h3>
@@ -283,14 +284,14 @@ const PortfolioPage = (props) => {
           {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
         </div>
 
-        {/* <div className="projectsWrapper">
+       <div className="projectsWrapper">
               {projects.map((project, index) => {
 
                 return(
                   <ProjectCard {...props} project={project} />
                 )
               })}
-        </div> */}
+        </div> 
 
         <div className="project1">
           {/* <h3> Project title: {props.projectTitle}</h3>
@@ -341,4 +342,6 @@ const PortfolioPage = (props) => {
   )
 }
 export default PortfolioPage
+
+
 
