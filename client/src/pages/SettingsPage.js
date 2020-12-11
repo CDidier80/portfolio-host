@@ -9,7 +9,7 @@ import CloudinaryWidget from '../pages/subcomponents/CloudinaryWidget'
 import { StylesProvider } from '@material-ui/core'
 
 const SettingsPage = (props) => { 
-    // props.userInfo
+    const {profile, user} = props.userInfo
     const [pageLoaded, setLoaded] = useState(false);
     const [widgetDisplayed, toggleWidget] = useState(false)
 
@@ -49,8 +49,13 @@ const SettingsPage = (props) => {
         }
     }
 
-    const deleteAccount = (e) => {
-        let response = await DeleteUser({})
+    const deleteAccount = async (e) => {
+        e.preventDefault()
+        let response = await DeleteUser(user.id)
+        console.log("DEATH REPORT =======> D:  : ", response)
+        props.setAuth(false)
+        localStorage.clear()
+        props.history.push("/")
     }
 
 
@@ -64,7 +69,7 @@ const SettingsPage = (props) => {
                 <img onClick={()=>toggleWidget(!widgetDisplayed)} style={styles.profilePic} src={"https://i.imgur.com/iySHWfo.png"}></img>
                 <h1 style={styles.nameTag}>Collin Didier</h1>
                 <ProfileForm {...props}  />
-                <button onClick={(e)=>deleteAccount(e)}>
+                <button onClick={(e)=>deleteAccount(e)}>Delete Account</button>
             </div>
         </div>
     )
