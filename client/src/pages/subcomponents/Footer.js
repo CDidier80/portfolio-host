@@ -10,6 +10,8 @@ const style = {
   bottom: "0",
   height: "60px",
   width: "100%",
+  fontFamily: "Roboto",
+  fontWeight: "bolder"
 }
 
 const phantom = {
@@ -24,12 +26,8 @@ const Footer = () => {
     <div>
       <div style={phantom}></div>
       <div style={style}>  
-      <p> Collin Didier </p> <br/>
-        <a href="https://github.com/CDidier80"> GitHub </a>
-        <p> Luis Rojas </p> <br />
-        <a href="https://github.com/lrojash"> GitHub </a>
-        <p> Lisa V Wand </p> <br />
-        <a href="https://www.linkedin.com/in/lisa-venneker-wand-8413ab25/"> GitHub </a>
+      <p> Open Source coded by: Collin Didier, Luis Rojas and Lisa V. wand </p> 
+        <a href="https://github.com/CDidier80/portfolio-host"> GitHub </a> 
       </div>
     </div>
   )

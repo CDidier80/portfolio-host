@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    position: "fixed",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -23,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  marginTop: "5vh"
+
 }))
 
 const styles = {

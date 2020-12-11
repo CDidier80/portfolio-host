@@ -139,6 +139,7 @@ const ProjectCard = (props) =>  {
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
 
+
   return (
     <div>
        <div className="project1">
@@ -180,20 +181,6 @@ const ProjectCard = (props) =>  {
       </div>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -357,4 +344,3 @@ const PortfolioPage = (props) => {
 }
 export default PortfolioPage
 
-// collindidier@mail.com
