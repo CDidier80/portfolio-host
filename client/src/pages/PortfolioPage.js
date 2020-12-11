@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
       border: "1px solid black"
     },
     imageColumn: {
-      display: "block", 
+      display: "block",
 
     },
     loginButton: {
@@ -127,10 +127,10 @@ const useStyles = makeStyles((theme) => ({
       color: "black",
       backgroundColor: "white"
     },
-    name : {
+    name: {
       textAlign: "center"
-    }, 
-    subtext : {
+    },
+    subtext: {
       marginLeft: "10px"
     }
   }
@@ -151,8 +151,8 @@ const ProjectCard = (props) => {
   // const [searchValue, setSearchField] = useState("")
   const styles = {
     image: {
-      maxWidth: "300px", 
-      
+      maxWidth: "300px",
+
     }
   }
 
@@ -162,20 +162,20 @@ const ProjectCard = (props) => {
         {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
           <p>Technologies: {props.technologies}</p> */}
-         {/* <p>{propsWidgetOpenmage} </p> */}
-          {/* <p>Link: {props.link} </p> */}
-          <div className={classes.root}>
-            <Paper  className={classes.paper}>
-              <Grid container spacing={2}>
-                <Grid item>
+        {/* <p>{propsWidgetOpenmage} </p> */}
+        {/* <p>Link: {props.link} </p> */}
+        <div className={classes.root}>
+          <Paper className={classes.paper}>
+            <Grid container spacing={2}>
+              <Grid item>
 
-                  <img style={styles.image} src={project.projectPicture}></img>                  
+                <img style={styles.image} src={project.projectPicture}></img>
 
-                </Grid>
-                <Grid item xs={6} sm container>
-                  <Grid item xs container direction="column" spacing={4}>
-                    <Grid item xs>
-                      {/* <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
+              </Grid>
+              <Grid item xs={6} sm container>
+                <Grid item xs container direction="column" spacing={4}>
+                  <Grid item xs>
+                    {/* <Typography className={classes.namePerson} gutterBottom variant="subtitle1">
                         Name: {project.location}
                       </Typography> */}
                     <Typography gutterBottom variant="subtitle1"> Title project: {project.title} </Typography>
@@ -204,7 +204,7 @@ const ProjectCard = (props) => {
 
 const PortfolioPage = (props) => {
   console.log("PROPS INSIDE PORTFOLIO PAGE", props)
-  const {profile, user} = props.userInfo
+  const { profile, user } = props.userInfo
 
   {/* Variables */ }
   const classes = useStyles();
@@ -253,19 +253,20 @@ const PortfolioPage = (props) => {
 
   return (!pageLoaded ? <LoadingScreen /> :
     <div className="portfolio-page-wrapper">
-        <NavBar {...props} />
-          {showProjectPicWidget? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl}/> : null}
-          <div className={classes.cardProfile}>
-            <div className={classes.imageColumn}>
-                <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
-                <h2 style={classes.subtext}> {user.name}</h2>
-                <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
-                <h3 style={classes.subtext} > {profile.organization}</h3>
-                <h3 style={classes.subtext} > {profile.locale}</h3>
-            </div>
-
-        <p>{profile.skills}</p>
-        <h4>{profile.bio}</h4>
+      <NavBar {...props} />
+      {showProjectPicWidget ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
+      <div className={classes.cardProfile}>
+        <div className={classes.imageColumn}>
+          <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
+          <h2 style={classes.subtext}> {user.name}</h2>
+          <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
+          <h3 style={classes.subtext} > {profile.organization}</h3>
+          <h3 style={classes.subtext} > {profile.locale}</h3>
+          <p>{profile.skills}</p>
+          <h4>{profile.bio}</h4>
+        </div>
+        {/* <p>{profile.skills}</p>
+        <h4>{profile.bio}</h4> */}
       </div>
 
 
