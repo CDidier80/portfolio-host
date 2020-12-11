@@ -72,10 +72,6 @@ empty props object of the child component
 //     await this.props.history.push('/login')
 // }
 
-const saveUser = (e, props, index) => {
-console.log("saveUser", e)
-}
-
     return (
       <main className="App">
         {!pageIsLoaded ? <div><h3>Loading...</h3></div> : 
