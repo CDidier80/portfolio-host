@@ -41,16 +41,20 @@ const styles = {
 // still needs cloudinary widget and event handler for string url of pic
 
 const ProfileForm = (props) => {
+  console.log("PROPS RECEIVED AT PROFILE FORM: ", props)
+    const {profile, user} = props.userInfo
+    // const {id: profileId, profilePicUrl, professionalTitle, organization, skills, locale, bio} = profile
+    // const {id: userId, name} = user
     const classes = useStyles()
     {/* Hooks */}
     // const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
-    const [profilePicUrl, setProfilePicUrl] = useState("")
-    const [professionalTitle, setProfessionalTitle] = useState("")
-    const [organization, setOrganization] = useState("")
-    const [skills, setSkills] = useState("")
-    const [locale, setLocale] = useState("")
-    const [bio, setBio]       = useState("")
+    const [profilePicUrl, setProfilePicUrl] = useState((profile.profilePicUrl !== null ? profile.profilePicUrl : ""))
+    const [professionalTitle, setProfessionalTitle] = useState(profile.professionalTitle !== null ? profile.professionalTitle : "")
+    const [organization, setOrganization] = useState(profile.organization !== null ? profile.organization : "")
+    const [skills, setSkills] = useState(profile.skills !== null ? profile.skills : "")
+    const [locale, setLocale] = useState(profile.locale !== null ? profile.locale : "")
+    const [bio, setBio]       = useState(profile.bio !== null ? profile.bio : "")
 
     {/* Event Handlers */}
     const handleClick = (event) => {
@@ -61,11 +65,11 @@ const ProfileForm = (props) => {
       setAnchorEl(null);
     };
 
-    const submitForm = async () => {
-
+    const submitForm = async (e) => {
+      e.preventDefault()
         
         let payload = {
-            userId: props.userId,
+            id: profile.id,
             profilePicUrl : profilePicUrl, 
             professionalTitle : professionalTitle, 
             organization : organization, 
@@ -74,13 +78,9 @@ const ProfileForm = (props) => {
             bio : bio, 
         }
         console.log(logs[0], payload)
-        console.log(logs[1], props.firstTimeUser)
-
         const profileResponse = await UpdateProfile(payload)
         console.log(logs[2], profileResponse)
         console.log(logs[3])
-
-        profileResponse.message !== "account already exists" && props.history.push({pathname: "/portfolio", state:  {profile: profileResponse, usersOwnProfile: true}})
         return
     }
 
@@ -95,21 +95,21 @@ const ProfileForm = (props) => {
     <div>
         <div style={styles.profileFormWrapper}>
                             {/* Professional Title */}
-          <TextField  onChange={(e)=>updateTextField(e, setProfessionalTitle)}   label="professional title" style={{ margin: 8 }} placeholder="professional title" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+          <TextField  onChange={(e)=>updateTextField(e, setProfessionalTitle)}   label="professional title" style={{ margin: 8 }} placeholder={profile.professionalTitle} fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
                             {/* Organization */}
-          <TextField  onChange={(e)=>updateTextField(e, setOrganization)}        label="Organization" style={{ margin: 8 }} placeholder="organization" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+          <TextField  onChange={(e)=>updateTextField(e, setOrganization)}        label="Organization" style={{ margin: 8 }} placeholder={profile.organization} fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
                             {/* Locale */}
-          <TextField  onChange={(e)=>updateTextField(e, setLocale)}              label="Locale" style={{ margin: 8 }} placeholder="locale" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+          <TextField  onChange={(e)=>updateTextField(e, setLocale)}              label="Locale" style={{ margin: 8 }} placeholder={profile.locale} fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
                             {/* Skills */}
-          <TextField onChange={(e)=>updateTextField(e, setSkills)}              label="Skills" style={{ margin: 8 }} placeholder="skills" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+          <TextField onChange={(e)=>updateTextField(e, setSkills)}              label="Skills" style={{ margin: 8 }} placeholder={profile.skills} fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
 
                             {/* Biography */}
-          <TextField  onChange={(e)=>updateTextField(e, setBio)}                 label="Biography" style={{ margin: 8 }} placeholder="Bio" fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
+          <TextField  onChange={(e)=>updateTextField(e, setBio)}                 label="Biography" style={{ margin: 8 }} placeholder={profile.bio} fullWidth margin="normal" InputLabelProps={{ shrink: true, }} />
       </div>
-      <button onClick={()=>submitForm()}> Submit</button>
+      <button onClick={(e)=>submitForm(e)}> Submit</button>
     </div>
   );
 }
