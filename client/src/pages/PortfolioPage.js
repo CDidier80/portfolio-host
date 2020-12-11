@@ -226,7 +226,6 @@ const PortfolioPage = (props) => {
   const openPopUp = (e, formType) => {
     e.preventDefault()
     setShowPopUp(!showPopUp)
-
   }
 
   useEffect(() => {
