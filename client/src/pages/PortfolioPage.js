@@ -152,9 +152,9 @@ const ProjectCard = (props) => {
     <div className="project1">
       {/* <h3> Project title: {props.projectTitle}</h3>
           <p>Description: {props.description} </p>
-          <p>Technologies: {props.technologies}</p> */}
-      {/* <p>{propsWidgetOpenmage} </p> */}
-      {/* <p>Link: {props.link} </p> */}
+          <p>Technologies: {props.technologies}</p>  */}
+      {/* <p>{propsWidgetOpenmage} </p>              */}
+      {/* <p>Link: {props.link} </p>                 */}
       <div className={classes.root}>
         <Paper className={classes.paper}>
           <Grid container spacing={2}>
