@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileCard = (props) => {
   let profile = props.profile
-  console.log('inside profile card: ', props.profile.user.name)
-  const { bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId } = props.profile
-
+  console.log('inside prop:',props.profile.profilePicture)
+  const {bio, id, name, locale, organization, professionalTitle, profilePicture, skills, userId} = props.profile
+  
   // console.log("profile logged in ProfileCard: ", profile)
   const classes = useStyles();
 
@@ -49,21 +49,22 @@ const ProfileCard = (props) => {
         <Paper style={{ Width: "50%" }} className={classes.paper}>
           <Grid container spacing={2}>
             <Grid item>
-              <ButtonBase className={classes.image}>
-                <img className={classes.img} alt="complex" src={profilePicture} />
+              <ButtonBase className={classes.image}> 
+                {/* <img className={classes.img} alt="complex" src={props.profile.profilePicture} /> */}
               </ButtonBase>
             </Grid>
             <Grid item xs={6} sm container>
               <Grid item xs container direction="column" spacing={4}>
                 <Grid item xs>
-                  <Typography className={name} gutterBottom variant="subtitle1">{props.profile.user.name}</Typography>
+                  <Typography className={name} gutterBottom variant="subtitle1">{props.profile.user.name}</Typography> 
+                  <Typography className={classes.img} src = {props.profile.profilePicture}></Typography> 
                   <Typography gutterBottom variant="subtitle1">{professionalTitle}</Typography>
                   <Typography variant="body2" gutterBottom>{bio}</Typography>
                   <Typography variant="body2">{skills}</Typography>
                 </Grid>
                 <Grid item>
 
-                  <NavLink className="signupNavlink" to={{ pathname: "/portfolio", state: { profile: profile } }}>View Portfolio</NavLink>
+                <NavLink className="signupNavlink" to={{pathname: "/portfolio", state: {profile: profile}}}>View Portfolio</NavLink>
                 </Grid>
               </Grid>
             </Grid>
