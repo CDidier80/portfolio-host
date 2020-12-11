@@ -184,126 +184,125 @@ const ProjectCard = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
-          {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />}
+          {/* <Button className={classes.updateBtn} variant="outlined" color="primary" size="small" onClick={(e) => openPopUp(e, "UpdateProject")}> update </Button>
+              {showPopUp && <ProjectForm {...props} togglePopup={setShowPopUp} updateOrCreate={"update"} />} */}
         </Paper>
       </div>
+    </div>
+
   )
 }
 
 
 
 const PortfolioPage = (props) => {
-        console.log("PROPS INSIDE PORTFOLIO PAGE", props)
-  const { profile, user} = props.userInfo
+  console.log("PROPS INSIDE PORTFOLIO PAGE", props)
+  const { profile, user } = props.userInfo
 
-      {/* Variables */}
+  {/* Variables */ }
   const classes = useStyles();
-      {/* Hooks */}
-      {/* <--------------profile allows editing priveledges when user views their own profile */}
+  {/* Hooks */ }
+  {/* <--------------profile allows editing priveledges when user views their own profile */ }
   // const [usersOwnProfile, setUserOwnProfile] = useState(props.location.state.usersOwnProfile ? true : false);  // boolean
   const [showPopUp, setShowPopUp] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [pageLoaded, setLoaded] = useState(false);
-      {/* <--------------add-project widget needs to know if we are creating or modifying a project */}
+  {/* <--------------add-project widget needs to know if we are creating or modifying a project */ }
   // const [showProfileCloudinary, toggleProfileCloudinary] = useState(false)
   const [showProjectPicWidget, toggleProjectPicWidget] = useState(false)
   const [showAddProject, setAddProject] = useState(false)
   const [picUrl, setPicUrl] = useState("")
   const [projects, setProjects] = useState([])
-      // const [displayedProfiles, setProfiles] = useState([])
-      // const [searchValue, setSearchField] = useState("")
+  // const [displayedProfiles, setProfiles] = useState([])
+  // const [searchValue, setSearchField] = useState("")
 
 
-      {/* Event Handlers */}
+  {/* Event Handlers */ }
   const openPopUp = (e, formType) => {
-        e.preventDefault()
+    e.preventDefault()
     setShowPopUp(!showPopUp)
   }
 
+  // useEffect(() => {
+  //   console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
+  //   const populatePortfolioPage = async () => {
+  //     // console.log(user.id)
+  //     // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+
+
+  //     // console.log("Projects response: ", projectsResponse)
+  //     // setProjects(projectsResponse)
+
+  //   }
+  //   populatePortfolioPage()
+  //   console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
+  //   if (!pageLoaded) {
+  //     setLoaded(true)
+  //   }
+  // },
+  //   [pageLoaded]
+  // )
+  // console.log(showProjectPicWidget)
+
   useEffect(() => {
-        console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
-          const populatePortfolioPage = async () => {
-        // console.log(user.id)
-        // const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
+    console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
+    const populatePortfolioPage = async () => {
+      console.log(user.id)
+      const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
 
 
-        // console.log("Projects response: ", projectsResponse)
-        // setProjects(projectsResponse)
+      console.log("Projects response: ", projectsResponse)
+      setProjects(projectsResponse)
 
-      }
-          populatePortfolioPage()
-          console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
-          if (!pageLoaded) {
-        setLoaded(true)
-      }
-        },
-          [pageLoaded]
-        )
-        console.log(showProjectPicWidget)
-
-        useEffect(() => {
-        console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
-          const populatePortfolioPage = async () => {
-        console.log(user.id)
-            const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-
-
-            console.log("Projects response: ", projectsResponse)
-            setProjects(projectsResponse)
-
-          }
-          populatePortfolioPage()
-          console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
-          if (!pageLoaded) {
-        setLoaded(true)
-      }
-        },
-          [pageLoaded]
-        )
-
+    }
+    populatePortfolioPage()
+    console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
+    if (!pageLoaded) {
+      setLoaded(true)
+    }
+  },
+    [pageLoaded]
+  )
+  console.log(showProjectPicWidget)
 
   return (!pageLoaded ? <LoadingScreen /> :
-      <div className="portfolio-page-wrapper">
-        <NavBar {...props} />
+    <div className="portfolio-page-wrapper">
+      <NavBar {...props} />
 
-        {showProjectPicWidget ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
-        <div className={classes.cardProfile}>
-          <div className={classes.imageColumn}>
-            <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
-            <h2 style={classes.subtext}> {user.name}</h2>
-            <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
-            <h3 style={classes.subtext} > {profile.organization}</h3>
-            <h3 style={classes.subtext} > {profile.locale}</h3>
-          </div>
-          {/* <p>{profile.skills}</p>
+      {showProjectPicWidget ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
+      <div className={classes.cardProfile}>
+        <div className={classes.imageColumn}>
+          <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
+          <h2 style={classes.subtext}> {user.name}</h2>
+          <h3 style={classes.subtext} > {profile.professionalTitle}</h3>
+          <h3 style={classes.subtext} > {profile.organization}</h3>
+          <h3 style={classes.subtext} > {profile.locale}</h3>
+        </div>
+        {/* <p>{profile.skills}</p>
         <h4>{profile.bio}</h4> */}
+      </div>
+
+
+      {/* projects */}
+      <div className={classes.projectWrapper}>
+        <h3> Projects: </h3>
+        <div className={classes.addProject}>
+          <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
+          {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
         </div>
 
+        <div className="projectsWrapper">
+          {projects.map((project, index) => {
 
-        {/* projects */}
-        <div className={classes.projectWrapper}>
-          <h3> Projects: </h3>
-          <div className={classes.addProject}>
-            <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
-            {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
-          </div>
-
-          <div className="projectsWrapper">
-            {projects.map((project, index) => {
-
-              return (
-                <ProjectCard {...props} project={project} />
-              )
-            })}
-          </div>
+            return (
+              <ProjectCard {...props} project={project} />
+            )
+          })}
         </div>
       </div>
+    </div>
   )
 }
 
 
 export default PortfolioPage
-
-
-
