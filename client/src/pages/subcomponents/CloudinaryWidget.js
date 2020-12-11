@@ -37,7 +37,7 @@ const CloudinaryWidget = props => {
         }
     }
 
-    useEffect(() => {
+    useEffect((props) => {
         props.widgetOpen ? widget.open() : widget.close()
     }, [props.widgetOpen]) 
 
