@@ -41,7 +41,7 @@ export const GetUsersProjects = async (payload) =>  {
     console.log("LOG:-->  FILE: ProjectsService.js  FUNCTION: GetAllProjects() -->  Reached, carrying payload: ", payload)
 
     try {
-        const response = await ApiClient.get(`projects/user`, payload)
+        const response = await ApiClient.get(`projects/user/${payload}`)
         return response.data
     } catch (error) {
         console.log(error)
