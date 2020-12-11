@@ -16,6 +16,8 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Paper from '@material-ui/core/Paper';
 import NavBar from './subcomponents/NavBar'
 import CloudinaryWidget from './subcomponents/CloudinaryWidget'
+
+
 const useStyles = makeStyles((theme) => ({
   // card profile not material
   cardProfile: {
@@ -262,6 +264,7 @@ const PortfolioPage = (props) => {
         </div>
         <br></br>
       </div>
+      <Footer />
     </div>
   )
 }
