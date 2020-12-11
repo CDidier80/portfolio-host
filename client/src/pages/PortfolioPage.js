@@ -247,7 +247,6 @@ const PortfolioPage = (props) => {
               <img className={classes.profImage} src={profile.profilePicture}  placeholder="upload image" alt="default profile image" />
                 <h2 style={classes.name}>{user.name}</h2>
                 <h3>{profile.professionalTitle}</h3>
-                <h3>{profile.professionalTitle}</h3>
                 <h3>{profile.organization}</h3>
                 <h3>{profile.locale}</h3>
             </div>
