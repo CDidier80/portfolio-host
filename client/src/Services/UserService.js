@@ -29,6 +29,7 @@ export const LogInUser = async (payload) =>  {
 // 7) FILE: UserService.js,     FUNCTION: CreateUser(),       PURPOSE: Receive response and return to client -->
 // 8) React function receives user payload and indicates an "authenticated" state for the session -->
 export const CreateUser = async (payload) =>  {
+    console.log("LOG --> FILE: UserService.js  Function: CreateUser() --> FUNCTION REACHED")
     try {
         const response = await ApiClient.post(`users/create`, payload)
         return response

@@ -2,7 +2,7 @@
 const Router = require('express').Router()
 const controller = require('../../controllers/UserController')
 const { getToken, createToken, verifyToken } = require('../../middleware/jwthandler')
-
+console.log("user router active")
 // Create
 Router.post('/create', controller.CreateUser)
 // Router.post('/login', controller.LogInUser)

@@ -1,4 +1,5 @@
 const path = require('path')
+const express = require("express")
 const AppRouter = require('./routes/AppRouter')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -6,7 +7,7 @@ const helmet = require('helmet')
 const logger = require('morgan')
 
 // import express & create a server instance
-const app = require('express')()
+const app = express()
 const PORT = process.env.PORT || 3001
 
 //Initialize Middleware
@@ -25,4 +26,4 @@ app.use('/api', AppRouter)
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
 )
-app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`))
+app.listen(PORT, () => console.log(`Server Started On Port: ${PORT} woohoo`))

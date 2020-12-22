@@ -1,7 +1,5 @@
 'use strict';
-const { Project, User, sequelize } = require('../models')
-const faker = require('faker');
-const { query } = require('express');
+const { User } = require('../models')
 
 const title = [
   'car race',
