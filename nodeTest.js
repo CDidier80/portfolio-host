@@ -1,8 +1,13 @@
 // const  { valueIfExists: checkPayload, ControllerLoggers }  = require('./Helpers')
 // const log = ControllerLoggers.ProfileControllerLog
 // const showLogs = true
-
-
+const uuid = require("uuid").v4
+console.log(uuid())
+console.log(uuid())
+console.log(uuid())
+console.log(uuid())
+console.log(uuid())
+console.log(uuid())
 
 // let string = ""
 // let truthy = true 
