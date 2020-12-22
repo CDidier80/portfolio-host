@@ -6,7 +6,7 @@ const { ControllerLoggers } = require('../Helpers')
 const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
 const show = true
 
-
+console.log("user controller active")
 
 const CreateUser = async (req, res) => {
     log(CreateUser, req, show)

@@ -131,14 +131,6 @@ const SignInSignUpPage = (props) => {
           console.log(logs[5], response)
           togglemessage(e)
         }
-            // updateUserFormInfo(auth: true, firstTimeUser: true,  toggleProfileForm: )
-            
-  //  else {
-  //         console.log(logs[6])
-  //         console.log(logs[7], response)
-
-
-  //  }|
     } catch (error) {
       console.log(logs[8], error)
     }
