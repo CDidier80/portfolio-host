@@ -30,8 +30,6 @@ const CreateUser = async (req, res) => {
         let updatedBody = { name, email, password_digest }
         console.log("BODY WITH ADDED PASSWORD DIGEST: ", updatedBody)
         let user = await User.create(updatedBody)
-
-
         let userId = user.dataValues.id
         const profileBody = {
             userId,
@@ -46,7 +44,7 @@ const CreateUser = async (req, res) => {
         res.send(response)
 
     } catch (error) {
-        throw error
+        console.log("TRY{}CATCH{} ERROR -->  FILE: UserController.js  Function: CreateUser() --> MESSAGE: ", error) 
     }
 }
 
