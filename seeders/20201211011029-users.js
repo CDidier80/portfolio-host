@@ -3,11 +3,12 @@ const uuid = require("uuid").v4
 const faker = require('faker')
 
 const users = [...Array(10)].map(() => ({
-  id: uuid(),
+  // id: uuid(),
   name: faker.name.firstName(),
   email: faker.internet.email(),
   password_digest: faker.internet.password(),
 }))
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('users', users)

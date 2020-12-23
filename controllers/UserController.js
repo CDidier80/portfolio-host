@@ -3,7 +3,6 @@ const { User, Profile } = require('../models')
 const { checkPassword, generatePassword } = require('../middleware/passwordhandler')
 const { createToken } = require('../middleware/jwthandler')
 const { ControllerLoggers } = require('../Helpers')
-const uuid = require("uuid").v4
 const log = ControllerLoggers.UserControllerLog, errorLog = ControllerLoggers.UserControllerErrorLog
 const show = true
 
@@ -28,10 +27,8 @@ const CreateUser = async (req, res) => {
         console.log("password, name and email:", password, name, email)
         const password_digest = await generatePassword(body.password)
         console.log("password_digest:", password_digest)
-        user_id = uuid()
-        console.log("generated uuid", user_id)
 
-        let updatedBody = { name, email, password_digest, user_id }
+        let updatedBody = { name, email, password_digest }
         console.log("BODY WITH ADDED PASSWORD DIGEST: ", updatedBody)
 
         
