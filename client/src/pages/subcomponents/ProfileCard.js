@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, StylesProvider } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +18,8 @@ const ProfileCard = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+      marginBottom: '20px',
+      boxShadow: '0 0 3 black'
     },
     paper: {
       padding: theme.spacing(2),
@@ -51,7 +53,11 @@ const ProfileCard = (props) => {
     },
     signupNavlink: {
       textDecoration: 'none',
-    }
+    },
+    // profileCardWrapper: {
+    //   marginBottom: '20px',
+    //   boxShadow: '0 0 3 black'
+    // }
   }));
 
 
