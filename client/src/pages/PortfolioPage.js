@@ -17,7 +17,15 @@ import Paper from '@material-ui/core/Paper';
 import NavBar from './subcomponents/NavBar'
 import CloudinaryWidget from './subcomponents/CloudinaryWidget'
 
+const logs = [
+  "PROPS INSIDE PORTFOLIO PAGE", 
+  "LOG --> FILE: PortfolioPage.js --> value of props.userInfo: ",
+  "LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.",
+  "Projects response: ",
+  "LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: "
+]
 
+const log = (message, varia) => console.log(message, varia)
 
 const useStyles = makeStyles((theme) => ({
   // card profile not material
@@ -205,18 +213,9 @@ const ProjectCard = (props) => {
 
 
 const PortfolioPage = (props) => {
-  console.log("PROPS INSIDE PORTFOLIO PAGE", props)
+  // log(logs[0], props)
+  // log(logs[1], props.userInfo)
 
-
-  // const { profile, user } = props.userInfo
-  
-  // const { profile } = props.location.state
-  // const { user } = profile 
-
-
-  console.log("LOG --> FILE: PortfolioPage.js --> value of props.userInfo: ", props)
-
-  
   {/* Variables */ }
   const classes = useStyles();
   {/* Hooks */ }
@@ -244,71 +243,94 @@ const PortfolioPage = (props) => {
   }
 
   useEffect(() => {
-    console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
+    log(logs[2])
     const populatePortfolioPage = async () => {
       const notOurProfile = props.location.state ? true : false
       const profile = notOurProfile ? props.location.state.profile : props.userInfo.profile
       const user = notOurProfile ? profile.user : props.userInfo.user
-      // console.log(user.id)
       const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-      console.log("Projects response: ", projectsResponse)
+      log(logs[3], projectsResponse)
       setUser(user)
       setProfile(profile)
       setProjects(projectsResponse)
     }
     populatePortfolioPage()
-    console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
+    log(logs[4], pageLoaded)
     if (!pageLoaded) {
       setLoaded(true)
     }
   },
     [pageLoaded]
   )
-  console.log(showProjectPicWidget)
 
 
   return (!pageLoaded ? <LoadingScreen /> :
-    <div>
-      <NavBar {...props} />
-      {showProjectPicWidget ? <CloudinaryWidget widgetOpen={true} {...props} setPicUrl={setPicUrl} /> : null}
-      <div className={classes.projectWrapper}>
-      <div className={classes.cardProfile}>
-        <div className={classes.leftColumnWrapper}>
-          <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
-          <h2 className={classes.name}>{user.name}</h2>
-          <h3 className={classes.professionalTitle}>{profile.professionalTitle}</h3>
-          <div className={classes.subtextWrapper}>
-            <h3 className={classes.subtext}>{profile.organization}</h3>
-            <h3 className={classes.subtext}>{profile.locale}</h3>
+      <div>
+          <NavBar {...props}/>
+          {showProjectPicWidget && <CloudinaryWidget 
+              widgetOpen={true} 
+              {...props} 
+              setPicUrl={setPicUrl} 
+              /> 
+          }
+          <div className={classes.projectWrapper}>
+              <div className={classes.cardProfile}>
+                  <div className={classes.leftColumnWrapper}>
+                      <img className={classes.profImage} 
+                          src={profile.profilePicture} 
+                          placeholder="upload image" 
+                          alt="default profile image" 
+                        />
+                      <h2 className={classes.name}>{user.name}</h2>
+                      <h3 
+                          className={classes.professionalTitle}>
+                            {profile.professionalTitle}
+                      </h3>
+                      <div className={classes.subtextWrapper}>
+                          <h3 className={classes.subtext}>
+                              {profile.organization}
+                          </h3>
+                          <h3 className={classes.subtext}>{profile.locale}</h3>
+                      </div>
+                  </div>
+                <h4 className={classes.profileBio}>"{profile.bio}"</h4>
+                {/* <p>{profile.skills}</p> */}
+              </div>
+
+              {/* projects */}
+              <div> 
+                  {/* className={classes.projectWrapper} */}
+                  <h3>Projects:</h3>
+                  <div className={classes.addProject}>
+                      <Button 
+                          className={classes.addProjBtn} 
+                          variant="outlined" 
+                          color="primary" 
+                          size="small" 
+                          onClick={(e) => setAddProject(true)}
+                        > 
+                        add project 
+                        </Button>
+                      {showAddProject && (
+                          <ProjectForm 
+                              {...props} 
+                              updateOrCreate={"create"} 
+                              togglePopup={setAddProject} 
+                          />
+                          
+                      )}
+                  </div> 
+                  <div className="projectsWrapper">
+                      {projects.map((project, index) => {
+                        return (
+                          <ProjectCard {...props} project={project} />
+                        )
+                      })}
+                  </div>
+              </div>
           </div>
-        </div>
-
-        <h4 className={classes.profileBio}>"{profile.bio}"</h4>
-        {/* <p>{profile.skills}</p> */}
       </div>
-
-
-      {/* projects */}
-      <div > 
-      {/* className={classes.projectWrapper} */}
-        <h3>Projects:</h3>
-        <div className={classes.addProject}>
-          <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
-          {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}
-        </div> 
-        <div className="projectsWrapper">
-          {projects.map((project, index) => {
-
-            return (
-              <ProjectCard {...props} project={project} />
-            )
-          })}
-        </div>
-      </div>
-      </div>
-    </div>
   )
 }
-
 
 export default PortfolioPage
