@@ -1,15 +1,22 @@
 // const  { valueIfExists: checkPayload, ControllerLoggers }  = require('./Helpers')
 // const log = ControllerLoggers.ProfileControllerLog
 // const showLogs = true
-const uuid = require("uuid").v4
-console.log(uuid())
-console.log(uuid())
-console.log(uuid())
-console.log(uuid())
-console.log(uuid())
-console.log(uuid())
-const test = uuid()
-console.log(typeof test)
+const uuid = require("uuid")
+// console.log(uuid())
+// console.log(uuid())
+// console.log(uuid())
+// console.log(uuid())
+// console.log(uuid())
+// console.log(uuid())
+// const test = uuid()
+
+const Sequelize = require('sequelize');
+// const test = uuid.uuid_generate_v4()
+// console.log(test)
+
+const test = Sequelize.literal('uuid_generate_v4()')
+console.log(test)
+
 // let string = ""
 // let truthy = true 
 // let falsey = false
