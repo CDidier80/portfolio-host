@@ -8,7 +8,8 @@ console.log(uuid())
 console.log(uuid())
 console.log(uuid())
 console.log(uuid())
-
+const test = uuid()
+console.log(typeof test)
 // let string = ""
 // let truthy = true 
 // let falsey = false
