@@ -204,11 +204,19 @@ const ProjectCard = (props) => {
 }
 
 
-
 const PortfolioPage = (props) => {
   console.log("PROPS INSIDE PORTFOLIO PAGE", props)
-  const { profile, user } = props.userInfo
 
+
+  // const { profile, user } = props.userInfo
+  
+  // const { profile } = props.location.state
+  // const { user } = profile 
+
+
+  console.log("LOG --> FILE: PortfolioPage.js --> value of props.userInfo: ", props)
+
+  
   {/* Variables */ }
   const classes = useStyles();
   {/* Hooks */ }
@@ -223,6 +231,8 @@ const PortfolioPage = (props) => {
   const [showAddProject, setAddProject] = useState(false)
   const [picUrl, setPicUrl] = useState("")
   const [projects, setProjects] = useState([])
+  const [profile, setProfile] = useState({})
+  const [user, setUser] = useState({})
   // const [displayedProfiles, setProfiles] = useState([])
   // const [searchValue, setSearchField] = useState("")
 
@@ -236,13 +246,15 @@ const PortfolioPage = (props) => {
   useEffect(() => {
     console.log("LOG --> FILE: PortolioPage.js ProjectForm.js, Function: useEffect --> function reached.")
     const populatePortfolioPage = async () => {
-      console.log(user.id)
+      const notOurProfile = props.location.state ? true : false
+      const profile = notOurProfile ? props.location.state.profile : props.userInfo.profile
+      const user = notOurProfile ? profile.user : props.userInfo.user
+      // console.log(user.id)
       const projectsResponse = await GetUsersProjects(user.id) //  // needs to have a limit sent in payload {limit: num}, return many with user_id & name attached to profiles
-
-
       console.log("Projects response: ", projectsResponse)
+      setUser(user)
+      setProfile(profile)
       setProjects(projectsResponse)
-
     }
     populatePortfolioPage()
     console.log("LOG --> FILE: PortolioPage.js FUNCTION: useEffect() => populatePortfolioPage() MESSAGE: portfolio page loaded: ", pageLoaded)
@@ -254,6 +266,7 @@ const PortfolioPage = (props) => {
   )
   console.log(showProjectPicWidget)
 
+
   return (!pageLoaded ? <LoadingScreen /> :
     <div>
       <NavBar {...props} />
@@ -263,10 +276,10 @@ const PortfolioPage = (props) => {
         <div className={classes.leftColumnWrapper}>
           <img className={classes.profImage} src={profile.profilePicture} placeholder="upload image" alt="default profile image" />
           <h2 className={classes.name}>{user.name}</h2>
-          <h3 className={classes.professionalTitle} > {profile.professionalTitle}</h3>
+          <h3 className={classes.professionalTitle}>{profile.professionalTitle}</h3>
           <div className={classes.subtextWrapper}>
-            <h3 className={classes.subtext}> {profile.organization}</h3>
-            <h3 className={classes.subtext}> {profile.locale}</h3>
+            <h3 className={classes.subtext}>{profile.organization}</h3>
+            <h3 className={classes.subtext}>{profile.locale}</h3>
           </div>
         </div>
 
@@ -278,7 +291,7 @@ const PortfolioPage = (props) => {
       {/* projects */}
       <div > 
       {/* className={classes.projectWrapper} */}
-        <h3> Projects: </h3>
+        <h3>Projects:</h3>
         <div className={classes.addProject}>
           <Button className={classes.addProjBtn} variant="outlined" color="primary" size="small" onClick={(e) => setAddProject(true)}> add project </Button>
           {showAddProject && <ProjectForm {...props} updateOrCreate={"create"} togglePopup={setAddProject} />}

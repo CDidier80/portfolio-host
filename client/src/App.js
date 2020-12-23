@@ -70,7 +70,7 @@ empty props object of the child component
 //     await this.setState({loginPageDefault: linkClassName})
 //     await this.props.history.push('/login')
 // }
-
+    console.log("App.js RENDERED. CURRENT AUTH: ", authenticated)
     return (
       <main className="App">
         {!pageIsLoaded ? <div><h3>Loading...</h3></div> : 

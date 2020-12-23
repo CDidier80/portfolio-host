@@ -71,6 +71,10 @@ const NavBar = (props) => {
     setOpen(false);
   };
 
+  const {authenticated} = props
+  console.log("NavBar Rerendered. Value of props.authenticated: ", authenticated)
+  console.log("NavBar Rerendered. Value of props: ", props)
+  console.log("NavBar Rerendered. Value of props.authenticated: ", authenticated)
   return (
       <div className={classes.root}>
         <AppBar position="static">
